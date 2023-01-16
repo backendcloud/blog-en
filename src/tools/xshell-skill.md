@@ -1,3 +1,5 @@
+release time :2016-07-05 22:57
+
 # Paste
 
 For example, openstack vm_id:

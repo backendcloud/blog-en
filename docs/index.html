@@ -39,11 +39,9 @@
             try {
                 var theme = localStorage.getItem('mdbook-theme');
                 var sidebar = localStorage.getItem('mdbook-sidebar');
-
                 if (theme.startsWith('"') && theme.endsWith('"')) {
                     localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
                 }
-
                 if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
                     localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
                 }
@@ -76,7 +74,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="SUMMARY.html"><strong aria-hidden="true">1.</strong> Tools</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="tools/xshell-skill.html"><strong aria-hidden="true">1.1.</strong> Some Skills of using xshell tools</a></li></ol></li><li class="chapter-item expanded "><a href="SUMMARY.html"><strong aria-hidden="true">2.</strong> point of view</a></li><li class="chapter-item expanded "><a href="pointofview/huawei-and-operators.html"><strong aria-hidden="true">3.</strong> Huawei and telecom operators</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="SUMMARY.html"><strong aria-hidden="true">1.</strong> Tools</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="tools/xshell-skill.html"><strong aria-hidden="true">1.1.</strong> Some Skills of using xshell tools</a></li></ol></li><li class="chapter-item expanded "><a href="SUMMARY.html"><strong aria-hidden="true">2.</strong> point of view</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="pointofview/huawei-and-operators.html"><strong aria-hidden="true">2.1.</strong> Huawei and telecom operators</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -135,6 +133,9 @@
 
                 <div id="content" class="content">
                     <main>
+                        <!-- Page table of contents -->
+                        <div class="sidetoc"><nav class="pagetoc"></nav></div>
+
                         <h1 id="summary"><a class="header" href="#summary">Summary</a></h1>
 <ul>
 <li><a href="./SUMMARY.html">Tools</a>
@@ -142,8 +143,11 @@
 <li><a href="./tools/xshell-skill.html">Some Skills of using xshell tools</a></li>
 </ul>
 </li>
-<li><a href="./SUMMARY.html">point of view</a></li>
+<li><a href="./SUMMARY.html">point of view</a>
+<ul>
 <li><a href="./pointofview/huawei-and-operators.html">Huawei and telecom operators</a></li>
+</ul>
+</li>
 </ul>
 
                     </main>

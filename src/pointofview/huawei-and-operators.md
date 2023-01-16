@@ -1,5 +1,4 @@
 release time :2017-03-10 21:25
----
 
 # Huawei and China's telecom operators
 
