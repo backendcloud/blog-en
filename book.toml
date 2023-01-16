@@ -1,0 +1,16 @@
+[book]
+authors = ["hanwei"]
+language = "en"
+multilingual = false
+src = "src"
+title = "English version of the website https://www.backendcloud.cn/"
+
+[build]
+build-dir = "docs"
+
+[output.html]
+additional-css = ["style.css"]
+additional-js = ["sidebar.js"]
+
+
+# [output.pdf]
