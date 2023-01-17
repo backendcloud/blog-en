@@ -1,0 +1,395 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Add fast evacuation function to VM HA procedure - English version of the website https://www.backendcloud.cn/</title>
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../style.css">
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../SUMMARY.html"><strong aria-hidden="true">1.</strong> Openstack</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../openstack/vm-activation-failure.html"><strong aria-hidden="true">1.1.</strong> Windows virtual machine activation failure problem</a></li><li class="chapter-item expanded "><a href="../openstack/fast-evacuation.html" class="active"><strong aria-hidden="true">1.2.</strong> Add fast evacuation function to VM HA procedure</a></li></ol></li><li class="chapter-item expanded "><a href="../SUMMARY.html"><strong aria-hidden="true">2.</strong> Tools</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../tools/xshell-skill.html"><strong aria-hidden="true">2.1.</strong> Some Skills of using xshell tools</a></li></ol></li><li class="chapter-item expanded "><a href="../SUMMARY.html"><strong aria-hidden="true">3.</strong> point of view</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../point-of-view/huawei-and-operators.html"><strong aria-hidden="true">3.1.</strong> Huawei and telecom operators</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">English version of the website https://www.backendcloud.cn/</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <!-- Page table of contents -->
+                        <div class="sidetoc"><nav class="pagetoc"></nav></div>
+
+                        <p>release time :2017-06-10 03:27</p>
+<h1 id="relevant-blueprints"><a class="header" href="#relevant-blueprints">Relevant blueprints:</a></h1>
+<ul>
+<li>https://blueprints.launchpad.net/nova/+spec/mark-host-down</li>
+<li>https://blueprints.launchpad.net/python-novaclient/+spec/support-force-down-service</li>
+</ul>
+<h1 id="why-add-this-api"><a class="header" href="#why-add-this-api">Why add this API</a></h1>
+<p>With this API, external fault monitoring can get the nova-compute service down faster, which will directly improve the fault recovery time of VM HA (the time to evacuate a VM from a faulty node to a normal node).
+external fault monitoring system a possibility of telling OpenStack Nova fast that compute host is down. This will immediately enable calling of evacuation of any VM on host and further enabling faster HA actions.</p>
+<h1 id="rest-api-for-forced-down"><a class="header" href="#rest-api-for-forced-down">REST API for forced down</a></h1>
+<p>request: PUT /v2.1/{tenant_id}/os-services/force-down { “binary”: “nova-compute”, “host”: “compute1”, “forced_down”: true }</p>
+<p>response: 200 OK { “service”: { “host”: “compute1”, “binary”: “nova-compute”, “forced_down”: true } }</p>
+<p>Example: curl -g -i -X PUT http://{service_host_ip}:8774/v2.1/{tenant_id}/os-services /force-down -H “Content-Type: application/json” -H “Accept: application/json ” -H “X-OpenStack-Nova-API-Version: 2.11” -H “X-Auth-Token: {token}” -d ‘{“b inary”: “nova-compute”, “host”: “compute1”, “forced_down”: true}’</p>
+<h1 id="cli-for-forced-down"><a class="header" href="#cli-for-forced-down">CLI for forced down</a></h1>
+<p>nova service-force-down nova-compute</p>
+<p>Example: nova service-force-down compute1 nova-compute</p>
+<h1 id="rest-api-for-disabling-forced-down"><a class="header" href="#rest-api-for-disabling-forced-down">REST API for disabling forced down</a></h1>
+<p>request: PUT /v2.1/{tenant_id}/os-services/force-down { “binary”: “nova-compute”, “host”: “compute1”, “forced_down”: false }</p>
+<p>response: 200 OK { “service”: { “host”: “compute1”, “binary”: “nova-compute”, “forced_down”: false } }</p>
+<p>Example: curl -g -i -X PUT http://{service_host_ip}:8774/v2.1/{tenant_id}/os-services /force-down -H “Content-Type: application/json” -H “Accept: application/json ” -H “X-OpenStack-Nova-API-Version: 2.11” -H “X-Auth-Token: {token}” -d ‘{“b inary”: “nova-compute”, “host”: “compute1”, “forced_down”: false}’</p>
+<h1 id="cli-for-disabling-forced-down"><a class="header" href="#cli-for-disabling-forced-down">CLI for disabling forced down</a></h1>
+<p>nova service-force-down –unset nova-compute</p>
+<p>Example: nova service-force-down –unset compute1 nova-compute</p>
+<h1 id="add-fast-evacuation-function-to-vm-ha-procedure"><a class="header" href="#add-fast-evacuation-function-to-vm-ha-procedure">Add fast evacuation function to VM HA procedure</a></h1>
+<p>Now add fast evacuation function in the developed VM HA program</p>
+<ol>
+<li>Modify the configuration file and add the quick_evacuate_level option</li>
+</ol>
+<ul>
+<li>level 1: (fastest) Do not shut down, just force down nova-compute-service</li>
+<li>level 2: (faster) (default) Shut down first, then force down nova-compute-service</li>
+<li>level 3: (disable quick_evacuate)</li>
+</ul>
+<ol start="2">
+<li>change python-novaclient&gt;=6.0.0 to support force-service-down</li>
+<li>Modify the processing logic of the evacuation process and add rapid evacuation</li>
+</ol>
+<p>The original evacuation process is to shut down the faulty computing node after finding the faulty node, and then wait for the faulty node to cause nova service state down due to heartbeat loss, and then perform evacuation.</p>
+<p>Now it is changed to:</p>
+<ul>
+<li>level 1: (fastest) does not shut down, only force down nova-compute -service</li>
+<li>level 2: (faster) (default) Shut down first, then force down after shutdown introduction nova-compute-service</li>
+<li>level 3: (disable quick_evacuate) do nothing, same as the original process</li>
+</ul>
+<p>The following code def _ipmi_handle, before the change, shuts down the faulty node. After the change, at level 1, force down nova service state and skip the shutdown process.</p>
+<pre><code class="language-python">def _ipmi_handle(self, node):
+    # cmd = 'ssh %s systemctl stop openstack-nova-compute' % node
+    # return os.system(cmd)
+    ret = 1
+################  add  ################
+    if CONF.quick_evacuate_level == 1:
+        try:
+            self.nova_client.services.force_down(host=node,
+                                                 binary='nova-compute',
+                                                 force_down=True,
+                                                )
+            service = self.nova_client.services.list(
+                host=node,
+                binary='nova-compute')
+            if service:
+                if service[0].state == 'down':
+                    return ret
+            raise
+        except Exception as e:
+            content = node + ' nova-compute service force down failed!'
+            title = 'force down failed'
+            self.db.add_or_update_guardian_log(**{'title': title,
+                                                  'detail': content,
+                                                  'level': 'ERROR'})
+            LOG.error(content)
+            LOG.error(e)
+################  add  ################
+    LOG.info('IPMI enabled,need to check power status of %s' % node)
+    ipmi_info = self.db.get_ipmiInfo(node)
+    if ipmi_info is None:
+        LOG.warning(
+            'can not find ipmi info for %s, will ignore evacuate...'
+            % node)
+        return 0
+    LOG.debug('get ipmi info (ip %s user %s, password %s)' % (
+        ipmi_info.ip, ipmi_info.username, ipmi_info.password))
+    ipmi_util = IPMIUtil(ipmi_info.ip, ipmi_info.username,
+                         ipmi_info.password)
+    power_status = ipmi_util.get_power_status()
+    LOG.info('power status of %s is %s' % (node, power_status))
+
+    if 'off' != power_status:
+        LOG.info('power status of %s is not off,power off it...' % node)
+        ipmi_util.do_power_off()
+        for i in range(1, CONF.ipmi_check_max_count + 1):
+            power_status = ipmi_util.get_power_status()
+            if 'off' != power_status:
+                LOG.info(
+                    'power status of %s is not off,wait for %s seconds...'
+                    % (node, CONF.ipmi_check_interval))
+                time.sleep(CONF.ipmi_check_interval)
+            else:
+                break
+        power_status = ipmi_util.get_power_status()
+        if 'off' != power_status:
+            LOG.info(
+                'after %s check,can not confirm power status of '
+                '%s is off,will ignore evacuate...'
+                % (node,
+                   CONF.ipmi_check_max_count*CONF.ipmi_check_interval))
+            ret = 0
+    return ret
+</code></pre>
+<p>When the following code is at level 2, it does not skip the shutdown process of the above code, and force down before checking the nova service state to achieve rapid evacuation (do not check the heartbeat process). Level 3 is to do nothing, the same as before.</p>
+<pre><code class="language-python">################  add  ################
+if CONF.quick_evacuate_level == 2:
+    try:
+        self.nova_client.services.force_down(host=node,
+                                             binary='nova-compute',
+                                             force_down=True,
+                                            )
+        service = self.nova_client.services.list(
+            host=node,
+            binary='nova-compute')
+        if service:
+            if service[0].state != 'down':
+                raise
+    except Exception as e:
+        content = node + ' nova-compute service force down failed!'
+        title = 'force down failed'
+        self.db.add_or_update_guardian_log(**{'title': title,
+                                              'detail': content,
+                                              'level': 'ERROR'})
+        LOG.error(content)
+        LOG.error(e)
+################  add  ################
+
+if self._wait_for_service_to_down(node):
+    for server in servers:
+        can_evacuate = self._evacuate_predict(server)
+        if can_evacuate:
+            try:
+                # just evacuate, let nova scheduler
+                # choose one host if not in drbd env
+                respone = server.evacuate(
+                    host=evacuated_to,
+                    on_shared_storage=CONF.on_share_storage)
+                LOG.info(
+                    'evacuate vm info:[id:%s,name:%s,status:%s],'
+                    'reponse is %s'
+                    % (server.id, server.name, server.status,
+                        respone))
+                content = '虚拟机被疏散:虚拟机ID: %s' % server.id
+                self.send_snmp(content=content)
+            except Exception as e:
+                content = ('evacuate vm %s failed' % server.id)
+                title = ('疏散虚拟机%s失败' % server.id)
+                self.db.add_or_update_guardian_log(
+                    **{'title': title,
+                       'detail': content,
+                       'level': 'ERROR'})
+                content = '虚拟机疏散调用API失败:虚拟机ID: %s' % server.id
+                self.send_snmp(content=content)
+                LOG.error(content)
+                LOG.error(e)
+
+            # add to db
+            try:
+                self.db.add_evacuate_history(
+                    instance_id=server.id,
+                    instance_name=server.name,
+                    host=getattr(server, 'OS-EXT-SRV-ATTR:host'))
+
+                content = (
+                    'add_evacuate_history '
+                    '[instance_id:%s,instance_name:%s,host:%s]'
+                    % (server.id, server.name,
+                       getattr(server, 'OS-EXT-SRV-ATTR:host')))
+                LOG.info(content)
+                title = ('增加疏散记录%s' % server.name)
+                self.db.add_or_update_guardian_log(
+                    **{'title': title,
+                       'detail': content,
+                       'level': 'INFO'})
+            except Exception as e:
+                content = (
+                    'add_evacuate_history for vm %s failed'
+                    % server.id)
+                title = ('增加疏散记录%s失败' % server.id)
+                self.db.add_or_update_guardian_log(
+                    **{'title': title,
+                       'detail': content,
+                       'level': 'ERROR'})
+                LOG.error(content)
+                LOG.error(e)
+        else:
+            content = '虚拟机没有被疏散:虚拟机ID: %s' % server.id
+            self.send_snmp(content=content)
+            LOG.info('server %s can not evacuate' % server.id)
+
+    # disable this service
+    try:
+        self.nova_client.services.disable(node, 'nova-compute')
+    except Exception as e:
+        content = (
+            'failed to disable compute service on node %s' % node)
+        title = ('disable节点%s服务失败' % node)
+        self.db.add_or_update_guardian_log(
+            **{'title': title,
+               'detail': content,
+               'level': 'ERROR'})
+        LOG.error(content)
+        LOG.error(e)
+        raise
+
+    heart_beat = self.db.get_heartbeat_by_name(node)
+    heart_beat.has_evacuated = 1
+    heart_beat.status = 'done'
+    heart_beat.save(self.db.session)
+    LOG.info('node %s update with [has_evacuated: 1]' % node)
+</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../openstack/vm-activation-failure.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                            <a rel="next" href="../SUMMARY.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../openstack/vm-activation-failure.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a rel="next" href="../SUMMARY.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        <script type="text/javascript" src="../sidebar.js"></script>
+    </body>
+</html>
