@@ -75,7 +75,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="SUMMARY.html"><strong aria-hidden="true">1.</strong> Openstack</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="openstack/live-migration-local.html"><strong aria-hidden="true">1.1.</strong> Live Migration on Local Storage</a></li><li class="chapter-item expanded "><a href="openstack/fast-evacuation.html"><strong aria-hidden="true">1.2.</strong> Add fast evacuation function to VM HA procedure</a></li><li class="chapter-item expanded "><a href="openstack/vm-activation-failure.html"><strong aria-hidden="true">1.3.</strong> Windows virtual machine activation failure problem</a></li></ol></li><li class="chapter-item expanded "><a href="SUMMARY.html"><strong aria-hidden="true">2.</strong> Tools</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="tools/xshell-skill.html"><strong aria-hidden="true">2.1.</strong> Some Skills of using xshell tools</a></li></ol></li><li class="chapter-item expanded "><a href="SUMMARY.html"><strong aria-hidden="true">3.</strong> point of view</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="point-of-view/huawei-and-operators.html"><strong aria-hidden="true">3.1.</strong> Huawei and telecom operators</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="SUMMARY.html"><strong aria-hidden="true">1.</strong> Openstack</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="openstack/mount-cloud-disk.html"><strong aria-hidden="true">1.1.</strong> Mount cloud disk</a></li><li class="chapter-item expanded "><a href="openstack/ocata-nova-evacuate-bug.html"><strong aria-hidden="true">1.2.</strong> Ocata nova evacuate bug</a></li><li class="chapter-item expanded "><a href="openstack/compute-node-ha.html"><strong aria-hidden="true">1.3.</strong> compute node ha mainstream open source implementation</a></li><li class="chapter-item expanded "><a href="openstack/collectd-influxdb.html"><strong aria-hidden="true">1.4.</strong> Deployment and usage of Collectd and InfluxDB</a></li><li class="chapter-item expanded "><a href="openstack/live-migration-local.html"><strong aria-hidden="true">1.5.</strong> Live Migration on Local Storage</a></li><li class="chapter-item expanded "><a href="openstack/fast-evacuation.html"><strong aria-hidden="true">1.6.</strong> Add fast evacuation function to VM HA procedure</a></li><li class="chapter-item expanded "><a href="openstack/vm-activation-failure.html"><strong aria-hidden="true">1.7.</strong> Windows virtual machine activation failure problem</a></li></ol></li><li class="chapter-item expanded "><a href="SUMMARY.html"><strong aria-hidden="true">2.</strong> Tools</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="tools/xshell-skill.html"><strong aria-hidden="true">2.1.</strong> Some Skills of using xshell tools</a></li></ol></li><li class="chapter-item expanded "><a href="SUMMARY.html"><strong aria-hidden="true">3.</strong> point of view</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="tools/gerrit-install.html"><strong aria-hidden="true">3.1.</strong> gerrit install</a></li><li class="chapter-item expanded "><a href="point-of-view/huawei-and-operators.html"><strong aria-hidden="true">3.2.</strong> Huawei and telecom operators</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -142,6 +142,10 @@
 <li>
 <p><a href="./SUMMARY.html">Openstack</a></p>
 <ul>
+<li><a href="./openstack/mount-cloud-disk.html">Mount cloud disk</a></li>
+<li><a href="./openstack/ocata-nova-evacuate-bug.html">Ocata nova evacuate bug</a></li>
+<li><a href="./openstack/compute-node-ha.html">compute node ha mainstream open source implementation</a></li>
+<li><a href="./openstack/collectd-influxdb.html">Deployment and usage of Collectd and InfluxDB</a></li>
 <li><a href="./openstack/live-migration-local.html">Live Migration on Local Storage</a></li>
 <li><a href="./openstack/fast-evacuation.html">Add fast evacuation function to VM HA procedure</a></li>
 <li><a href="./openstack/vm-activation-failure.html">Windows virtual machine activation failure problem</a></li>
@@ -156,10 +160,349 @@
 <li>
 <p><a href="./SUMMARY.html">point of view</a></p>
 <ul>
+<li><a href="./tools/gerrit-install.html">gerrit install</a></li>
 <li><a href="./point-of-view/huawei-and-operators.html">Huawei and telecom operators</a></li>
 </ul>
 </li>
 </ul>
+<div style="break-before: page; page-break-before: always;"></div><p>release time :2017-06-30 05:16</p>
+<h1 id="create-order-a-cloud-disk"><a class="header" href="#create-order-a-cloud-disk">Create (order) a cloud disk</a></h1>
+<pre><code>[root@NFJD-PSC-BCEC-SV3 deployer]# cinder create 500 --volume-type fujitsu-ipsan --name 0630
++---------------------------------------+--------------------------------------+
+|                Property               |                Value                 |
++---------------------------------------+--------------------------------------+
+|              attachments              |                  []                  |
+|           availability_zone           |                 nova                 |
+|                bootable               |                false                 |
+|          consistencygroup_id          |                 None                 |
+|               created_at              |      2017-06-30T08:23:05.000000      |
+|              description              |                 None                 |
+|               encrypted               |                False                 |
+|                   id                  | 08d3018c-b1cd-4652-87ed-45a48a14b6f3 |
+|                metadata               |                  {}                  |
+|              multiattach              |                False                 |
+|                  name                 |                 0630                 |
+|      os-vol-tenant-attr:tenant_id     |   597854e23bfe46abb6178f786af12391   |
+|   os-volume-replication:driver_data   |                 None                 |
+| os-volume-replication:extended_status |                 None                 |
+|           replication_status          |               disabled               |
+|                  size                 |                 500                  |
+|              snapshot_id              |                 None                 |
+|              source_volid             |                 None                 |
+|                 status                |               creating               |
+|                user_id                |   622684c00210427091c7493f36aaa6cf   |
+|              volume_type              |            fujitsu-ipsan             |
++---------------------------------------+--------------------------------------+
+</code></pre>
+<h1 id="mount-cloud-disk"><a class="header" href="#mount-cloud-disk">Mount cloud disk</a></h1>
+<p>Existing cloud host id 27b31829-326f-4029-a537-bb327303a32c</p>
+<p>Mount the cloud disk to the cloud host</p>
+<pre><code>[root@NFJD-PSC-BCEC-SV3 deployer]# nova volume-attach 27b31829-326f-4029-a537-bb327303a32c 08d3018c-b1cd-4652-87ed-45a48a14b6f3
++----------+--------------------------------------+
+| Property | Value                                |
++----------+--------------------------------------+
+| device   | /dev/vdb                             |
+| id       | 08d3018c-b1cd-4652-87ed-45a48a14b6f3 |
+| serverId | 27b31829-326f-4029-a537-bb327303a32c |
+| volumeId | 08d3018c-b1cd-4652-87ed-45a48a14b6f3 |
++----------+--------------------------------------+
+</code></pre>
+<p>Comparing the execution results of the fdisk -l command before and after mounting, it is found that after the cloud disk is mounted, there is an extra vdb</p>
+<p><img src="openstack/2023-01-17-13-45-58.png" alt="" /></p>
+<h1 id="artition"><a class="header" href="#artition">artition</a></h1>
+<p>Run fdisk /dev/vdb to partition the data disk. According to the prompt, enter n, p, 1 in sequence, press Enter twice, wq, and the partition starts.</p>
+<p><img src="openstack/2023-01-17-13-46-13.png" alt="" /></p>
+<p>Run the fdisk -l command to view the new partition. The new partition vdb1 has been created. Like /dev/xvdb in the example below.</p>
+<p><img src="openstack/2023-01-17-13-46-26.png" alt="" /></p>
+<h1 id="format"><a class="header" href="#format">format</a></h1>
+<p>Run mkfs.ext3 /dev/xvdb1 to format the new partition. The time required for formatting depends on the size of the data disk. You can also decide to choose other file formats, such as ext4, etc.</p>
+<p><img src="openstack/2023-01-17-13-46-39.png" alt="" /></p>
+<p>Run echo /dev/xvdb1 /mnt ext3 defaults 0 0 &gt;&gt; /etc/fstab to write new partition information. Once complete, you can use the cat /etc/fstab command to view.</p>
+<p><img src="openstack/2023-01-17-13-46-51.png" alt="" /></p>
+<p>Through the command mount -a, after modifying /etc/fstab, it will take effect without restarting. Then execute df -h to view the partitions. If the data disk information appears, it means that the mount is successful and the new partition can be used.</p>
+<p><img src="openstack/2023-01-17-13-47-02.png" alt="" /></p>
+<h1 id="linux-uses-the-dd-command-to-quickly-generate-large-files"><a class="header" href="#linux-uses-the-dd-command-to-quickly-generate-large-files">Linux uses the dd command to quickly generate large files</a></h1>
+<p><img src="openstack/2023-01-17-13-47-16.png" alt="" /></p>
+<p>The dd command can easily create a file of a specified size, such as</p>
+<pre><code>dd if=/dev/zero of=test bs=1M count=1000
+</code></pre>
+<p>A 1000M test file will be generated, and the content of the file is all 0 (because it is read from /dev/zero, /dev/zero is the source of 0)</p>
+<p>But this is for actually writing to the hard disk. The speed of file generation depends on the read and write speed of the hard disk. If you want to generate very large files, the speed is very slow.</p>
+<p>In a certain scenario, we just want the file system to think that there is a very large file here, but we don’t actually write it to the hard disk</p>
+<p>then you can</p>
+<pre><code>dd if=/dev/zero of=test bs=1M count=0 seek=100000
+</code></pre>
+<p>The displayed size of the file created at this time in the file system is 100000MB, but it does not actually occupy a block, so the creation speed is comparable to the memory speed</p>
+<p>The function of seek is to skip the part of the specified size in the output file, which achieves the purpose of creating a large file, but not actually writing</p>
+<blockquote>
+<p>Of course, because you don’t actually write to the hard disk, you can create 100G of such files on a hard disk with a capacity of only 10G.</p>
+</blockquote>
+<div style="break-before: page; page-break-before: always;"></div><p>release time :2017-06-28 18:24</p>
+<h1 id="phenomenon"><a class="header" href="#phenomenon">Phenomenon</a></h1>
+<p>Execute the nova evacuate operation, but there is a problem during the rebuild. After a certain step, the error &quot;rebuild virtual machine has been deleted&quot; is reported.</p>
+<h1 id="reason"><a class="header" href="#reason">reason</a></h1>
+<p>When an instance is evacuated from one node to another, an InstanceNotFound exception is expected to occur during the execution of the check_instance_exists method during the rebuild process.</p>
+<p>The check_instance_exists method is used to ensure that the instance does not exist on the new node, and if it exists, an exception will be thrown.</p>
+<p>The check_instance_exists in the actual code reported this exception when it should not report the InstanceNotFound exception, and the exception of the method was not added to capture the InstanceNotFound exception.</p>
+<h1 id="community-fixes"><a class="header" href="#community-fixes">community fixes</a></h1>
+<p>nova/virt/libvirt/driver.py</p>
+<pre><code class="language-python">def instance_exists(self, instance):
+    &quot;&quot;&quot;Efficient override of base instance_exists method.&quot;&quot;&quot;
+    try:
+        self._host.get_guest(instance)
+        return True
+    except exception.InternalError:
+        return False
+</code></pre>
+<p>change to:</p>
+<pre><code class="language-python">def instance_exists(self, instance):
+    &quot;&quot;&quot;Efficient override of base instance_exists method.&quot;&quot;&quot;
+    try:
+        self._host.get_guest(instance)
+        return True
+    except (exception.InternalError, exception.InstanceNotFound):
+        return False
+</code></pre>
+<h1 id="unit-test"><a class="header" href="#unit-test">unit test</a></h1>
+<pre><code class="language-python">@mock.patch.object(host.Host, 'get_guest')
+def test_instance_exists(self, mock_get_guest):
+    drvr = libvirt_driver.LibvirtDriver(fake.FakeVirtAPI(), False)
+    self.assertTrue(drvr.instance_exists(None))
+
+    mock_get_guest.side_effect = exception.InstanceNotFound
+    self.assertFalse(drvr.instance_exists(None))
+
+    mock_get_guest.side_effect = exception.InternalError
+    self.assertFalse(drvr.instance_exists(None))
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><p>release time :2017-06-22 09:16</p>
+<h1 id="nova-evacuate"><a class="header" href="#nova-evacuate">nova evacuate</a></h1>
+<p>Various implementation schemes basically call nova's evacuate interface without exception.</p>
+<p>nova evacuate is very similar to hot migration. They all want to transfer instances from one node to another. The difference is mainly that thermal migration is performed under normal conditions, while evacuation is performed under abnormal conditions. A vivid example is that thermal migration occurs before an earthquake to escape from a building, and evacuation occurs after an earthquake occurs by escaping from a destroyed building.</p>
+<p>But strictly speaking, the above analogy is not rigorous enough. To be precise, it is not escaped from the destroyed building, but resurrected.</p>
+<p>So the translation of nova evacuate into resurrection is more accurate than evacuation.</p>
+<h1 id="masakari"><a class="header" href="#masakari">masakari</a></h1>
+<p>NTT NTT's open source project masakari has become an independent project of Openstack, which is dedicated to compute node ha.</p>
+<p>The Japanese word for masakari is まさかり, meaning an axe. To be precise, it's an axe. It is the ax used by Zhou Xingchi's movie Ax Gang. It is not known whether the initiators of the project, several Japanese, were affected by this.</p>
+<p>The name masakari is to find the location of the fault, use the ax to help the highest stunt, and throw the ax accurately to isolate and cut off the fault.</p>
+<h1 id="detect-3-type-of-vm-down"><a class="header" href="#detect-3-type-of-vm-down">detect 3 type of vm down</a></h1>
+<ul>
+<li>unexpected vm down (monitoring libvirt's events)</li>
+<li>vm manager down (monitoring manager process)</li>
+<li>host down (using pacemaker)</li>
+</ul>
+<h1 id="new-features-that-masakari-is-working-on"><a class="header" href="#new-features-that-masakari-is-working-on">New features that masakari is working on</a></h1>
+<ol>
+<li>
+<p>Now it only supports evacuation of vm in active, stopped, and error states.
+Later, it can be added to evacuate vm in more states, such as shelved, rescued, paused and suspended</p>
+</li>
+<li>
+<p>Now the process after the fault is detected is fixed, and the only way to change it is to change the code.
+In the future, users can customize the process by writing yaml files.</p>
+</li>
+</ol>
+<h1 id="compute-node-ha-other-technologies-used"><a class="header" href="#compute-node-ha-other-technologies-used">compute node ha other technologies used</a></h1>
+<ul>
+<li>consul</li>
+<li>raft</li>
+<li>gossip</li>
+</ul>
+<h1 id="compute-node-ha-other-related-open-source-projects"><a class="header" href="#compute-node-ha-other-related-open-source-projects">compute node ha other related open source projects</a></h1>
+<ul>
+<li>Openstack Congress (Policy as a Service)</li>
+<li>pacemaker-remote (host monitor solution)</li>
+<li>mistral-evacuate (workflow)</li>
+</ul>
+<h1 id="appendix-1-gossip-protocol"><a class="header" href="#appendix-1-gossip-protocol">Appendix 1: Gossip protocol</a></h1>
+<p>A Gossip protocol runs between all Consul Agents (both server and normal). Both server nodes and ordinary Agents will join this Gossip cluster to send and receive Gossip messages. Every once in a while, each node will randomly select several nodes to send Gossip messages, and other nodes will randomly select other nodes to relay and send messages again. After such a period of time, the entire cluster can receive this message.</p>
+<p>At first glance, it seems that the efficiency of this sending method is very low, but there have been papers in mathematics that have demonstrated its feasibility, and the Gossip protocol is already a relatively mature protocol in the P2P network. You can check the introduction of Gossip, which contains a simulator that can tell you the time and bandwidth required for messages to propagate in the cluster. The biggest advantage of the Gossip protocol is that even if the number of cluster nodes increases, the load on each node will not increase much and is almost constant. This allows Consul-managed clusters to scale out to thousands of nodes.</p>
+<h1 id="appendix-2-path-algorithms"><a class="header" href="#appendix-2-path-algorithms">Appendix 2: Path Algorithms</a></h1>
+<p>Find the optimal path for evacuate.</p>
+<p>Not only for compute node HA, but also for load optimization and balancing</p>
+<p>Try to design the migration path algorithm to optimize the performance of the node where the VM is located to maximize the return on hardware investment.</p>
+<div style="break-before: page; page-break-before: always;"></div><p>release time :2017-06-15 06:47</p>
+<h1 id="update-package"><a class="header" href="#update-package">update package</a></h1>
+<pre><code>$ sudo apt-get update
+$ sudo apt-get upgrade
+$ sudo reboot
+</code></pre>
+<h1 id="install-influxdb"><a class="header" href="#install-influxdb">install influxdb</a></h1>
+<pre><code>hanwei@ubuntu-lab:~$ wget https://dl.influxdata.com/influxdb/releases/influxdb_1.2.4_amd64.deb
+--2017-06-14 16:37:09--  https://dl.influxdata.com/influxdb/releases/influxdb_1.2.4_amd64.deb
+Resolving dl.influxdata.com (dl.influxdata.com)... 52.84.167.167, 52.84.167.39, 52.84.167.178, ...
+Connecting to dl.influxdata.com (dl.influxdata.com)|52.84.167.167|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 17305080 (17M) [application/x-debian-package]
+Saving to: ‘influxdb_1.2.4_amd64.deb’
+
+influxdb_1.2.4_amd64.deb         100%[========================================================&gt;]  16.50M   875KB/s    in 19s     
+
+2017-06-14 16:37:29 (874 KB/s) - ‘influxdb_1.2.4_amd64.deb’ saved [17305080/17305080]
+
+hanwei@ubuntu-lab:~$ sudo dpkg -i influxdb_1.2.4_amd64.deb
+[sudo] password for hanwei: 
+Selecting previously unselected package influxdb.
+(Reading database ... 63342 files and directories currently installed.)
+Preparing to unpack influxdb_1.2.4_amd64.deb ...
+Unpacking influxdb (1.2.4-1) ...
+Setting up influxdb (1.2.4-1) ...
+Created symlink from /etc/systemd/system/influxd.service to /lib/systemd/system/influxdb.service.
+Created symlink from /etc/systemd/system/multi-user.target.wants/influxdb.service to /lib/systemd/system/influxdb.service.
+Processing triggers for man-db (2.7.5-1) ...
+hanwei@ubuntu-lab:~$ service influxdb start
+==== AUTHENTICATING FOR org.freedesktop.systemd1.manage-units ===
+Authentication is required to start 'influxdb.service'.
+Authenticating as: hanwei,,, (hanwei)
+Password: 
+==== AUTHENTICATION COMPLETE ===
+hanwei@ubuntu-lab:~$ service influxdb status
+● influxdb.service - InfluxDB is an open-source, distributed, time series database
+Loaded: loaded (/lib/systemd/system/influxdb.service; enabled; vendor preset: enabled)
+Active: active (running) since Wed 2017-06-14 16:50:05 CST; 4s ago
+    Docs: https://docs.influxdata.com/influxdb/
+Main PID: 2156 (influxd)
+    Tasks: 7
+Memory: 4.9M
+    CPU: 49ms
+CGroup: /system.slice/influxdb.service
+        └─2156 /usr/bin/influxd -config /etc/influxdb/influxdb.conf 
+</code></pre>
+<h1 id="modify-the-influxdb-configuration-file"><a class="header" href="#modify-the-influxdb-configuration-file">Modify the influxdb configuration file</a></h1>
+<pre><code>hanwei@ubuntu-lab:~$ vim /etc/influxdb/influxdb.conf
+[admin]
+# Determines whether the admin service is enabled.
+# enabled = false
+
+# The default bind address used by the admin service.
+# bind-address = &quot;:8083&quot;
+
+# Whether the admin service should use HTTPS.
+# https-enabled = false
+</code></pre>
+<p>change to: </p>
+<pre><code>enabled = true
+bind-address = &quot;:8083&quot;
+</code></pre>
+<h1 id="create-database-collectd-in-infuxdb"><a class="header" href="#create-database-collectd-in-infuxdb">Create database Collectd in infuxdb</a></h1>
+<p>Two ways CLI or web ui</p>
+<p>http://192.168.206.144:8086/query?q=CREATE+DATABASE+%22collectd%22&amp;db=collectd</p>
+<p>or use web ui</p>
+<p><img src="openstack/2023-01-17-11-27-16.png" alt="" /></p>
+<h1 id="install-collectd"><a class="header" href="#install-collectd">Install collectd</a></h1>
+<pre><code>$ sudo apt-get install collectd
+</code></pre>
+<p>Configure Collectd as the client, and send the collected data directly to InfluxDB</p>
+<pre><code>$ sudo vi /etc/collectd/collectd.conf
+...
+LoadPlugin network
+...
+&lt;Plugin network&gt;
+        Server &quot;192.168.2.183&quot; &quot;25826&quot;
+&lt;/Plugin&gt;
+...
+</code></pre>
+<p>Restart collectd:</p>
+<pre><code>$ sudo /etc/init.d/collectd restart
+</code></pre>
+<h1 id="configure-the-collectd-plugin-that-comes-with-influxdb"><a class="header" href="#configure-the-collectd-plugin-that-comes-with-influxdb">Configure the Collectd plugin that comes with InfluxDB</a></h1>
+<p>The Collectd plug-in that comes with InfluxDB is disabled by default. It needs to be manually configured to enable enabled = true, and fill in the line database = &quot;collectd&quot;. The &quot;collectd&quot; here is the database we created above. Remember to restart InfluxDB after changing the configuration</p>
+<pre><code>$ sudo vim /etc/influxdb/shared/influxdb.conf
+...
+# Configure the collectd api
+[input_plugins.collectd]
+enabled = true
+# address = &quot;0.0.0.0&quot; # If not set, is actually set to bind-address.
+# port = 25826
+database = &quot;collectd&quot;
+# types.db can be found in a collectd installation or on github:
+# https://github.com/collectd/collectd/blob/master/src/types.db
+# typesdb = &quot;/usr/share/collectd/types.db&quot; # The path to the collectd types.db file
+...
+hanwei@ubuntu-lab:~$ sudo service influxdb restart
+</code></pre>
+<p>Check the port opened on the server and you will find that the influxdb plug-in has started a 25826 port. If you find that there is no (collected) data in the InfluxDB database, be sure to check whether the 25826 port is started normally</p>
+<pre><code>hanwei@ubuntu-lab:~$ sudo netstat -tupln
+Active Internet connections (only servers)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name
+tcp        0      0 192.168.122.1:53        0.0.0.0:*               LISTEN      1649/dnsmasq    
+tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      1308/sshd       
+tcp        0      0 127.0.0.1:5432          0.0.0.0:*               LISTEN      1437/postgres   
+tcp        0      0 127.0.0.1:6010          0.0.0.0:*               LISTEN      1740/0          
+tcp        0      0 127.0.0.1:6011          0.0.0.0:*               LISTEN      10471/1         
+tcp6       0      0 :::8083                 :::*                    LISTEN      10490/influxd   
+tcp6       0      0 :::8086                 :::*                    LISTEN      10490/influxd   
+tcp6       0      0 :::22                   :::*                    LISTEN      1308/sshd       
+tcp6       0      0 :::8088                 :::*                    LISTEN      10490/influxd   
+tcp6       0      0 ::1:5432                :::*                    LISTEN      1437/postgres   
+tcp6       0      0 ::1:6010                :::*                    LISTEN      1740/0          
+tcp6       0      0 ::1:6011                :::*                    LISTEN      10471/1         
+udp        0      0 0.0.0.0:53466           0.0.0.0:*                           10239/collectd  
+udp        0      0 192.168.122.1:53        0.0.0.0:*                           1649/dnsmasq    
+udp        0      0 0.0.0.0:67              0.0.0.0:*                           1649/dnsmasq    
+udp        0      0 0.0.0.0:68              0.0.0.0:*                           1250/dhclient   
+udp6       0      0 :::25826                :::*                                10490/influxd
+</code></pre>
+<h1 id="check-if-influxdb-has-data-from-collectd"><a class="header" href="#check-if-influxdb-has-data-from-collectd">Check if InfluxDB has data from Collectd</a></h1>
+<p>InfluxDB is ready to accept and process data from Collectd. Use the command line or the web management interface to verify whether there is data in the database</p>
+<pre><code>hanwei@ubuntu-lab:~$ influx
+Connected to http://localhost:8086 version 1.2.4
+InfluxDB shell version: 1.2.4
+&gt; show databases;
+name: databases
+name
+----
+_internal
+mydb
+&gt; use collectd
+Using database collectd
+&gt; show measurements
+name: measurements
+name
+----
+cpu_value
+df_value
+disk_io_time
+disk_read
+disk_value
+disk_weighted_io_time
+disk_write
+entropy_value
+interface_rx
+interface_tx
+irq_value
+load_longterm
+load_midterm
+load_shortterm
+memory_value
+processes_value
+swap_value
+users_value
+&gt; SELECT * from cpu_value
+...
+7435180464451600 ubuntu-lab.localdomain 0        cpu  nice          722
+1497435180464452775 ubuntu-lab.localdomain 0        cpu  interrupt     0
+1497435180464454083 ubuntu-lab.localdomain 0        cpu  softirq       339
+1497435180464454592 ubuntu-lab.localdomain 0        cpu  steal         0
+1497435180464455103 ubuntu-lab.localdomain 0        cpu  idle          592750
+1497435190462593838 ubuntu-lab.localdomain 0        cpu  user          4281
+1497435190462598610 ubuntu-lab.localdomain 0        cpu  system        5599
+1497435190462600580 ubuntu-lab.localdomain 0        cpu  wait          7799
+1497435190462602296 ubuntu-lab.localdomain 0        cpu  nice          722
+1497435190462603649 ubuntu-lab.localdomain 0        cpu  interrupt     0
+1497435190462604905 ubuntu-lab.localdomain 0        cpu  softirq       339
+1497435190462605510 ubuntu-lab.localdomain 0        cpu  steal         0
+1497435190462606004 ubuntu-lab.localdomain 0        cpu  idle          593745
+1497435200463552177 ubuntu-lab.localdomain 0        cpu  user          4285
+1497435200463557277 ubuntu-lab.localdomain 0        cpu  system        5608
+1497435200463558626 ubuntu-lab.localdomain 0        cpu  wait          7799
+1497435200463560045 ubuntu-lab.localdomain 0        cpu  nice          722
+1497435200463561496 ubuntu-lab.localdomain 0        cpu  interrupt     0
+1497435200463562866 ubuntu-lab.localdomain 0        cpu  softirq       339
+...
+</code></pre>
+<p>or web ui</p>
+<p><img src="openstack/2023-01-17-11-29-03.png" alt="" /></p>
 <div style="break-before: page; page-break-before: always;"></div><p>release time :2017-06-14 15:25</p>
 <blockquote>
 <p>nova live-migration --block-migrate</p>
@@ -827,6 +1170,10 @@ def _set_clock(self, guest, os_type, image_meta, virt_type):
 <li>
 <p><a href="./SUMMARY.html">Openstack</a></p>
 <ul>
+<li><a href="./openstack/mount-cloud-disk.html">Mount cloud disk</a></li>
+<li><a href="./openstack/ocata-nova-evacuate-bug.html">Ocata nova evacuate bug</a></li>
+<li><a href="./openstack/compute-node-ha.html">compute node ha mainstream open source implementation</a></li>
+<li><a href="./openstack/collectd-influxdb.html">Deployment and usage of Collectd and InfluxDB</a></li>
 <li><a href="./openstack/live-migration-local.html">Live Migration on Local Storage</a></li>
 <li><a href="./openstack/fast-evacuation.html">Add fast evacuation function to VM HA procedure</a></li>
 <li><a href="./openstack/vm-activation-failure.html">Windows virtual machine activation failure problem</a></li>
@@ -841,6 +1188,7 @@ def _set_clock(self, guest, os_type, image_meta, virt_type):
 <li>
 <p><a href="./SUMMARY.html">point of view</a></p>
 <ul>
+<li><a href="./tools/gerrit-install.html">gerrit install</a></li>
 <li><a href="./point-of-view/huawei-and-operators.html">Huawei and telecom operators</a></li>
 </ul>
 </li>
@@ -895,6 +1243,10 @@ Destination port : 6080
 <li>
 <p><a href="./SUMMARY.html">Openstack</a></p>
 <ul>
+<li><a href="./openstack/mount-cloud-disk.html">Mount cloud disk</a></li>
+<li><a href="./openstack/ocata-nova-evacuate-bug.html">Ocata nova evacuate bug</a></li>
+<li><a href="./openstack/compute-node-ha.html">compute node ha mainstream open source implementation</a></li>
+<li><a href="./openstack/collectd-influxdb.html">Deployment and usage of Collectd and InfluxDB</a></li>
 <li><a href="./openstack/live-migration-local.html">Live Migration on Local Storage</a></li>
 <li><a href="./openstack/fast-evacuation.html">Add fast evacuation function to VM HA procedure</a></li>
 <li><a href="./openstack/vm-activation-failure.html">Windows virtual machine activation failure problem</a></li>
@@ -909,10 +1261,77 @@ Destination port : 6080
 <li>
 <p><a href="./SUMMARY.html">point of view</a></p>
 <ul>
+<li><a href="./tools/gerrit-install.html">gerrit install</a></li>
 <li><a href="./point-of-view/huawei-and-operators.html">Huawei and telecom operators</a></li>
 </ul>
 </li>
 </ul>
+<div style="break-before: page; page-break-before: always;"></div><p>release time :2017-06-28 15:51</p>
+<p><img src="tools/2023-01-17-13-39-31.png" alt="" /></p>
+<p>Gerrit is the current mainstream code review tool. It directly adds a layer of code review verification to code push and code merge, and it is also an important link and tool in the continuous integration tool chain.</p>
+<p>The gerrit deployment process is as follows:</p>
+<ol>
+<li>Install jdk1.8</li>
+<li>install httpd</li>
+</ol>
+<p>Download gerrit, such as: gerrit-2.12.4.war</p>
+<pre><code>Gerrit 2.12.4 https://www.gerritcodereview.com/download/gerrit-2.12.4.war
+</code></pre>
+<p>gerrit management account</p>
+<pre><code>sudo adduser gerrit
+sudo passwd gerrit
+</code></pre>
+<p>And add gerrit to sudo permission</p>
+<pre><code>sudo visudo
+gerrit  ALL=(ALL:ALL) ALL
+</code></pre>
+<p>install gerrit</p>
+<pre><code>java -jar gerrit-2.11.3.war init
+</code></pre>
+<p>Start the gerrit service</p>
+<pre><code>[gerrit@promote review2]$ /etc/init.d/gerrit.sh start
+** ERROR: GERRIT_SITE not set
+[gerrit@promote review2]$ pwd
+/home/gerrit/review2
+[gerrit@promote review2]$ /etc/init.d/gerrit.sh start
+** ERROR: GERRIT_SITE not set
+[gerrit@promote review2]$ export GERRIT_SITE=/home/gerrit/review2
+[gerrit@promote review2]$ /etc/init.d/gerrit.sh status
+Checking arguments to Gerrit Code Review:
+GERRIT_SITE     =  /home/gerrit/review2
+GERRIT_CONFIG   =  /home/gerrit/review2/etc/gerrit.config
+GERRIT_PID      =  /home/gerrit/review2/logs/gerrit.pid
+GERRIT_TMP      =  /home/gerrit/review2/tmp
+GERRIT_WAR      =  /home/gerrit/review2/bin/gerrit.war
+GERRIT_FDS      =  1024
+GERRIT_USER     =  gerrit
+JAVA            =  /usr/lib/jvm/java-1.7.0-openjdk-1.7.0.141-2.6.10.1.el7_3.x86_64/jre/bin/java
+JAVA_OPTIONS    =  
+RUN_EXEC        =  /usr/bin/perl -e '$x=$ENV{JAVA};exec $x @ARGV;die $!' -- GerritCodeReview
+RUN_ARGS        =  -jar /home/gerrit/review2/bin/gerrit.war daemon -d /home/gerrit/review2
+
+[gerrit@promote review2]$ /etc/init.d/gerrit.sh start
+Starting Gerrit Code Review: OK
+[root@promote etc]# cd /etc/httpd/
+[root@promote httpd]# ls
+conf  conf.d  conf.modules.d  logs  modules  run
+[root@promote httpd]# cd conf.d/
+[root@promote conf.d]# ls
+autoindex.conf  gerrit.conf  README  userdir.conf  welcome.conf
+</code></pre>
+<p>Modify the configuration file as needed</p>
+<pre><code>[root@promote conf.d]# vim gerrit.conf 
+</code></pre>
+<p>Configure the gerrit account password</p>
+<pre><code>[root@promote ~]# htpasswd -m /etc/gerrit.passwd hanwei
+htpasswd: cannot modify file /etc/gerrit.passwd; use '-c' to create it
+[root@promote ~]# touch /etc/gerrit.passwd
+[root@promote ~]# htpasswd -m /etc/gerrit.passwd hanwei
+New password: 
+Re-type new password: 
+Adding password for user hanwei
+</code></pre>
+<p>Open the browser, open the main interface of gerrit, and log in to gerrit with the account just created.</p>
 <div style="break-before: page; page-break-before: always;"></div><p>release time :2017-03-10 21:25</p>
 <h1 id="huawei-and-chinas-telecom-operators"><a class="header" href="#huawei-and-chinas-telecom-operators">Huawei and China's telecom operators</a></h1>
 <p>Over the past few decades, operators such as Huawei and China's telecom operators have reached a long-term tacit understanding, that is, operators are responsible for operations, and Huawei provides solutions, equipment, and technologies. </p>

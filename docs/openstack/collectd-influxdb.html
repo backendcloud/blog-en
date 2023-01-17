@@ -1,0 +1,361 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Deployment and usage of Collectd and InfluxDB - English version of the website https://www.backendcloud.cn/</title>
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../style.css">
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../SUMMARY.html"><strong aria-hidden="true">1.</strong> Openstack</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../openstack/mount-cloud-disk.html"><strong aria-hidden="true">1.1.</strong> Mount cloud disk</a></li><li class="chapter-item expanded "><a href="../openstack/ocata-nova-evacuate-bug.html"><strong aria-hidden="true">1.2.</strong> Ocata nova evacuate bug</a></li><li class="chapter-item expanded "><a href="../openstack/compute-node-ha.html"><strong aria-hidden="true">1.3.</strong> compute node ha mainstream open source implementation</a></li><li class="chapter-item expanded "><a href="../openstack/collectd-influxdb.html" class="active"><strong aria-hidden="true">1.4.</strong> Deployment and usage of Collectd and InfluxDB</a></li><li class="chapter-item expanded "><a href="../openstack/live-migration-local.html"><strong aria-hidden="true">1.5.</strong> Live Migration on Local Storage</a></li><li class="chapter-item expanded "><a href="../openstack/fast-evacuation.html"><strong aria-hidden="true">1.6.</strong> Add fast evacuation function to VM HA procedure</a></li><li class="chapter-item expanded "><a href="../openstack/vm-activation-failure.html"><strong aria-hidden="true">1.7.</strong> Windows virtual machine activation failure problem</a></li></ol></li><li class="chapter-item expanded "><a href="../SUMMARY.html"><strong aria-hidden="true">2.</strong> Tools</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../tools/xshell-skill.html"><strong aria-hidden="true">2.1.</strong> Some Skills of using xshell tools</a></li></ol></li><li class="chapter-item expanded "><a href="../SUMMARY.html"><strong aria-hidden="true">3.</strong> point of view</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../tools/gerrit-install.html"><strong aria-hidden="true">3.1.</strong> gerrit install</a></li><li class="chapter-item expanded "><a href="../point-of-view/huawei-and-operators.html"><strong aria-hidden="true">3.2.</strong> Huawei and telecom operators</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">English version of the website https://www.backendcloud.cn/</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <!-- Page table of contents -->
+                        <div class="sidetoc"><nav class="pagetoc"></nav></div>
+
+                        <p>release time :2017-06-15 06:47</p>
+<h1 id="update-package"><a class="header" href="#update-package">update package</a></h1>
+<pre><code>$ sudo apt-get update
+$ sudo apt-get upgrade
+$ sudo reboot
+</code></pre>
+<h1 id="install-influxdb"><a class="header" href="#install-influxdb">install influxdb</a></h1>
+<pre><code>hanwei@ubuntu-lab:~$ wget https://dl.influxdata.com/influxdb/releases/influxdb_1.2.4_amd64.deb
+--2017-06-14 16:37:09--  https://dl.influxdata.com/influxdb/releases/influxdb_1.2.4_amd64.deb
+Resolving dl.influxdata.com (dl.influxdata.com)... 52.84.167.167, 52.84.167.39, 52.84.167.178, ...
+Connecting to dl.influxdata.com (dl.influxdata.com)|52.84.167.167|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 17305080 (17M) [application/x-debian-package]
+Saving to: ‘influxdb_1.2.4_amd64.deb’
+
+influxdb_1.2.4_amd64.deb         100%[========================================================&gt;]  16.50M   875KB/s    in 19s     
+
+2017-06-14 16:37:29 (874 KB/s) - ‘influxdb_1.2.4_amd64.deb’ saved [17305080/17305080]
+
+hanwei@ubuntu-lab:~$ sudo dpkg -i influxdb_1.2.4_amd64.deb
+[sudo] password for hanwei: 
+Selecting previously unselected package influxdb.
+(Reading database ... 63342 files and directories currently installed.)
+Preparing to unpack influxdb_1.2.4_amd64.deb ...
+Unpacking influxdb (1.2.4-1) ...
+Setting up influxdb (1.2.4-1) ...
+Created symlink from /etc/systemd/system/influxd.service to /lib/systemd/system/influxdb.service.
+Created symlink from /etc/systemd/system/multi-user.target.wants/influxdb.service to /lib/systemd/system/influxdb.service.
+Processing triggers for man-db (2.7.5-1) ...
+hanwei@ubuntu-lab:~$ service influxdb start
+==== AUTHENTICATING FOR org.freedesktop.systemd1.manage-units ===
+Authentication is required to start 'influxdb.service'.
+Authenticating as: hanwei,,, (hanwei)
+Password: 
+==== AUTHENTICATION COMPLETE ===
+hanwei@ubuntu-lab:~$ service influxdb status
+● influxdb.service - InfluxDB is an open-source, distributed, time series database
+Loaded: loaded (/lib/systemd/system/influxdb.service; enabled; vendor preset: enabled)
+Active: active (running) since Wed 2017-06-14 16:50:05 CST; 4s ago
+    Docs: https://docs.influxdata.com/influxdb/
+Main PID: 2156 (influxd)
+    Tasks: 7
+Memory: 4.9M
+    CPU: 49ms
+CGroup: /system.slice/influxdb.service
+        └─2156 /usr/bin/influxd -config /etc/influxdb/influxdb.conf 
+</code></pre>
+<h1 id="modify-the-influxdb-configuration-file"><a class="header" href="#modify-the-influxdb-configuration-file">Modify the influxdb configuration file</a></h1>
+<pre><code>hanwei@ubuntu-lab:~$ vim /etc/influxdb/influxdb.conf
+[admin]
+# Determines whether the admin service is enabled.
+# enabled = false
+
+# The default bind address used by the admin service.
+# bind-address = &quot;:8083&quot;
+
+# Whether the admin service should use HTTPS.
+# https-enabled = false
+</code></pre>
+<p>change to: </p>
+<pre><code>enabled = true
+bind-address = &quot;:8083&quot;
+</code></pre>
+<h1 id="create-database-collectd-in-infuxdb"><a class="header" href="#create-database-collectd-in-infuxdb">Create database Collectd in infuxdb</a></h1>
+<p>Two ways CLI or web ui</p>
+<p>http://192.168.206.144:8086/query?q=CREATE+DATABASE+%22collectd%22&amp;db=collectd</p>
+<p>or use web ui</p>
+<p><img src="2023-01-17-11-27-16.png" alt="" /></p>
+<h1 id="install-collectd"><a class="header" href="#install-collectd">Install collectd</a></h1>
+<pre><code>$ sudo apt-get install collectd
+</code></pre>
+<p>Configure Collectd as the client, and send the collected data directly to InfluxDB</p>
+<pre><code>$ sudo vi /etc/collectd/collectd.conf
+...
+LoadPlugin network
+...
+&lt;Plugin network&gt;
+        Server &quot;192.168.2.183&quot; &quot;25826&quot;
+&lt;/Plugin&gt;
+...
+</code></pre>
+<p>Restart collectd:</p>
+<pre><code>$ sudo /etc/init.d/collectd restart
+</code></pre>
+<h1 id="configure-the-collectd-plugin-that-comes-with-influxdb"><a class="header" href="#configure-the-collectd-plugin-that-comes-with-influxdb">Configure the Collectd plugin that comes with InfluxDB</a></h1>
+<p>The Collectd plug-in that comes with InfluxDB is disabled by default. It needs to be manually configured to enable enabled = true, and fill in the line database = &quot;collectd&quot;. The &quot;collectd&quot; here is the database we created above. Remember to restart InfluxDB after changing the configuration</p>
+<pre><code>$ sudo vim /etc/influxdb/shared/influxdb.conf
+...
+# Configure the collectd api
+[input_plugins.collectd]
+enabled = true
+# address = &quot;0.0.0.0&quot; # If not set, is actually set to bind-address.
+# port = 25826
+database = &quot;collectd&quot;
+# types.db can be found in a collectd installation or on github:
+# https://github.com/collectd/collectd/blob/master/src/types.db
+# typesdb = &quot;/usr/share/collectd/types.db&quot; # The path to the collectd types.db file
+...
+hanwei@ubuntu-lab:~$ sudo service influxdb restart
+</code></pre>
+<p>Check the port opened on the server and you will find that the influxdb plug-in has started a 25826 port. If you find that there is no (collected) data in the InfluxDB database, be sure to check whether the 25826 port is started normally</p>
+<pre><code>hanwei@ubuntu-lab:~$ sudo netstat -tupln
+Active Internet connections (only servers)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name
+tcp        0      0 192.168.122.1:53        0.0.0.0:*               LISTEN      1649/dnsmasq    
+tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      1308/sshd       
+tcp        0      0 127.0.0.1:5432          0.0.0.0:*               LISTEN      1437/postgres   
+tcp        0      0 127.0.0.1:6010          0.0.0.0:*               LISTEN      1740/0          
+tcp        0      0 127.0.0.1:6011          0.0.0.0:*               LISTEN      10471/1         
+tcp6       0      0 :::8083                 :::*                    LISTEN      10490/influxd   
+tcp6       0      0 :::8086                 :::*                    LISTEN      10490/influxd   
+tcp6       0      0 :::22                   :::*                    LISTEN      1308/sshd       
+tcp6       0      0 :::8088                 :::*                    LISTEN      10490/influxd   
+tcp6       0      0 ::1:5432                :::*                    LISTEN      1437/postgres   
+tcp6       0      0 ::1:6010                :::*                    LISTEN      1740/0          
+tcp6       0      0 ::1:6011                :::*                    LISTEN      10471/1         
+udp        0      0 0.0.0.0:53466           0.0.0.0:*                           10239/collectd  
+udp        0      0 192.168.122.1:53        0.0.0.0:*                           1649/dnsmasq    
+udp        0      0 0.0.0.0:67              0.0.0.0:*                           1649/dnsmasq    
+udp        0      0 0.0.0.0:68              0.0.0.0:*                           1250/dhclient   
+udp6       0      0 :::25826                :::*                                10490/influxd
+</code></pre>
+<h1 id="check-if-influxdb-has-data-from-collectd"><a class="header" href="#check-if-influxdb-has-data-from-collectd">Check if InfluxDB has data from Collectd</a></h1>
+<p>InfluxDB is ready to accept and process data from Collectd. Use the command line or the web management interface to verify whether there is data in the database</p>
+<pre><code>hanwei@ubuntu-lab:~$ influx
+Connected to http://localhost:8086 version 1.2.4
+InfluxDB shell version: 1.2.4
+&gt; show databases;
+name: databases
+name
+----
+_internal
+mydb
+&gt; use collectd
+Using database collectd
+&gt; show measurements
+name: measurements
+name
+----
+cpu_value
+df_value
+disk_io_time
+disk_read
+disk_value
+disk_weighted_io_time
+disk_write
+entropy_value
+interface_rx
+interface_tx
+irq_value
+load_longterm
+load_midterm
+load_shortterm
+memory_value
+processes_value
+swap_value
+users_value
+&gt; SELECT * from cpu_value
+...
+7435180464451600 ubuntu-lab.localdomain 0        cpu  nice          722
+1497435180464452775 ubuntu-lab.localdomain 0        cpu  interrupt     0
+1497435180464454083 ubuntu-lab.localdomain 0        cpu  softirq       339
+1497435180464454592 ubuntu-lab.localdomain 0        cpu  steal         0
+1497435180464455103 ubuntu-lab.localdomain 0        cpu  idle          592750
+1497435190462593838 ubuntu-lab.localdomain 0        cpu  user          4281
+1497435190462598610 ubuntu-lab.localdomain 0        cpu  system        5599
+1497435190462600580 ubuntu-lab.localdomain 0        cpu  wait          7799
+1497435190462602296 ubuntu-lab.localdomain 0        cpu  nice          722
+1497435190462603649 ubuntu-lab.localdomain 0        cpu  interrupt     0
+1497435190462604905 ubuntu-lab.localdomain 0        cpu  softirq       339
+1497435190462605510 ubuntu-lab.localdomain 0        cpu  steal         0
+1497435190462606004 ubuntu-lab.localdomain 0        cpu  idle          593745
+1497435200463552177 ubuntu-lab.localdomain 0        cpu  user          4285
+1497435200463557277 ubuntu-lab.localdomain 0        cpu  system        5608
+1497435200463558626 ubuntu-lab.localdomain 0        cpu  wait          7799
+1497435200463560045 ubuntu-lab.localdomain 0        cpu  nice          722
+1497435200463561496 ubuntu-lab.localdomain 0        cpu  interrupt     0
+1497435200463562866 ubuntu-lab.localdomain 0        cpu  softirq       339
+...
+</code></pre>
+<p>or web ui</p>
+<p><img src="2023-01-17-11-29-03.png" alt="" /></p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../openstack/compute-node-ha.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                            <a rel="next" href="../openstack/live-migration-local.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../openstack/compute-node-ha.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a rel="next" href="../openstack/live-migration-local.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        <script type="text/javascript" src="../sidebar.js"></script>
+    </body>
+</html>

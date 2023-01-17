@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Some Skills of using xshell tools - English version of the website https://www.backendcloud.cn/</title>
+        <title>compute node ha mainstream open source implementation - English version of the website https://www.backendcloud.cn/</title>
         <!-- Custom HTML head -->
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
@@ -74,7 +74,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../SUMMARY.html"><strong aria-hidden="true">1.</strong> Openstack</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../openstack/mount-cloud-disk.html"><strong aria-hidden="true">1.1.</strong> Mount cloud disk</a></li><li class="chapter-item expanded "><a href="../openstack/ocata-nova-evacuate-bug.html"><strong aria-hidden="true">1.2.</strong> Ocata nova evacuate bug</a></li><li class="chapter-item expanded "><a href="../openstack/compute-node-ha.html"><strong aria-hidden="true">1.3.</strong> compute node ha mainstream open source implementation</a></li><li class="chapter-item expanded "><a href="../openstack/collectd-influxdb.html"><strong aria-hidden="true">1.4.</strong> Deployment and usage of Collectd and InfluxDB</a></li><li class="chapter-item expanded "><a href="../openstack/live-migration-local.html"><strong aria-hidden="true">1.5.</strong> Live Migration on Local Storage</a></li><li class="chapter-item expanded "><a href="../openstack/fast-evacuation.html"><strong aria-hidden="true">1.6.</strong> Add fast evacuation function to VM HA procedure</a></li><li class="chapter-item expanded "><a href="../openstack/vm-activation-failure.html"><strong aria-hidden="true">1.7.</strong> Windows virtual machine activation failure problem</a></li></ol></li><li class="chapter-item expanded "><a href="../SUMMARY.html"><strong aria-hidden="true">2.</strong> Tools</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../tools/xshell-skill.html" class="active"><strong aria-hidden="true">2.1.</strong> Some Skills of using xshell tools</a></li></ol></li><li class="chapter-item expanded "><a href="../SUMMARY.html"><strong aria-hidden="true">3.</strong> point of view</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../tools/gerrit-install.html"><strong aria-hidden="true">3.1.</strong> gerrit install</a></li><li class="chapter-item expanded "><a href="../point-of-view/huawei-and-operators.html"><strong aria-hidden="true">3.2.</strong> Huawei and telecom operators</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../SUMMARY.html"><strong aria-hidden="true">1.</strong> Openstack</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../openstack/mount-cloud-disk.html"><strong aria-hidden="true">1.1.</strong> Mount cloud disk</a></li><li class="chapter-item expanded "><a href="../openstack/ocata-nova-evacuate-bug.html"><strong aria-hidden="true">1.2.</strong> Ocata nova evacuate bug</a></li><li class="chapter-item expanded "><a href="../openstack/compute-node-ha.html" class="active"><strong aria-hidden="true">1.3.</strong> compute node ha mainstream open source implementation</a></li><li class="chapter-item expanded "><a href="../openstack/collectd-influxdb.html"><strong aria-hidden="true">1.4.</strong> Deployment and usage of Collectd and InfluxDB</a></li><li class="chapter-item expanded "><a href="../openstack/live-migration-local.html"><strong aria-hidden="true">1.5.</strong> Live Migration on Local Storage</a></li><li class="chapter-item expanded "><a href="../openstack/fast-evacuation.html"><strong aria-hidden="true">1.6.</strong> Add fast evacuation function to VM HA procedure</a></li><li class="chapter-item expanded "><a href="../openstack/vm-activation-failure.html"><strong aria-hidden="true">1.7.</strong> Windows virtual machine activation failure problem</a></li></ol></li><li class="chapter-item expanded "><a href="../SUMMARY.html"><strong aria-hidden="true">2.</strong> Tools</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../tools/xshell-skill.html"><strong aria-hidden="true">2.1.</strong> Some Skills of using xshell tools</a></li></ol></li><li class="chapter-item expanded "><a href="../SUMMARY.html"><strong aria-hidden="true">3.</strong> point of view</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../tools/gerrit-install.html"><strong aria-hidden="true">3.1.</strong> gerrit install</a></li><li class="chapter-item expanded "><a href="../point-of-view/huawei-and-operators.html"><strong aria-hidden="true">3.2.</strong> Huawei and telecom operators</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -136,60 +136,61 @@
                         <!-- Page table of contents -->
                         <div class="sidetoc"><nav class="pagetoc"></nav></div>
 
-                        <p>release time :2016-07-05 22:57</p>
-<h1 id="paste"><a class="header" href="#paste">Paste</a></h1>
-<p>For example, openstack vm_id:</p>
-<pre><code>424288e4-23a7-45de-bb5d-742bd6c54561
-</code></pre>
-<p>If the default delimiter is used, double-clicking can only select a part, you need to press and hold the mouse to drag, or more or less, or it will take a little time.</p>
-<p>After changing the settings:</p>
-<p>In the &quot;Keyboard and Mouse&quot; tab of &quot;Options&quot;</p>
+                        <p>release time :2017-06-22 09:16</p>
+<h1 id="nova-evacuate"><a class="header" href="#nova-evacuate">nova evacuate</a></h1>
+<p>Various implementation schemes basically call nova's evacuate interface without exception.</p>
+<p>nova evacuate is very similar to hot migration. They all want to transfer instances from one node to another. The difference is mainly that thermal migration is performed under normal conditions, while evacuation is performed under abnormal conditions. A vivid example is that thermal migration occurs before an earthquake to escape from a building, and evacuation occurs after an earthquake occurs by escaping from a destroyed building.</p>
+<p>But strictly speaking, the above analogy is not rigorous enough. To be precise, it is not escaped from the destroyed building, but resurrected.</p>
+<p>So the translation of nova evacuate into resurrection is more accurate than evacuation.</p>
+<h1 id="masakari"><a class="header" href="#masakari">masakari</a></h1>
+<p>NTT NTT's open source project masakari has become an independent project of Openstack, which is dedicated to compute node ha.</p>
+<p>The Japanese word for masakari is まさかり, meaning an axe. To be precise, it's an axe. It is the ax used by Zhou Xingchi's movie Ax Gang. It is not known whether the initiators of the project, several Japanese, were affected by this.</p>
+<p>The name masakari is to find the location of the fault, use the ax to help the highest stunt, and throw the ax accurately to isolate and cut off the fault.</p>
+<h1 id="detect-3-type-of-vm-down"><a class="header" href="#detect-3-type-of-vm-down">detect 3 type of vm down</a></h1>
+<ul>
+<li>unexpected vm down (monitoring libvirt's events)</li>
+<li>vm manager down (monitoring manager process)</li>
+<li>host down (using pacemaker)</li>
+</ul>
+<h1 id="new-features-that-masakari-is-working-on"><a class="header" href="#new-features-that-masakari-is-working-on">New features that masakari is working on</a></h1>
 <ol>
-<li>Remove the &quot;-&quot; in the delimiter.</li>
-<li>Check &quot;Automatically copy the selected text to the clipboard&quot; and vm_id can be selected by double-clicking. There is no need to select copy and paste. It has been copied at the same time as it is selected. At this time, only the middle mouse button is needed to complete the paste.</li>
+<li>
+<p>Now it only supports evacuation of vm in active, stopped, and error states.
+Later, it can be added to evacuate vm in more states, such as shelved, rescued, paused and suspended</p>
+</li>
+<li>
+<p>Now the process after the fault is detected is fixed, and the only way to change it is to change the code.
+In the future, users can customize the process by writing yaml files.</p>
+</li>
 </ol>
-<h1 id="split-screen"><a class="header" href="#split-screen">Split Screen</a></h1>
-<p>Only 5.0 or above is supported, and it can be realized by dragging the label to a certain position on the screen with the mouse. It is useful in some cases, such as analyzing networks and comparing jos.</p>
-<h1 id="multi-level-jump"><a class="header" href="#multi-level-jump">multi-level jump</a></h1>
-<p>In the internal environment of an enterprise, not every node has an external network ip, often through the Jump Server, and then the Jump Server login to other nodes. In a complex environment, there may be more than two levels of login, or even three or more levels of login. It can be easily achieved with xshell.</p>
-<p>When creating a new session, or click the properties of the created session, select &quot;Login Script&quot; in &quot;Connection&quot; in &quot;Category&quot;</p>
-<p>Select the &quot;Execute the following wait and send rules&quot; check box to activate the two columns below Expect and Send to display interactive functions similar to tcl's expect or python pexpect package.</p>
-<table><thead><tr><th>Expect</th><th>Send</th></tr></thead><tbody>
-<tr><td>$</td><td>ssh deployer@xx.xx.xx.xx</td></tr>
-<tr><td>password:</td><td>xxxxxx</td></tr>
-</tbody></table>
-<p>The above is two levels of login, and more levels of login can be added later.</p>
-<h1 id="tunnel-forwarding"><a class="header" href="#tunnel-forwarding">tunnel forwarding</a></h1>
-<p>Select &quot;Tunnel&quot; in &quot;SSH&quot; in &quot;Connection&quot; in &quot;Category&quot; in the properties of the session.</p>
-<p>Two commonly used methods Local (Outgoing) and Dynamic (SOCKS4/5)</p>
-<p>Take access to the openstack dashboard on the intranet as an example:</p>
-<h2 id="localoutgoing"><a class="header" href="#localoutgoing">Local(Outgoing)</a></h2>
-<pre><code>(http)
-Source host: localhost
-Listening port: xx
-Destination host: xx.xx.xx.xx
-Destination port: 80
-(novnc)
-Source host: localhost
-Listening port: xx
-Destination host: xx.xx.xx.xx
-Destination port : 6080
-</code></pre>
-<p>The browser does not need to set up a proxy when accessing, just need to enter <code>http://localhost:port</code> in the address bar.</p>
-<h2 id="dynamicsocks45"><a class="header" href="#dynamicsocks45">Dynamic(SOCKS4/5)</a></h2>
-<p>Listening port: xx</p>
-<p>You need to set SOCKS4 or SOCKS5 proxy when accessing the browser, and you need to enter the url address of the intranet in the address bar.</p>
-<p>General browser supports SOCKS4/5 proxy, also you can use some proxy tool such as the Proxy SwitchyOmega plug-in of chrome.</p>
-<p>The two tunnel forwarding methods have their own characteristics. I always use the latter, because there are few settings. If you want to access other ports or other services, you only need to set up the jump server.</p>
+<h1 id="compute-node-ha-other-technologies-used"><a class="header" href="#compute-node-ha-other-technologies-used">compute node ha other technologies used</a></h1>
+<ul>
+<li>consul</li>
+<li>raft</li>
+<li>gossip</li>
+</ul>
+<h1 id="compute-node-ha-other-related-open-source-projects"><a class="header" href="#compute-node-ha-other-related-open-source-projects">compute node ha other related open source projects</a></h1>
+<ul>
+<li>Openstack Congress (Policy as a Service)</li>
+<li>pacemaker-remote (host monitor solution)</li>
+<li>mistral-evacuate (workflow)</li>
+</ul>
+<h1 id="appendix-1-gossip-protocol"><a class="header" href="#appendix-1-gossip-protocol">Appendix 1: Gossip protocol</a></h1>
+<p>A Gossip protocol runs between all Consul Agents (both server and normal). Both server nodes and ordinary Agents will join this Gossip cluster to send and receive Gossip messages. Every once in a while, each node will randomly select several nodes to send Gossip messages, and other nodes will randomly select other nodes to relay and send messages again. After such a period of time, the entire cluster can receive this message.</p>
+<p>At first glance, it seems that the efficiency of this sending method is very low, but there have been papers in mathematics that have demonstrated its feasibility, and the Gossip protocol is already a relatively mature protocol in the P2P network. You can check the introduction of Gossip, which contains a simulator that can tell you the time and bandwidth required for messages to propagate in the cluster. The biggest advantage of the Gossip protocol is that even if the number of cluster nodes increases, the load on each node will not increase much and is almost constant. This allows Consul-managed clusters to scale out to thousands of nodes.</p>
+<h1 id="appendix-2-path-algorithms"><a class="header" href="#appendix-2-path-algorithms">Appendix 2: Path Algorithms</a></h1>
+<p>Find the optimal path for evacuate.</p>
+<p>Not only for compute node HA, but also for load optimization and balancing</p>
+<p>Try to design the migration path algorithm to optimize the performance of the node where the VM is located to maximize the return on hardware investment.</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../SUMMARY.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../openstack/ocata-nova-evacuate-bug.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
-                            <a rel="next" href="../SUMMARY.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="../openstack/collectd-influxdb.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         <div style="clear: both"></div>
@@ -198,10 +199,10 @@ Destination port : 6080
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../SUMMARY.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../openstack/ocata-nova-evacuate-bug.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
-                    <a rel="next" href="../SUMMARY.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="../openstack/collectd-influxdb.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

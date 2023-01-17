@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Some Skills of using xshell tools - English version of the website https://www.backendcloud.cn/</title>
+        <title>Mount cloud disk - English version of the website https://www.backendcloud.cn/</title>
         <!-- Custom HTML head -->
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
@@ -74,7 +74,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../SUMMARY.html"><strong aria-hidden="true">1.</strong> Openstack</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../openstack/mount-cloud-disk.html"><strong aria-hidden="true">1.1.</strong> Mount cloud disk</a></li><li class="chapter-item expanded "><a href="../openstack/ocata-nova-evacuate-bug.html"><strong aria-hidden="true">1.2.</strong> Ocata nova evacuate bug</a></li><li class="chapter-item expanded "><a href="../openstack/compute-node-ha.html"><strong aria-hidden="true">1.3.</strong> compute node ha mainstream open source implementation</a></li><li class="chapter-item expanded "><a href="../openstack/collectd-influxdb.html"><strong aria-hidden="true">1.4.</strong> Deployment and usage of Collectd and InfluxDB</a></li><li class="chapter-item expanded "><a href="../openstack/live-migration-local.html"><strong aria-hidden="true">1.5.</strong> Live Migration on Local Storage</a></li><li class="chapter-item expanded "><a href="../openstack/fast-evacuation.html"><strong aria-hidden="true">1.6.</strong> Add fast evacuation function to VM HA procedure</a></li><li class="chapter-item expanded "><a href="../openstack/vm-activation-failure.html"><strong aria-hidden="true">1.7.</strong> Windows virtual machine activation failure problem</a></li></ol></li><li class="chapter-item expanded "><a href="../SUMMARY.html"><strong aria-hidden="true">2.</strong> Tools</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../tools/xshell-skill.html" class="active"><strong aria-hidden="true">2.1.</strong> Some Skills of using xshell tools</a></li></ol></li><li class="chapter-item expanded "><a href="../SUMMARY.html"><strong aria-hidden="true">3.</strong> point of view</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../tools/gerrit-install.html"><strong aria-hidden="true">3.1.</strong> gerrit install</a></li><li class="chapter-item expanded "><a href="../point-of-view/huawei-and-operators.html"><strong aria-hidden="true">3.2.</strong> Huawei and telecom operators</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../SUMMARY.html"><strong aria-hidden="true">1.</strong> Openstack</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../openstack/mount-cloud-disk.html" class="active"><strong aria-hidden="true">1.1.</strong> Mount cloud disk</a></li><li class="chapter-item expanded "><a href="../openstack/ocata-nova-evacuate-bug.html"><strong aria-hidden="true">1.2.</strong> Ocata nova evacuate bug</a></li><li class="chapter-item expanded "><a href="../openstack/compute-node-ha.html"><strong aria-hidden="true">1.3.</strong> compute node ha mainstream open source implementation</a></li><li class="chapter-item expanded "><a href="../openstack/collectd-influxdb.html"><strong aria-hidden="true">1.4.</strong> Deployment and usage of Collectd and InfluxDB</a></li><li class="chapter-item expanded "><a href="../openstack/live-migration-local.html"><strong aria-hidden="true">1.5.</strong> Live Migration on Local Storage</a></li><li class="chapter-item expanded "><a href="../openstack/fast-evacuation.html"><strong aria-hidden="true">1.6.</strong> Add fast evacuation function to VM HA procedure</a></li><li class="chapter-item expanded "><a href="../openstack/vm-activation-failure.html"><strong aria-hidden="true">1.7.</strong> Windows virtual machine activation failure problem</a></li></ol></li><li class="chapter-item expanded "><a href="../SUMMARY.html"><strong aria-hidden="true">2.</strong> Tools</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../tools/xshell-skill.html"><strong aria-hidden="true">2.1.</strong> Some Skills of using xshell tools</a></li></ol></li><li class="chapter-item expanded "><a href="../SUMMARY.html"><strong aria-hidden="true">3.</strong> point of view</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../tools/gerrit-install.html"><strong aria-hidden="true">3.1.</strong> gerrit install</a></li><li class="chapter-item expanded "><a href="../point-of-view/huawei-and-operators.html"><strong aria-hidden="true">3.2.</strong> Huawei and telecom operators</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -136,51 +136,78 @@
                         <!-- Page table of contents -->
                         <div class="sidetoc"><nav class="pagetoc"></nav></div>
 
-                        <p>release time :2016-07-05 22:57</p>
-<h1 id="paste"><a class="header" href="#paste">Paste</a></h1>
-<p>For example, openstack vm_id:</p>
-<pre><code>424288e4-23a7-45de-bb5d-742bd6c54561
+                        <p>release time :2017-06-30 05:16</p>
+<h1 id="create-order-a-cloud-disk"><a class="header" href="#create-order-a-cloud-disk">Create (order) a cloud disk</a></h1>
+<pre><code>[root@NFJD-PSC-BCEC-SV3 deployer]# cinder create 500 --volume-type fujitsu-ipsan --name 0630
++---------------------------------------+--------------------------------------+
+|                Property               |                Value                 |
++---------------------------------------+--------------------------------------+
+|              attachments              |                  []                  |
+|           availability_zone           |                 nova                 |
+|                bootable               |                false                 |
+|          consistencygroup_id          |                 None                 |
+|               created_at              |      2017-06-30T08:23:05.000000      |
+|              description              |                 None                 |
+|               encrypted               |                False                 |
+|                   id                  | 08d3018c-b1cd-4652-87ed-45a48a14b6f3 |
+|                metadata               |                  {}                  |
+|              multiattach              |                False                 |
+|                  name                 |                 0630                 |
+|      os-vol-tenant-attr:tenant_id     |   597854e23bfe46abb6178f786af12391   |
+|   os-volume-replication:driver_data   |                 None                 |
+| os-volume-replication:extended_status |                 None                 |
+|           replication_status          |               disabled               |
+|                  size                 |                 500                  |
+|              snapshot_id              |                 None                 |
+|              source_volid             |                 None                 |
+|                 status                |               creating               |
+|                user_id                |   622684c00210427091c7493f36aaa6cf   |
+|              volume_type              |            fujitsu-ipsan             |
++---------------------------------------+--------------------------------------+
 </code></pre>
-<p>If the default delimiter is used, double-clicking can only select a part, you need to press and hold the mouse to drag, or more or less, or it will take a little time.</p>
-<p>After changing the settings:</p>
-<p>In the &quot;Keyboard and Mouse&quot; tab of &quot;Options&quot;</p>
-<ol>
-<li>Remove the &quot;-&quot; in the delimiter.</li>
-<li>Check &quot;Automatically copy the selected text to the clipboard&quot; and vm_id can be selected by double-clicking. There is no need to select copy and paste. It has been copied at the same time as it is selected. At this time, only the middle mouse button is needed to complete the paste.</li>
-</ol>
-<h1 id="split-screen"><a class="header" href="#split-screen">Split Screen</a></h1>
-<p>Only 5.0 or above is supported, and it can be realized by dragging the label to a certain position on the screen with the mouse. It is useful in some cases, such as analyzing networks and comparing jos.</p>
-<h1 id="multi-level-jump"><a class="header" href="#multi-level-jump">multi-level jump</a></h1>
-<p>In the internal environment of an enterprise, not every node has an external network ip, often through the Jump Server, and then the Jump Server login to other nodes. In a complex environment, there may be more than two levels of login, or even three or more levels of login. It can be easily achieved with xshell.</p>
-<p>When creating a new session, or click the properties of the created session, select &quot;Login Script&quot; in &quot;Connection&quot; in &quot;Category&quot;</p>
-<p>Select the &quot;Execute the following wait and send rules&quot; check box to activate the two columns below Expect and Send to display interactive functions similar to tcl's expect or python pexpect package.</p>
-<table><thead><tr><th>Expect</th><th>Send</th></tr></thead><tbody>
-<tr><td>$</td><td>ssh deployer@xx.xx.xx.xx</td></tr>
-<tr><td>password:</td><td>xxxxxx</td></tr>
-</tbody></table>
-<p>The above is two levels of login, and more levels of login can be added later.</p>
-<h1 id="tunnel-forwarding"><a class="header" href="#tunnel-forwarding">tunnel forwarding</a></h1>
-<p>Select &quot;Tunnel&quot; in &quot;SSH&quot; in &quot;Connection&quot; in &quot;Category&quot; in the properties of the session.</p>
-<p>Two commonly used methods Local (Outgoing) and Dynamic (SOCKS4/5)</p>
-<p>Take access to the openstack dashboard on the intranet as an example:</p>
-<h2 id="localoutgoing"><a class="header" href="#localoutgoing">Local(Outgoing)</a></h2>
-<pre><code>(http)
-Source host: localhost
-Listening port: xx
-Destination host: xx.xx.xx.xx
-Destination port: 80
-(novnc)
-Source host: localhost
-Listening port: xx
-Destination host: xx.xx.xx.xx
-Destination port : 6080
+<h1 id="mount-cloud-disk"><a class="header" href="#mount-cloud-disk">Mount cloud disk</a></h1>
+<p>Existing cloud host id 27b31829-326f-4029-a537-bb327303a32c</p>
+<p>Mount the cloud disk to the cloud host</p>
+<pre><code>[root@NFJD-PSC-BCEC-SV3 deployer]# nova volume-attach 27b31829-326f-4029-a537-bb327303a32c 08d3018c-b1cd-4652-87ed-45a48a14b6f3
++----------+--------------------------------------+
+| Property | Value                                |
++----------+--------------------------------------+
+| device   | /dev/vdb                             |
+| id       | 08d3018c-b1cd-4652-87ed-45a48a14b6f3 |
+| serverId | 27b31829-326f-4029-a537-bb327303a32c |
+| volumeId | 08d3018c-b1cd-4652-87ed-45a48a14b6f3 |
++----------+--------------------------------------+
 </code></pre>
-<p>The browser does not need to set up a proxy when accessing, just need to enter <code>http://localhost:port</code> in the address bar.</p>
-<h2 id="dynamicsocks45"><a class="header" href="#dynamicsocks45">Dynamic(SOCKS4/5)</a></h2>
-<p>Listening port: xx</p>
-<p>You need to set SOCKS4 or SOCKS5 proxy when accessing the browser, and you need to enter the url address of the intranet in the address bar.</p>
-<p>General browser supports SOCKS4/5 proxy, also you can use some proxy tool such as the Proxy SwitchyOmega plug-in of chrome.</p>
-<p>The two tunnel forwarding methods have their own characteristics. I always use the latter, because there are few settings. If you want to access other ports or other services, you only need to set up the jump server.</p>
+<p>Comparing the execution results of the fdisk -l command before and after mounting, it is found that after the cloud disk is mounted, there is an extra vdb</p>
+<p><img src="2023-01-17-13-45-58.png" alt="" /></p>
+<h1 id="artition"><a class="header" href="#artition">artition</a></h1>
+<p>Run fdisk /dev/vdb to partition the data disk. According to the prompt, enter n, p, 1 in sequence, press Enter twice, wq, and the partition starts.</p>
+<p><img src="2023-01-17-13-46-13.png" alt="" /></p>
+<p>Run the fdisk -l command to view the new partition. The new partition vdb1 has been created. Like /dev/xvdb in the example below.</p>
+<p><img src="2023-01-17-13-46-26.png" alt="" /></p>
+<h1 id="format"><a class="header" href="#format">format</a></h1>
+<p>Run mkfs.ext3 /dev/xvdb1 to format the new partition. The time required for formatting depends on the size of the data disk. You can also decide to choose other file formats, such as ext4, etc.</p>
+<p><img src="2023-01-17-13-46-39.png" alt="" /></p>
+<p>Run echo /dev/xvdb1 /mnt ext3 defaults 0 0 &gt;&gt; /etc/fstab to write new partition information. Once complete, you can use the cat /etc/fstab command to view.</p>
+<p><img src="2023-01-17-13-46-51.png" alt="" /></p>
+<p>Through the command mount -a, after modifying /etc/fstab, it will take effect without restarting. Then execute df -h to view the partitions. If the data disk information appears, it means that the mount is successful and the new partition can be used.</p>
+<p><img src="2023-01-17-13-47-02.png" alt="" /></p>
+<h1 id="linux-uses-the-dd-command-to-quickly-generate-large-files"><a class="header" href="#linux-uses-the-dd-command-to-quickly-generate-large-files">Linux uses the dd command to quickly generate large files</a></h1>
+<p><img src="2023-01-17-13-47-16.png" alt="" /></p>
+<p>The dd command can easily create a file of a specified size, such as</p>
+<pre><code>dd if=/dev/zero of=test bs=1M count=1000
+</code></pre>
+<p>A 1000M test file will be generated, and the content of the file is all 0 (because it is read from /dev/zero, /dev/zero is the source of 0)</p>
+<p>But this is for actually writing to the hard disk. The speed of file generation depends on the read and write speed of the hard disk. If you want to generate very large files, the speed is very slow.</p>
+<p>In a certain scenario, we just want the file system to think that there is a very large file here, but we don’t actually write it to the hard disk</p>
+<p>then you can</p>
+<pre><code>dd if=/dev/zero of=test bs=1M count=0 seek=100000
+</code></pre>
+<p>The displayed size of the file created at this time in the file system is 100000MB, but it does not actually occupy a block, so the creation speed is comparable to the memory speed</p>
+<p>The function of seek is to skip the part of the specified size in the output file, which achieves the purpose of creating a large file, but not actually writing</p>
+<blockquote>
+<p>Of course, because you don’t actually write to the hard disk, you can create 100G of such files on a hard disk with a capacity of only 10G.</p>
+</blockquote>
 
                     </main>
 
@@ -189,7 +216,7 @@ Destination port : 6080
                             <a rel="prev" href="../SUMMARY.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
-                            <a rel="next" href="../SUMMARY.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="../openstack/ocata-nova-evacuate-bug.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         <div style="clear: both"></div>
@@ -201,7 +228,7 @@ Destination port : 6080
                     <a rel="prev" href="../SUMMARY.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
-                    <a rel="next" href="../SUMMARY.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="../openstack/ocata-nova-evacuate-bug.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
