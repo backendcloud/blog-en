@@ -1,0 +1,330 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Live Migration on Local Storage - English version of the website https://www.backendcloud.cn/</title>
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../style.css">
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../SUMMARY.html"><strong aria-hidden="true">1.</strong> Openstack</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../openstack/live-migration-local.html" class="active"><strong aria-hidden="true">1.1.</strong> Live Migration on Local Storage</a></li><li class="chapter-item expanded "><a href="../openstack/fast-evacuation.html"><strong aria-hidden="true">1.2.</strong> Add fast evacuation function to VM HA procedure</a></li><li class="chapter-item expanded "><a href="../openstack/vm-activation-failure.html"><strong aria-hidden="true">1.3.</strong> Windows virtual machine activation failure problem</a></li></ol></li><li class="chapter-item expanded "><a href="../SUMMARY.html"><strong aria-hidden="true">2.</strong> Tools</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../tools/xshell-skill.html"><strong aria-hidden="true">2.1.</strong> Some Skills of using xshell tools</a></li></ol></li><li class="chapter-item expanded "><a href="../SUMMARY.html"><strong aria-hidden="true">3.</strong> point of view</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../point-of-view/huawei-and-operators.html"><strong aria-hidden="true">3.1.</strong> Huawei and telecom operators</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">English version of the website https://www.backendcloud.cn/</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <!-- Page table of contents -->
+                        <div class="sidetoc"><nav class="pagetoc"></nav></div>
+
+                        <p>release time :2017-06-14 15:25</p>
+<blockquote>
+<p>nova live-migration --block-migrate</p>
+</blockquote>
+<h1 id="the-role-of-virtual-machine-live-migration"><a class="header" href="#the-role-of-virtual-machine-live-migration">The role of virtual machine live migration</a></h1>
+<p>Every reader may ask such a question, the virtual machine is used well, why should it be migrated? That is, where is the value and purpose of migration. In the daily operation and maintenance of the data center, the following scenarios and requirements are often dealt with. After understanding these requirements, this question will have an answer.</p>
+<ul>
+<li>Requirement 1: Maintenance, fault repair and upgrade of the physical machine hardware system, but the virtual machine running on this physical machine cannot be shut down, because the user's important services run on it.</li>
+<li>Requirement 2: The software system of the physical machine is upgraded and patched. In order not to affect the virtual machine running on it, the virtual machine needs to be migrated to another physical machine before upgrading and patching.</li>
+<li>Requirement 3: The load on a physical machine is too heavy, and some virtual machines need to be reduced to release resources.</li>
+<li>Requirement 4: In a cluster, some physical machines have too many virtual machines, and some physical machines have too few virtual machines. Resource balance needs to be done.</li>
+</ul>
+<p>In addition to the above four main requirements, from a service point of view, Live migration has the following two benefits:</p>
+<ul>
+<li>Benefit 1: The maintenance and upgrade of software and hardware systems will not affect the key services of users, which improves the high availability of services and users satisfaction.</li>
+<li>Benefit 2: The system administrator does not need to work overtime, and upgrades the system in the middle of the night. This work can be completed during normal working hours, reducing the company's maintenance costs.</li>
+</ul>
+<h1 id="basic-concept"><a class="header" href="#basic-concept">basic concept</a></h1>
+<p>Before understanding live migration, you must understand the image file format QCOW2. Qcow2 is currently the image format recommended by QEMU. It supports sparse files to save storage space, supports encryption to improve the security of image files, and supports zlib-based compression. Qcow2 image can be used to save the changes of another image file, it does not modify the original image file, which is also called backing_file. Only the image file that is different from the original image file is recorded. This kind of image file is called copy-on-write image. Although it is a separate image file, most of its data comes from the original image, and only based on the original image Only the incremental part of the file will be recorded. The virtual machines mentioned in this article are all created by OpenStack using Qcow2 format image files, as shown in the figure, including two parts.</p>
+<ol>
+<li>Back-end image (libvirt base)</li>
+<li>Separate incremental image file of virtual machine (libvirt instance disks), copy-on-write image</li>
+</ol>
+<p><img src="2023-01-17-11-10-35.png" alt="" /></p>
+<pre><code>[root@NFJD-TESTN-COMPUTE-1 ~]# cd /var/lib/nova/instances/
+[root@NFJD-TESTN-COMPUTE-1 ~]# tree
+├── b9530e7b-2309-4eb5-bec3-180241c1e3a2
+│   ├── console.log
+│   ├── disk
+│   ├── disk.config
+│   ├── disk.info
+│   └── libvirt.xml
+├── ...
+├── _base
+│   ├── 0522bc602608d45758d815b01a6899ff3e1e3e27
+│   ├── 05252f6d26980b56fbf93a14c5e70910f18b412c
+│   ├── ...
+</code></pre>
+<p>Use qemu-img to view the information of the virtual machine's separate incremental image file, we can see that his backing file is the image file in the _base directory</p>
+<pre><code>[root@NFJD-TESTN-COMPUTE-1 ~]# cd /var/lib/nova/instances/
+[root@NFJD-TESTN-COMPUTE-1 instances]# cd 852e1a26-bd49-4149-bd24-552eb4b37034
+[root@NFJD-TESTN-COMPUTE-1 852e1a26-bd49-4149-bd24-552eb4b37034]# ls
+console.log  disk  disk.config  disk.info  libvirt.xml
+[root@NFJD-TESTN-COMPUTE-1 852e1a26-bd49-4149-bd24-552eb4b37034]# qemu-img info disk
+image: disk
+file format: qcow2
+virtual size: 20G (21474836480 bytes)
+disk size: 281M
+cluster_size: 65536
+backing file: /var/lib/nova/instances/_base/731d527f50917ff3364203ebbcf8d4c22dc7919c
+Format specific information:
+    compat: 1.1
+    lazy refcounts: false
+    refcount bits: 16
+    corrupt: false
+</code></pre>
+<p>After spending so much time introducing QCOW2, you may wonder, what is the purpose? In fact, the back-end image (libvirt Base) and the incremental image file (libvirt instance disks) of the virtual machine described above are the data to be migrated. The ultimate goal of live migration is to completely migrate them from the source physical host to the target physical host. In addition to the two of them, there is another object that needs to be migrated, which is the data of the virtual machine running in memory.</p>
+<p>The transfer of data involves the transmission of data, and the transmission of data needs to go through the network. This article introduces the use of TCP network protocol to realize dynamic migration. Libvirt does not support the TCP protocol by default, you need to modify the configuration of libvirt to enable libvirt to support the TCP protocol, and the following chapters will introduce how to configure it in detail. During the migration process, the libvirtd process running in the destination physical host (Dest Host) needs to create a URI based on the address and port. The URI is used by the destination physical host to receive data and send data back to the source physical host (Source Host). libvirtd process.</p>
+<p>On the destination physical host and the source physical host, as long as the following commands can be executed, it means that data can be transferred.</p>
+<p><strong>Execute on compute01:</strong></p>
+<pre><code>[root@compute01]# virsh -c qemu+tcp://nova@compute02/system
+</code></pre>
+<p><strong>Execute on compute02:</strong></p>
+<pre><code>[root@compute01]# virsh -c qemu+tcp://nova@compute01/system
+</code></pre>
+<p>Such as:</p>
+<pre><code>[root@NFJD-TESTN-COMPUTE-1 instances]# virsh -c qemu+tcp://nova@NFJD-TESTN-COMPUTE-2/system
+欢迎使用 virsh，虚拟化的交互式终端。
+
+输入：'help' 来获得命令的帮助信息
+    'quit' 退出
+
+virsh # list
+Id    名称                         状态
+----------------------------------------------------
+9     instance-000057c2              暂停
+10    instance-000057c6              running
+24    instance-0000581a              暂停
+25    instance-0000581f              running
+31    instance-00005833              running
+...
+</code></pre>
+<h1 id="migration-steps"><a class="header" href="#migration-steps">Migration steps</a></h1>
+<p>Now that the basic concept of migration is clarified, let's continue to introduce the steps of migration. A normal process of OpenStack live migration mainly includes four parts: pre-migration condition check, pre-migration preprocessing, migration, and post-migration processing.</p>
+<h2 id="condition-checks-before-migration"><a class="header" href="#condition-checks-before-migration">Condition checks before migration</a></h2>
+<p>For live migration to execute successfully, some conditions must be met, so some condition checks must be done before performing the migration.</p>
+<ol>
+<li>Permission check, whether the user performing the migration has sufficient permissions to perform dynamic migration.</li>
+<li>Parameter check, whether the parameters passed to the API are sufficient and correct, such as whether the block-migrate parameter is specified.</li>
+<li>Check whether the target physical host exists.</li>
+<li>Check whether the migrated virtual machine is running.</li>
+<li>Check whether the nova-compute service on the source and destination physical hosts is running normally.</li>
+<li>Check whether the destination physical host and the source physical host are the same machine.</li>
+<li>Check whether the destination physical host has enough memory.</li>
+<li>Check whether the hypervisor and hypervisor versions of the destination and source physical host machines are the same.</li>
+</ol>
+<h2 id="preprocessing-before-migration"><a class="header" href="#preprocessing-before-migration">Preprocessing before migration</a></h2>
+<p>Before actually performing the migration, you must do some warm-up and do some preparatory work.</p>
+<ol>
+<li>Obtain and prepare the block device (volume) mounted by the virtual machine on the target physical host.</li>
+<li>Set up the network (networks) of the virtual machine on the destination physical host.</li>
+<li>Set up a virtual machine firewall (fireware) on the destination physical host.</li>
+</ol>
+<h2 id="migrate"><a class="header" href="#migrate">migrate</a></h2>
+<p>After the conditions are met and the preprocessing work is completed, live migration can be performed. The main steps are as follows:</p>
+<ol>
+<li>Call the libvirt python interface migrateToURI to migrate the source host to the destination host.</li>
+</ol>
+<ul>
+<li>dom.migrateToURI(CONF.live_migration_uri % dest,logical_sum,None,CONF.live_migration_bandwidth)</li>
+<li>live_migration_uri: This URI is defined by the libvirtd process introduced in 3.2.2.</li>
+<li>live_migration_bandwidth: This parameter defines the maximum bandwidth used during the migration.</li>
+</ul>
+<ol start="2">
+<li>Call the wait_for_live_migration method cyclically at a certain time interval (0.5) to detect the status of the virtual machine migration until the virtual machine is successfully migrated.</li>
+</ol>
+<h2 id="post-migration-processing"><a class="header" href="#post-migration-processing">Post-migration processing</a></h2>
+<p>After the virtual machine migration is complete, some aftermath work needs to be done.</p>
+<ol>
+<li>Detach volume on the source physical host.</li>
+<li>Release the security group ingress rule on the source physical host.</li>
+<li>Update the status of the virtual machine in the database on the destination physical host.</li>
+<li>Delete the virtual machine on the source physical host.</li>
+</ol>
+<p>After the above four steps are completed normally, the virtual machine is successfully migrated from the source physical host to the destination physical host. The system administrator can then perform the administrative tasks listed in Chapter 2.</p>
+<h1 id="configuration-for-live-migration"><a class="header" href="#configuration-for-live-migration">Configuration for Live Migration</a></h1>
+<p>This section lists the configurations that support live migration. You must ensure that the configurations on all physical hosts are correct before live migration can be successfully completed.</p>
+<h2 id="libvirt"><a class="header" href="#libvirt">libvirt</a></h2>
+<p>By default, libvirt supports the TLS protocol for remote connections, but does not support the TCP protocol, so listen_tls=0 listen_tcp=1 enables libvirt to support the TCP protocol.</p>
+<ol>
+<li>
+<p>Modify the /etc/sysconfig/libvirtd file.</p>
+<p>LIBVIRTD_ARGS=&quot;--listen&quot;</p>
+</li>
+<li>
+<p>Do the following configuration in the /etc/libvirt/libvirtd.conf file.</p>
+<p>listen_tls=0
+listen_tcp=1
+auth_tcp=&quot;none&quot;</p>
+</li>
+<li>
+<p>Restart the libvirtd service</p>
+</li>
+</ol>
+<h2 id="firewall"><a class="header" href="#firewall">firewall</a></h2>
+<p>Configure /etc/sysconfig/iptables to open TCP port 16509.</p>
+<pre><code>-A INPUT -p tcp -m multiport --ports 16509 -m comment --comment &quot;libvirt&quot; -j ACCEPT
+</code></pre>
+<h2 id="openstack-nova"><a class="header" href="#openstack-nova">OpenStack Nova</a></h2>
+<p>Configure the live_migration flag in the /etc/nova/nova.conf file.</p>
+<pre><code>live_migration_flag=VIR_MIGRATE_UNDEFINE_SOURCE,VIR_MIGRATE_PEER2PEER,VIR_MIGRATE_LIVE</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../SUMMARY.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                            <a rel="next" href="../openstack/fast-evacuation.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../SUMMARY.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a rel="next" href="../openstack/fast-evacuation.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        <script type="text/javascript" src="../sidebar.js"></script>
+    </body>
+</html>

@@ -75,7 +75,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="SUMMARY.html"><strong aria-hidden="true">1.</strong> Openstack</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="openstack/vm-activation-failure.html"><strong aria-hidden="true">1.1.</strong> Windows virtual machine activation failure problem</a></li><li class="chapter-item expanded "><a href="openstack/fast-evacuation.html"><strong aria-hidden="true">1.2.</strong> Add fast evacuation function to VM HA procedure</a></li></ol></li><li class="chapter-item expanded "><a href="SUMMARY.html"><strong aria-hidden="true">2.</strong> Tools</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="tools/xshell-skill.html"><strong aria-hidden="true">2.1.</strong> Some Skills of using xshell tools</a></li></ol></li><li class="chapter-item expanded "><a href="SUMMARY.html"><strong aria-hidden="true">3.</strong> point of view</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="point-of-view/huawei-and-operators.html"><strong aria-hidden="true">3.1.</strong> Huawei and telecom operators</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="SUMMARY.html"><strong aria-hidden="true">1.</strong> Openstack</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="openstack/live-migration-local.html"><strong aria-hidden="true">1.1.</strong> Live Migration on Local Storage</a></li><li class="chapter-item expanded "><a href="openstack/fast-evacuation.html"><strong aria-hidden="true">1.2.</strong> Add fast evacuation function to VM HA procedure</a></li><li class="chapter-item expanded "><a href="openstack/vm-activation-failure.html"><strong aria-hidden="true">1.3.</strong> Windows virtual machine activation failure problem</a></li></ol></li><li class="chapter-item expanded "><a href="SUMMARY.html"><strong aria-hidden="true">2.</strong> Tools</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="tools/xshell-skill.html"><strong aria-hidden="true">2.1.</strong> Some Skills of using xshell tools</a></li></ol></li><li class="chapter-item expanded "><a href="SUMMARY.html"><strong aria-hidden="true">3.</strong> point of view</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="point-of-view/huawei-and-operators.html"><strong aria-hidden="true">3.1.</strong> Huawei and telecom operators</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -139,23 +139,394 @@
 
                         <h1 id="summary"><a class="header" href="#summary">Summary</a></h1>
 <ul>
-<li><a href="./SUMMARY.html">Openstack</a>
+<li>
+<p><a href="./SUMMARY.html">Openstack</a></p>
 <ul>
-<li><a href="./openstack/vm-activation-failure.html">Windows virtual machine activation failure problem</a></li>
+<li><a href="./openstack/live-migration-local.html">Live Migration on Local Storage</a></li>
 <li><a href="./openstack/fast-evacuation.html">Add fast evacuation function to VM HA procedure</a></li>
+<li><a href="./openstack/vm-activation-failure.html">Windows virtual machine activation failure problem</a></li>
 </ul>
 </li>
-<li><a href="./SUMMARY.html">Tools</a>
+<li>
+<p><a href="./SUMMARY.html">Tools</a></p>
 <ul>
 <li><a href="./tools/xshell-skill.html">Some Skills of using xshell tools</a></li>
 </ul>
 </li>
-<li><a href="./SUMMARY.html">point of view</a>
+<li>
+<p><a href="./SUMMARY.html">point of view</a></p>
 <ul>
 <li><a href="./point-of-view/huawei-and-operators.html">Huawei and telecom operators</a></li>
 </ul>
 </li>
 </ul>
+<div style="break-before: page; page-break-before: always;"></div><p>release time :2017-06-14 15:25</p>
+<blockquote>
+<p>nova live-migration --block-migrate</p>
+</blockquote>
+<h1 id="the-role-of-virtual-machine-live-migration"><a class="header" href="#the-role-of-virtual-machine-live-migration">The role of virtual machine live migration</a></h1>
+<p>Every reader may ask such a question, the virtual machine is used well, why should it be migrated? That is, where is the value and purpose of migration. In the daily operation and maintenance of the data center, the following scenarios and requirements are often dealt with. After understanding these requirements, this question will have an answer.</p>
+<ul>
+<li>Requirement 1: Maintenance, fault repair and upgrade of the physical machine hardware system, but the virtual machine running on this physical machine cannot be shut down, because the user's important services run on it.</li>
+<li>Requirement 2: The software system of the physical machine is upgraded and patched. In order not to affect the virtual machine running on it, the virtual machine needs to be migrated to another physical machine before upgrading and patching.</li>
+<li>Requirement 3: The load on a physical machine is too heavy, and some virtual machines need to be reduced to release resources.</li>
+<li>Requirement 4: In a cluster, some physical machines have too many virtual machines, and some physical machines have too few virtual machines. Resource balance needs to be done.</li>
+</ul>
+<p>In addition to the above four main requirements, from a service point of view, Live migration has the following two benefits:</p>
+<ul>
+<li>Benefit 1: The maintenance and upgrade of software and hardware systems will not affect the key services of users, which improves the high availability of services and users satisfaction.</li>
+<li>Benefit 2: The system administrator does not need to work overtime, and upgrades the system in the middle of the night. This work can be completed during normal working hours, reducing the company's maintenance costs.</li>
+</ul>
+<h1 id="basic-concept"><a class="header" href="#basic-concept">basic concept</a></h1>
+<p>Before understanding live migration, you must understand the image file format QCOW2. Qcow2 is currently the image format recommended by QEMU. It supports sparse files to save storage space, supports encryption to improve the security of image files, and supports zlib-based compression. Qcow2 image can be used to save the changes of another image file, it does not modify the original image file, which is also called backing_file. Only the image file that is different from the original image file is recorded. This kind of image file is called copy-on-write image. Although it is a separate image file, most of its data comes from the original image, and only based on the original image Only the incremental part of the file will be recorded. The virtual machines mentioned in this article are all created by OpenStack using Qcow2 format image files, as shown in the figure, including two parts.</p>
+<ol>
+<li>Back-end image (libvirt base)</li>
+<li>Separate incremental image file of virtual machine (libvirt instance disks), copy-on-write image</li>
+</ol>
+<p><img src="openstack/2023-01-17-11-10-35.png" alt="" /></p>
+<pre><code>[root@NFJD-TESTN-COMPUTE-1 ~]# cd /var/lib/nova/instances/
+[root@NFJD-TESTN-COMPUTE-1 ~]# tree
+├── b9530e7b-2309-4eb5-bec3-180241c1e3a2
+│   ├── console.log
+│   ├── disk
+│   ├── disk.config
+│   ├── disk.info
+│   └── libvirt.xml
+├── ...
+├── _base
+│   ├── 0522bc602608d45758d815b01a6899ff3e1e3e27
+│   ├── 05252f6d26980b56fbf93a14c5e70910f18b412c
+│   ├── ...
+</code></pre>
+<p>Use qemu-img to view the information of the virtual machine's separate incremental image file, we can see that his backing file is the image file in the _base directory</p>
+<pre><code>[root@NFJD-TESTN-COMPUTE-1 ~]# cd /var/lib/nova/instances/
+[root@NFJD-TESTN-COMPUTE-1 instances]# cd 852e1a26-bd49-4149-bd24-552eb4b37034
+[root@NFJD-TESTN-COMPUTE-1 852e1a26-bd49-4149-bd24-552eb4b37034]# ls
+console.log  disk  disk.config  disk.info  libvirt.xml
+[root@NFJD-TESTN-COMPUTE-1 852e1a26-bd49-4149-bd24-552eb4b37034]# qemu-img info disk
+image: disk
+file format: qcow2
+virtual size: 20G (21474836480 bytes)
+disk size: 281M
+cluster_size: 65536
+backing file: /var/lib/nova/instances/_base/731d527f50917ff3364203ebbcf8d4c22dc7919c
+Format specific information:
+    compat: 1.1
+    lazy refcounts: false
+    refcount bits: 16
+    corrupt: false
+</code></pre>
+<p>After spending so much time introducing QCOW2, you may wonder, what is the purpose? In fact, the back-end image (libvirt Base) and the incremental image file (libvirt instance disks) of the virtual machine described above are the data to be migrated. The ultimate goal of live migration is to completely migrate them from the source physical host to the target physical host. In addition to the two of them, there is another object that needs to be migrated, which is the data of the virtual machine running in memory.</p>
+<p>The transfer of data involves the transmission of data, and the transmission of data needs to go through the network. This article introduces the use of TCP network protocol to realize dynamic migration. Libvirt does not support the TCP protocol by default, you need to modify the configuration of libvirt to enable libvirt to support the TCP protocol, and the following chapters will introduce how to configure it in detail. During the migration process, the libvirtd process running in the destination physical host (Dest Host) needs to create a URI based on the address and port. The URI is used by the destination physical host to receive data and send data back to the source physical host (Source Host). libvirtd process.</p>
+<p>On the destination physical host and the source physical host, as long as the following commands can be executed, it means that data can be transferred.</p>
+<p><strong>Execute on compute01:</strong></p>
+<pre><code>[root@compute01]# virsh -c qemu+tcp://nova@compute02/system
+</code></pre>
+<p><strong>Execute on compute02:</strong></p>
+<pre><code>[root@compute01]# virsh -c qemu+tcp://nova@compute01/system
+</code></pre>
+<p>Such as:</p>
+<pre><code>[root@NFJD-TESTN-COMPUTE-1 instances]# virsh -c qemu+tcp://nova@NFJD-TESTN-COMPUTE-2/system
+欢迎使用 virsh，虚拟化的交互式终端。
+
+输入：'help' 来获得命令的帮助信息
+    'quit' 退出
+
+virsh # list
+Id    名称                         状态
+----------------------------------------------------
+9     instance-000057c2              暂停
+10    instance-000057c6              running
+24    instance-0000581a              暂停
+25    instance-0000581f              running
+31    instance-00005833              running
+...
+</code></pre>
+<h1 id="migration-steps"><a class="header" href="#migration-steps">Migration steps</a></h1>
+<p>Now that the basic concept of migration is clarified, let's continue to introduce the steps of migration. A normal process of OpenStack live migration mainly includes four parts: pre-migration condition check, pre-migration preprocessing, migration, and post-migration processing.</p>
+<h2 id="condition-checks-before-migration"><a class="header" href="#condition-checks-before-migration">Condition checks before migration</a></h2>
+<p>For live migration to execute successfully, some conditions must be met, so some condition checks must be done before performing the migration.</p>
+<ol>
+<li>Permission check, whether the user performing the migration has sufficient permissions to perform dynamic migration.</li>
+<li>Parameter check, whether the parameters passed to the API are sufficient and correct, such as whether the block-migrate parameter is specified.</li>
+<li>Check whether the target physical host exists.</li>
+<li>Check whether the migrated virtual machine is running.</li>
+<li>Check whether the nova-compute service on the source and destination physical hosts is running normally.</li>
+<li>Check whether the destination physical host and the source physical host are the same machine.</li>
+<li>Check whether the destination physical host has enough memory.</li>
+<li>Check whether the hypervisor and hypervisor versions of the destination and source physical host machines are the same.</li>
+</ol>
+<h2 id="preprocessing-before-migration"><a class="header" href="#preprocessing-before-migration">Preprocessing before migration</a></h2>
+<p>Before actually performing the migration, you must do some warm-up and do some preparatory work.</p>
+<ol>
+<li>Obtain and prepare the block device (volume) mounted by the virtual machine on the target physical host.</li>
+<li>Set up the network (networks) of the virtual machine on the destination physical host.</li>
+<li>Set up a virtual machine firewall (fireware) on the destination physical host.</li>
+</ol>
+<h2 id="migrate"><a class="header" href="#migrate">migrate</a></h2>
+<p>After the conditions are met and the preprocessing work is completed, live migration can be performed. The main steps are as follows:</p>
+<ol>
+<li>Call the libvirt python interface migrateToURI to migrate the source host to the destination host.</li>
+</ol>
+<ul>
+<li>dom.migrateToURI(CONF.live_migration_uri % dest,logical_sum,None,CONF.live_migration_bandwidth)</li>
+<li>live_migration_uri: This URI is defined by the libvirtd process introduced in 3.2.2.</li>
+<li>live_migration_bandwidth: This parameter defines the maximum bandwidth used during the migration.</li>
+</ul>
+<ol start="2">
+<li>Call the wait_for_live_migration method cyclically at a certain time interval (0.5) to detect the status of the virtual machine migration until the virtual machine is successfully migrated.</li>
+</ol>
+<h2 id="post-migration-processing"><a class="header" href="#post-migration-processing">Post-migration processing</a></h2>
+<p>After the virtual machine migration is complete, some aftermath work needs to be done.</p>
+<ol>
+<li>Detach volume on the source physical host.</li>
+<li>Release the security group ingress rule on the source physical host.</li>
+<li>Update the status of the virtual machine in the database on the destination physical host.</li>
+<li>Delete the virtual machine on the source physical host.</li>
+</ol>
+<p>After the above four steps are completed normally, the virtual machine is successfully migrated from the source physical host to the destination physical host. The system administrator can then perform the administrative tasks listed in Chapter 2.</p>
+<h1 id="configuration-for-live-migration"><a class="header" href="#configuration-for-live-migration">Configuration for Live Migration</a></h1>
+<p>This section lists the configurations that support live migration. You must ensure that the configurations on all physical hosts are correct before live migration can be successfully completed.</p>
+<h2 id="libvirt"><a class="header" href="#libvirt">libvirt</a></h2>
+<p>By default, libvirt supports the TLS protocol for remote connections, but does not support the TCP protocol, so listen_tls=0 listen_tcp=1 enables libvirt to support the TCP protocol.</p>
+<ol>
+<li>
+<p>Modify the /etc/sysconfig/libvirtd file.</p>
+<p>LIBVIRTD_ARGS=&quot;--listen&quot;</p>
+</li>
+<li>
+<p>Do the following configuration in the /etc/libvirt/libvirtd.conf file.</p>
+<p>listen_tls=0
+listen_tcp=1
+auth_tcp=&quot;none&quot;</p>
+</li>
+<li>
+<p>Restart the libvirtd service</p>
+</li>
+</ol>
+<h2 id="firewall"><a class="header" href="#firewall">firewall</a></h2>
+<p>Configure /etc/sysconfig/iptables to open TCP port 16509.</p>
+<pre><code>-A INPUT -p tcp -m multiport --ports 16509 -m comment --comment &quot;libvirt&quot; -j ACCEPT
+</code></pre>
+<h2 id="openstack-nova"><a class="header" href="#openstack-nova">OpenStack Nova</a></h2>
+<p>Configure the live_migration flag in the /etc/nova/nova.conf file.</p>
+<pre><code>live_migration_flag=VIR_MIGRATE_UNDEFINE_SOURCE,VIR_MIGRATE_PEER2PEER,VIR_MIGRATE_LIVE</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><p>release time :2017-06-10 03:27</p>
+<h1 id="relevant-blueprints"><a class="header" href="#relevant-blueprints">Relevant blueprints:</a></h1>
+<ul>
+<li>https://blueprints.launchpad.net/nova/+spec/mark-host-down</li>
+<li>https://blueprints.launchpad.net/python-novaclient/+spec/support-force-down-service</li>
+</ul>
+<h1 id="why-add-this-api"><a class="header" href="#why-add-this-api">Why add this API</a></h1>
+<p>With this API, external fault monitoring can get the nova-compute service down faster, which will directly improve the fault recovery time of VM HA (the time to evacuate a VM from a faulty node to a normal node).
+external fault monitoring system a possibility of telling OpenStack Nova fast that compute host is down. This will immediately enable calling of evacuation of any VM on host and further enabling faster HA actions.</p>
+<h1 id="rest-api-for-forced-down"><a class="header" href="#rest-api-for-forced-down">REST API for forced down</a></h1>
+<p>request: PUT /v2.1/{tenant_id}/os-services/force-down { “binary”: “nova-compute”, “host”: “compute1”, “forced_down”: true }</p>
+<p>response: 200 OK { “service”: { “host”: “compute1”, “binary”: “nova-compute”, “forced_down”: true } }</p>
+<p>Example: curl -g -i -X PUT http://{service_host_ip}:8774/v2.1/{tenant_id}/os-services /force-down -H “Content-Type: application/json” -H “Accept: application/json ” -H “X-OpenStack-Nova-API-Version: 2.11” -H “X-Auth-Token: {token}” -d ‘{“b inary”: “nova-compute”, “host”: “compute1”, “forced_down”: true}’</p>
+<h1 id="cli-for-forced-down"><a class="header" href="#cli-for-forced-down">CLI for forced down</a></h1>
+<p>nova service-force-down nova-compute</p>
+<p>Example: nova service-force-down compute1 nova-compute</p>
+<h1 id="rest-api-for-disabling-forced-down"><a class="header" href="#rest-api-for-disabling-forced-down">REST API for disabling forced down</a></h1>
+<p>request: PUT /v2.1/{tenant_id}/os-services/force-down { “binary”: “nova-compute”, “host”: “compute1”, “forced_down”: false }</p>
+<p>response: 200 OK { “service”: { “host”: “compute1”, “binary”: “nova-compute”, “forced_down”: false } }</p>
+<p>Example: curl -g -i -X PUT http://{service_host_ip}:8774/v2.1/{tenant_id}/os-services /force-down -H “Content-Type: application/json” -H “Accept: application/json ” -H “X-OpenStack-Nova-API-Version: 2.11” -H “X-Auth-Token: {token}” -d ‘{“b inary”: “nova-compute”, “host”: “compute1”, “forced_down”: false}’</p>
+<h1 id="cli-for-disabling-forced-down"><a class="header" href="#cli-for-disabling-forced-down">CLI for disabling forced down</a></h1>
+<p>nova service-force-down –unset nova-compute</p>
+<p>Example: nova service-force-down –unset compute1 nova-compute</p>
+<h1 id="add-fast-evacuation-function-to-vm-ha-procedure"><a class="header" href="#add-fast-evacuation-function-to-vm-ha-procedure">Add fast evacuation function to VM HA procedure</a></h1>
+<p>Now add fast evacuation function in the developed VM HA program</p>
+<ol>
+<li>Modify the configuration file and add the quick_evacuate_level option</li>
+</ol>
+<ul>
+<li>level 1: (fastest) Do not shut down, just force down nova-compute-service</li>
+<li>level 2: (faster) (default) Shut down first, then force down nova-compute-service</li>
+<li>level 3: (disable quick_evacuate)</li>
+</ul>
+<ol start="2">
+<li>change python-novaclient&gt;=6.0.0 to support force-service-down</li>
+<li>Modify the processing logic of the evacuation process and add rapid evacuation</li>
+</ol>
+<p>The original evacuation process is to shut down the faulty computing node after finding the faulty node, and then wait for the faulty node to cause nova service state down due to heartbeat loss, and then perform evacuation.</p>
+<p>Now it is changed to:</p>
+<ul>
+<li>level 1: (fastest) does not shut down, only force down nova-compute -service</li>
+<li>level 2: (faster) (default) Shut down first, then force down after shutdown introduction nova-compute-service</li>
+<li>level 3: (disable quick_evacuate) do nothing, same as the original process</li>
+</ul>
+<p>The following code def _ipmi_handle, before the change, shuts down the faulty node. After the change, at level 1, force down nova service state and skip the shutdown process.</p>
+<pre><code class="language-python">def _ipmi_handle(self, node):
+    # cmd = 'ssh %s systemctl stop openstack-nova-compute' % node
+    # return os.system(cmd)
+    ret = 1
+################  add  ################
+    if CONF.quick_evacuate_level == 1:
+        try:
+            self.nova_client.services.force_down(host=node,
+                                                 binary='nova-compute',
+                                                 force_down=True,
+                                                )
+            service = self.nova_client.services.list(
+                host=node,
+                binary='nova-compute')
+            if service:
+                if service[0].state == 'down':
+                    return ret
+            raise
+        except Exception as e:
+            content = node + ' nova-compute service force down failed!'
+            title = 'force down failed'
+            self.db.add_or_update_guardian_log(**{'title': title,
+                                                  'detail': content,
+                                                  'level': 'ERROR'})
+            LOG.error(content)
+            LOG.error(e)
+################  add  ################
+    LOG.info('IPMI enabled,need to check power status of %s' % node)
+    ipmi_info = self.db.get_ipmiInfo(node)
+    if ipmi_info is None:
+        LOG.warning(
+            'can not find ipmi info for %s, will ignore evacuate...'
+            % node)
+        return 0
+    LOG.debug('get ipmi info (ip %s user %s, password %s)' % (
+        ipmi_info.ip, ipmi_info.username, ipmi_info.password))
+    ipmi_util = IPMIUtil(ipmi_info.ip, ipmi_info.username,
+                         ipmi_info.password)
+    power_status = ipmi_util.get_power_status()
+    LOG.info('power status of %s is %s' % (node, power_status))
+
+    if 'off' != power_status:
+        LOG.info('power status of %s is not off,power off it...' % node)
+        ipmi_util.do_power_off()
+        for i in range(1, CONF.ipmi_check_max_count + 1):
+            power_status = ipmi_util.get_power_status()
+            if 'off' != power_status:
+                LOG.info(
+                    'power status of %s is not off,wait for %s seconds...'
+                    % (node, CONF.ipmi_check_interval))
+                time.sleep(CONF.ipmi_check_interval)
+            else:
+                break
+        power_status = ipmi_util.get_power_status()
+        if 'off' != power_status:
+            LOG.info(
+                'after %s check,can not confirm power status of '
+                '%s is off,will ignore evacuate...'
+                % (node,
+                   CONF.ipmi_check_max_count*CONF.ipmi_check_interval))
+            ret = 0
+    return ret
+</code></pre>
+<p>When the following code is at level 2, it does not skip the shutdown process of the above code, and force down before checking the nova service state to achieve rapid evacuation (do not check the heartbeat process). Level 3 is to do nothing, the same as before.</p>
+<pre><code class="language-python">################  add  ################
+if CONF.quick_evacuate_level == 2:
+    try:
+        self.nova_client.services.force_down(host=node,
+                                             binary='nova-compute',
+                                             force_down=True,
+                                            )
+        service = self.nova_client.services.list(
+            host=node,
+            binary='nova-compute')
+        if service:
+            if service[0].state != 'down':
+                raise
+    except Exception as e:
+        content = node + ' nova-compute service force down failed!'
+        title = 'force down failed'
+        self.db.add_or_update_guardian_log(**{'title': title,
+                                              'detail': content,
+                                              'level': 'ERROR'})
+        LOG.error(content)
+        LOG.error(e)
+################  add  ################
+
+if self._wait_for_service_to_down(node):
+    for server in servers:
+        can_evacuate = self._evacuate_predict(server)
+        if can_evacuate:
+            try:
+                # just evacuate, let nova scheduler
+                # choose one host if not in drbd env
+                respone = server.evacuate(
+                    host=evacuated_to,
+                    on_shared_storage=CONF.on_share_storage)
+                LOG.info(
+                    'evacuate vm info:[id:%s,name:%s,status:%s],'
+                    'reponse is %s'
+                    % (server.id, server.name, server.status,
+                        respone))
+                content = '虚拟机被疏散:虚拟机ID: %s' % server.id
+                self.send_snmp(content=content)
+            except Exception as e:
+                content = ('evacuate vm %s failed' % server.id)
+                title = ('疏散虚拟机%s失败' % server.id)
+                self.db.add_or_update_guardian_log(
+                    **{'title': title,
+                       'detail': content,
+                       'level': 'ERROR'})
+                content = '虚拟机疏散调用API失败:虚拟机ID: %s' % server.id
+                self.send_snmp(content=content)
+                LOG.error(content)
+                LOG.error(e)
+
+            # add to db
+            try:
+                self.db.add_evacuate_history(
+                    instance_id=server.id,
+                    instance_name=server.name,
+                    host=getattr(server, 'OS-EXT-SRV-ATTR:host'))
+
+                content = (
+                    'add_evacuate_history '
+                    '[instance_id:%s,instance_name:%s,host:%s]'
+                    % (server.id, server.name,
+                       getattr(server, 'OS-EXT-SRV-ATTR:host')))
+                LOG.info(content)
+                title = ('增加疏散记录%s' % server.name)
+                self.db.add_or_update_guardian_log(
+                    **{'title': title,
+                       'detail': content,
+                       'level': 'INFO'})
+            except Exception as e:
+                content = (
+                    'add_evacuate_history for vm %s failed'
+                    % server.id)
+                title = ('增加疏散记录%s失败' % server.id)
+                self.db.add_or_update_guardian_log(
+                    **{'title': title,
+                       'detail': content,
+                       'level': 'ERROR'})
+                LOG.error(content)
+                LOG.error(e)
+        else:
+            content = '虚拟机没有被疏散:虚拟机ID: %s' % server.id
+            self.send_snmp(content=content)
+            LOG.info('server %s can not evacuate' % server.id)
+
+    # disable this service
+    try:
+        self.nova_client.services.disable(node, 'nova-compute')
+    except Exception as e:
+        content = (
+            'failed to disable compute service on node %s' % node)
+        title = ('disable节点%s服务失败' % node)
+        self.db.add_or_update_guardian_log(
+            **{'title': title,
+               'detail': content,
+               'level': 'ERROR'})
+        LOG.error(content)
+        LOG.error(e)
+        raise
+
+    heart_beat = self.db.get_heartbeat_by_name(node)
+    heart_beat.has_evacuated = 1
+    heart_beat.status = 'done'
+    heart_beat.save(self.db.session)
+    LOG.info('node %s update with [has_evacuated: 1]' % node)
+</code></pre>
 <div style="break-before: page; page-break-before: always;"></div><p>release time :2017-05-04 22:21</p>
 <h1 id="question-survey"><a class="header" href="#question-survey">question survey</a></h1>
 <h2 id="direct-cause"><a class="header" href="#direct-cause">direct cause</a></h2>
@@ -451,236 +822,24 @@ def _set_clock(self, guest, os_type, image_meta, virt_type):
     if virt_type == &quot;kvm&quot;:
         self._set_kvm_timers(clk, os_type, image_meta)
 </code></pre>
-<div style="break-before: page; page-break-before: always;"></div><p>release time :2017-06-10 03:27</p>
-<h1 id="relevant-blueprints"><a class="header" href="#relevant-blueprints">Relevant blueprints:</a></h1>
-<ul>
-<li>https://blueprints.launchpad.net/nova/+spec/mark-host-down</li>
-<li>https://blueprints.launchpad.net/python-novaclient/+spec/support-force-down-service</li>
-</ul>
-<h1 id="why-add-this-api"><a class="header" href="#why-add-this-api">Why add this API</a></h1>
-<p>With this API, external fault monitoring can get the nova-compute service down faster, which will directly improve the fault recovery time of VM HA (the time to evacuate a VM from a faulty node to a normal node).
-external fault monitoring system a possibility of telling OpenStack Nova fast that compute host is down. This will immediately enable calling of evacuation of any VM on host and further enabling faster HA actions.</p>
-<h1 id="rest-api-for-forced-down"><a class="header" href="#rest-api-for-forced-down">REST API for forced down</a></h1>
-<p>request: PUT /v2.1/{tenant_id}/os-services/force-down { “binary”: “nova-compute”, “host”: “compute1”, “forced_down”: true }</p>
-<p>response: 200 OK { “service”: { “host”: “compute1”, “binary”: “nova-compute”, “forced_down”: true } }</p>
-<p>Example: curl -g -i -X PUT http://{service_host_ip}:8774/v2.1/{tenant_id}/os-services /force-down -H “Content-Type: application/json” -H “Accept: application/json ” -H “X-OpenStack-Nova-API-Version: 2.11” -H “X-Auth-Token: {token}” -d ‘{“b inary”: “nova-compute”, “host”: “compute1”, “forced_down”: true}’</p>
-<h1 id="cli-for-forced-down"><a class="header" href="#cli-for-forced-down">CLI for forced down</a></h1>
-<p>nova service-force-down nova-compute</p>
-<p>Example: nova service-force-down compute1 nova-compute</p>
-<h1 id="rest-api-for-disabling-forced-down"><a class="header" href="#rest-api-for-disabling-forced-down">REST API for disabling forced down</a></h1>
-<p>request: PUT /v2.1/{tenant_id}/os-services/force-down { “binary”: “nova-compute”, “host”: “compute1”, “forced_down”: false }</p>
-<p>response: 200 OK { “service”: { “host”: “compute1”, “binary”: “nova-compute”, “forced_down”: false } }</p>
-<p>Example: curl -g -i -X PUT http://{service_host_ip}:8774/v2.1/{tenant_id}/os-services /force-down -H “Content-Type: application/json” -H “Accept: application/json ” -H “X-OpenStack-Nova-API-Version: 2.11” -H “X-Auth-Token: {token}” -d ‘{“b inary”: “nova-compute”, “host”: “compute1”, “forced_down”: false}’</p>
-<h1 id="cli-for-disabling-forced-down"><a class="header" href="#cli-for-disabling-forced-down">CLI for disabling forced down</a></h1>
-<p>nova service-force-down –unset nova-compute</p>
-<p>Example: nova service-force-down –unset compute1 nova-compute</p>
-<h1 id="add-fast-evacuation-function-to-vm-ha-procedure"><a class="header" href="#add-fast-evacuation-function-to-vm-ha-procedure">Add fast evacuation function to VM HA procedure</a></h1>
-<p>Now add fast evacuation function in the developed VM HA program</p>
-<ol>
-<li>Modify the configuration file and add the quick_evacuate_level option</li>
-</ol>
-<ul>
-<li>level 1: (fastest) Do not shut down, just force down nova-compute-service</li>
-<li>level 2: (faster) (default) Shut down first, then force down nova-compute-service</li>
-<li>level 3: (disable quick_evacuate)</li>
-</ul>
-<ol start="2">
-<li>change python-novaclient&gt;=6.0.0 to support force-service-down</li>
-<li>Modify the processing logic of the evacuation process and add rapid evacuation</li>
-</ol>
-<p>The original evacuation process is to shut down the faulty computing node after finding the faulty node, and then wait for the faulty node to cause nova service state down due to heartbeat loss, and then perform evacuation.</p>
-<p>Now it is changed to:</p>
-<ul>
-<li>level 1: (fastest) does not shut down, only force down nova-compute -service</li>
-<li>level 2: (faster) (default) Shut down first, then force down after shutdown introduction nova-compute-service</li>
-<li>level 3: (disable quick_evacuate) do nothing, same as the original process</li>
-</ul>
-<p>The following code def _ipmi_handle, before the change, shuts down the faulty node. After the change, at level 1, force down nova service state and skip the shutdown process.</p>
-<pre><code class="language-python">def _ipmi_handle(self, node):
-    # cmd = 'ssh %s systemctl stop openstack-nova-compute' % node
-    # return os.system(cmd)
-    ret = 1
-################  add  ################
-    if CONF.quick_evacuate_level == 1:
-        try:
-            self.nova_client.services.force_down(host=node,
-                                                 binary='nova-compute',
-                                                 force_down=True,
-                                                )
-            service = self.nova_client.services.list(
-                host=node,
-                binary='nova-compute')
-            if service:
-                if service[0].state == 'down':
-                    return ret
-            raise
-        except Exception as e:
-            content = node + ' nova-compute service force down failed!'
-            title = 'force down failed'
-            self.db.add_or_update_guardian_log(**{'title': title,
-                                                  'detail': content,
-                                                  'level': 'ERROR'})
-            LOG.error(content)
-            LOG.error(e)
-################  add  ################
-    LOG.info('IPMI enabled,need to check power status of %s' % node)
-    ipmi_info = self.db.get_ipmiInfo(node)
-    if ipmi_info is None:
-        LOG.warning(
-            'can not find ipmi info for %s, will ignore evacuate...'
-            % node)
-        return 0
-    LOG.debug('get ipmi info (ip %s user %s, password %s)' % (
-        ipmi_info.ip, ipmi_info.username, ipmi_info.password))
-    ipmi_util = IPMIUtil(ipmi_info.ip, ipmi_info.username,
-                         ipmi_info.password)
-    power_status = ipmi_util.get_power_status()
-    LOG.info('power status of %s is %s' % (node, power_status))
-
-    if 'off' != power_status:
-        LOG.info('power status of %s is not off,power off it...' % node)
-        ipmi_util.do_power_off()
-        for i in range(1, CONF.ipmi_check_max_count + 1):
-            power_status = ipmi_util.get_power_status()
-            if 'off' != power_status:
-                LOG.info(
-                    'power status of %s is not off,wait for %s seconds...'
-                    % (node, CONF.ipmi_check_interval))
-                time.sleep(CONF.ipmi_check_interval)
-            else:
-                break
-        power_status = ipmi_util.get_power_status()
-        if 'off' != power_status:
-            LOG.info(
-                'after %s check,can not confirm power status of '
-                '%s is off,will ignore evacuate...'
-                % (node,
-                   CONF.ipmi_check_max_count*CONF.ipmi_check_interval))
-            ret = 0
-    return ret
-</code></pre>
-<p>When the following code is at level 2, it does not skip the shutdown process of the above code, and force down before checking the nova service state to achieve rapid evacuation (do not check the heartbeat process). Level 3 is to do nothing, the same as before.</p>
-<pre><code class="language-python">################  add  ################
-if CONF.quick_evacuate_level == 2:
-    try:
-        self.nova_client.services.force_down(host=node,
-                                             binary='nova-compute',
-                                             force_down=True,
-                                            )
-        service = self.nova_client.services.list(
-            host=node,
-            binary='nova-compute')
-        if service:
-            if service[0].state != 'down':
-                raise
-    except Exception as e:
-        content = node + ' nova-compute service force down failed!'
-        title = 'force down failed'
-        self.db.add_or_update_guardian_log(**{'title': title,
-                                              'detail': content,
-                                              'level': 'ERROR'})
-        LOG.error(content)
-        LOG.error(e)
-################  add  ################
-
-if self._wait_for_service_to_down(node):
-    for server in servers:
-        can_evacuate = self._evacuate_predict(server)
-        if can_evacuate:
-            try:
-                # just evacuate, let nova scheduler
-                # choose one host if not in drbd env
-                respone = server.evacuate(
-                    host=evacuated_to,
-                    on_shared_storage=CONF.on_share_storage)
-                LOG.info(
-                    'evacuate vm info:[id:%s,name:%s,status:%s],'
-                    'reponse is %s'
-                    % (server.id, server.name, server.status,
-                        respone))
-                content = '虚拟机被疏散:虚拟机ID: %s' % server.id
-                self.send_snmp(content=content)
-            except Exception as e:
-                content = ('evacuate vm %s failed' % server.id)
-                title = ('疏散虚拟机%s失败' % server.id)
-                self.db.add_or_update_guardian_log(
-                    **{'title': title,
-                       'detail': content,
-                       'level': 'ERROR'})
-                content = '虚拟机疏散调用API失败:虚拟机ID: %s' % server.id
-                self.send_snmp(content=content)
-                LOG.error(content)
-                LOG.error(e)
-
-            # add to db
-            try:
-                self.db.add_evacuate_history(
-                    instance_id=server.id,
-                    instance_name=server.name,
-                    host=getattr(server, 'OS-EXT-SRV-ATTR:host'))
-
-                content = (
-                    'add_evacuate_history '
-                    '[instance_id:%s,instance_name:%s,host:%s]'
-                    % (server.id, server.name,
-                       getattr(server, 'OS-EXT-SRV-ATTR:host')))
-                LOG.info(content)
-                title = ('增加疏散记录%s' % server.name)
-                self.db.add_or_update_guardian_log(
-                    **{'title': title,
-                       'detail': content,
-                       'level': 'INFO'})
-            except Exception as e:
-                content = (
-                    'add_evacuate_history for vm %s failed'
-                    % server.id)
-                title = ('增加疏散记录%s失败' % server.id)
-                self.db.add_or_update_guardian_log(
-                    **{'title': title,
-                       'detail': content,
-                       'level': 'ERROR'})
-                LOG.error(content)
-                LOG.error(e)
-        else:
-            content = '虚拟机没有被疏散:虚拟机ID: %s' % server.id
-            self.send_snmp(content=content)
-            LOG.info('server %s can not evacuate' % server.id)
-
-    # disable this service
-    try:
-        self.nova_client.services.disable(node, 'nova-compute')
-    except Exception as e:
-        content = (
-            'failed to disable compute service on node %s' % node)
-        title = ('disable节点%s服务失败' % node)
-        self.db.add_or_update_guardian_log(
-            **{'title': title,
-               'detail': content,
-               'level': 'ERROR'})
-        LOG.error(content)
-        LOG.error(e)
-        raise
-
-    heart_beat = self.db.get_heartbeat_by_name(node)
-    heart_beat.has_evacuated = 1
-    heart_beat.status = 'done'
-    heart_beat.save(self.db.session)
-    LOG.info('node %s update with [has_evacuated: 1]' % node)
-</code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="summary-1"><a class="header" href="#summary-1">Summary</a></h1>
 <ul>
-<li><a href="./SUMMARY.html">Openstack</a>
+<li>
+<p><a href="./SUMMARY.html">Openstack</a></p>
 <ul>
-<li><a href="./openstack/vm-activation-failure.html">Windows virtual machine activation failure problem</a></li>
+<li><a href="./openstack/live-migration-local.html">Live Migration on Local Storage</a></li>
 <li><a href="./openstack/fast-evacuation.html">Add fast evacuation function to VM HA procedure</a></li>
+<li><a href="./openstack/vm-activation-failure.html">Windows virtual machine activation failure problem</a></li>
 </ul>
 </li>
-<li><a href="./SUMMARY.html">Tools</a>
+<li>
+<p><a href="./SUMMARY.html">Tools</a></p>
 <ul>
 <li><a href="./tools/xshell-skill.html">Some Skills of using xshell tools</a></li>
 </ul>
 </li>
-<li><a href="./SUMMARY.html">point of view</a>
+<li>
+<p><a href="./SUMMARY.html">point of view</a></p>
 <ul>
 <li><a href="./point-of-view/huawei-and-operators.html">Huawei and telecom operators</a></li>
 </ul>
@@ -733,18 +892,22 @@ Destination port : 6080
 <p>The two tunnel forwarding methods have their own characteristics. I always use the latter, because there are few settings. If you want to access other ports or other services, you only need to set up the jump server.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="summary-2"><a class="header" href="#summary-2">Summary</a></h1>
 <ul>
-<li><a href="./SUMMARY.html">Openstack</a>
+<li>
+<p><a href="./SUMMARY.html">Openstack</a></p>
 <ul>
-<li><a href="./openstack/vm-activation-failure.html">Windows virtual machine activation failure problem</a></li>
+<li><a href="./openstack/live-migration-local.html">Live Migration on Local Storage</a></li>
 <li><a href="./openstack/fast-evacuation.html">Add fast evacuation function to VM HA procedure</a></li>
+<li><a href="./openstack/vm-activation-failure.html">Windows virtual machine activation failure problem</a></li>
 </ul>
 </li>
-<li><a href="./SUMMARY.html">Tools</a>
+<li>
+<p><a href="./SUMMARY.html">Tools</a></p>
 <ul>
 <li><a href="./tools/xshell-skill.html">Some Skills of using xshell tools</a></li>
 </ul>
 </li>
-<li><a href="./SUMMARY.html">point of view</a>
+<li>
+<p><a href="./SUMMARY.html">point of view</a></p>
 <ul>
 <li><a href="./point-of-view/huawei-and-operators.html">Huawei and telecom operators</a></li>
 </ul>
