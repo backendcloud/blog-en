@@ -75,7 +75,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="SUMMARY.html"><strong aria-hidden="true">1.</strong> Catalog: Openstack</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="openstack/resize-fail.html"><strong aria-hidden="true">1.1.</strong> Investigation of the cause of resize failure</a></li><li class="chapter-item expanded "><a href="openstack/mount-cloud-disk.html"><strong aria-hidden="true">1.2.</strong> Mount cloud disk</a></li><li class="chapter-item expanded "><a href="openstack/ocata-nova-evacuate-bug.html"><strong aria-hidden="true">1.3.</strong> Ocata nova evacuate bug</a></li><li class="chapter-item expanded "><a href="openstack/compute-node-ha.html"><strong aria-hidden="true">1.4.</strong> compute node ha mainstream open source implementation</a></li><li class="chapter-item expanded "><a href="openstack/collectd-influxdb.html"><strong aria-hidden="true">1.5.</strong> Deployment and usage of Collectd and InfluxDB</a></li><li class="chapter-item expanded "><a href="openstack/live-migration-local.html"><strong aria-hidden="true">1.6.</strong> Live Migration on Local Storage</a></li><li class="chapter-item expanded "><a href="openstack/fast-evacuation.html"><strong aria-hidden="true">1.7.</strong> Add fast evacuation function to VM HA procedure</a></li><li class="chapter-item expanded "><a href="openstack/vm-activation-failure.html"><strong aria-hidden="true">1.8.</strong> Windows virtual machine activation failure problem</a></li></ol></li><li class="chapter-item expanded "><a href="SUMMARY.html"><strong aria-hidden="true">2.</strong> Catalog: Tools</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="tools/xshell-skill.html"><strong aria-hidden="true">2.1.</strong> Some Skills of using xshell tools</a></li></ol></li><li class="chapter-item expanded "><a href="SUMMARY.html"><strong aria-hidden="true">3.</strong> Catalog: Point of view</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="tools/gerrit-install.html"><strong aria-hidden="true">3.1.</strong> gerrit install</a></li><li class="chapter-item expanded "><a href="point-of-view/huawei-and-operators.html"><strong aria-hidden="true">3.2.</strong> Huawei and telecom operators</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="SUMMARY.html"><strong aria-hidden="true">1.</strong> Catalog: Openstack</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="openstack/openstack-op-1.html"><strong aria-hidden="true">1.1.</strong> Openstack operation and maintenance records (1)</a></li><li class="chapter-item expanded "><a href="openstack/openstack-local-yum.html"><strong aria-hidden="true">1.2.</strong> Openstack Pike local yum source construction</a></li><li class="chapter-item expanded "><a href="openstack/cpu-binding.html"><strong aria-hidden="true">1.3.</strong> CPU binding</a></li><li class="chapter-item expanded "><a href="openstack/resize-fail.html"><strong aria-hidden="true">1.4.</strong> Investigation of the cause of resize failure</a></li><li class="chapter-item expanded "><a href="openstack/mount-cloud-disk.html"><strong aria-hidden="true">1.5.</strong> Mount cloud disk</a></li><li class="chapter-item expanded "><a href="openstack/ocata-nova-evacuate-bug.html"><strong aria-hidden="true">1.6.</strong> Ocata nova evacuate bug</a></li><li class="chapter-item expanded "><a href="openstack/compute-node-ha.html"><strong aria-hidden="true">1.7.</strong> compute node ha mainstream open source implementation</a></li><li class="chapter-item expanded "><a href="openstack/collectd-influxdb.html"><strong aria-hidden="true">1.8.</strong> Deployment and usage of Collectd and InfluxDB</a></li><li class="chapter-item expanded "><a href="openstack/live-migration-local.html"><strong aria-hidden="true">1.9.</strong> Live Migration on Local Storage</a></li><li class="chapter-item expanded "><a href="openstack/fast-evacuation.html"><strong aria-hidden="true">1.10.</strong> Add fast evacuation function to VM HA procedure</a></li><li class="chapter-item expanded "><a href="openstack/vm-activation-failure.html"><strong aria-hidden="true">1.11.</strong> Windows virtual machine activation failure problem</a></li></ol></li><li class="chapter-item expanded "><a href="SUMMARY.html"><strong aria-hidden="true">2.</strong> Catalog: Tools</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="tools/xshell-skill.html"><strong aria-hidden="true">2.1.</strong> Some Skills of using xshell tools</a></li></ol></li><li class="chapter-item expanded "><a href="SUMMARY.html"><strong aria-hidden="true">3.</strong> Catalog: Point of view</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="tools/gerrit-install.html"><strong aria-hidden="true">3.1.</strong> gerrit install</a></li><li class="chapter-item expanded "><a href="point-of-view/huawei-and-operators.html"><strong aria-hidden="true">3.2.</strong> Huawei and telecom operators</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -142,6 +142,9 @@
 <li>
 <p><a href="./SUMMARY.html">Catalog: Openstack</a></p>
 <ul>
+<li><a href="./openstack/openstack-op-1.html">Openstack operation and maintenance records (1)</a> ------ release time :2018-08-26 18:38</li>
+<li><a href="./openstack/openstack-local-yum.html">Openstack Pike local yum source construction</a> ------ release time :2017-12-28 22:20</li>
+<li><a href="./openstack/cpu-binding.html">CPU binding</a> ------ release time :2017-07-20 18:30</li>
 <li><a href="./openstack/resize-fail.html">Investigation of the cause of resize failure</a> ------ release time :2017-07-04 10:20</li>
 <li><a href="./openstack/mount-cloud-disk.html">Mount cloud disk</a> ------ release time :2017-06-30 05:16</li>
 <li><a href="./openstack/ocata-nova-evacuate-bug.html">Ocata nova evacuate bug</a> ------ release time :2017-06-28 18:24</li>
@@ -166,6 +169,472 @@
 </ul>
 </li>
 </ul>
+<div style="break-before: page; page-break-before: always;"></div><p>release time :2018-08-26 18:38</p>
+<h1 id="troubleshooting-process"><a class="header" href="#troubleshooting-process">Troubleshooting process</a></h1>
+<ul>
+<li>First determine the resource ID of the fault, and determine the component where the fault occurred</li>
+<li>Check the log of the corresponding component, search according to the fault resource ID, and find the corresponding ERROR log</li>
+<li>If the ERROR log points the problem to other components, then according to the resource ID, time, req-id and other information in the ERROR log, other components continue to search for the problem until the root cause of the problem is found.</li>
+<li>If no ERROR is found in the log, it may be that the network is not connected, causing the request to fail to reach the API. At this time, you need to check the connectivity with the API (if you use VIP, you need to check the connectivity with the VIP and the connectivity of the real IP separately. ).</li>
+<li>If the corresponding request can be found in the API, but the conductor/scheduler/compute does not find the corresponding log, it may be that the MQ is faulty.</li>
+<li>If the component has not refreshed any logs for a long time, the component process may hang or be in a dead state. You can try to restart the service, or open Debug first and then restart the service. </li>
+</ul>
+<h1 id="create-vm-error"><a class="header" href="#create-vm-error">create vm error</a></h1>
+<pre><code>[root@EXTENV-194-18-2-16 nova]# cat nova-compute.log | grep 620cd801-8849-481a-80e0-2980b6c8dba6
+2018-08-23 15:23:36.136 3558 INFO nova.compute.resource_tracker [req-f76d5408-00f8-4a67-854e-ad3da2098811 - - - - -] Instance 620cd801-8849-481a-80e0-2980b6c8dba6 has allocations against this compute host but is not found in the database.
+</code></pre>
+<p>Analysis: It feels that the information database of node is out of sync</p>
+<p>nova show error vm, package cell error</p>
+<pre><code>#### Each time a computing node is added, the control node needs to execute:
+# su -s /bin/sh -c &quot;nova-manage cell_v2 discover_hosts --verbose&quot; nova
+</code></pre>
+<p>problem solved.</p>
+<h1 id="the-neutron-service-is-good-and-the-command-line-creates-a-network-to-view-the-network-normally-but-the-dashboard-cannot-view-network-related-pages"><a class="header" href="#the-neutron-service-is-good-and-the-command-line-creates-a-network-to-view-the-network-normally-but-the-dashboard-cannot-view-network-related-pages">The neutron service is good, and the command line creates a network to view the network normally, but the dashboard cannot view network-related pages</a></h1>
+<p>The dashboard network page reports an error Invalid service catalog service: network</p>
+<p>Analysis: It should be that Keystone is not properly configured. As a result, no relevant Catalog information was found.</p>
+<pre><code>[root@EXTENV-194-18-2-11 ~]# openstack catalog list
++-----------+-----------+-----------------------------------------------+
+| Name      | Type      | Endpoints                                     |
++-----------+-----------+-----------------------------------------------+
+| placement | placement | RegionOne                                     |
+|           |           |   internal: http://nova-ha-vip:8778           |
+|           |           | RegionOne                                     |
+|           |           |   admin: http://nova-ha-vip:8778              |
+|           |           | RegionOne                                     |
+|           |           |   public: http://nova-ha-vip:8778             |
+|           |           |                                               |
+| keystone  | identity  | RegionOne                                     |
+|           |           |   public: http://keystone-ha-vip:5000/v3/     |
+|           |           | RegionOne                                     |
+|           |           |   internal: http://keystone-ha-vip:35357/v3/  |
+|           |           | RegionOne                                     |
+|           |           |   admin: http://keystone-ha-vip:35357/v3/     |
+|           |           |                                               |
+| glance    | image     | RegionOne                                     |
+|           |           |   admin: http://glance-ha-vip:9292            |
+|           |           | RegionOne                                     |
+|           |           |   internal: http://glance-ha-vip:9292         |
+|           |           | RegionOne                                     |
+|           |           |   public: http://glance-ha-vip:9292           |
+|           |           |                                               |
+| nova      | compute   | RegionOne                                     |
+|           |           |   public: http://nova-ha-vip:8774/v2.1        |
+|           |           | RegionOne                                     |
+|           |           |   admin: http://nova-ha-vip:8774/v2.1         |
+|           |           | RegionOne                                     |
+|           |           |   internal: http://nova-ha-vip:8774/v2.1      |
+|           |           |                                               |
+| neutron   | network   |                                               |
+| neutron   | network   | RegionOne                                     |
+|           |           |   public: http://neutron-server-ha-vip:9696   |
+|           |           | RegionOne                                     |
+|           |           |   admin: http://neutron-server-ha-vip:9696    |
+|           |           | RegionOne                                     |
+|           |           |   internal: http://neutron-server-ha-vip:9696 |
+|           |           |                                               |
++-----------+-----------+-----------------------------------------------+
+</code></pre>
+<p>So just delete the first piece of data without url, but found that there is only openstack catalog list, no openstack catalog delete command. Later, I checked the keystone configuration file keystone.conf and found the following configuration
+see [catalog]</p>
+<p>From the configuration file and some information, it can be seen that the catalog is the data read from mysql, and then the dirty data is found in the service table in the keystone library of mysql, and then I know to use openstack service delete to delete the 'dirty data', the problem is solved.</p>
+<pre><code>MariaDB [keystone]&gt; select * from service;
++----------------------------------+-----------+---------+-------------------------------------------------------------+
+| id                               | type      | enabled | extra                                                       |
++----------------------------------+-----------+---------+-------------------------------------------------------------+
+| 520f6bf8564240be9678c4ef25305cad | placement |       1 | {&quot;description&quot;: &quot;OpenStack Placement&quot;, &quot;name&quot;: &quot;placement&quot;} |
+| 960580852a594c078e68fe3683e35db5 | identity  |       1 | {&quot;name&quot;: &quot;keystone&quot;}                                        |
+| 98ed18fcd8104732919bb5869a5a6dc2 | image     |       1 | {&quot;description&quot;: &quot;OpenStack Image&quot;, &quot;name&quot;: &quot;glance&quot;}        |
+| abef1b9469d94d3ab9f27c8ed72a5a48 | compute   |       1 | {&quot;description&quot;: &quot;OpenStack Compute&quot;, &quot;name&quot;: &quot;nova&quot;}        |
+| e37085e8fb2a49c0921c2d24f5e4f9b5 | network   |       1 | {&quot;description&quot;: &quot;OpenStack Networking&quot;, &quot;name&quot;: &quot;neutron&quot;}  |
+| f1b661407ce04f79bc24605fa59bb74c | network   |       1 | {&quot;description&quot;: &quot;OpenStack Networking&quot;, &quot;name&quot;: &quot;neutron&quot;}  |
++----------------------------------+-----------+---------+-------------------------------------------------------------+
+6 rows in set (0.00 sec)
+
+MariaDB [keystone]&gt; select * from endpoint;
++----------------------------------+--------------------+-----------+----------------------------------+-----------------------------------+-------+---------+-----------+
+| id                               | legacy_endpoint_id | interface | service_id                       | url                               | extra | enabled | region_id |
++----------------------------------+--------------------+-----------+----------------------------------+-----------------------------------+-------+---------+-----------+
+| 142cb619cd2242828b0c9394d5baaea1 | NULL               | public    | f1b661407ce04f79bc24605fa59bb74c | http://neutron-server-ha-vip:9696 | {}    |       1 | RegionOne |
+| 2252d3ef840b4c5aa1184ebe8d6094f1 | NULL               | public    | abef1b9469d94d3ab9f27c8ed72a5a48 | http://nova-ha-vip:8774/v2.1      | {}    |       1 | RegionOne |
+| 476654c6e7dd4d22b290de451e3afda0 | NULL               | admin     | abef1b9469d94d3ab9f27c8ed72a5a48 | http://nova-ha-vip:8774/v2.1      | {}    |       1 | RegionOne |
+| 562a5d5443af4dfab6760204d0adf3bf | NULL               | internal  | 520f6bf8564240be9678c4ef25305cad | http://nova-ha-vip:8778           | {}    |       1 | RegionOne |
+| 58bd5f09811a4ebcb62a4b51fb7ae444 | NULL               | admin     | f1b661407ce04f79bc24605fa59bb74c | http://neutron-server-ha-vip:9696 | {}    |       1 | RegionOne |
+| 600811f8ccaf42669d4d83b897af3933 | NULL               | admin     | 520f6bf8564240be9678c4ef25305cad | http://nova-ha-vip:8778           | {}    |       1 | RegionOne |
+| 80683f619efb41dcbb6796ea04f16159 | NULL               | internal  | f1b661407ce04f79bc24605fa59bb74c | http://neutron-server-ha-vip:9696 | {}    |       1 | RegionOne |
+| 8e0a684607294a729f87d7d8b1a639ca | NULL               | public    | 520f6bf8564240be9678c4ef25305cad | http://nova-ha-vip:8778           | {}    |       1 | RegionOne |
+| 9ef0f18d891e45608ffc41985dc6afa6 | NULL               | public    | 960580852a594c078e68fe3683e35db5 | http://keystone-ha-vip:5000/v3/   | {}    |       1 | RegionOne |
+| a0b10cb04a5b4ca3859aaf2ea4ca2a3b | NULL               | admin     | 98ed18fcd8104732919bb5869a5a6dc2 | http://glance-ha-vip:9292         | {}    |       1 | RegionOne |
+| c53979becccc44f1813e9f50a619af7e | NULL               | internal  | 960580852a594c078e68fe3683e35db5 | http://keystone-ha-vip:35357/v3/  | {}    |       1 | RegionOne |
+| dadbb8dc218245bbba8c9a34237413ec | NULL               | internal  | 98ed18fcd8104732919bb5869a5a6dc2 | http://glance-ha-vip:9292         | {}    |       1 | RegionOne |
+| f4034b8c086a451caed52ac51a761fb0 | NULL               | public    | 98ed18fcd8104732919bb5869a5a6dc2 | http://glance-ha-vip:9292         | {}    |       1 | RegionOne |
+| fc150884825544baaf4912f14e76f51a | NULL               | internal  | abef1b9469d94d3ab9f27c8ed72a5a48 | http://nova-ha-vip:8774/v2.1      | {}    |       1 | RegionOne |
+| fc7132052063438895674fd7b840db68 | NULL               | admin     | 960580852a594c078e68fe3683e35db5 | http://keystone-ha-vip:35357/v3/  | {}    |       1 | RegionOne |
++----------------------------------+--------------------+-----------+----------------------------------+-----------------------------------+-------+---------+-----------+
+15 rows in set (0.00 sec)
+
+[root@EXTENV-194-18-2-11 ~]#  openstack service list
++----------------------------------+-----------+-----------+
+| ID                               | Name      | Type      |
++----------------------------------+-----------+-----------+
+| 520f6bf8564240be9678c4ef25305cad | placement | placement |
+| 960580852a594c078e68fe3683e35db5 | keystone  | identity  |
+| 98ed18fcd8104732919bb5869a5a6dc2 | glance    | image     |
+| abef1b9469d94d3ab9f27c8ed72a5a48 | nova      | compute   |
+| e37085e8fb2a49c0921c2d24f5e4f9b5 | neutron   | network   |
+| f1b661407ce04f79bc24605fa59bb74c | neutron   | network   |
++----------------------------------+-----------+-----------+
+[root@EXTENV-194-18-2-11 ~]#  openstack service delete e37085e8fb2a49c0921c2d24f5e4f9b5
+[root@EXTENV-194-18-2-11 ~]# systemctl restart httpd.service memcached.service
+</code></pre>
+<h1 id="when-viewing-the-image-named-in-chinese-an-error-is-reported"><a class="header" href="#when-viewing-the-image-named-in-chinese-an-error-is-reported">When viewing the image named in Chinese, an error is reported</a></h1>
+<pre><code>[root@NFJD-TESTVM-CORE-API-1 ~]# glance image-list
+'ascii' codec can't encode character u'\u5982' in position 1242: ordinal not in range(128)
+</code></pre>
+<p>Analysis: The image name is named in Chinese.</p>
+<p>Add export LC_ALL=zh_CN.UTF-8</p>
+<p>to /etc/profile</p>
+<p>At the same time, pay attention to whether there is export LC_ALL=C in the source file</p>
+<h1 id="vm-build-failed"><a class="header" href="#vm-build-failed">vm build failed</a></h1>
+<pre><code>2017-05-25 11:01:29.577 21880 TRACE nova.compute.manager [instance: 2c5a8e62-62d0-430d-8747-795350bb6939] ProcessExecutionError: Unexpected error while running command.
+2017-05-25 11:01:29.577 21880 TRACE nova.compute.manager [instance: 2c5a8e62-62d0-430d-8747-795350bb6939] Command: qemu-img convert -O raw /var/lib/nova/instances/_base/f5797db00aacfbe240bbfb0f53c2da80e4be6dfc.part /var/lib/nova/instances/_base/f5797db00aacfbe240bbfb0f53c2da80e4be6dfc.converted
+2017-05-25 11:01:29.577 21880 TRACE nova.compute.manager [instance: 2c5a8e62-62d0-430d-8747-795350bb6939] Exit code: 1
+2017-05-25 11:01:29.577 21880 TRACE nova.compute.manager [instance: 2c5a8e62-62d0-430d-8747-795350bb6939] Stdout: u''
+2017-05-25 11:01:29.577 21880 TRACE nova.compute.manager [instance: 2c5a8e62-62d0-430d-8747-795350bb6939] Stderr: u'qemu-img: error while writing sector 1569792: No space left on device\n'
+2017-05-25 11:01:29.577 21880 TRACE nova.compute.manager [instance: 2c5a8e62-62d0-430d-8747-795350bb6939]
+2017-05-25 11:01:29.580 21880 INFO nova.compute.manager [req-9fa74abf-bcc1-4b7e-aaef-2e17b593a356 6aa5df16b47442c58efde791abd60497 66458b9ead64409fb9d2e0f2c6d67d39 - - -] [instance: 2c5a8e62-62d0-430d-8747-795350bb6939] Terminating instance
+
+
+# df -h
+</code></pre>
+<p>Found that the disk is running out</p>
+<p>Countermeasure: clean up the disk</p>
+<h1 id="evacuation-failed"><a class="header" href="#evacuation-failed">Evacuation failed</a></h1>
+<p>Executed a nova evacuation command, but the evacuation failed, nova show reported this error: the state of the shared storage is wrong. That is, the nova instances directory does not have shared storage. If the ceph shared storage is not configured, the shared storage parameters are still included when the nova evacuate command is executed.</p>
+<pre><code>| fault                                | {&quot;message&quot;: &quot;Invalid state of instance files on shared storage&quot;, &quot;code&quot;: 500, &quot;details&quot;: &quot;  File \&quot;/usr/lib/python2.7/site-packages/nova/compute/manager.py\&quot;, line 354, in decorated_function |
+|                                      |     return function(self, context, *args, **kwargs)                                                                                                                                            |
+|                                      |   File \&quot;/usr/lib/python2.7/site-packages/nova/compute/manager.py\&quot;, line 3031, in rebuild_instance                                                                                            |
+|                                      |     _(\&quot;Invalid state of instance files on shared\&quot;                                                                                                                                            |
+|                                      | &quot;, &quot;created&quot;: &quot;2017-05-17T01:25:17Z&quot;}       
+</code></pre>
+<h1 id="there-is-a-certain-probability-that-the-console-cannot-be-displayed"><a class="header" href="#there-is-a-certain-probability-that-the-console-cannot-be-displayed">There is a certain probability that the console cannot be displayed</a></h1>
+<p>Operation steps: console-virtual machine, click the name of the virtual machine, click [console]</p>
+<p>Expected result: display the console page normally</p>
+<p>Actual result: There is a certain probability that the page will prompt &quot;Failed to connect to server&quot;, click to open in a new window to open the console page</p>
+<p>The configuration problem of the nova control node, the hosts configuration of memcache and rabbitmq in the configuration file is incorrect</p>
+<h1 id="on-the-dashboard-interface-use-the-image-centos7-flavor-2-to-create-a-virtual-machine-error-and-the-error-thrown-is-no-host-that-is-no-suitable-scheduling-node-was-found"><a class="header" href="#on-the-dashboard-interface-use-the-image-centos7-flavor-2-to-create-a-virtual-machine-error-and-the-error-thrown-is-no-host-that-is-no-suitable-scheduling-node-was-found">On the dashboard interface, use the image centos7, flavor-2 to create a virtual machine error. And the error thrown is no host, that is, no suitable scheduling node was found.</a></h1>
+<p>If the size of the flavor is smaller than the image requirement, an error will be reported.</p>
+<p>But once again, the above conditions are met and an error is reported.</p>
+<p>It is possible that the flavor was created with illegal extra_specs</p>
+<pre><code>OS-FLV-DISABLED:disabled  False
+OS-FLV-EXT-DATA:ephemeral   0
+disk    20
+extra_specs {&quot;xxx&quot;: &quot;123&quot;, &quot;yyy&quot;: &quot;321&quot;}
+</code></pre>
+<p>The filtering option turns on the ComputeCapabilitiesFilter filter.</p>
+<h1 id="import-error"><a class="header" href="#import-error">import error</a></h1>
+<p>glance register.log error:</p>
+<pre><code>2017-05-08 03:18:55.890 3185 ERROR glance.common.config [-] Unable to load glance-registry-keystone from configuration file /usr/share/glance/glance-registry-dist-paste.ini.
+Got: ImportError('No module named simplegeneric',)
+</code></pre>
+<p>/usr/lib/python2.7/site-packages/simplegeneric.py has no read permission, who changed it</p>
+<h1 id="keystone-error"><a class="header" href="#keystone-error">keystone error</a></h1>
+<p>Permission denied: AH00072: make_sock: could not bind to address [::]:5000</p>
+<pre><code>[root@controller0 ~]# systemctl start httpd.service
+Job for httpd.service failed because the control process exited with error code. See &quot;systemctl status httpd.service&quot; and &quot;journalctl -xe&quot; for details.
+[root@controller0 ~]# systemctl status httpd.service
+● httpd.service - The Apache HTTP Server
+Loaded: loaded (/usr/lib/systemd/system/httpd.service; enabled; vendor preset: disabled)
+Active: failed (Result: exit-code) since Sat 2016-05-28 20:22:34 EDT; 11s ago
+    Docs: man:httpd(8)
+        man:apachectl(8)
+Process: 4501 ExecStop=/bin/kill -WINCH ${MAINPID} (code=exited, status=1/FAILURE)
+Process: 4499 ExecStart=/usr/sbin/httpd $OPTIONS -DFOREGROUND (code=exited, status=1/FAILURE)
+Main PID: 4499 (code=exited, status=1/FAILURE)
+
+May 28 20:22:34 controller0 httpd[4499]: (13)Permission denied: AH00072: make_sock: could not bind to address [::]:5000
+May 28 20:22:34 controller0 httpd[4499]: (13)Permission denied: AH00072: make_sock: could not bind to address 0.0.0.0:5000
+</code></pre>
+<p>It may be a firewall configuration problem or selinux. If there is no problem with the firewall, check selinux</p>
+<p>check selinux status:
+1 [root@controller0 ~]# getenforce
+2 enforcing #If it is not disabled, it means that selinux is running normally</p>
+<p>SELINUX=enforcing changed to selinux=distabled</p>
+<p>restart reboot</p>
+<h1 id="re-scheduled-not-authorized-for-image"><a class="header" href="#re-scheduled-not-authorized-for-image">re-scheduled: Not authorized for image</a></h1>
+<p>The CLI reports an error:</p>
+<pre><code>| fault                                | {&quot;message&quot;: &quot;Build of instance d5739cf7-9830-47fd-9a75-e9b1cb4bb421 was re-scheduled: Not authorized for image dcd85799-92f6-4294-91ec-48670a218651.&quot;, &quot;code&quot;: 500, &quot;details&quot;: &quot;  File \&quot;/usr/lib/python2.7/site-packages/nova/compute/manager.py\&quot;, line 2258, in _do_build_and_run_instance |
+</code></pre>
+<p>Logging in to the computing node also reports an error</p>
+<pre><code>2017-05-18 15:01:24.867 40639 TRACE nova.compute.manager [instance: d5739cf7-9830-47fd-9a75-e9b1cb4bb421] ImageNotAuthorized: Not authorized for image dcd85799-92f6-4294-91ec-48670a218651.
+2017-05-18 15:01:24.867 40639 TRACE nova.compute.manager [instance: d5739cf7-9830-47fd-9a75-e9b1cb4bb421]
+</code></pre>
+<p>So add</p>
+<pre><code>[DEFAULT]
+auth_strategy=keyston in /etc/nova/nova.conf
+and the missing e
+should be:
+[DEFAULT]
+auth_strategy=keystone
+</code></pre>
+<h1 id="libvirterror-unsupported-configuration-ide-controllers-are-unsupported-for-this-qemu-binary-or-machine-type"><a class="header" href="#libvirterror-unsupported-configuration-ide-controllers-are-unsupported-for-this-qemu-binary-or-machine-type">libvirtError: unsupported configuration: IDE controllers are unsupported for this QEMU binary or machine type</a></h1>
+<pre><code>2017-05-18 15:06:09.522 41033 TRACE nova.compute.manager [instance: c348b942-4553-4023-bbcb-296f3b1bf14f] Traceback (most recent call last):
+2017-05-18 15:06:09.522 41033 TRACE nova.compute.manager [instance: c348b942-4553-4023-bbcb-296f3b1bf14f]   File &quot;/usr/lib/python2.7/site-packages/nova/compute/manager.py&quot;, line 2483, in _build_resources
+2017-05-18 15:06:09.522 41033 TRACE nova.compute.manager [instance: c348b942-4553-4023-bbcb-296f3b1bf14f]     yield resources
+2017-05-18 15:06:09.522 41033 TRACE nova.compute.manager [instance: c348b942-4553-4023-bbcb-296f3b1bf14f]   File &quot;/usr/lib/python2.7/site-packages/nova/compute/manager.py&quot;, line 2355, in _build_and_run_instance
+2017-05-18 15:06:09.522 41033 TRACE nova.compute.manager [instance: c348b942-4553-4023-bbcb-296f3b1bf14f]     block_device_info=block_device_info)
+2017-05-18 15:06:09.522 41033 TRACE nova.compute.manager [instance: c348b942-4553-4023-bbcb-296f3b1bf14f]   File &quot;/usr/lib/python2.7/site-packages/nova/virt/libvirt/driver.py&quot;, line 2704, in spawn
+2017-05-18 15:06:09.522 41033 TRACE nova.compute.manager [instance: c348b942-4553-4023-bbcb-296f3b1bf14f]     block_device_info=block_device_info)
+2017-05-18 15:06:09.522 41033 TRACE nova.compute.manager [instance: c348b942-4553-4023-bbcb-296f3b1bf14f]   File &quot;/usr/lib/python2.7/site-packages/nova/virt/libvirt/driver.py&quot;, line 4758, in _create_domain_and_network
+2017-05-18 15:06:09.522 41033 TRACE nova.compute.manager [instance: c348b942-4553-4023-bbcb-296f3b1bf14f]     power_on=power_on)
+2017-05-18 15:06:09.522 41033 TRACE nova.compute.manager [instance: c348b942-4553-4023-bbcb-296f3b1bf14f]   File &quot;/usr/lib/python2.7/site-packages/nova/virt/libvirt/driver.py&quot;, line 4689, in _create_domain
+2017-05-18 15:06:09.522 41033 TRACE nova.compute.manager [instance: c348b942-4553-4023-bbcb-296f3b1bf14f]     LOG.error(err)
+2017-05-18 15:06:09.522 41033 TRACE nova.compute.manager [instance: c348b942-4553-4023-bbcb-296f3b1bf14f]   File &quot;/usr/lib/python2.7/site-packages/oslo_utils/excutils.py&quot;, line 85, in __exit__
+2017-05-18 15:06:09.522 41033 TRACE nova.compute.manager [instance: c348b942-4553-4023-bbcb-296f3b1bf14f]     six.reraise(self.type_, self.value, self.tb)
+2017-05-18 15:06:09.522 41033 TRACE nova.compute.manager [instance: c348b942-4553-4023-bbcb-296f3b1bf14f]   File &quot;/usr/lib/python2.7/site-packages/nova/virt/libvirt/driver.py&quot;, line 4679, in _create_domain
+2017-05-18 15:06:09.522 41033 TRACE nova.compute.manager [instance: c348b942-4553-4023-bbcb-296f3b1bf14f]     domain.createWithFlags(launch_flags)
+2017-05-18 15:06:09.522 41033 TRACE nova.compute.manager [instance: c348b942-4553-4023-bbcb-296f3b1bf14f]   File &quot;/usr/lib/python2.7/site-packages/eventlet/tpool.py&quot;, line 186, in doit
+2017-05-18 15:06:09.522 41033 TRACE nova.compute.manager [instance: c348b942-4553-4023-bbcb-296f3b1bf14f]     result = proxy_call(self._autowrap, f, *args, **kwargs)
+2017-05-18 15:06:09.522 41033 TRACE nova.compute.manager [instance: c348b942-4553-4023-bbcb-296f3b1bf14f]   File &quot;/usr/lib/python2.7/site-packages/eventlet/tpool.py&quot;, line 144, in proxy_call
+2017-05-18 15:06:09.522 41033 TRACE nova.compute.manager [instance: c348b942-4553-4023-bbcb-296f3b1bf14f]     rv = execute(f, *args, **kwargs)
+2017-05-18 15:06:09.522 41033 TRACE nova.compute.manager [instance: c348b942-4553-4023-bbcb-296f3b1bf14f]   File &quot;/usr/lib/python2.7/site-packages/eventlet/tpool.py&quot;, line 125, in execute
+2017-05-18 15:06:09.522 41033 TRACE nova.compute.manager [instance: c348b942-4553-4023-bbcb-296f3b1bf14f]     six.reraise(c, e, tb)
+2017-05-18 15:06:09.522 41033 TRACE nova.compute.manager [instance: c348b942-4553-4023-bbcb-296f3b1bf14f]   File &quot;/usr/lib/python2.7/site-packages/eventlet/tpool.py&quot;, line 83, in tworker
+2017-05-18 15:06:09.522 41033 TRACE nova.compute.manager [instance: c348b942-4553-4023-bbcb-296f3b1bf14f]     rv = meth(*args, **kwargs)
+2017-05-18 15:06:09.522 41033 TRACE nova.compute.manager [instance: c348b942-4553-4023-bbcb-296f3b1bf14f]   File &quot;/usr/lib64/python2.7/site-packages/libvirt.py&quot;, line 1065, in createWithFlags
+2017-05-18 15:06:09.522 41033 TRACE nova.compute.manager [instance: c348b942-4553-4023-bbcb-296f3b1bf14f]     if ret == -1: raise libvirtError ('virDomainCreateWithFlags() failed', dom=self)
+2017-05-18 15:06:09.522 41033 TRACE nova.compute.manager [instance: c348b942-4553-4023-bbcb-296f3b1bf14f] libvirtError: unsupported configuration: IDE controllers are unsupported for this QEMU binary or machine type
+</code></pre>
+<p>Change the IDE to virtio</p>
+<h1 id="qemu-kvm-cirrus-vga-not-available"><a class="header" href="#qemu-kvm-cirrus-vga-not-available">qemu-kvm: Cirrus VGA not available</a></h1>
+<pre><code>| fault                                | {&quot;message&quot;: &quot;Build of instance a1feb48a-b5f5-48ab-93a7-838bb46573fb was re-scheduled: internal error: process exited while connecting to monitor: 2017-05-18T10:33:34.222333Z qemu-kvm: Cirrus VGA not available&quot;, &quot;code&quot;: 500, &quot;details&quot;: &quot;  File \&quot;/usr/lib/python2.7/site-packages/nova/compute/manager.py\&quot;, line 2258, in _do_build_and_run_instance |
+</code></pre>
+<p>Machines with power architecture do not support Cirrus VGA</p>
+<h1 id="the-default-route-cannot-be-deleted"><a class="header" href="#the-default-route-cannot-be-deleted">The default route cannot be deleted</a></h1>
+<p>There are two services to confirm whether the status is normal. network and NetworkManager</p>
+<h1 id="dashboard-access-lag"><a class="header" href="#dashboard-access-lag">dashboard access lag</a></h1>
+<p>The reason for locating the dashboard card is that it should be a nova card,</p>
+<p>nova freezes because nova cannot establish a connection with memcached,</p>
+<p>It is further located that the default maximum number of connections for memcached is 1024, which has reached the maximum number of connections so far.</p>
+<p>The solution is to edit /etc/sysconfig/memcached</p>
+<p>The parameters are modified to:</p>
+<pre><code>PORT=&quot;11211&quot;
+USER=&quot;memcached&quot;
+MAXCONN=&quot;65536&quot;
+CACHESIZE=&quot;1024&quot;
+OPTIONS=&quot;&quot;
+</code></pre>
+<p>restart memcached</p>
+<h1 id="task_state-has-been-in-scheduling"><a class="header" href="#task_state-has-been-in-scheduling">task_state has been in scheduling</a></h1>
+<p>Nova boot executes a certain node to generate vm, task_state is always in scheduling, vm_state is always in building, it may be that the nova-compute state of the node that is forced to be scheduled is down.</p>
+<h1 id="access-denied-for-user-nova-to-database-nova_api"><a class="header" href="#access-denied-for-user-nova-to-database-nova_api">Access denied for user 'nova'@'%' to database 'nova_api'</a></h1>
+<p>Initialize the database when initializing the nova_api database</p>
+<pre><code>su -s /bin/sh -c &quot;nova-manage api_db sync&quot; nova
+</code></pre>
+<p>Error:</p>
+<pre><code>Access denied for user 'nova'@'%' to database 'nova_api'
+</code></pre>
+<p>The root user enters the database and executes</p>
+<pre><code>&gt; GRANT ALL PRIVILEGES ON nova_api.* TO 'nova'@'%' IDENTIFIED BY '2267593eb27be7c414fc';
+</code></pre>
+<p>solve</p>
+<h1 id="all-nodes-have-insufficient-disks-and-return-0-available-hosts"><a class="header" href="#all-nodes-have-insufficient-disks-and-return-0-available-hosts">All nodes have insufficient disks, and return 0 available hosts</a></h1>
+<p>Go to the node df -h and find that there is a lot of disk space left. Nova judges the disk space of a node not based on ll, but based on the space occupied by vm and other data.</p>
+<p>Such as:</p>
+<pre><code>[root@NFJD-PSC-IBMN-SV356 10d31bfa-961d-44ea-b554-7575315a8e2e]# ll -h
+total 679M
+-rw-rw---- 1 root root  16K Nov 17 17:32 console.log
+-rw-r--r-- 1 root root 679M Nov 18 10:07 disk
+-rw-r--r-- 1 qemu qemu 422K Nov 17 17:24 disk.config
+-rw-r--r-- 1 nova nova  162 Nov 17 17:24 disk.info
+-rw-r--r-- 1 nova nova 3.4K Nov 17 17:24 libvirt.xml
+[root@NFJD-PSC-IBMN-SV356 10d31bfa-961d-44ea-b554-7575315a8e2e]# qemu-img info disk
+image: disk
+file format: qcow2
+virtual size: 40G (42949672960 bytes)
+disk size: 678M
+cluster_size: 65536
+backing file: /var/lib/nova/instances/_base/af019e4c89c44506c068ada379c040848416510e
+Format specific information:
+    compat: 1.1
+    lazy refcounts: false
+</code></pre>
+<p>ll The output of this file is more than 600 megabytes, but nova statistics are based on 40G. Because the nova code counts disk_over_committed. nova will store the statistical disk information in the table compute_nodes of the nova database and provide it to the scheduler.</p>
+<p>The virtual size here minus the disk size is over_commit_size.</p>
+<p>It can be seen that only the image in qcow2 format is overcommited here, and the over_commit_size of other files is equal to 0.</p>
+<p>In the DiskFilter of the nova scheduling service, disk_allocation_ratio is used to over-allocate disk resources. It is not the same concept as overcommit here. It is the overuse seen from the perspective of the control node, but cannot be seen by the computing node. Overcommit is a calculation The node sees the result obtained after the disk qcow2 compression format, and the remaining space it finally reports is the actual result after deducting the hypothetical qcow2 image file decompression. Therefore, the remaining space actually reported is smaller than the space seen by the naked eye.</p>
+<p>If the administrator specifies a computing node during deployment, the virtual machine will be forced to the computing node without going through the scheduling process, forcibly occupying the space that has been included in the oversubscription plan, which may eventually cause the disk resources reported by the computing node is a negative number. And in the future, as the actual disk space occupied by the virtual machine becomes larger and larger, the hard disk space of the computing node may eventually be insufficient.</p>
+<h1 id="novnc-can-not-open-the-problem-location"><a class="header" href="#novnc-can-not-open-the-problem-location">novnc can not open the problem location</a></h1>
+<p>Maybe the compute firewall has been changed</p>
+<p>Add in /etc/sysconfig/iptables</p>
+<pre><code>-A INPUT -p tcp --dport 5900:6100 -j ACCEPT
+</code></pre>
+<h1 id="qemu-ga-fails-to-start-because-it-cannot-find-the-corresponding-virtual-serial-character-device-prompting-that-the-channel-cannot-be-found"><a class="header" href="#qemu-ga-fails-to-start-because-it-cannot-find-the-corresponding-virtual-serial-character-device-prompting-that-the-channel-cannot-be-found">qemu-ga fails to start because it cannot find the corresponding virtual serial character device, prompting that the channel cannot be found</a></h1>
+<p>glance image-update –property hw_qemu_guest_agent=yes $IMAGE_ID# … For other property configurations, be sure to set property hw_qemu_guest_agent=yes, otherwise libvert will not generate qemu-ga configuration items when starting the virtual machine, causing the qemu-ga inside the virtual machine to fail to find The corresponding virtual serial character device fails to start, prompting that the channel cannot be found.</p>
+<div style="break-before: page; page-break-before: always;"></div><p>release time :2017-12-28 22:20</p>
+<p>When deploying Openstack, the environment may be limited and the external network cannot be connected. At this time, the installation needs to be completed through the local yum source.</p>
+<p>Taking the Pike version and the Centos platform as examples, it explains how to build a local yum source step by step.</p>
+<h1 id="install-httpd-first"><a class="header" href="#install-httpd-first">Install httpd first</a></h1>
+<pre><code>yum install httpd
+</code></pre>
+<p>In addition to apache httpd, nginx can also be installed</p>
+<p>And open the httpd service</p>
+<h1 id="configure-remote-yum-source"><a class="header" href="#configure-remote-yum-source">Configure remote yum source</a></h1>
+<p>Foreign sources are often unstable, and the speed is not fast enough, while the domestic Alibaba image is relatively stable. The fourth line deletes the Ali intranet address</p>
+<pre><code>rm -f /etc/yum.repos.d/*
+curl -o /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo
+curl -o /etc/yum.repos.d/epel.repo http://mirrors.aliyun.com/repo/epel-7.repo
+sed -i '/aliyuncs.com/d' /etc/yum.repos.d/*.repo
+</code></pre>
+<p>Configure the Openstack Pike source</p>
+<p>vim /etc/yum.repos.d/Ali-pike.repo</p>
+<pre><code>[Aliyun-pike]
+name=Aliyun-pike
+baseurl=https://mirrors.aliyun.com/centos/$releasever/cloud/$basearch/openstack-pike/
+gpgcheck=0
+enabled=1
+cost=88
+
+[Aliyun-qemu-ev]
+name=Aliyun-qemu-ev
+baseurl=https://mirrors.aliyun.com/centos/$releasever/virt/$basearch/kvm-common/
+https://mirrors.aliyun.com/centos
+gpgcheck=0
+enabled=1
+</code></pre>
+<h1 id="synchronize-the-rpm-package-repository"><a class="header" href="#synchronize-the-rpm-package-repository">Synchronize the rpm package repository</a></h1>
+<pre><code>[root@localhost ~]# yum makecache
+[root@localhost ~]# mkdir /usr/local/nginx/html/pike
+[root@localhost pike]# cd /usr/local/nginx/html/pike
+[root@localhost pike]# yum repolist
+Loaded plugins: fastestmirror
+Loading mirror speeds from cached hostfile
+repo id repo name status
+Aliyun-pike/7/x86_64 Aliyun-pike 2,195
+Aliyun-qemu-ev/7/x86_64 Aliyun-qemu-ev 39
+base/7/x86_64 CentOS-7 - Base - mirrors.aliyun.com 9,591
+epel/x86_64 Extra Packages for Enterprise Linux 7 - x86_64 12,184
+extras/7/x86_64 CentOS-7 - Extras - mirrors.aliyun.com 327
+updates/7/x86_64 CentOS-7 - Updates - mirrors.aliyun.com 1,573
+repolist: 25,909
+[root@localhost pike]# reposync --repoid=Aliyun-pike
+(1/2195): GitPython-1.0.1-5.el7.noarch.rpm | 501 kB 00:00:00
+(2/2195): PyQt4-devel-4.12-1.el7.x86_64.rpm | 419 kB 00:00:00
+(3/2195): PyQt4-4.12-1.el7.x86_64.rpm | 2.9 MB 00:00:00
+(4/2195): PyQt4-qsci-api-4.12-1.el7.x86_64.rpm | 156 kB 00:00:00
+(5/2195): XStatic-Angular-common-1.5.8.0-1.el7.noarch.rpm | 455 kB 00:00:00
+...
+(2195/2195): zeromq-4.0.5-4.el7.x86_64.rpm | 434 kB 00:00:00
+[root@localhost pike]# reposync --repoid=Aliyun-qemu-ev
+(1/39): centos-release-qemu-ev-1.0-1.el7.noarch.rpm | 10 kB 00:00:00
+(2/39): gperftools-2.4-7.el7.x86_64.rpm | 3.0 kB 00:00:00
+(3/39): OVMF-20150414-2.gitc9e5618.el7.noarch.rpm | 1.3 MB 00:00:00
+...
+(39/39): qemu-kvm-tools-ev-2.9.0-16.el7_4.8.1.x86_64.rpm | 320 kB 00:00:05
+</code></pre>
+<h1 id="create-list"><a class="header" href="#create-list">create list</a></h1>
+<p>Now the directory /usr/local/nginx/html/pike only has software packages and no repodate list, so createrepo needs to be recreated to create the list.</p>
+<pre><code>[root@localhost pike]# pwd
+/usr/local/nginx/html/pike
+[root@localhost pike]# createrepo /usr/local/nginx/html/pike
+-bash: createrepo: command not found
+[root@localhost pike]# yum install createrepo
+Loaded plugins: fastestmirror
+Loading mirror speeds from cached hostfile
+Resolving Dependencies
+--&gt; Running transaction check
+---&gt; Package createrepo.noarch 0:0.9.9-28.el7 will be installed
+--&gt; Processing Dependency: python-deltarpm for package: createrepo-0.9.9-28.el7.noarch
+--&gt; Processing Dependency: deltarpm for package: createrepo-0.9.9-28.el7.noarch
+--&gt; Running transaction check
+---&gt; Package deltarpm.x86_64 0:3.6-3.el7 will be installed
+---&gt; Package python-deltarpm.x86_64 0:3.6-3.el7 will be installed
+--&gt; Finished Dependency Resolution
+Dependencies Resolved
+==============================================================================================================================================================================================================================================================================
+Package Arch Version Repository Size
+==============================================================================================================================================================================================================================================================================
+Installing:
+createrepo noarch 0.9.9-28.el7 base 94 k
+Installing for dependencies:
+deltarpm x86_64 3.6-3.el7 base 82 k
+python-deltarpm x86_64 3.6-3.el7 base 31 k
+Transaction Summary
+==============================================================================================================================================================================================================================================================================
+Install 1 Package (+2 Dependent packages)
+Total download size: 207 k
+Installed size: 558 k
+Is this ok [y/d/N]: y
+Downloading packages:
+(1/3): deltarpm-3.6-3.el7.x86_64.rpm | 82 kB 00:00:00
+(2/3): createrepo-0.9.9-28.el7.noarch.rpm | 94 kB 00:00:00
+(3/3): python-deltarpm-3.6-3.el7.x86_64.rpm | 31 kB 00:00:00
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Total 446 kB/s | 207 kB 00:00:00
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+Installing : deltarpm-3.6-3.el7.x86_64 1/3
+Installing : python-deltarpm-3.6-3.el7.x86_64 2/3
+Installing : createrepo-0.9.9-28.el7.noarch 3/3
+Verifying : createrepo-0.9.9-28.el7.noarch 1/3
+Verifying : deltarpm-3.6-3.el7.x86_64 2/3
+Verifying : python-deltarpm-3.6-3.el7.x86_64 3/3
+Installed:
+createrepo.noarch 0:0.9.9-28.el7
+Dependency Installed:
+deltarpm.x86_64 0:3.6-3.el7 python-deltarpm.x86_64 0:3.6-3.el7
+Complete!
+[root@localhost pike]# createrepo /usr/local/nginx/html/pike
+Spawning worker 0 with 559 pkgs
+Spawning worker 1 with 559 pkgs
+Spawning worker 2 with 558 pkgs
+Spawning worker 3 with 558 pkgs
+Workers Finished
+Saving Primary metadata
+Saving file lists metadata
+Saving other metadata
+Generating sqlite DBs
+Sqlite DBs complete
+</code></pre>
+<h1 id="configure-local-yum-source"><a class="header" href="#configure-local-yum-source">Configure local yum source</a></h1>
+<p>For example, control node yum source configuration</p>
+<p>vim /etc/yum.repos.d/openstack.repo</p>
+<pre><code>[openstack]
+name=openstack
+baseurl=http://192.168.206.146/pike
+enabled=1
+gpgcheck=0
+</code></pre>
+<p>192.168.206.146 is the ip address of the previously synchronized local yum source</p>
+<p>yum makecache</p>
+<p>Same as other nodes.</p>
+<div style="break-before: page; page-break-before: always;"></div><p>release time :2017-07-20 18:30</p>
+<p>Since our operating system and CPU features adopt the NUMA architecture, we can optimize the KVM CPU by adjusting the NUMA relationship corresponding to KVM. Here, we generally do related operations through the method of CPU binding.</p>
+<p>Virtual machine vCPU core binding affinity: Support the affinity policy between virtual machine vCPU and physical CPU core, VCPU and physical CPU are bound one by one, different VMs run on different physical CPUs, that is, physical CPUs are not shared between VMs , to avoid performance degradation and uncertainty caused by over-allocation.</p>
+<p>For example, if we want to see the vCPU corresponding to the physical CPU in this Win7-ent virtual machine, we can run: <code># virsh vcpuinfo Win7-ent</code> can view.</p>
+<p><img src="openstack/2023-01-17-14-39-27.png" alt="" /></p>
+<p>This virtual machine has 2 vCPU dual-core, and then they all run on the CPU8 of the physical machine, and the usage time is 2964.6s. The last one is the affinity of the CPU. This yyyyy represents the logical core inside the physical CPU used, and a y represents one of the CPU logical cores. All are y, which means that the 24 CPU cores of this physical machine can be scheduled and used.</p>
+<p>You can enter vrish, and then run emulatorpin Win7-ent. Through this command, we can get the cores that this virtual machine can use in more detail:</p>
+<p><img src="openstack/2023-01-17-14-39-39.png" alt="" /></p>
+<p>We can see that the current CPU of this virtual machine 0-23 can be scheduled for use</p>
+<p>Then the above is to check the virtual machine CPU NUMA scheduling information. If we want to bind the virtual machine to a fixed CPU, we need to do the following: # virsh emulatorpin Win7-ent 18-23 –live Through this command, we put This win7 virtual machine vCPU is bound to the cores between the 6 CPUs of 18-23.</p>
+<p>We use the command to check emulatorpin Win7-ent</p>
+<p><img src="openstack/2023-01-17-14-39-51.png" alt="" /></p>
+<p>You can also use virsh dumpxml Win7-ent to check and confirm:</p>
+<p><img src="openstack/2023-01-17-14-40-02.png" alt="" /></p>
+<p>I have two vCPUs in a virtual machine, such as this win7, which is dual-core. I want vCPU1 and vCPU2 in it to be bound to different physical CPUs, is that okay? How to do it? This is also possible, we can bind the relevant vCPUs separately through the following method</p>
+<pre><code># virsh vcpupin Win7-ent 0 22
+
+# virsh vcpupin Win7-ent 1 23
+
+# virsh dumpxml Win7-ent
+</code></pre>
+<p><img src="openstack/2023-01-17-14-40-17.png" alt="" /></p>
+<pre><code># virsh vcpuinfo Win7-ent
+</code></pre>
+<p><img src="openstack/2023-01-17-14-40-30.png" alt="" /></p>
+<p>It should be noted here that if you reboot the virtual machine, the binding configuration will still take effect, but if you shut it down, the effect of CPU binding will be invalid. If we want to make the VM shut down and then get up to take effect, we must write the parameters into the XML of the virtual machine, and then save it, so that it will not be invalid even after shutting down.</p>
 <div style="break-before: page; page-break-before: always;"></div><p>release time :2017-07-04 10:20</p>
 <h1 id="the-resize-operation-on-the-cloud-host-is-not-successful"><a class="header" href="#the-resize-operation-on-the-cloud-host-is-not-successful">The resize operation on the cloud host is not successful</a></h1>
 <p>Resize a vm, that is, change from a small flavor to a large flavor, without success</p>
@@ -1409,6 +1878,9 @@ def _set_clock(self, guest, os_type, image_meta, virt_type):
 <li>
 <p><a href="./SUMMARY.html">Catalog: Openstack</a></p>
 <ul>
+<li><a href="./openstack/openstack-op-1.html">Openstack operation and maintenance records (1)</a> ------ release time :2018-08-26 18:38</li>
+<li><a href="./openstack/openstack-local-yum.html">Openstack Pike local yum source construction</a> ------ release time :2017-12-28 22:20</li>
+<li><a href="./openstack/cpu-binding.html">CPU binding</a> ------ release time :2017-07-20 18:30</li>
 <li><a href="./openstack/resize-fail.html">Investigation of the cause of resize failure</a> ------ release time :2017-07-04 10:20</li>
 <li><a href="./openstack/mount-cloud-disk.html">Mount cloud disk</a> ------ release time :2017-06-30 05:16</li>
 <li><a href="./openstack/ocata-nova-evacuate-bug.html">Ocata nova evacuate bug</a> ------ release time :2017-06-28 18:24</li>
@@ -1483,6 +1955,9 @@ Destination port : 6080
 <li>
 <p><a href="./SUMMARY.html">Catalog: Openstack</a></p>
 <ul>
+<li><a href="./openstack/openstack-op-1.html">Openstack operation and maintenance records (1)</a> ------ release time :2018-08-26 18:38</li>
+<li><a href="./openstack/openstack-local-yum.html">Openstack Pike local yum source construction</a> ------ release time :2017-12-28 22:20</li>
+<li><a href="./openstack/cpu-binding.html">CPU binding</a> ------ release time :2017-07-20 18:30</li>
 <li><a href="./openstack/resize-fail.html">Investigation of the cause of resize failure</a> ------ release time :2017-07-04 10:20</li>
 <li><a href="./openstack/mount-cloud-disk.html">Mount cloud disk</a> ------ release time :2017-06-30 05:16</li>
 <li><a href="./openstack/ocata-nova-evacuate-bug.html">Ocata nova evacuate bug</a> ------ release time :2017-06-28 18:24</li>

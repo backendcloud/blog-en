@@ -1,6 +1,9 @@
 # Summary
 
 - [Catalog: Openstack](./SUMMARY.md)
+  - [Openstack operation and maintenance records (1)](./openstack/openstack-op-1.md) ------ release time :2018-08-26 18:38
+  - [Openstack Pike local yum source construction](./openstack/openstack-local-yum.md) ------ release time :2017-12-28 22:20
+  - [CPU binding](./openstack/cpu-binding.md) ------ release time :2017-07-20 18:30
   - [Investigation of the cause of resize failure](./openstack/resize-fail.md) ------ release time :2017-07-04 10:20
   - [Mount cloud disk](./openstack/mount-cloud-disk.md) ------ release time :2017-06-30 05:16
   - [Ocata nova evacuate bug](./openstack/ocata-nova-evacuate-bug.md) ------ release time :2017-06-28 18:24
