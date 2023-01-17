@@ -1,0 +1,421 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Openstack operation and maintenance records (3) - English version of the website https://www.backendcloud.cn/</title>
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../style.css">
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../SUMMARY.html"><strong aria-hidden="true">1.</strong> Catalog: Openstack</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../openstack/openstack-op-4.html"><strong aria-hidden="true">1.1.</strong> Openstack operation and maintenance records (4)</a></li><li class="chapter-item expanded "><a href="../openstack/openstack-op-3.html" class="active"><strong aria-hidden="true">1.2.</strong> Openstack operation and maintenance records (3)</a></li><li class="chapter-item expanded "><a href="../openstack/openstack-op-2.html"><strong aria-hidden="true">1.3.</strong> Openstack operation and maintenance records (2)</a></li><li class="chapter-item expanded "><a href="../openstack/openstack-op-1.html"><strong aria-hidden="true">1.4.</strong> Openstack operation and maintenance records (1)</a></li><li class="chapter-item expanded "><a href="../openstack/novnc-problem.html"><strong aria-hidden="true">1.5.</strong> OpenStack Pike dashboard noVNC cannot be accessed problem</a></li><li class="chapter-item expanded "><a href="../openstack/openstack-local-yum.html"><strong aria-hidden="true">1.6.</strong> Openstack Pike local yum source construction</a></li><li class="chapter-item expanded "><a href="../openstack/cpu-binding.html"><strong aria-hidden="true">1.7.</strong> CPU binding</a></li><li class="chapter-item expanded "><a href="../openstack/resize-fail.html"><strong aria-hidden="true">1.8.</strong> Investigation of the cause of resize failure</a></li><li class="chapter-item expanded "><a href="../openstack/mount-cloud-disk.html"><strong aria-hidden="true">1.9.</strong> Mount cloud disk</a></li><li class="chapter-item expanded "><a href="../openstack/ocata-nova-evacuate-bug.html"><strong aria-hidden="true">1.10.</strong> Ocata nova evacuate bug</a></li><li class="chapter-item expanded "><a href="../openstack/compute-node-ha.html"><strong aria-hidden="true">1.11.</strong> compute node ha mainstream open source implementation</a></li><li class="chapter-item expanded "><a href="../openstack/collectd-influxdb.html"><strong aria-hidden="true">1.12.</strong> Deployment and usage of Collectd and InfluxDB</a></li><li class="chapter-item expanded "><a href="../openstack/live-migration-local.html"><strong aria-hidden="true">1.13.</strong> Live Migration on Local Storage</a></li><li class="chapter-item expanded "><a href="../openstack/fast-evacuation.html"><strong aria-hidden="true">1.14.</strong> Add fast evacuation function to VM HA procedure</a></li><li class="chapter-item expanded "><a href="../openstack/vm-activation-failure.html"><strong aria-hidden="true">1.15.</strong> Windows virtual machine activation failure problem</a></li></ol></li><li class="chapter-item expanded "><a href="../SUMMARY.html"><strong aria-hidden="true">2.</strong> Catalog: Tools</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../tools/xshell-skill.html"><strong aria-hidden="true">2.1.</strong> Some Skills of using xshell tools</a></li></ol></li><li class="chapter-item expanded "><a href="../SUMMARY.html"><strong aria-hidden="true">3.</strong> Catalog: Point of view</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../tools/gerrit-install.html"><strong aria-hidden="true">3.1.</strong> gerrit install</a></li><li class="chapter-item expanded "><a href="../point-of-view/huawei-and-operators.html"><strong aria-hidden="true">3.2.</strong> Huawei and telecom operators</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">English version of the website https://www.backendcloud.cn/</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <!-- Page table of contents -->
+                        <div class="sidetoc"><nav class="pagetoc"></nav></div>
+
+                        <p>release time :2018-09-29 20:28</p>
+<p>Executing the glance command reports an http 503 error</p>
+<pre><code>HTTPServiceUnavailable: 503 Service Unavailable: No server is available to handle this request. (HTTP 503)
+503 Service Unavailable: No server is available to handle this request. (HTTP 503)
+</code></pre>
+<p>My colleague encountered problems when installing Openstack Pike.</p>
+<p>By looking at the glance log, I found that rabbitmq was not working. Systemctl status did not work. The previous deployment documents failed, so I started the next work. Now the problem that needs to be solved becomes why rabbitmq not working properly</p>
+<p>After reading the log of /var/log/rabbitmq/, there is such an error report</p>
+<pre><code>=ERROR REPORT==== 7-Sep-2018::11:09:01 ===
+Failed to start Ranch listener {acceptor,{0,0,0,0,0,0,0,0},5672} in ranch_tcp:listen([{port,
+                                                                                    5672},
+                                                                                    {ip,
+                                                                                    {0,
+                                                                                        0,
+                                                                                        0,
+                                                                                        0,
+                                                                                        0,
+                                                                                        0,
+                                                                                        0,
+                                                                                        0}},
+                                                                                    inet6,
+                                                                                    {backlog,
+                                                                                    128},
+                                                                                    {nodelay,
+                                                                                    true},
+                                                                                    {linger,
+                                                                                    {true,
+                                                                                        0}},
+                                                                                    {exit_on_close,
+                                                                                    false}]) for reason eaddrinuse (address already in use)
+</code></pre>
+<p>Check the usage of port 5672, # netstat -tunpl found that haproxy is using
+rabbitmq's own cluster management, it is not necessary to use
+haproxy to open the configuration file of haoroxy, and found that the following content has not been noticed</p>
+<pre><code>listen rabbitmq
+option tcpka
+bind 10.144.85.238:5672
+server rabbitmq1 10.144.85.93:5672 check inter 5000 rise 2 fall 3
+server rabbitmq2 10.144.85.162:5672 check inter 5000 rise 2 fall 3 backup
+server rabbitmq3 10.144.85.163:5672 check inter 5000 rise 2 fall 3 backup
+mode tcp
+timeout client 48h
+timeout server 48h
+timeout connect 120s
+balance roundrobin
+</code></pre>
+<p>After commenting out, restart the haproxy service, and then execute # netstat -tunpl, no haproxy process is occupying port 5672</p>
+<p>Restart the rabbitmq service, still report an error, continue to look at the log, the following error is reported</p>
+<pre><code>=WARNING REPORT==== 7-Sep-2018::13:48:17 ===
+Error while waiting for Mnesia tables: {timeout_waiting_for_tables,
+                                        [rabbit_user,rabbit_user_permission,
+                                        rabbit_vhost,rabbit_durable_route,
+                                        rabbit_durable_exchange,
+                                        rabbit_runtime_parameters,
+                                        rabbit_durable_queue]}
+</code></pre>
+<p>The explanation is as follows:</p>
+<pre><code>Alternatively, perhaps your mnesia dir (/var/lib/rabbitmq/mnesia/rabbit) 
+got into a a weird state. Try clearing it. 
+</code></pre>
+<p>That is, the distributed database mnesia is abnormal.</p>
+<p>Solution:
+(1) Clear the database files under /var/lib/rabbitmq/mnesia/
+(2) Restart the node</p>
+<pre><code>Sep 27 16:00:00 controller1 haproxy-systemd-wrapper[22727]: [ALERT] 269/160000 (22729) : Error(s) found in configuration file : /etc/haproxy/haproxy.cfg
+Sep 27 16:00:00 controller1 haproxy-systemd-wrapper[22727]: [WARNING] 269/160000 (22729) : parsing [/etc/haproxy/haproxy.cfg:16] : 'option httplog' not usable with proxy 'rabbitmq' (needs 'mode http'). Falling back to 'option tcplog'.
+Sep 27 16:00:00 controller1 haproxy-systemd-wrapper[22727]: [WARNING] 269/160000 (22729) : config : 'option forwardfor' ignored for proxy 'rabbitmq' as it requires HTTP mode.
+Sep 27 16:00:00 controller1 haproxy-systemd-wrapper[22727]: [WARNING] 269/160000 (22729) : config : 'option forwardfor' ignored for proxy 'rdb_mysql' as it requires HTTP mode.
+Sep 27 16:00:00 controller1 haproxy-systemd-wrapper[22727]: [WARNING] 269/160000 (22729) : stats socket will not work as expected in multi-process mode (nbproc &gt; 1), you should force process binding globally using 'stats bind-process' or per socket ...rocess' attribute.
+Sep 27 16:00:00 controller1 haproxy-systemd-wrapper[22727]: [ALERT] 269/160000 (22729) : Fatal errors found in configuration.
+</code></pre>
+<p>Change the httplog of haproxy.cfg to tcplog</p>
+<pre><code>Sep 27 16:03:19 controller1 haproxy-systemd-wrapper[23196]: [ALERT] 269/160319 (23197) : parsing [/etc/haproxy/haproxy.cfg:18] : unknown keyword 'optionhttp-server-close' in 'defaults' section
+Sep 27 16:03:19 controller1 haproxy-systemd-wrapper[23196]: [ALERT] 269/160319 (23197) : Error(s) found in configuration file : /etc/haproxy/haproxy.cfg
+Sep 27 16:03:19 controller1 haproxy-systemd-wrapper[23196]: [WARNING] 269/160319 (23197) : config : 'option forwardfor' ignored for proxy 'rabbitmq' as it requires HTTP mode.
+Sep 27 16:03:19 controller1 haproxy-systemd-wrapper[23196]: [WARNING] 269/160319 (23197) : config : 'option forwardfor' ignored for proxy 'rdb_mysql' as it requires HTTP mode.
+Sep 27 16:03:19 controller1 haproxy-systemd-wrapper[23196]: [WARNING] 269/160319 (23197) : stats socket will not work as expected in multi-process mode (nbproc &gt; 1), you should force process binding globally using 'stats bind-process' or per socket ...rocess' attribute.
+</code></pre>
+<p>One space is missing, change optionhttp-server-close to option http-server-close</p>
+<pre><code>Sep 27 16:04:18 controller1 systemd[1]: Starting HAProxy Load Balancer...
+Sep 27 16:04:18 controller1 haproxy-systemd-wrapper[23335]: haproxy-systemd-wrapper: executing /usr/sbin/haproxy -f /etc/haproxy/haproxy.cfg -p /run/haproxy.pid -Ds
+Sep 27 16:04:18 controller1 haproxy-systemd-wrapper[23335]: [WARNING] 269/160418 (23336) : config : 'option forwardfor' ignored for proxy 'rabbitmq' as it requires HTTP mode.
+Sep 27 16:04:18 controller1 haproxy-systemd-wrapper[23335]: [WARNING] 269/160418 (23336) : config : 'option forwardfor' ignored for proxy 'rdb_mysql' as it requires HTTP mode.
+Sep 27 16:04:18 controller1 haproxy-systemd-wrapper[23335]: [WARNING] 269/160418 (23336) : stats socket will not work as expected in multi-process mode (nbproc &gt; 1), you should force process binding globally using 'stats bind-process' or per socket ...rocess' attribute.
+Sep 27 16:04:18 controller1 haproxy-systemd-wrapper[23335]: [ALERT] 269/160418 (23336) : Starting proxy rabbitmq: cannot bind socket [194.18.2.10:5672]
+</code></pre>
+<p>5672 is the port number of rabbitmq. Rabbitmq has its own cluster management and does not need haproxy. Edit haproxy.conf to watch out for the rabbitmq section</p>
+<pre><code>2018-09-28 10:43:13.996 32177 ERROR nova Traceback (most recent call last):
+2018-09-28 10:43:13.996 32177 ERROR nova   File &quot;/usr/bin/nova-novncproxy&quot;, line 10, in &lt;module&gt;
+2018-09-28 10:43:13.996 32177 ERROR nova     sys.exit(main())
+2018-09-28 10:43:13.996 32177 ERROR nova   File &quot;/usr/lib/python2.7/site-packages/nova/cmd/novncproxy.py&quot;, line 41, in main
+2018-09-28 10:43:13.996 32177 ERROR nova     port=CONF.vnc.novncproxy_port)
+2018-09-28 10:43:13.996 32177 ERROR nova   File &quot;/usr/lib/python2.7/site-packages/nova/cmd/baseproxy.py&quot;, line 67, in proxy
+2018-09-28 10:43:13.996 32177 ERROR nova     RequestHandlerClass=websocketproxy.NovaProxyRequestHandler
+2018-09-28 10:43:13.996 32177 ERROR nova   File &quot;/usr/lib/python2.7/site-packages/websockify/websocket.py&quot;, line 973, in start_server
+2018-09-28 10:43:13.996 32177 ERROR nova     tcp_keepintvl=self.tcp_keepintvl)
+2018-09-28 10:43:13.996 32177 ERROR nova   File &quot;/usr/lib/python2.7/site-packages/websockify/websocket.py&quot;, line 742, in socket
+2018-09-28 10:43:13.996 32177 ERROR nova     sock.listen(100)
+2018-09-28 10:43:13.996 32177 ERROR nova   File &quot;/usr/lib64/python2.7/socket.py&quot;, line 224, in meth
+2018-09-28 10:43:13.996 32177 ERROR nova     return getattr(self._sock,name)(*args)
+2018-09-28 10:43:13.996 32177 ERROR nova error: [Errno 98] Address already in use
+
+
+
+[root@controller1 nova]# netstat -tunpl |grep 6080
+tcp        0      0 194.18.2.10:6080        0.0.0.0:*               LISTEN      24144/haproxy  
+
+
+nova.conf
+[vnc]
+novncproxy_host = 194.18.2.11
+vncserver_proxyclient_address = 194.18.2.11
+vncserver_listen = 194.18.2.11
+</code></pre>
+<p>Change the management vip to the local management ip</p>
+<pre><code>2018-09-29 10:41:55.593 17797 ERROR nova   File &quot;/usr/lib/python2.7/site-packages/amqp/connection.py&quot;, line 473, in on_inbound_method
+2018-09-29 10:41:55.593 17797 ERROR nova     method_sig, payload, content,
+2018-09-29 10:41:55.593 17797 ERROR nova   File &quot;/usr/lib/python2.7/site-packages/amqp/abstract_channel.py&quot;, line 142, in dispatch_method
+2018-09-29 10:41:55.593 17797 ERROR nova     listener(*args)
+2018-09-29 10:41:55.593 17797 ERROR nova   File &quot;/usr/lib/python2.7/site-packages/amqp/connection.py&quot;, line 595, in _on_close
+2018-09-29 10:41:55.593 17797 ERROR nova     (class_id, method_id), ConnectionError)
+2018-09-29 10:41:55.593 17797 ERROR nova AccessRefused: (0, 0): (403) ACCESS_REFUSED - Login was refused using authentication mechanism AMQPLAIN. For details see the broker logfile.
+</code></pre>
+<p>The rabbitmq user configured by openstack does not exist or the password is wrong, or the authority is insufficient.</p>
+<pre><code>[root@controller1 ~]# rabbitmqctl set_policy ha-all '^(?!amq\.).*' '{&quot;ha-mode&quot;: &quot;all&quot;}'
+Setting policy &quot;ha-all&quot; for pattern &quot;^(?!amq\\.).*&quot; to &quot;{\&quot;ha-mode\&quot;: \&quot;all\&quot;}&quot; with priority &quot;0&quot; ...
+[root@controller1 ~]# rabbitmqctl add_user rabbitMQ123 123456
+Creating user &quot;rabbitMQ123&quot; ...
+[root@controller1 ~]# rabbitmqctl set_permissions rabbitMQ123 &quot;.*&quot; &quot;.*&quot; &quot;.*&quot;
+Setting permissions for user &quot;rabbitMQ123&quot; in vhost &quot;/&quot; ...
+[root@controller1 ~]# 
+</code></pre>
+<pre><code class="language-bash">[root@compute1 neutron]# systemctl status neutron-openvswitch-agent.service
+● neutron-openvswitch-agent.service - OpenStack Neutron Open vSwitch Agent
+   Loaded: loaded (/usr/lib/systemd/system/neutron-openvswitch-agent.service; enabled; vendor preset: disabled)
+   Active: failed (Result: start-limit) since Sat 2018-09-29 16:07:57 CST; 4min 5s ago
+  Process: 23272 ExecStart=/usr/bin/neutron-openvswitch-agent --config-file /usr/share/neutron/neutron-dist.conf --config-file /etc/neutron/neutron.conf --config-file /etc/neutron/plugins/ml2/openvswitch_agent.ini --config-dir /etc/neutron/conf.d/common --config-dir /etc/neutron/conf.d/neutron-openvswitch-agent --log-file /var/log/neutron/openvswitch-agent.log (code=exited, status=1/FAILURE)
+  Process: 23266 ExecStartPre=/usr/bin/neutron-enable-bridge-firewall.sh (code=exited, status=0/SUCCESS)
+ Main PID: 23272 (code=exited, status=1/FAILURE)
+
+
+utron-openvswitch-agent: sys.exit(main())
+Sep 29 16:07:58 compute3 neutron-openvswitch-agent: File &quot;/usr/lib/python2.7/site-packages/neutron/cmd/eventlet/plugins/ovs_neutron_agent.py&quot;, line 20, in main
+Sep 29 16:07:58 compute3 neutron-openvswitch-agent: agent_main.main()
+Sep 29 16:07:58 compute3 neutron-openvswitch-agent: File &quot;/usr/lib/python2.7/site-packages/neutron/plugins/ml2/drivers/openvswitch/agent/main.py&quot;, line 42, in main
+Sep 29 16:07:58 compute3 neutron-openvswitch-agent: common_config.init(sys.argv[1:])
+Sep 29 16:07:58 compute3 neutron-openvswitch-agent: File &quot;/usr/lib/python2.7/site-packages/neutron/common/config.py&quot;, line 78, in init
+Sep 29 16:07:58 compute3 neutron-openvswitch-agent: **kwargs)
+Sep 29 16:07:58 compute3 neutron-openvswitch-agent: File &quot;/usr/lib/python2.7/site-packages/oslo_config/cfg.py&quot;, line 2473, in __call__
+Sep 29 16:07:58 compute3 neutron-openvswitch-agent: self._namespace._files_permission_denied)
+Sep 29 16:07:58 compute3 neutron-openvswitch-agent: oslo_config.cfg.ConfigFilesPermissionDeniedError: Failed to open some config files: /etc/neutron/plugins/ml2/openvswitch_agent.ini
+</code></pre>
+<p>File permission attribution error.</p>
+<pre><code class="language-bash">[root@controller1 neutron]# ll /etc/neutron/plugins/ml2/openvswitch_agent.ini
+-rw-r----- 1 root neutron 241 Sep 29 15:47 /etc/neutron/plugins/ml2/openvswitch_agent.ini
+
+[root@compute2 ~]# ll /etc/neutron/plugins/ml2/openvswitch_agent.ini
+-rw-r----- 1 root root 242 Sep 29 16:07 /etc/neutron/plugins/ml2/openvswitch_agent.ini
+</code></pre>
+<pre><code>2018-09-29 16:27:58.982 18928 ERROR nova.compute.manager [req-6812937f-30f2-4f49-8303-d1425ebb1357 5563b2f9c80a40729c969df2f3ed71ef 1ada390dc6fb4fe790bcf38777822682 - default default] [instance: dc3db2cd-4473-4d13-9ecf-4f602e457525] Instance failed to spawn: TypeError: 'NoneType' object is not iterable
+2018-09-29 16:27:58.982 18928 ERROR nova.compute.manager [instance: dc3db2cd-4473-4d13-9ecf-4f602e457525] Traceback (most recent call last):
+2018-09-29 16:27:58.982 18928 ERROR nova.compute.manager [instance: dc3db2cd-4473-4d13-9ecf-4f602e457525]   File &quot;/usr/lib/python2.7/site-packages/nova/compute/manager.py&quot;, line 2192, in _build_resources
+2018-09-29 16:27:58.982 18928 ERROR nova.compute.manager [instance: dc3db2cd-4473-4d13-9ecf-4f602e457525]     yield resources
+2018-09-29 16:27:58.982 18928 ERROR nova.compute.manager [instance: dc3db2cd-4473-4d13-9ecf-4f602e457525]   File &quot;/usr/lib/python2.7/site-packages/nova/compute/manager.py&quot;, line 2007, in _build_and_run_instance
+2018-09-29 16:27:58.982 18928 ERROR nova.compute.manager [instance: dc3db2cd-4473-4d13-9ecf-4f602e457525]     block_device_info=block_device_info)
+2018-09-29 16:27:58.982 18928 ERROR nova.compute.manager [instance: dc3db2cd-4473-4d13-9ecf-4f602e457525]   File &quot;/usr/lib/python2.7/site-packages/nova/virt/libvirt/driver.py&quot;, line 2802, in spawn
+2018-09-29 16:27:58.982 18928 ERROR nova.compute.manager [instance: dc3db2cd-4473-4d13-9ecf-4f602e457525]     block_device_info=block_device_info)
+2018-09-29 16:27:58.982 18928 ERROR nova.compute.manager [instance: dc3db2cd-4473-4d13-9ecf-4f602e457525]   File &quot;/usr/lib/python2.7/site-packages/nova/virt/libvirt/driver.py&quot;, line 3240, in _create_image
+2018-09-29 16:27:58.982 18928 ERROR nova.compute.manager [instance: dc3db2cd-4473-4d13-9ecf-4f602e457525]     fallback_from_host)
+2018-09-29 16:27:58.982 18928 ERROR nova.compute.manager [instance: dc3db2cd-4473-4d13-9ecf-4f602e457525]   File &quot;/usr/lib/python2.7/site-packages/nova/virt/libvirt/driver.py&quot;, line 3331, in _create_and_inject_local_root
+2018-09-29 16:27:58.982 18928 ERROR nova.compute.manager [instance: dc3db2cd-4473-4d13-9ecf-4f602e457525]     instance, size, fallback_from_host)
+2018-09-29 16:27:58.982 18928 ERROR nova.compute.manager [instance: dc3db2cd-4473-4d13-9ecf-4f602e457525]   File &quot;/usr/lib/python2.7/site-packages/nova/virt/libvirt/driver.py&quot;, line 6987, in _try_fetch_image_cache
+2018-09-29 16:27:58.982 18928 ERROR nova.compute.manager [instance: dc3db2cd-4473-4d13-9ecf-4f602e457525]     size=size)
+2018-09-29 16:27:58.982 18928 ERROR nova.compute.manager [instance: dc3db2cd-4473-4d13-9ecf-4f602e457525]   File &quot;/usr/lib/python2.7/site-packages/nova/virt/libvirt/imagebackend.py&quot;, line 241, in cache
+2018-09-29 16:27:58.982 18928 ERROR nova.compute.manager [instance: dc3db2cd-4473-4d13-9ecf-4f602e457525]     *args, **kwargs)
+2018-09-29 16:27:58.982 18928 ERROR nova.compute.manager [instance: dc3db2cd-4473-4d13-9ecf-4f602e457525]   File &quot;/usr/lib/python2.7/site-packages/nova/virt/libvirt/imagebackend.py&quot;, line 595, in create_image
+2018-09-29 16:27:58.982 18928 ERROR nova.compute.manager [instance: dc3db2cd-4473-4d13-9ecf-4f602e457525]     prepare_template(target=base, *args, **kwargs)
+2018-09-29 16:27:58.982 18928 ERROR nova.compute.manager [instance: dc3db2cd-4473-4d13-9ecf-4f602e457525]   File &quot;/usr/lib/python2.7/site-packages/oslo_concurrency/lockutils.py&quot;, line 271, in inner
+2018-09-29 16:27:58.982 18928 ERROR nova.compute.manager [instance: dc3db2cd-4473-4d13-9ecf-4f602e457525]     return f(*args, **kwargs)
+2018-09-29 16:27:58.982 18928 ERROR nova.compute.manager [instance: dc3db2cd-4473-4d13-9ecf-4f602e457525]   File &quot;/usr/lib/python2.7/site-packages/nova/virt/libvirt/imagebackend.py&quot;, line 237, in fetch_func_sync
+2018-09-29 16:27:58.982 18928 ERROR nova.compute.manager [instance: dc3db2cd-4473-4d13-9ecf-4f602e457525]     fetch_func(target=target, *args, **kwargs)
+2018-09-29 16:27:58.982 18928 ERROR nova.compute.manager [instance: dc3db2cd-4473-4d13-9ecf-4f602e457525]   File &quot;/usr/lib/python2.7/site-packages/nova/virt/libvirt/utils.py&quot;, line 446, in fetch_image
+2018-09-29 16:27:58.982 18928 ERROR nova.compute.manager [instance: dc3db2cd-4473-4d13-9ecf-4f602e457525]     images.fetch_to_raw(context, image_id, target)
+2018-09-29 16:27:58.982 18928 ERROR nova.compute.manager [instance: dc3db2cd-4473-4d13-9ecf-4f602e457525]   File &quot;/usr/lib/python2.7/site-packages/nova/virt/images.py&quot;, line 144, in fetch_to_raw
+2018-09-29 16:27:58.982 18928 ERROR nova.compute.manager [instance: dc3db2cd-4473-4d13-9ecf-4f602e457525]     fetch(context, image_href, path_tmp)
+2018-09-29 16:27:58.982 18928 ERROR nova.compute.manager [instance: dc3db2cd-4473-4d13-9ecf-4f602e457525]   File &quot;/usr/lib/python2.7/site-packages/nova/virt/images.py&quot;, line 135, in fetch
+2018-09-29 16:27:58.982 18928 ERROR nova.compute.manager [instance: dc3db2cd-4473-4d13-9ecf-4f602e457525]     IMAGE_API.download(context, image_href, dest_path=path)
+2018-09-29 16:27:58.982 18928 ERROR nova.compute.manager [instance: dc3db2cd-4473-4d13-9ecf-4f602e457525]   File &quot;/usr/lib/python2.7/site-packages/nova/image/api.py&quot;, line 184, in download
+2018-09-29 16:27:58.982 18928 ERROR nova.compute.manager [instance: dc3db2cd-4473-4d13-9ecf-4f602e457525]     dst_path=dest_path)
+2018-09-29 16:27:58.982 18928 ERROR nova.compute.manager [instance: dc3db2cd-4473-4d13-9ecf-4f602e457525]   File &quot;/usr/lib/python2.7/site-packages/nova/image/glance.py&quot;, line 366, in download
+2018-09-29 16:27:58.982 18928 ERROR nova.compute.manager [instance: dc3db2cd-4473-4d13-9ecf-4f602e457525]     {'path': dst_path, 'exception': ex})
+2018-09-29 16:27:58.982 18928 ERROR nova.compute.manager [instance: dc3db2cd-4473-4d13-9ecf-4f602e457525]   File &quot;/usr/lib/python2.7/site-packages/oslo_utils/excutils.py&quot;, line 220, in __exit__
+2018-09-29 16:27:58.982 18928 ERROR nova.compute.manager [instance: dc3db2cd-4473-4d13-9ecf-4f602e457525]     self.force_reraise()
+2018-09-29 16:27:58.982 18928 ERROR nova.compute.manager [instance: dc3db2cd-4473-4d13-9ecf-4f602e457525]   File &quot;/usr/lib/python2.7/site-packages/oslo_utils/excutils.py&quot;, line 196, in force_reraise
+2018-09-29 16:27:58.982 18928 ERROR nova.compute.manager [instance: dc3db2cd-4473-4d13-9ecf-4f602e457525]     six.reraise(self.type_, self.value, self.tb)
+2018-09-29 16:27:58.982 18928 ERROR nova.compute.manager [instance: dc3db2cd-4473-4d13-9ecf-4f602e457525]   File &quot;/usr/lib/python2.7/site-packages/nova/image/glance.py&quot;, line 350, in download
+2018-09-29 16:27:58.982 18928 ERROR nova.compute.manager [instance: dc3db2cd-4473-4d13-9ecf-4f602e457525]     for chunk in image_chunks:
+2018-09-29 16:27:58.982 18928 ERROR nova.compute.manager [instance: dc3db2cd-4473-4d13-9ecf-4f602e457525] TypeError: 'NoneType' object is not iterable
+</code></pre>
+<p>glance uses local storage, glance-api is enabled on three nodes, and haproxy is configured.
+Correspond to the location of haproxy, just comment out the two nodes</p>
+<pre><code>listen glance_api
+bind 194.18.2.10:9292
+balance roundrobin
+option httplog
+server glance1 194.18.2.11:9292 check inter 2000 rise 2 fall 3
+#server glance2 194.18.2.12:9292 check inter 2000 rise 2 fall 3
+#server glance3 194.18.2.13:9292 check inter 2000 rise 2 fall 3
+</code></pre>
+<pre><code class="language-bash">2018-09-30 15:38:28.505 17135 ERROR cinder   File &quot;/usr/lib/python2.7/site-packages/pymysql/cursors.py&quot;, line 322, in _query
+2018-09-30 15:38:28.505 17135 ERROR cinder     conn.query(q)
+2018-09-30 15:38:28.505 17135 ERROR cinder   File &quot;/usr/lib/python2.7/site-packages/pymysql/connections.py&quot;, line 856, in query
+2018-09-30 15:38:28.505 17135 ERROR cinder     self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+2018-09-30 15:38:28.505 17135 ERROR cinder   File &quot;/usr/lib/python2.7/site-packages/pymysql/connections.py&quot;, line 1057, in _read_query_result
+2018-09-30 15:38:28.505 17135 ERROR cinder     result.read()
+2018-09-30 15:38:28.505 17135 ERROR cinder   File &quot;/usr/lib/python2.7/site-packages/pymysql/connections.py&quot;, line 1340, in read
+2018-09-30 15:38:28.505 17135 ERROR cinder     first_packet = self.connection._read_packet()
+2018-09-30 15:38:28.505 17135 ERROR cinder   File &quot;/usr/lib/python2.7/site-packages/pymysql/connections.py&quot;, line 1014, in _read_packet
+2018-09-30 15:38:28.505 17135 ERROR cinder     packet.check_error()
+2018-09-30 15:38:28.505 17135 ERROR cinder   File &quot;/usr/lib/python2.7/site-packages/pymysql/connections.py&quot;, line 393, in check_error
+2018-09-30 15:38:28.505 17135 ERROR cinder     err.raise_mysql_exception(self._data)
+2018-09-30 15:38:28.505 17135 ERROR cinder   File &quot;/usr/lib/python2.7/site-packages/pymysql/err.py&quot;, line 107, in raise_mysql_exception
+2018-09-30 15:38:28.505 17135 ERROR cinder     raise errorclass(errno, errval)
+2018-09-30 15:38:28.505 17135 ERROR cinder ProgrammingError: (pymysql.err.ProgrammingError) (1146, u&quot;Table 'cinder.services' doesn't exist&quot;) [SQL: u'SELECT services.created_at AS services_created_at, services.deleted_at AS services_deleted_at, services.deleted AS services_deleted, services.id AS services_id, services.cluster_name AS services_cluster_name, services.host AS services_host, services.`binary` AS services_binary, services.updated_at AS services_updated_at, services.topic AS services_topic, services.report_count AS services_report_count, services.disabled AS services_disabled, services.availability_zone AS services_availability_zone, services.disabled_reason AS services_disabled_reason, services.modified_at AS services_modified_at, services.rpc_current_version AS services_rpc_current_version, services.object_current_version AS services_object_current_version, services.replication_status AS services_replication_status, services.active_backend_id AS services_active_backend_id, services.frozen AS services_frozen \nFROM services \nWHERE services.deleted = false AND services.`binary` = %(binary_1)s'] [parameters: {u'binary_1': 'cinder-scheduler'}]
+</code></pre>
+<p>cinder api, volume, scheduler three log files all report the above error, like cinder service connection database error</p>
+<p>First check whether there is any error in the configuration of the database connection information in cinder.conf, and confirm that the configuration is correct.</p>
+<p>The port number of the cinder service cannot be found</p>
+<pre><code>[root@controller2 opt]# netstat -tunpl |grep 8776
+[root@controller2 opt]# 
+</code></pre>
+<p>I can't find the table data of cinder even after logging in to the database</p>
+<pre><code>MariaDB [(none)]&gt; use cinder;
+Database changed
+MariaDB [cinder]&gt; show tables;
+Empty set (0.01 sec)
+
+MariaDB [cinder]&gt;
+</code></pre>
+<p>After re-executing the following command, it returns to normal. Maybe the command was not executed or the wrong node was executed.</p>
+<pre><code># su -s /bin/sh -c &quot;cinder-manage db sync&quot; cinder
+</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../openstack/openstack-op-4.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                            <a rel="next" href="../openstack/openstack-op-2.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../openstack/openstack-op-4.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a rel="next" href="../openstack/openstack-op-2.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        <script type="text/javascript" src="../sidebar.js"></script>
+    </body>
+</html>

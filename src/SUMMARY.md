@@ -1,7 +1,11 @@
 # Summary
 
 - [Catalog: Openstack](./SUMMARY.md)
+  - [Openstack operation and maintenance records (4)](./openstack/openstack-op-4.md) ------ release time :2020-01-01 19:13
+  - [Openstack operation and maintenance records (3)](./openstack/openstack-op-3.md) ------ release time :2018-09-29 20:28
+  - [Openstack operation and maintenance records (2)](./openstack/openstack-op-2.md) ------ release time :2018-08-28 14:48
   - [Openstack operation and maintenance records (1)](./openstack/openstack-op-1.md) ------ release time :2018-08-26 18:38
+  - [OpenStack Pike dashboard noVNC cannot be accessed problem](./openstack/novnc-problem.md) ------ release time :2018-04-14 05:18
   - [Openstack Pike local yum source construction](./openstack/openstack-local-yum.md) ------ release time :2017-12-28 22:20
   - [CPU binding](./openstack/cpu-binding.md) ------ release time :2017-07-20 18:30
   - [Investigation of the cause of resize failure](./openstack/resize-fail.md) ------ release time :2017-07-04 10:20
