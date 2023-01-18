@@ -223,37 +223,40 @@ available_filters = nova.scheduler.filters.all_filters</p>
 </ol>
 <h1 id="configure-sriov-virtual-machine-computing-nodes"><a class="header" href="#configure-sriov-virtual-machine-computing-nodes">Configure SRIOV virtual machine computing nodes</a></h1>
 <ol>
-<li>
-<p>Install neutron-sriov-agent</p>
-<h1 id="yum-install-openstack-neutron-sriov-nic-agent-openstack-neutron"><a class="header" href="#yum-install-openstack-neutron-sriov-nic-agent-openstack-neutron">yum install openstack-neutron-sriov-nic-agent openstack-neutron</a></h1>
-</li>
-<li>
-<p>Configure neutron.conf</p>
-</li>
+<li>Install neutron-sriov-agent</li>
+</ol>
+<pre><code class="language-bash">    # yum install openstack-neutron-sriov-nic-agent openstack-neutron
+</code></pre>
+<ol start="2">
+<li>Configure neutron.conf</li>
 </ol>
 <p>to copy the control node neutron.conf configuration and modify the corresponding parameters, mainly to modify the local management network ip parameters</p>
 <ol start="3">
-<li>
-<p>Configure sriov_agent.ini</p>
-<h1 id="vim-etcneutronpluginsml2sriov_agentini"><a class="header" href="#vim-etcneutronpluginsml2sriov_agentini">vim /etc/neutron/plugins/ml2/sriov_agent.ini</a></h1>
-<p>[securitygroup]
-firewall_driver = neutron.agent.firewall.NoopFirewallDriver</p>
-<p>[sriov_nic]
-physical_device_mappings = default: enp5s0f1
-exclude_devices =</p>
-</li>
-<li>
-<p>Start the neutron-sriov-agent service</p>
-<h1 id="systemctl-enable-neutron-sriov-nic-agent"><a class="header" href="#systemctl-enable-neutron-sriov-nic-agent">systemctl enable neutron-sriov-nic-agent</a></h1>
-<h1 id="systemctl-start-neutron-sriov-nic-agent"><a class="header" href="#systemctl-start-neutron-sriov-nic-agent">systemctl start neutron-sriov-nic-agent</a></h1>
-</li>
-<li>
-<p>Modify the nova.conf file of the node and restart nova-compute</p>
-<h1 id="vim-etcnovanovaconf-1"><a class="header" href="#vim-etcnovanovaconf-1">vim /etc/nova/nova.conf</a></h1>
-<p>passthrough_whitelist = {&quot;devname&quot;: &quot;enp5s0f1&quot;, &quot;physical_network&quot;: &quot;physnet1&quot;}</p>
-<h1 id="systemctl-restart-openstack-nova-compute"><a class="header" href="#systemctl-restart-openstack-nova-compute">systemctl restart openstack-nova-compute</a></h1>
-</li>
+<li>Configure sriov_agent.ini</li>
 </ol>
+<pre><code class="language-bash">    # vim /etc/neutron/plugins/ml2/sriov_agent.ini
+
+    [securitygroup]
+    firewall_driver = neutron.agent.firewall.NoopFirewallDriver
+
+    [sriov_nic]
+    physical_device_mappings = default: enp5s0f1
+    exclude_devices =
+</code></pre>
+<ol start="4">
+<li>Start the neutron-sriov-agent service</li>
+</ol>
+<pre><code class="language-bash">    # systemctl enable neutron-sriov-nic-agent
+    # systemctl start neutron-sriov-nic-agent
+</code></pre>
+<ol start="5">
+<li>Modify the nova.conf file of the node and restart nova-compute</li>
+</ol>
+<pre><code class="language-bash">    # vim /etc/nova/nova.conf
+    passthrough_whitelist = {&quot;devname&quot;: &quot;enp5s0f1&quot;, &quot;physical_network&quot;: &quot;physnet1&quot;}
+
+    # systemctl restart openstack-nova-compute
+</code></pre>
 <p>If you need to configure multiple SRIOV network cards</p>
 <pre><code>[root@controller ~]# vim /etc/nova/nova.conf
 [pci]

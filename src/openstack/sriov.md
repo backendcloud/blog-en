@@ -98,7 +98,9 @@ The sriov computing node selects optical port 1 (eg enp5s0f1) as the sriov netwo
 
 1. Install neutron-sriov-agent
 
+```bash
     # yum install openstack-neutron-sriov-nic-agent openstack-neutron
+```
 
 2. Configure neutron.conf
 
@@ -106,6 +108,7 @@ to copy the control node neutron.conf configuration and modify the corresponding
 
 3. Configure sriov_agent.ini
 
+```bash
     # vim /etc/neutron/plugins/ml2/sriov_agent.ini
 
     [securitygroup]
@@ -114,19 +117,23 @@ to copy the control node neutron.conf configuration and modify the corresponding
     [sriov_nic]
     physical_device_mappings = default: enp5s0f1
     exclude_devices =
-
+```
 
 4. Start the neutron-sriov-agent service
 
+```bash
     # systemctl enable neutron-sriov-nic-agent
     # systemctl start neutron-sriov-nic-agent
+```
 
 5. Modify the nova.conf file of the node and restart nova-compute
 
+```bash
     # vim /etc/nova/nova.conf
     passthrough_whitelist = {"devname": "enp5s0f1", "physical_network": "physnet1"}
 
     # systemctl restart openstack-nova-compute
+```
 
 If you need to configure multiple SRIOV network cards
 
