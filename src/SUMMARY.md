@@ -1,6 +1,7 @@
 # Summary
 
 - [Catalog: Openstack](./SUMMARY.md)
+  - [OpenStack practices SR-IOV computing nodes](./openstack/sriov.md) ------ release time :2018-10-14 05:15
   - [Openstack operation and maintenance records (4)](./openstack/openstack-op-4.md) ------ release time :2020-01-01 19:13
   - [Openstack operation and maintenance records (3)](./openstack/openstack-op-3.md) ------ release time :2018-09-29 20:28
   - [Openstack operation and maintenance records (2)](./openstack/openstack-op-2.md) ------ release time :2018-08-28 14:48
