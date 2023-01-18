@@ -250,11 +250,10 @@ exclude_devices =</p>
 <li>
 <p>Modify the nova.conf file of the node and restart nova-compute</p>
 <h1 id="vim-etcnovanovaconf-1"><a class="header" href="#vim-etcnovanovaconf-1">vim /etc/nova/nova.conf</a></h1>
+<p>passthrough_whitelist = {&quot;devname&quot;: &quot;enp5s0f1&quot;, &quot;physical_network&quot;: &quot;physnet1&quot;}</p>
+<h1 id="systemctl-restart-openstack-nova-compute"><a class="header" href="#systemctl-restart-openstack-nova-compute">systemctl restart openstack-nova-compute</a></h1>
 </li>
 </ol>
-<p>passthrough_whitelist = {&quot;devname&quot;: &quot;enp5s0f1&quot;, &quot;physical_network&quot;: &quot;physnet1&quot;}</p>
-<pre><code># systemctl restart openstack-nova-compute
-</code></pre>
 <p>If you need to configure multiple SRIOV network cards</p>
 <pre><code>[root@controller ~]# vim /etc/nova/nova.conf
 [pci]

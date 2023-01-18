@@ -124,8 +124,7 @@ to copy the control node neutron.conf configuration and modify the corresponding
 5. Modify the nova.conf file of the node and restart nova-compute
 
     # vim /etc/nova/nova.conf
-
-passthrough_whitelist = {"devname": "enp5s0f1", "physical_network": "physnet1"}
+    passthrough_whitelist = {"devname": "enp5s0f1", "physical_network": "physnet1"}
 
     # systemctl restart openstack-nova-compute
 
