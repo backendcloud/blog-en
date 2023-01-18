@@ -17,9 +17,10 @@
   - [Add fast evacuation function to VM HA procedure](./openstack/fast-evacuation.md) ------ release time :2017-06-10 03:27
   - [Windows virtual machine activation failure problem](./openstack/vm-activation-failure.md) ------ release time :2017-05-04 22:21
 
-- [Catalog: Tools](./SUMMARY.md)
-  - [Some Skills of using xshell tools](./tools/xshell-skill.md) ------ release time :2016-07-05 22:57
-
 - [Catalog: Point of view](./SUMMARY.md)
-  - [gerrit install](./tools/gerrit-install.md) ------ release time :2017-06-28 15:51
   - [Huawei and telecom operators](./point-of-view/huawei-and-operators.md) ------ release time :2017-03-10 21:25
+
+- [Catalog: Tools](./SUMMARY.md)
+  - [Internal structure of .git directory](./tools/git-dir.md) ------ release time :2023-01-18 18:37
+  - [Some Skills of using xshell tools](./tools/xshell-skill.md) ------ release time :2016-07-05 22:57
+  - [gerrit install](./tools/gerrit-install.md) ------ release time :2017-06-28 15:51
