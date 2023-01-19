@@ -2,6 +2,12 @@
 
 - [Catalog: Cloud Native](./SUMMARY.md)
 
+  - [Cilium completely replaces kube-proxy](./cloud-native/cilium-replace-kube-proxy.md) ------ release time :2022-09-01 18:14
+
+  - [Cilium install](./cloud-native/cilium-install.md) ------ release time :2022-09-01 13:25
+
+  - [KubeVirt CI adapts to China's network](./cloud-native/kubevirtci-for-chinanet.md) ------ release time :2022-08-31 12:58
+
   - [Web Terminal](./cloud-native/web-terminal.md) ------ release time :2022-08-17 18:53
 
   - [Deploy Kubernetes + KubeVirt and the basic use of KubeVirt](./cloud-native/deploy-kubevirt.md) ------ release time :2022-05-06 14:17

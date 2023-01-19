@@ -1,0 +1,579 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Cilium install - English version of the website https://www.backendcloud.cn/</title>
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../style.css">
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../SUMMARY.html"><strong aria-hidden="true">1.</strong> Catalog: Cloud Native</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../cloud-native/cilium-replace-kube-proxy.html"><strong aria-hidden="true">1.1.</strong> Cilium completely replaces kube-proxy</a></li><li class="chapter-item expanded "><a href="../cloud-native/cilium-install.html" class="active"><strong aria-hidden="true">1.2.</strong> Cilium install</a></li><li class="chapter-item expanded "><a href="../cloud-native/kubevirtci-for-chinanet.html"><strong aria-hidden="true">1.3.</strong> KubeVirt CI adapts to China's network</a></li><li class="chapter-item expanded "><a href="../cloud-native/web-terminal.html"><strong aria-hidden="true">1.4.</strong> Web Terminal</a></li><li class="chapter-item expanded "><a href="../cloud-native/deploy-kubevirt.html"><strong aria-hidden="true">1.5.</strong> Deploy Kubernetes + KubeVirt and the basic use of KubeVirt</a></li><li class="chapter-item expanded "><a href="../cloud-native/docker-java-demo.html"><strong aria-hidden="true">1.6.</strong> docker hello-world project</a></li><li class="chapter-item expanded "><a href="../cloud-native/deploy-cinder-csi-plugin.html"><strong aria-hidden="true">1.7.</strong> Several problems encountered in deploying cinder-csi-plugin</a></li><li class="chapter-item expanded "><a href="../cloud-native/go1.18-workspace.html"><strong aria-hidden="true">1.8.</strong> New in Go 1.18 - Workspaces</a></li><li class="chapter-item expanded "><a href="../cloud-native/spring-boot-async-demo.html"><strong aria-hidden="true">1.9.</strong> spring-boot asynchronous example</a></li><li class="chapter-item expanded "><a href="../cloud-native/plg.html"><strong aria-hidden="true">1.10.</strong> PLG implements Kubernetes Pod log collection and display</a></li><li class="chapter-item expanded "><a href="../cloud-native/fluentd.html"><strong aria-hidden="true">1.11.</strong> Fluentd implements Kubernetes Pod log collection</a></li><li class="chapter-item expanded "><a href="../cloud-native/java-dev-memo-1.html"><strong aria-hidden="true">1.12.</strong> Little records in Java project development (1)</a></li><li class="chapter-item expanded "><a href="../cloud-native/jdk-bug.html"><strong aria-hidden="true">1.13.</strong> JDK bug - Encrypt Private Key failed unrecognized algorithm name PBEWithSHA1AndDESede</a></li><li class="chapter-item expanded "><a href="../cloud-native/tenant-cmp.html"><strong aria-hidden="true">1.14.</strong> Implementation of the function of creating resource pool tenants on the cloud management platform</a></li><li class="chapter-item expanded "><a href="../cloud-native/test-service-performance-2.html"><strong aria-hidden="true">1.15.</strong> iperf3 tests the four-layer performance of Kubernetes Service (Part 2)</a></li><li class="chapter-item expanded "><a href="../cloud-native/test-service-performance-1.html"><strong aria-hidden="true">1.16.</strong> iperf3 tests the four-layer performance of Kubernetes Service (Part 1)</a></li><li class="chapter-item expanded "><a href="../cloud-native/k8s-cmd.html"><strong aria-hidden="true">1.17.</strong> k8s common command</a></li><li class="chapter-item expanded "><a href="../cloud-native/cpu-binding.html"><strong aria-hidden="true">1.18.</strong> k8s supports container core binding</a></li><li class="chapter-item expanded "><a href="../cloud-native/capability.html"><strong aria-hidden="true">1.19.</strong> k8s supports Capability mechanism</a></li><li class="chapter-item expanded "><a href="../cloud-native/oom.html"><strong aria-hidden="true">1.20.</strong> k8s OOMkilled container exceeding memory limit</a></li></ol></li><li class="chapter-item expanded "><a href="../SUMMARY.html"><strong aria-hidden="true">2.</strong> Catalog: Openstack</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../openstack/deploy-openstack-stein.html"><strong aria-hidden="true">2.1.</strong> Problems encountered in Openstack Stein deployment</a></li><li class="chapter-item expanded "><a href="../openstack/sriov2ovs.html"><strong aria-hidden="true">2.2.</strong> sriov computing node to ovs computing node script</a></li><li class="chapter-item expanded "><a href="../openstack/placement.html"><strong aria-hidden="true">2.3.</strong> Openstack Placement</a></li><li class="chapter-item expanded "><a href="../openstack/power-arch.html"><strong aria-hidden="true">2.4.</strong> POWER architecture server as computing node</a></li><li class="chapter-item expanded "><a href="../openstack/sriov.html"><strong aria-hidden="true">2.5.</strong> OpenStack practices SR-IOV computing nodes</a></li><li class="chapter-item expanded "><a href="../openstack/openstack-op-4.html"><strong aria-hidden="true">2.6.</strong> Openstack operation and maintenance records (4)</a></li><li class="chapter-item expanded "><a href="../openstack/openstack-op-3.html"><strong aria-hidden="true">2.7.</strong> Openstack operation and maintenance records (3)</a></li><li class="chapter-item expanded "><a href="../openstack/openstack-op-2.html"><strong aria-hidden="true">2.8.</strong> Openstack operation and maintenance records (2)</a></li><li class="chapter-item expanded "><a href="../openstack/openstack-op-1.html"><strong aria-hidden="true">2.9.</strong> Openstack operation and maintenance records (1)</a></li><li class="chapter-item expanded "><a href="../openstack/novnc-problem.html"><strong aria-hidden="true">2.10.</strong> OpenStack Pike dashboard noVNC cannot be accessed problem</a></li><li class="chapter-item expanded "><a href="../openstack/openstack-local-yum.html"><strong aria-hidden="true">2.11.</strong> Openstack Pike local yum source construction</a></li><li class="chapter-item expanded "><a href="../openstack/cpu-binding.html"><strong aria-hidden="true">2.12.</strong> CPU binding</a></li><li class="chapter-item expanded "><a href="../openstack/resize-fail.html"><strong aria-hidden="true">2.13.</strong> Investigation of the cause of resize failure</a></li><li class="chapter-item expanded "><a href="../openstack/mount-cloud-disk.html"><strong aria-hidden="true">2.14.</strong> Mount cloud disk</a></li><li class="chapter-item expanded "><a href="../openstack/ocata-nova-evacuate-bug.html"><strong aria-hidden="true">2.15.</strong> Ocata nova evacuate bug</a></li><li class="chapter-item expanded "><a href="../openstack/compute-node-ha.html"><strong aria-hidden="true">2.16.</strong> compute node ha mainstream open source implementation</a></li><li class="chapter-item expanded "><a href="../openstack/collectd-influxdb.html"><strong aria-hidden="true">2.17.</strong> Deployment and usage of Collectd and InfluxDB</a></li><li class="chapter-item expanded "><a href="../openstack/live-migration-local.html"><strong aria-hidden="true">2.18.</strong> Live Migration on Local Storage</a></li><li class="chapter-item expanded "><a href="../openstack/fast-evacuation.html"><strong aria-hidden="true">2.19.</strong> Add fast evacuation function to VM HA procedure</a></li><li class="chapter-item expanded "><a href="../openstack/vm-activation-failure.html"><strong aria-hidden="true">2.20.</strong> Windows virtual machine activation failure problem</a></li></ol></li><li class="chapter-item expanded "><a href="../SUMMARY.html"><strong aria-hidden="true">3.</strong> Catalog: Point of view</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../point-of-view/huawei-and-operators.html"><strong aria-hidden="true">3.1.</strong> Huawei and telecom operators</a></li></ol></li><li class="chapter-item expanded "><a href="../SUMMARY.html"><strong aria-hidden="true">4.</strong> Open source small project</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../open-source-small-project/firewall-tool.html"><strong aria-hidden="true">4.1.</strong> Open source a node.js firewall tool</a></li></ol></li><li class="chapter-item expanded "><a href="../SUMMARY.html"><strong aria-hidden="true">5.</strong> Catalog: Tools</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../tools/github-action.html"><strong aria-hidden="true">5.1.</strong> Github Action Supplementary Introduction</a></li><li class="chapter-item expanded "><a href="../tools/blog-cicd.html"><strong aria-hidden="true">5.2.</strong> Github Action Upgrade backend cloud website CICD process</a></li><li class="chapter-item expanded "><a href="../tools/github-action-demo.html"><strong aria-hidden="true">5.3.</strong> Try the Github Action CI/CD process (create a React project and package it for deployment)</a></li><li class="chapter-item expanded "><a href="../tools/notion-widget.html"><strong aria-hidden="true">5.4.</strong> Notion's page insert widget Widget</a></li><li class="chapter-item expanded "><a href="../tools/git-dir.html"><strong aria-hidden="true">5.5.</strong> Internal structure of .git directory</a></li><li class="chapter-item expanded "><a href="../tools/xshell-skill.html"><strong aria-hidden="true">5.6.</strong> Some Skills of using xshell tools</a></li><li class="chapter-item expanded "><a href="../tools/gerrit-install.html"><strong aria-hidden="true">5.7.</strong> gerrit install</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">English version of the website https://www.backendcloud.cn/</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <!-- Page table of contents -->
+                        <div class="sidetoc"><nav class="pagetoc"></nav></div>
+
+                        <p>release time :2022-09-01 13:25</p>
+<h1 id="background"><a class="header" href="#background">background</a></h1>
+<p>The development of modern data center applications has shifted to microservices, microservice applications are often highly dynamic, and the highly volatile container life cycle makes traditional Linux network security methods (such as iptables) cope with constantly updated load balancing tables and access control The disadvantages of lists are revealed.</p>
+<p>Thanks to the development of Linux eBPF, Cilium leverages Linux eBPF, Cilium retains the ability to transparently insert security visibility + enforcement, but this way is based on service / pod / container identification (as opposed to IP address identification in traditional systems) , and can be filtered according to the application layer (eg HTTP). Thus, by decoupling security from addressing, Cilium can not only apply security policies in highly dynamic environments, but also provide more Strong security isolation.</p>
+<p>Not only Cilium, but Calico also has eBPF mode. Calico has integrated eBPF data plane since v3.13.</p>
+<p>Because of the low performance of netfilter of iptables, the kube-proxy component of Kubernetes has been criticized all the time. Both Cilium and Calico fully realize the functions of kube-proxy, including ClusterIP, NodePort, ExternalIPs and LoadBalancer, which can completely replace its position and provide better Performance, both Cilium and Calico support replacing the kube-proxy component of Kubernetes.</p>
+<p>In addition, Cilium's ClusterMesh can connect and configure network policies across multiple clusters, VPCs, data centers, and even Openstack and K8S clusters.</p>
+<h1 id="start-a-2-node-kubernetes-cluster"><a class="header" href="#start-a-2-node-kubernetes-cluster">Start a 2-node Kubernetes cluster</a></h1>
+<pre><code>[dev@centos9 ~]$ minikube start --vm-driver=podman --network-plugin=cni --nodes=2
+* minikube v1.26.1 on Centos 9
+* Using the podman driver based on user configuration
+! With --network-plugin=cni, you will need to provide your own CNI. See --cni flag as a user-friendly alternative
+* Using Podman driver with root privileges
+* Starting control plane node minikube in cluster minikube
+* Pulling base image ...
+E0901 09:20:52.559294  215553 cache.go:203] Error downloading kic artifacts:  not yet implemented, see issue #8426
+* Creating podman container (CPUs=2, Memory=4000MB) ...
+* Preparing Kubernetes v1.24.3 on Docker 20.10.17 ...
+- Generating certificates and keys ...
+- Booting up control plane ...
+- Configuring RBAC rules ...
+* Configuring CNI (Container Networking Interface) ...
+* Verifying Kubernetes components...
+- Using image gcr.io/k8s-minikube/storage-provisioner:v5
+* Enabled addons: storage-provisioner, default-storageclass
+
+* Starting worker node minikube-m02 in cluster minikube
+* Pulling base image ...
+E0901 09:21:24.042538  215553 cache.go:203] Error downloading kic artifacts:  not yet implemented, see issue #8426
+* Creating podman container (CPUs=2, Memory=4000MB) ...
+* Found network options:
+- NO_PROXY=192.168.49.2
+* Preparing Kubernetes v1.24.3 on Docker 20.10.17 ...
+- env NO_PROXY=192.168.49.2
+* Verifying Kubernetes components...
+* Done! kubectl is now configured to use &quot;minikube&quot; cluster and &quot;default&quot; namespace by default
+[dev@centos9 ~]$ kubectl get pod -A
+NAMESPACE     NAME                               READY   STATUS    RESTARTS   AGE
+kube-system   coredns-6d4b75cb6d-8r5xp           1/1     Running   0          61s
+kube-system   etcd-minikube                      1/1     Running   0          72s
+kube-system   kindnet-cgqrd                      1/1     Running   0          62s
+kube-system   kindnet-cnhbh                      1/1     Running   0          46s
+kube-system   kube-apiserver-minikube            1/1     Running   0          72s
+kube-system   kube-controller-manager-minikube   1/1     Running   0          72s
+kube-system   kube-proxy-5w6fl                   1/1     Running   0          46s
+kube-system   kube-proxy-qkh7d                   1/1     Running   0          62s
+kube-system   kube-scheduler-minikube            1/1     Running   0          72s
+kube-system   storage-provisioner                1/1     Running   0          71s
+[dev@centos9 ~]$ kubectl get node -o wide
+NAME           STATUS   ROLES           AGE   VERSION   INTERNAL-IP    EXTERNAL-IP   OS-IMAGE             KERNEL-VERSION          CONTAINER-RUNTIME
+minikube       Ready    control-plane   76s   v1.24.3   192.168.49.2   &lt;none&gt;        Ubuntu 20.04.4 LTS   5.14.0-115.el9.x86_64   docker://20.10.17
+minikube-m02   Ready    &lt;none&gt;          49s   v1.24.3   192.168.49.3   &lt;none&gt;        Ubuntu 20.04.4 LTS   5.14.0-115.el9.x86_64   docker://20.10.17
+</code></pre>
+<h1 id="mount-the-ebpf-filesystem"><a class="header" href="#mount-the-ebpf-filesystem">Mount the eBPF filesystem</a></h1>
+<pre><code>[dev@centos9 ~]$ minikube ssh -n minikube -- sudo mount bpffs -t bpf /sys/fs/bpf
+[dev@centos9 ~]$ minikube ssh -n minikube-m02 -- sudo mount bpffs -t bpf /sys/fs/bpf
+</code></pre>
+<blockquote>
+<p>Cilium is based on eBPF, so it can only be used in the Linux system, and has certain requirements for the kernel version. The default of centos7 is 3 or more. It is definitely not good, at least 4. or more, or 5. or more. For details, refer to the official document. See the last chapter of this article for the steps of kernel upgrade</p>
+</blockquote>
+<h1 id="install-cilium"><a class="header" href="#install-cilium">Install Cilium</a></h1>
+<p>There are two ways to choose 1 to install:</p>
+<h2 id="quick-installyaml"><a class="header" href="#quick-installyaml">quick-install.yaml</a></h2>
+<pre><code>[dev@centos9 ~]$ kubectl create -f https://raw.githubusercontent.com/cilium/cilium/v1.9/install/kubernetes/quick-install.yaml
+serviceaccount/cilium created
+serviceaccount/cilium-operator created
+configmap/cilium-config created
+clusterrole.rbac.authorization.k8s.io/cilium created
+clusterrole.rbac.authorization.k8s.io/cilium-operator created
+clusterrolebinding.rbac.authorization.k8s.io/cilium created
+clusterrolebinding.rbac.authorization.k8s.io/cilium-operator created
+Warning: spec.template.metadata.annotations[scheduler.alpha.kubernetes.io/critical-pod]: non-functional in v1.16+; use the &quot;priorityClassName&quot; field instead
+daemonset.apps/cilium created
+deployment.apps/cilium-operator created
+[dev@centos9 ~]$ kubectl get pod -A
+NAMESPACE     NAME                               READY   STATUS    RESTARTS   AGE
+kube-system   cilium-bnv9z                       1/1     Running   0          4m43s
+kube-system   cilium-n5xpt                       1/1     Running   0          11m
+kube-system   cilium-operator-d86cdbf88-ljfw8    1/1     Running   0          11m
+kube-system   coredns-6d4b75cb6d-8r5xp           1/1     Running   0          16m
+kube-system   etcd-minikube                      1/1     Running   0          17m
+kube-system   kindnet-cgqrd                      1/1     Running   0          16m
+kube-system   kindnet-cnhbh                      1/1     Running   0          16m
+kube-system   kube-apiserver-minikube            1/1     Running   0          17m
+kube-system   kube-controller-manager-minikube   1/1     Running   0          17m
+kube-system   kube-proxy-5w6fl                   1/1     Running   0          16m
+kube-system   kube-proxy-qkh7d                   1/1     Running   0          16m
+kube-system   kube-scheduler-minikube            1/1     Running   0          17m
+kube-system   storage-provisioner                1/1     Running   0          17m
+</code></pre>
+<h2 id="cilium-cli"><a class="header" href="#cilium-cli">Cilium CLI</a></h2>
+<pre><code>[root@centos7 ~]# CILIUM_CLI_VERSION=$(curl -s https://raw.githubusercontent.com/cilium/cilium-cli/master/stable.txt)
+[root@centos7 ~]# CLI_ARCH=amd64
+[root@centos7 ~]# if [ &quot;$(uname -m)&quot; = &quot;aarch64&quot; ]; then CLI_ARCH=arm64; fi
+[root@centos7 ~]# curl -L --fail --remote-name-all https://github.com/cilium/cilium-cli/releases/download/${CILIUM_CLI_VERSION}/cilium-linux-${CLI_ARCH}.tar.gz{,.sha256sum}
+% Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                Dload  Upload   Total   Spent    Left  Speed
+0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+100 23.1M  100 23.1M    0     0  1378k      0  0:00:17  0:00:17 --:--:-- 5047k
+0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+100    92  100    92    0     0     91      0  0:00:01  0:00:01 --:--:-- 92000
+[root@centos7 ~]# sha256sum --check cilium-linux-${CLI_ARCH}.tar.gz.sha256sum
+cilium-linux-amd64.tar.gz: OK
+[root@centos7 ~]# sudo tar xzvfC cilium-linux-${CLI_ARCH}.tar.gz /usr/local/bin
+cilium
+[root@centos7 ~]# rm cilium-linux-${CLI_ARCH}.tar.gz{,.sha256sum}
+rm: remove regular file ‘cilium-linux-amd64.tar.gz’? y
+rm: remove regular file ‘cilium-linux-amd64.tar.gz.sha256sum’? y
+[root@centos7 ~]# cilium install
+🔮 Auto-detected Kubernetes kind: kind
+✨ Running &quot;kind&quot; validation checks
+✅ Detected kind version &quot;0.14.0&quot;
+ℹ️  Using Cilium version 1.12.1
+🔮 Auto-detected cluster name: kind-kind
+🔮 Auto-detected datapath mode: tunnel
+🔮 Auto-detected kube-proxy has been installed
+ℹ️  helm template --namespace kube-system cilium cilium/cilium --version 1.12.1 --set cluster.id=0,cluster.name=kind-kind,encryption.nodeEncryption=false,ipam.mode=kubernetes,kubeProxyReplacement=disabled,operator.replicas=1,serviceAccounts.cilium.name=cilium,serviceAccounts.operator.name=cilium-operator,tunnel=vxlan
+ℹ️  Storing helm values file in kube-system/cilium-cli-helm-values Secret
+🔑 Found CA in secret cilium-ca
+🔑 Generating certificates for Hubble...
+🚀 Creating Service accounts...
+🚀 Creating Cluster roles...
+🚀 Creating ConfigMap for Cilium version 1.12.1...
+🚀 Creating Agent DaemonSet...
+🚀 Creating Operator Deployment...
+⌛ Waiting for Cilium to be installed and ready...
+♻️  Restarting unmanaged pods...
+♻️  Restarted unmanaged pod kube-system/coredns-6d4b75cb6d-w9gtw
+♻️  Restarted unmanaged pod kube-system/coredns-6d4b75cb6d-xlw4x
+♻️  Restarted unmanaged pod local-path-storage/local-path-provisioner-9cd9bd544-vrnxd
+✅ Cilium was successfully installed! Run 'cilium status' to view installation health
+[root@centos7 ~]# cilium status
+    /¯¯\
+/¯¯\__/¯¯\    Cilium:         OK
+\__/¯¯\__/    Operator:       OK
+/¯¯\__/¯¯\    Hubble:         disabled
+\__/¯¯\__/    ClusterMesh:    disabled
+    \__/
+
+Deployment       cilium-operator    
+DaemonSet        cilium             
+Containers:      cilium-operator    
+                cilium             
+Cluster Pods:    0/0 managed by Cilium
+</code></pre>
+<h1 id="test-cilium"><a class="header" href="#test-cilium">Test Cilium</a></h1>
+<pre><code>[dev@centos9 ~]$ kubectl create ns cilium-test
+namespace/cilium-test created
+[dev@centos9 ~]$ kubectl apply -n cilium-test -f https://raw.githubusercontent.com/cilium/cilium/v1.9/examples/kubernetes/connectivity-check/connectivity-check.yaml
+deployment.apps/echo-a created
+deployment.apps/echo-b created
+deployment.apps/echo-b-host created
+deployment.apps/pod-to-a created
+deployment.apps/pod-to-external-1111 created
+deployment.apps/pod-to-a-denied-cnp created
+deployment.apps/pod-to-a-allowed-cnp created
+deployment.apps/pod-to-external-fqdn-allow-google-cnp created
+deployment.apps/pod-to-b-multi-node-clusterip created
+deployment.apps/pod-to-b-multi-node-headless created
+deployment.apps/host-to-b-multi-node-clusterip created
+deployment.apps/host-to-b-multi-node-headless created
+deployment.apps/pod-to-b-multi-node-nodeport created
+deployment.apps/pod-to-b-intra-node-nodeport created
+service/echo-a created
+service/echo-b created
+service/echo-b-headless created
+service/echo-b-host-headless created
+ciliumnetworkpolicy.cilium.io/pod-to-a-denied-cnp created
+ciliumnetworkpolicy.cilium.io/pod-to-a-allowed-cnp created
+ciliumnetworkpolicy.cilium.io/pod-to-external-fqdn-allow-google-cnp created
+[dev@centos9 ~]$ kubectl get pods -n cilium-test
+NAME                                                     READY   STATUS    RESTARTS        AGE
+echo-a-fcd7c5c-xnbsd                                     1/1     Running   0               4m47s
+echo-b-5df8dc7749-m8m7s                                  1/1     Running   0               4m47s
+echo-b-host-6cc69489b4-stj46                             1/1     Running   0               4m47s
+host-to-b-multi-node-clusterip-954c7d9b8-9mkh6           0/1     Running   4 (31s ago)     4m46s
+host-to-b-multi-node-headless-564779b9f8-z9z7z           0/1     Running   4 (20s ago)     4m46s
+pod-to-a-6457cb8648-kks78                                1/1     Running   0               4m47s
+pod-to-a-allowed-cnp-75f8cfb44d-lpzhg                    1/1     Running   0               4m47s
+pod-to-a-denied-cnp-8478f9cc54-kq2js                     0/1     Running   4 (16s ago)     4m47s
+pod-to-b-intra-node-nodeport-675fd4cb88-vqnps            1/1     Running   0               4m46s
+pod-to-b-multi-node-clusterip-764f84b9d6-5h92v           1/1     Running   1 (3m46s ago)   4m47s
+pod-to-b-multi-node-headless-6bbc875466-78b5t            1/1     Running   1 (3m36s ago)   4m46s
+pod-to-b-multi-node-nodeport-f977df4b-wdzr6              1/1     Running   1 (3m22s ago)   4m46s
+pod-to-external-1111-6d55c9d55b-w62r7                    1/1     Running   0               4m47s
+pod-to-external-fqdn-allow-google-cnp-7b9b79d54b-qgh9b   0/1     Running   3 (9s ago)      4m47s
+</code></pre>
+<h1 id="enable-hubble-for-cluster"><a class="header" href="#enable-hubble-for-cluster">Enable Hubble for Cluster</a></h1>
+<p>Hubble, which is specifically designed for network visualization, can leverage the eBPF data path provided by Cilium to gain deep visibility into the network traffic of Kubernetes applications and services. These network traffic information can be connected to Hubble CLI and UI tools, and can quickly diagnose problems in an interactive manner. In addition to Hubble's own monitoring tools, it can also interface with mainstream cloud-native monitoring systems—Prometheus and Grafana—to implement scalable monitoring strategies.</p>
+<h2 id="hubble-ui"><a class="header" href="#hubble-ui">Hubble UI</a></h2>
+<pre><code>[dev@centos9 ~]$ export CILIUM_NAMESPACE=kube-system
+[dev@centos9 ~]$ kubectl apply -f https://raw.githubusercontent.com/cilium/cilium/v1.9/install/kubernetes/quick-hubble-install.yaml
+serviceaccount/hubble-generate-certs created
+serviceaccount/hubble-relay created
+serviceaccount/hubble-ui created
+configmap/hubble-relay-config created
+configmap/hubble-ui-nginx created
+clusterrole.rbac.authorization.k8s.io/hubble-generate-certs created
+clusterrole.rbac.authorization.k8s.io/hubble-ui created
+clusterrolebinding.rbac.authorization.k8s.io/hubble-generate-certs created
+clusterrolebinding.rbac.authorization.k8s.io/hubble-ui created
+service/hubble-relay created
+service/hubble-ui created
+deployment.apps/hubble-relay created
+deployment.apps/hubble-ui created
+job.batch/hubble-generate-certs created
+Warning: batch/v1beta1 CronJob is deprecated in v1.21+, unavailable in v1.25+; use batch/v1 CronJob
+cronjob.batch/hubble-generate-certs created
+[dev@centos9 ~]$ kubectl get pod -A
+NAMESPACE     NAME                                                     READY   STATUS      RESTARTS        AGE
+cilium-test   echo-a-fcd7c5c-28d6t                                     1/1     Running     0               5m53s
+cilium-test   echo-b-5df8dc7749-9zgkr                                  1/1     Running     0               5m53s
+cilium-test   echo-b-host-6cc69489b4-2njfh                             1/1     Running     0               5m53s
+cilium-test   host-to-b-multi-node-clusterip-954c7d9b8-ngttx           0/1     Running     5 (47s ago)     5m52s
+cilium-test   host-to-b-multi-node-headless-564779b9f8-7h5qt           0/1     Running     5 (47s ago)     5m52s
+cilium-test   pod-to-a-6457cb8648-j2cvw                                1/1     Running     0               5m53s
+cilium-test   pod-to-a-allowed-cnp-75f8cfb44d-whrqk                    1/1     Running     0               5m53s
+cilium-test   pod-to-a-denied-cnp-8478f9cc54-fkb6m                     0/1     Running     5 (52s ago)     5m53s
+cilium-test   pod-to-b-intra-node-nodeport-675fd4cb88-9b9kc            1/1     Running     0               5m52s
+cilium-test   pod-to-b-multi-node-clusterip-764f84b9d6-m54n6           1/1     Running     0               5m53s
+cilium-test   pod-to-b-multi-node-headless-6bbc875466-9zzlw            1/1     Running     1 (4m52s ago)   5m53s
+cilium-test   pod-to-b-multi-node-nodeport-f977df4b-5njwn              1/1     Running     1 (4m49s ago)   5m52s
+cilium-test   pod-to-external-1111-6d55c9d55b-vz7ff                    1/1     Running     0               5m53s
+cilium-test   pod-to-external-fqdn-allow-google-cnp-7b9b79d54b-cpgc7   0/1     Running     5 (50s ago)     5m53s
+kube-system   cilium-bnv9z                                             1/1     Running     0               31m
+kube-system   cilium-n5xpt                                             1/1     Running     0               39m
+kube-system   cilium-operator-d86cdbf88-ljfw8                          1/1     Running     0               39m
+kube-system   coredns-6d4b75cb6d-8r5xp                                 1/1     Running     0               44m
+kube-system   etcd-minikube                                            1/1     Running     0               44m
+kube-system   hubble-generate-certs-nbhl5                              0/1     Completed   0               16m
+kube-system   hubble-relay-864c8d4777-2qhzd                            1/1     Running     0               16m
+kube-system   hubble-ui-7c8b69b78c-4975f                               2/2     Running     0               16m
+kube-system   kindnet-cgqrd                                            1/1     Running     0               44m
+kube-system   kindnet-cnhbh                                            1/1     Running     0               43m
+kube-system   kube-apiserver-minikube                                  1/1     Running     0               44m
+kube-system   kube-controller-manager-minikube                         1/1     Running     0               44m
+kube-system   kube-proxy-5w6fl                                         1/1     Running     0               43m
+kube-system   kube-proxy-qkh7d                                         1/1     Running     0               44m
+kube-system   kube-scheduler-minikube                                  1/1     Running     0               44m
+kube-system   storage-provisioner                                      1/1     Running     0               44m
+[dev@centos9 ~]$ kubectl port-forward -n $CILIUM_NAMESPACE svc/hubble-ui --address 0.0.0.0 --address :: 12000:80
+Forwarding from 0.0.0.0:12000 -&gt; 8081
+Forwarding from [::]:12000 -&gt; 8081
+</code></pre>
+<h2 id="hubble-cli"><a class="header" href="#hubble-cli">Hubble CLI</a></h2>
+<pre><code>[dev@centos9 ~]$ export HUBBLE_VERSION=$(curl -s https://raw.githubusercontent.com/cilium/hubble/master/stable.txt)
+[dev@centos9 ~]$ curl -LO &quot;https://github.com/cilium/hubble/releases/download/$HUBBLE_VERSION/hubble-linux-amd64.tar.gz&quot;
+% Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                Dload  Upload   Total   Spent    Left  Speed
+0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+100 7130k  100 7130k    0     0  2423k      0  0:00:02  0:00:02 --:--:-- 3531k
+[dev@centos9 ~]$ tar zxf hubble-linux-amd64.tar.gz
+[dev@centos9 ~]$ ls
+hubble  hubble-linux-amd64.tar.gz
+[dev@centos9 ~]$ sudo mv hubble /usr/local/bin
+[sudo] password for dev: 
+[dev@centos9 ~]$ export CILIUM_NAMESPACE=kube-system
+[dev@centos9 ~]$ kubectl port-forward -n $CILIUM_NAMESPACE svc/hubble-relay --address 0.0.0.0 --address :: 4245:80
+Forwarding from 0.0.0.0:4245 -&gt; 4245
+Forwarding from [::]:4245 -&gt; 4245
+⚡ root@centos9  ~  hubble --server localhost:4245 status
+Healthcheck (via localhost:4245): Ok
+Current/Max Flows: 2,048/8,192 (25.00%)
+Flows/s: 0.99
+Connected Nodes: 2/2
+⚡ root@centos9  ~  hubble --server localhost:4245 observe
+Sep  1 02:11:54.727: 192.168.49.3:42312 (host) &lt;- 10.0.0.81:4240 (health) to-stack FORWARDED (TCP Flags: ACK)
+Sep  1 02:11:54.727: 192.168.49.3:42312 (host) -&gt; 10.0.0.81:4240 (health) to-endpoint FORWARDED (TCP Flags: ACK)
+Sep  1 02:11:54.727: 192.168.49.3:48586 (world) -&gt; 10.0.1.254:4240 (health) to-endpoint FORWARDED (TCP Flags: RST)
+Sep  1 02:11:57.287: 192.168.49.2:44294 (remote-node) &lt;&gt; 10.0.0.81:4240 (health) to-overlay FORWARDED (TCP Flags: SYN)
+Sep  1 02:11:57.288: 192.168.49.2:44294 (remote-node) &lt;- 10.0.0.81:4240 (health) to-stack FORWARDED (TCP Flags: SYN, ACK)
+Sep  1 02:11:57.288: 192.168.49.2:44294 (world) -&gt; 10.0.0.81:4240 (health) to-endpoint FORWARDED (TCP Flags: RST)
+Sep  1 02:11:57.800: 192.168.49.2:34456 (host) &lt;- 10.0.1.254:4240 (health) to-stack FORWARDED (TCP Flags: ACK)
+Sep  1 02:11:57.800: 192.168.49.2:34456 (host) -&gt; 10.0.1.254:4240 (health) to-endpoint FORWARDED (TCP Flags: ACK)
+Sep  1 02:12:09.575: 192.168.49.3:42312 (host) -&gt; 10.0.0.81:4240 (health) to-endpoint FORWARDED (TCP Flags: ACK)
+Sep  1 02:12:09.576: 192.168.49.3:42312 (host) &lt;- 10.0.0.81:4240 (health) to-stack FORWARDED (TCP Flags: ACK)
+Sep  1 02:12:10.698: 192.168.49.2:34456 (host) -&gt; 10.0.1.254:4240 (health) to-endpoint FORWARDED (TCP Flags: ACK, PSH)
+Sep  1 02:12:10.699: 192.168.49.2:34456 (host) &lt;- 10.0.1.254:4240 (health) to-stack FORWARDED (TCP Flags: ACK, PSH)
+Sep  1 02:12:25.448: 192.168.49.3:42312 (host) &lt;- 10.0.0.81:4240 (health) to-stack FORWARDED (TCP Flags: ACK)
+Sep  1 02:12:25.448: 192.168.49.3:42312 (host) -&gt; 10.0.0.81:4240 (health) to-endpoint FORWARDED (TCP Flags: ACK)
+Sep  1 02:12:27.495: 192.168.49.2:34456 (host) &lt;- 10.0.1.254:4240 (health) to-stack FORWARDED (TCP Flags: ACK)
+Sep  1 02:12:27.495: 192.168.49.2:34456 (host) -&gt; 10.0.1.254:4240 (health) to-endpoint FORWARDED (TCP Flags: ACK)
+Sep  1 02:12:38.296: 192.168.49.3:42312 (host) -&gt; 10.0.0.81:4240 (health) to-endpoint FORWARDED (TCP Flags: ACK, PSH)
+Sep  1 02:12:38.297: 192.168.49.3:42312 (host) &lt;- 10.0.0.81:4240 (health) to-stack FORWARDED (TCP Flags: ACK, PSH)
+Sep  1 02:12:39.219: 192.168.49.3:41780 (remote-node) &lt;&gt; 10.0.1.254:4240 (health) to-overlay FORWARDED (TCP Flags: SYN)
+Sep  1 02:12:39.220: 192.168.49.3:41780 (remote-node) -&gt; 10.0.1.254:4240 (health) to-endpoint FORWARDED (TCP Flags: SYN)
+Sep  1 02:12:39.220: 192.168.49.3:41780 (remote-node) &lt;- 10.0.1.254:4240 (health) to-stack FORWARDED (TCP Flags: SYN, ACK)
+Sep  1 02:12:39.220: 192.168.49.3:41780 (world) -&gt; 10.0.1.254:4240 (health) to-endpoint FORWARDED (TCP Flags: RST)
+Sep  1 02:12:39.221: 192.168.49.3 (host) -&gt; 10.0.0.81 (health) to-endpoint FORWARDED (ICMPv4 EchoRequest)
+Sep  1 02:12:39.221: 192.168.49.3 (host) &lt;- 10.0.0.81 (health) to-stack FORWARDED (ICMPv4 EchoReply)
+Sep  1 02:12:39.221: 192.168.49.3 (remote-node) &lt;&gt; 10.0.1.254 (health) to-overlay FORWARDED (ICMPv4 EchoRequest)
+Sep  1 02:12:39.222: 192.168.49.3 (remote-node) -&gt; 10.0.1.254 (health) to-endpoint FORWARDED (ICMPv4 EchoRequest)
+Sep  1 02:12:39.222: 192.168.49.3 (remote-node) &lt;- 10.0.1.254 (health) to-stack FORWARDED (ICMPv4 EchoReply)
+Sep  1 02:12:40.232: 192.168.49.3:41780 (remote-node) &lt;&gt; 10.0.1.254:4240 (health) to-overlay FORWARDED (TCP Flags: SYN)
+Sep  1 02:12:40.233: 192.168.49.3:41780 (world) -&gt; 10.0.1.254:4240 (health) to-endpoint FORWARDED (TCP Flags: RST)
+Sep  1 02:12:41.978: 192.168.49.2:48502 (remote-node) &lt;&gt; 10.0.0.81:4240 (health) to-overlay FORWARDED (TCP Flags: SYN)
+Sep  1 02:12:41.978: 192.168.49.2:48502 (remote-node) -&gt; 10.0.0.81:4240 (health) to-endpoint FORWARDED (TCP Flags: SYN)
+Sep  1 02:12:41.978: 192.168.49.2:48502 (remote-node) &lt;- 10.0.0.81:4240 (health) to-stack FORWARDED (TCP Flags: SYN, ACK)
+Sep  1 02:12:41.978: 192.168.49.2:48502 (world) -&gt; 10.0.0.81:4240 (health) to-endpoint FORWARDED (TCP Flags: RST)
+Sep  1 02:12:41.979: 192.168.49.2 (remote-node) &lt;&gt; 10.0.0.81 (health) to-overlay FORWARDED (ICMPv4 EchoRequest)
+Sep  1 02:12:41.979: 192.168.49.2 (remote-node) -&gt; 10.0.0.81 (health) to-endpoint FORWARDED (ICMPv4 EchoRequest)
+Sep  1 02:12:41.979: 192.168.49.2 (remote-node) &lt;- 10.0.0.81 (health) to-stack FORWARDED (ICMPv4 EchoReply)
+Sep  1 02:12:41.983: 192.168.49.2 (host) -&gt; 10.0.1.254 (health) to-endpoint FORWARDED (ICMPv4 EchoRequest)
+Sep  1 02:12:41.983: 192.168.49.2 (host) &lt;- 10.0.1.254 (health) to-stack FORWARDED (ICMPv4 EchoReply)
+Sep  1 02:12:42.280: 192.168.49.3:41780 (world) -&gt; 10.0.1.254:4240 (health) to-endpoint FORWARDED (TCP Flags: RST)
+Sep  1 02:12:42.343: 192.168.49.2:34456 (host) -&gt; 10.0.1.254:4240 (health) to-endpoint FORWARDED (TCP Flags: ACK)
+</code></pre>
+<h1 id="attachment-centos-kernel-upgrade"><a class="header" href="#attachment-centos-kernel-upgrade">Attachment: CentOS Kernel Upgrade</a></h1>
+<pre><code>[root@centos7 ~]# uname -a
+Linux centos7 3.10.0-1160.71.1.el7.x86_64 #1 SMP Tue Jun 28 15:37:28 UTC 2022 x86_64 x86_64 x86_64 GNU/Linux
+[root@centos7 ~]# rpm -import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org
+[root@centos7 ~]# rpm -Uvh http://www.elrepo.org/elrepo-release-7.0-2.el7.elrepo.noarch.rpm
+Retrieving http://www.elrepo.org/elrepo-release-7.0-2.el7.elrepo.noarch.rpm
+Retrieving http://elrepo.org/elrepo-release-7.0-4.el7.elrepo.noarch.rpm
+Preparing...                          ################################# [100%]
+Updating / installing...
+1:elrepo-release-7.0-4.el7.elrepo  ################################# [100%]
+[root@centos7 ~]# yum --disablerepo=&quot;*&quot; --enablerepo=&quot;elrepo-kernel&quot; list available
+Loaded plugins: fastestmirror, langpacks
+Loading mirror speeds from cached hostfile
+* elrepo-kernel: mirrors.tuna.tsinghua.edu.cn
+elrepo-kernel                                                                                                                                                                                                                                        | 3.0 kB  00:00:00     
+elrepo-kernel/primary_db                                                                                                                                                                                                                             | 2.1 MB  00:00:11     
+Available Packages
+elrepo-release.noarch                                                                                                                 7.0-6.el7.elrepo                                                                                                         elrepo-kernelkernel-lt.x86_64                                                                                                                      5.4.211-1.el7.elrepo                                                                                                     elrepo-kernelkernel-lt-devel.x86_64                                                                                                                5.4.211-1.el7.elrepo                                                                                                     elrepo-kernelkernel-lt-doc.noarch                                                                                                                  5.4.211-1.el7.elrepo                                                                                                     elrepo-kernelkernel-lt-headers.x86_64                                                                                                              5.4.211-1.el7.elrepo                                                                                                     elrepo-kernelkernel-lt-tools.x86_64                                                                                                                5.4.211-1.el7.elrepo                                                                                                     elrepo-kernelkernel-lt-tools-libs.x86_64                                                                                                           5.4.211-1.el7.elrepo                                                                                                     elrepo-kernelkernel-lt-tools-libs-devel.x86_64                                                                                                     5.4.211-1.el7.elrepo                                                                                                     elrepo-kernelkernel-ml.x86_64                                                                                                                      5.19.5-1.el7.elrepo                                                                                                      elrepo-kernelkernel-ml-devel.x86_64                                                                                                                5.19.5-1.el7.elrepo                                                                                                      elrepo-kernelkernel-ml-doc.noarch                                                                                                                  5.19.5-1.el7.elrepo                                                                                                      elrepo-kernelkernel-ml-headers.x86_64                                                                                                              5.19.5-1.el7.elrepo                                                                                                      elrepo-kernelkernel-ml-tools.x86_64                                                                                                                5.19.5-1.el7.elrepo                                                                                                      elrepo-kernelkernel-ml-tools-libs.x86_64                                                                                                           5.19.5-1.el7.elrepo                                                                                                      elrepo-kernelkernel-ml-tools-libs-devel.x86_64                                                                                                     5.19.5-1.el7.elrepo                                                                                                      elrepo-kernelperf.x86_64                                                                                                                           5.19.5-1.el7.elrepo                                                                                                      elrepo-kernelpython-perf.x86_64                                                                                                                    5.19.5-1.el7.elrepo                                                                                                      elrepo-kernel
+[root@centos7 ~]# yum -y --enablerepo=elrepo-kernel install kernel-ml
+Loaded plugins: fastestmirror, langpacks
+Loading mirror speeds from cached hostfile
+* base: mirrors.tuna.tsinghua.edu.cn
+* elrepo: mirrors.tuna.tsinghua.edu.cn
+* elrepo-kernel: mirrors.tuna.tsinghua.edu.cn
+* extras: mirror.xtom.com.hk
+* updates: mirror.xtom.com.hk
+Resolving Dependencies
+--&gt; Running transaction check
+---&gt; Package kernel-ml.x86_64 0:5.19.5-1.el7.elrepo will be installed
+--&gt; Finished Dependency Resolution
+
+Dependencies Resolved
+
+============================================================================================================================================================================================================================================================================ Package                                                       Arch                                                       Version                                                                   Repository                                                         Size
+============================================================================================================================================================================================================================================================================Installing:
+kernel-ml                                                     x86_64                                                     5.19.5-1.el7.elrepo                                                       elrepo-kernel                                                      59 M
+
+Transaction Summary
+============================================================================================================================================================================================================================================================================Install  1 Package
+
+Total download size: 59 M
+Installed size: 276 M
+Downloading packages:
+kernel-ml-5.19.5-1.el7.elrepo.x86_64.rpm                                                                                                                                                                                                             |  59 MB  00:00:56     
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+Warning: RPMDB altered outside of yum.
+Installing : kernel-ml-5.19.5-1.el7.elrepo.x86_64                                                                                                                                                                                                                     1/1 
+Verifying  : kernel-ml-5.19.5-1.el7.elrepo.x86_64                                                                                                                                                                                                                     1/1 
+
+Installed:
+kernel-ml.x86_64 0:5.19.5-1.el7.elrepo                                                                                                                                                                                                                                    
+
+Complete!
+[root@centos7 ~]# awk -F\' '$1==&quot;menuentry &quot; {print $2}' /etc/grub2.cfg
+CentOS Linux (5.19.5-1.el7.elrepo.x86_64) 7 (Core)
+CentOS Linux (3.10.0-1160.71.1.el7.x86_64) 7 (Core)
+CentOS Linux (0-rescue-90a82557faf04194905deabee3ad1267) 7 (Core)
+[root@centos7 ~]# cat /etc/default/grub
+GRUB_TIMEOUT=5
+GRUB_DISTRIBUTOR=&quot;$(sed 's, release .*$,,g' /etc/system-release)&quot;
+GRUB_DEFAULT=saved
+GRUB_DISABLE_SUBMENU=true
+GRUB_TERMINAL_OUTPUT=&quot;console&quot;
+GRUB_CMDLINE_LINUX=&quot;rd.lvm.lv=centos/root rhgb quiet&quot;
+GRUB_DISABLE_RECOVERY=&quot;true&quot;
+[root@centos7 ~]# vi /etc/default/grub
+[root@centos7 ~]# cat /etc/default/grub
+GRUB_TIMEOUT=5
+GRUB_DISTRIBUTOR=&quot;$(sed 's, release .*$,,g' /etc/system-release)&quot;
+GRUB_DEFAULT=0
+GRUB_DISABLE_SUBMENU=true
+GRUB_TERMINAL_OUTPUT=&quot;console&quot;
+GRUB_CMDLINE_LINUX=&quot;rd.lvm.lv=centos/root rhgb quiet&quot;
+GRUB_DISABLE_RECOVERY=&quot;true&quot;
+[root@centos7 ~]# grub2-mkconfig -o /boot/grub2/grub.cfg
+Generating grub configuration file ...
+Found linux image: /boot/vmlinuz-5.19.5-1.el7.elrepo.x86_64
+Found initrd image: /boot/initramfs-5.19.5-1.el7.elrepo.x86_64.img
+Found linux image: /boot/vmlinuz-3.10.0-1160.71.1.el7.x86_64
+Found initrd image: /boot/initramfs-3.10.0-1160.71.1.el7.x86_64.img
+Found linux image: /boot/vmlinuz-0-rescue-90a82557faf04194905deabee3ad1267
+Found initrd image: /boot/initramfs-0-rescue-90a82557faf04194905deabee3ad1267.img
+done
+[root@centos7 ~]# reboot
+[root@centos7 ~]# uname -a
+Linux centos7 5.19.5-1.el7.elrepo.x86_64 #1 SMP PREEMPT_DYNAMIC Mon Aug 29 08:55:53 EDT 2022 x86_64 x86_64 x86_64 GNU/Linux
+</code></pre>
+<blockquote>
+<p>The kernel of CentOS7 has been upgraded from 3.10 to the latest version 5.19</p>
+</blockquote>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../cloud-native/cilium-replace-kube-proxy.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                            <a rel="next" href="../cloud-native/kubevirtci-for-chinanet.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../cloud-native/cilium-replace-kube-proxy.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a rel="next" href="../cloud-native/kubevirtci-for-chinanet.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        <script type="text/javascript" src="../sidebar.js"></script>
+    </body>
+</html>
