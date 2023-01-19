@@ -1,0 +1,262 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Try the Github Action CI/CD process (create a React project and package it for deployment) - English version of the website https://www.backendcloud.cn/</title>
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../style.css">
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../SUMMARY.html"><strong aria-hidden="true">1.</strong> Catalog: Cloud Native</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../cloud-native/deploy-kubevirt.html"><strong aria-hidden="true">1.1.</strong> Deploy Kubernetes + KubeVirt and the basic use of KubeVirt</a></li><li class="chapter-item expanded "><a href="../cloud-native/docker-java-demo.html"><strong aria-hidden="true">1.2.</strong> docker hello-world project</a></li><li class="chapter-item expanded "><a href="../cloud-native/deploy-cinder-csi-plugin.html"><strong aria-hidden="true">1.3.</strong> Several problems encountered in deploying cinder-csi-plugin</a></li><li class="chapter-item expanded "><a href="../cloud-native/go1.18-workspace.html"><strong aria-hidden="true">1.4.</strong> New in Go 1.18 - Workspaces</a></li><li class="chapter-item expanded "><a href="../cloud-native/spring-boot-async-demo.html"><strong aria-hidden="true">1.5.</strong> spring-boot asynchronous example</a></li><li class="chapter-item expanded "><a href="../cloud-native/plg.html"><strong aria-hidden="true">1.6.</strong> PLG implements Kubernetes Pod log collection and display</a></li><li class="chapter-item expanded "><a href="../cloud-native/fluentd.html"><strong aria-hidden="true">1.7.</strong> Fluentd implements Kubernetes Pod log collection</a></li><li class="chapter-item expanded "><a href="../cloud-native/java-dev-memo-1.html"><strong aria-hidden="true">1.8.</strong> Little records in Java project development (1)</a></li><li class="chapter-item expanded "><a href="../cloud-native/jdk-bug.html"><strong aria-hidden="true">1.9.</strong> JDK bug - Encrypt Private Key failed unrecognized algorithm name PBEWithSHA1AndDESede</a></li><li class="chapter-item expanded "><a href="../cloud-native/tenant-cmp.html"><strong aria-hidden="true">1.10.</strong> Implementation of the function of creating resource pool tenants on the cloud management platform</a></li><li class="chapter-item expanded "><a href="../cloud-native/test-service-performance-2.html"><strong aria-hidden="true">1.11.</strong> iperf3 tests the four-layer performance of Kubernetes Service (Part 2)</a></li><li class="chapter-item expanded "><a href="../cloud-native/test-service-performance-1.html"><strong aria-hidden="true">1.12.</strong> iperf3 tests the four-layer performance of Kubernetes Service (Part 1)</a></li><li class="chapter-item expanded "><a href="../cloud-native/k8s-cmd.html"><strong aria-hidden="true">1.13.</strong> k8s common command</a></li><li class="chapter-item expanded "><a href="../cloud-native/cpu-binding.html"><strong aria-hidden="true">1.14.</strong> k8s supports container core binding</a></li><li class="chapter-item expanded "><a href="../cloud-native/capability.html"><strong aria-hidden="true">1.15.</strong> k8s supports Capability mechanism</a></li><li class="chapter-item expanded "><a href="../cloud-native/oom.html"><strong aria-hidden="true">1.16.</strong> k8s OOMkilled container exceeding memory limit</a></li></ol></li><li class="chapter-item expanded "><a href="../SUMMARY.html"><strong aria-hidden="true">2.</strong> Catalog: Openstack</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../openstack/deploy-openstack-stein.html"><strong aria-hidden="true">2.1.</strong> Problems encountered in Openstack Stein deployment</a></li><li class="chapter-item expanded "><a href="../openstack/sriov2ovs.html"><strong aria-hidden="true">2.2.</strong> sriov computing node to ovs computing node script</a></li><li class="chapter-item expanded "><a href="../openstack/placement.html"><strong aria-hidden="true">2.3.</strong> Openstack Placement</a></li><li class="chapter-item expanded "><a href="../openstack/power-arch.html"><strong aria-hidden="true">2.4.</strong> POWER architecture server as computing node</a></li><li class="chapter-item expanded "><a href="../openstack/sriov.html"><strong aria-hidden="true">2.5.</strong> OpenStack practices SR-IOV computing nodes</a></li><li class="chapter-item expanded "><a href="../openstack/openstack-op-4.html"><strong aria-hidden="true">2.6.</strong> Openstack operation and maintenance records (4)</a></li><li class="chapter-item expanded "><a href="../openstack/openstack-op-3.html"><strong aria-hidden="true">2.7.</strong> Openstack operation and maintenance records (3)</a></li><li class="chapter-item expanded "><a href="../openstack/openstack-op-2.html"><strong aria-hidden="true">2.8.</strong> Openstack operation and maintenance records (2)</a></li><li class="chapter-item expanded "><a href="../openstack/openstack-op-1.html"><strong aria-hidden="true">2.9.</strong> Openstack operation and maintenance records (1)</a></li><li class="chapter-item expanded "><a href="../openstack/novnc-problem.html"><strong aria-hidden="true">2.10.</strong> OpenStack Pike dashboard noVNC cannot be accessed problem</a></li><li class="chapter-item expanded "><a href="../openstack/openstack-local-yum.html"><strong aria-hidden="true">2.11.</strong> Openstack Pike local yum source construction</a></li><li class="chapter-item expanded "><a href="../openstack/cpu-binding.html"><strong aria-hidden="true">2.12.</strong> CPU binding</a></li><li class="chapter-item expanded "><a href="../openstack/resize-fail.html"><strong aria-hidden="true">2.13.</strong> Investigation of the cause of resize failure</a></li><li class="chapter-item expanded "><a href="../openstack/mount-cloud-disk.html"><strong aria-hidden="true">2.14.</strong> Mount cloud disk</a></li><li class="chapter-item expanded "><a href="../openstack/ocata-nova-evacuate-bug.html"><strong aria-hidden="true">2.15.</strong> Ocata nova evacuate bug</a></li><li class="chapter-item expanded "><a href="../openstack/compute-node-ha.html"><strong aria-hidden="true">2.16.</strong> compute node ha mainstream open source implementation</a></li><li class="chapter-item expanded "><a href="../openstack/collectd-influxdb.html"><strong aria-hidden="true">2.17.</strong> Deployment and usage of Collectd and InfluxDB</a></li><li class="chapter-item expanded "><a href="../openstack/live-migration-local.html"><strong aria-hidden="true">2.18.</strong> Live Migration on Local Storage</a></li><li class="chapter-item expanded "><a href="../openstack/fast-evacuation.html"><strong aria-hidden="true">2.19.</strong> Add fast evacuation function to VM HA procedure</a></li><li class="chapter-item expanded "><a href="../openstack/vm-activation-failure.html"><strong aria-hidden="true">2.20.</strong> Windows virtual machine activation failure problem</a></li></ol></li><li class="chapter-item expanded "><a href="../SUMMARY.html"><strong aria-hidden="true">3.</strong> Catalog: Point of view</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../point-of-view/huawei-and-operators.html"><strong aria-hidden="true">3.1.</strong> Huawei and telecom operators</a></li></ol></li><li class="chapter-item expanded "><a href="../SUMMARY.html"><strong aria-hidden="true">4.</strong> Open source small project</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../open-source-small-project/firewall-tool.html"><strong aria-hidden="true">4.1.</strong> Open source a node.js firewall tool</a></li></ol></li><li class="chapter-item expanded "><a href="../SUMMARY.html"><strong aria-hidden="true">5.</strong> Catalog: Tools</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../tools/github-action.html"><strong aria-hidden="true">5.1.</strong> Github Action Supplementary Introduction</a></li><li class="chapter-item expanded "><a href="../tools/blog-cicd.html"><strong aria-hidden="true">5.2.</strong> Github Action Upgrade backend cloud website CICD process</a></li><li class="chapter-item expanded "><a href="../tools/github-action-demo.html" class="active"><strong aria-hidden="true">5.3.</strong> Try the Github Action CI/CD process (create a React project and package it for deployment)</a></li><li class="chapter-item expanded "><a href="../tools/notion-widget.html"><strong aria-hidden="true">5.4.</strong> Notion's page insert widget Widget</a></li><li class="chapter-item expanded "><a href="../tools/git-dir.html"><strong aria-hidden="true">5.5.</strong> Internal structure of .git directory</a></li><li class="chapter-item expanded "><a href="../tools/xshell-skill.html"><strong aria-hidden="true">5.6.</strong> Some Skills of using xshell tools</a></li><li class="chapter-item expanded "><a href="../tools/gerrit-install.html"><strong aria-hidden="true">5.7.</strong> gerrit install</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">English version of the website https://www.backendcloud.cn/</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <!-- Page table of contents -->
+                        <div class="sidetoc"><nav class="pagetoc"></nav></div>
+
+                        <p>release time :2022-02-25 11:54</p>
+<p>Create a React projectgithub-action-demo</p>
+<p>Will (replace backendcloud with your github account name)</p>
+<pre><code>&quot;homepage&quot;: &quot;https://backendcloud.github.io/github-actions-demo&quot;,
+</code></pre>
+<p>Add to package.json</p>
+<p>push to the github repository.</p>
+<p>Add the github aciton CI configuration file: the process is generally that once the master branch is monitored to have a push, then checkout the project in the virtual environment, build the React project, and deploy the static file to the gh-pagesbranch of the code warehouse.</p>
+<pre><code>hanwei@hanweideMacBook-Air github-actions-demo]$ cat .github/workflows/ci.yml 
+name: GitHub Actions Build and Deploy Demo
+on:
+push:
+    branches:
+    - master
+jobs:
+build-and-deploy:
+    concurrency: ci-${{ github.ref }} # Recommended if you intend to make multiple deployments in quick succession.
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout 🛎️
+        uses: actions/checkout@v2
+
+    - name: Install and Build 🔧 # This example project is built using npm and outputs the result to the 'build' folder. Replace with the commands required to build your project, or remove this step entirely if your site is pre-built.
+        run: |
+        npm ci
+        npm run build
+
+    - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4.2.5
+        with:
+        branch: gh-pages # The branch the action should deploy to.
+        folder: build # The folder the action should deploy.
+hanwei@hanweideMacBook-Air github-actions-demo]$ 
+</code></pre>
+<p>Push the code to the github code warehouse again, trigger the github action process, and check the github action log (the github website is saved for 30 days):</p>
+<pre><code>deploy
+succeeded 17 minutes ago in 4s
+Search logs
+1s
+Current runner version: '2.287.1'
+Operating System
+Virtual Environment
+Virtual Environment Provisioner
+GITHUB_TOKEN Permissions
+Secret source: Actions
+Prepare workflow directory
+Prepare all required actions
+Getting action download info
+Download action repository 'actions/deploy-pages@v1' (SHA:479e82243a95585ebee8ab037c4bfd8e6356a47b)
+0s
+Run actions/deploy-pages@v1
+Sending telemetry for run id 1896726019
+3s
+Run actions/deploy-pages@v1
+Actor: github-pages[bot]
+Action ID: 1896726019
+Artifact URL: https://pipelines.actions.githubusercontent.com/7IW4xoAefje3iJJjmBQg228AYglZEwNoROQmK16mg2iViZ9muv/_apis/pipelines/workflows/1896726019/artifacts?api-version=6.0-preview
+{&quot;count&quot;:1,&quot;value&quot;:[{&quot;containerId&quot;:3420907,&quot;size&quot;:614400,&quot;signedContent&quot;:null,&quot;fileContainerResourceUrl&quot;:&quot;https://pipelines.actions.githubusercontent.com/7IW4xoAefje3iJJjmBQg228AYglZEwNoROQmK16mg2iViZ9muv/_apis/resources/Containers/3420907&quot;,&quot;type&quot;:&quot;actions_storage&quot;,&quot;name&quot;:&quot;github-pages&quot;,&quot;url&quot;:&quot;https://pipelines.actions.githubusercontent.com/7IW4xoAefje3iJJjmBQg228AYglZEwNoROQmK16mg2iViZ9muv/_apis/pipelines/1/runs/2/artifacts?artifactName=github-pages&quot;,&quot;expiresOn&quot;:&quot;2022-05-26T03:47:37.6013822Z&quot;,&quot;items&quot;:null}]}
+Creating deployment with payload:
+{
+    &quot;artifact_url&quot;: &quot;https://pipelines.actions.githubusercontent.com/7IW4xoAefje3iJJjmBQg228AYglZEwNoROQmK16mg2iViZ9muv/_apis/pipelines/1/runs/2/artifacts?artifactName=github-pages&amp;%24expand=SignedContent&quot;,
+    &quot;pages_build_version&quot;: &quot;f018db912dfb491e86183fbc140fe14e3a256905&quot;,
+    &quot;oidc_token&quot;: &quot;***&quot;
+}
+Created deployment for f018db912dfb491e86183fbc140fe14e3a256905
+{&quot;page_url&quot;:&quot;https://backendcloud.github.io/github-actions-demo/&quot;,&quot;status_url&quot;:&quot;https://api.github.com/repos/backendcloud/github-actions-demo/pages/deployment/status/f018db912dfb491e86183fbc140fe14e3a256905&quot;}
+
+Current status: updating_pages
+Reported success!
+
+Sending telemetry for run id 1896726019
+0s
+Evaluate and set environment url
+Evaluated environment url: https://backendcloud.github.io/github-actions-demo/
+Cleaning up orphan processes
+</code></pre>
+<p>After the CI/CD process is completed, open it with a browser https://backendcloud.github.io/github-actions-demo/and find that the React project is successfully deployed, as shown below:</p>
+<p><img src="2023-01-19-13-15-38.png" alt="" /></p>
+<p>GitHub has two recent changes:</p>
+<p>1 is used for github.io is no longer the default gh-pagesbranch, which branch to use for static web pages and content needs to be configured in advance. If not configured, an error https://backendcloud.github.io/github-actions-demo/will be reported when opening .404</p>
+<p><img src="2023-01-19-13-15-52.png" alt="" /></p>
+<p>2 is that the user name and password authentication has been canceled Githubfor developers to call Github API, and only more secure token authentication can be used.</p>
+<p><img src="2023-01-19-13-16-06.png" alt="" /></p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../tools/blog-cicd.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                            <a rel="next" href="../tools/notion-widget.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../tools/blog-cicd.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a rel="next" href="../tools/notion-widget.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        <script type="text/javascript" src="../sidebar.js"></script>
+    </body>
+</html>

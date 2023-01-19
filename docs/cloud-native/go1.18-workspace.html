@@ -1,0 +1,339 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>New in Go 1.18 - Workspaces - English version of the website https://www.backendcloud.cn/</title>
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../style.css">
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../SUMMARY.html"><strong aria-hidden="true">1.</strong> Catalog: Cloud Native</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../cloud-native/deploy-kubevirt.html"><strong aria-hidden="true">1.1.</strong> Deploy Kubernetes + KubeVirt and the basic use of KubeVirt</a></li><li class="chapter-item expanded "><a href="../cloud-native/docker-java-demo.html"><strong aria-hidden="true">1.2.</strong> docker hello-world project</a></li><li class="chapter-item expanded "><a href="../cloud-native/deploy-cinder-csi-plugin.html"><strong aria-hidden="true">1.3.</strong> Several problems encountered in deploying cinder-csi-plugin</a></li><li class="chapter-item expanded "><a href="../cloud-native/go1.18-workspace.html" class="active"><strong aria-hidden="true">1.4.</strong> New in Go 1.18 - Workspaces</a></li><li class="chapter-item expanded "><a href="../cloud-native/spring-boot-async-demo.html"><strong aria-hidden="true">1.5.</strong> spring-boot asynchronous example</a></li><li class="chapter-item expanded "><a href="../cloud-native/plg.html"><strong aria-hidden="true">1.6.</strong> PLG implements Kubernetes Pod log collection and display</a></li><li class="chapter-item expanded "><a href="../cloud-native/fluentd.html"><strong aria-hidden="true">1.7.</strong> Fluentd implements Kubernetes Pod log collection</a></li><li class="chapter-item expanded "><a href="../cloud-native/java-dev-memo-1.html"><strong aria-hidden="true">1.8.</strong> Little records in Java project development (1)</a></li><li class="chapter-item expanded "><a href="../cloud-native/jdk-bug.html"><strong aria-hidden="true">1.9.</strong> JDK bug - Encrypt Private Key failed unrecognized algorithm name PBEWithSHA1AndDESede</a></li><li class="chapter-item expanded "><a href="../cloud-native/tenant-cmp.html"><strong aria-hidden="true">1.10.</strong> Implementation of the function of creating resource pool tenants on the cloud management platform</a></li><li class="chapter-item expanded "><a href="../cloud-native/test-service-performance-2.html"><strong aria-hidden="true">1.11.</strong> iperf3 tests the four-layer performance of Kubernetes Service (Part 2)</a></li><li class="chapter-item expanded "><a href="../cloud-native/test-service-performance-1.html"><strong aria-hidden="true">1.12.</strong> iperf3 tests the four-layer performance of Kubernetes Service (Part 1)</a></li><li class="chapter-item expanded "><a href="../cloud-native/k8s-cmd.html"><strong aria-hidden="true">1.13.</strong> k8s common command</a></li><li class="chapter-item expanded "><a href="../cloud-native/cpu-binding.html"><strong aria-hidden="true">1.14.</strong> k8s supports container core binding</a></li><li class="chapter-item expanded "><a href="../cloud-native/capability.html"><strong aria-hidden="true">1.15.</strong> k8s supports Capability mechanism</a></li><li class="chapter-item expanded "><a href="../cloud-native/oom.html"><strong aria-hidden="true">1.16.</strong> k8s OOMkilled container exceeding memory limit</a></li></ol></li><li class="chapter-item expanded "><a href="../SUMMARY.html"><strong aria-hidden="true">2.</strong> Catalog: Openstack</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../openstack/deploy-openstack-stein.html"><strong aria-hidden="true">2.1.</strong> Problems encountered in Openstack Stein deployment</a></li><li class="chapter-item expanded "><a href="../openstack/sriov2ovs.html"><strong aria-hidden="true">2.2.</strong> sriov computing node to ovs computing node script</a></li><li class="chapter-item expanded "><a href="../openstack/placement.html"><strong aria-hidden="true">2.3.</strong> Openstack Placement</a></li><li class="chapter-item expanded "><a href="../openstack/power-arch.html"><strong aria-hidden="true">2.4.</strong> POWER architecture server as computing node</a></li><li class="chapter-item expanded "><a href="../openstack/sriov.html"><strong aria-hidden="true">2.5.</strong> OpenStack practices SR-IOV computing nodes</a></li><li class="chapter-item expanded "><a href="../openstack/openstack-op-4.html"><strong aria-hidden="true">2.6.</strong> Openstack operation and maintenance records (4)</a></li><li class="chapter-item expanded "><a href="../openstack/openstack-op-3.html"><strong aria-hidden="true">2.7.</strong> Openstack operation and maintenance records (3)</a></li><li class="chapter-item expanded "><a href="../openstack/openstack-op-2.html"><strong aria-hidden="true">2.8.</strong> Openstack operation and maintenance records (2)</a></li><li class="chapter-item expanded "><a href="../openstack/openstack-op-1.html"><strong aria-hidden="true">2.9.</strong> Openstack operation and maintenance records (1)</a></li><li class="chapter-item expanded "><a href="../openstack/novnc-problem.html"><strong aria-hidden="true">2.10.</strong> OpenStack Pike dashboard noVNC cannot be accessed problem</a></li><li class="chapter-item expanded "><a href="../openstack/openstack-local-yum.html"><strong aria-hidden="true">2.11.</strong> Openstack Pike local yum source construction</a></li><li class="chapter-item expanded "><a href="../openstack/cpu-binding.html"><strong aria-hidden="true">2.12.</strong> CPU binding</a></li><li class="chapter-item expanded "><a href="../openstack/resize-fail.html"><strong aria-hidden="true">2.13.</strong> Investigation of the cause of resize failure</a></li><li class="chapter-item expanded "><a href="../openstack/mount-cloud-disk.html"><strong aria-hidden="true">2.14.</strong> Mount cloud disk</a></li><li class="chapter-item expanded "><a href="../openstack/ocata-nova-evacuate-bug.html"><strong aria-hidden="true">2.15.</strong> Ocata nova evacuate bug</a></li><li class="chapter-item expanded "><a href="../openstack/compute-node-ha.html"><strong aria-hidden="true">2.16.</strong> compute node ha mainstream open source implementation</a></li><li class="chapter-item expanded "><a href="../openstack/collectd-influxdb.html"><strong aria-hidden="true">2.17.</strong> Deployment and usage of Collectd and InfluxDB</a></li><li class="chapter-item expanded "><a href="../openstack/live-migration-local.html"><strong aria-hidden="true">2.18.</strong> Live Migration on Local Storage</a></li><li class="chapter-item expanded "><a href="../openstack/fast-evacuation.html"><strong aria-hidden="true">2.19.</strong> Add fast evacuation function to VM HA procedure</a></li><li class="chapter-item expanded "><a href="../openstack/vm-activation-failure.html"><strong aria-hidden="true">2.20.</strong> Windows virtual machine activation failure problem</a></li></ol></li><li class="chapter-item expanded "><a href="../SUMMARY.html"><strong aria-hidden="true">3.</strong> Catalog: Point of view</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../point-of-view/huawei-and-operators.html"><strong aria-hidden="true">3.1.</strong> Huawei and telecom operators</a></li></ol></li><li class="chapter-item expanded "><a href="../SUMMARY.html"><strong aria-hidden="true">4.</strong> Open source small project</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../open-source-small-project/firewall-tool.html"><strong aria-hidden="true">4.1.</strong> Open source a node.js firewall tool</a></li></ol></li><li class="chapter-item expanded "><a href="../SUMMARY.html"><strong aria-hidden="true">5.</strong> Catalog: Tools</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../tools/github-action.html"><strong aria-hidden="true">5.1.</strong> Github Action Supplementary Introduction</a></li><li class="chapter-item expanded "><a href="../tools/blog-cicd.html"><strong aria-hidden="true">5.2.</strong> Github Action Upgrade backend cloud website CICD process</a></li><li class="chapter-item expanded "><a href="../tools/github-action-demo.html"><strong aria-hidden="true">5.3.</strong> Try the Github Action CI/CD process (create a React project and package it for deployment)</a></li><li class="chapter-item expanded "><a href="../tools/notion-widget.html"><strong aria-hidden="true">5.4.</strong> Notion's page insert widget Widget</a></li><li class="chapter-item expanded "><a href="../tools/git-dir.html"><strong aria-hidden="true">5.5.</strong> Internal structure of .git directory</a></li><li class="chapter-item expanded "><a href="../tools/xshell-skill.html"><strong aria-hidden="true">5.6.</strong> Some Skills of using xshell tools</a></li><li class="chapter-item expanded "><a href="../tools/gerrit-install.html"><strong aria-hidden="true">5.7.</strong> gerrit install</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">English version of the website https://www.backendcloud.cn/</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <!-- Page table of contents -->
+                        <div class="sidetoc"><nav class="pagetoc"></nav></div>
+
+                        <p>release time :2022-04-13 20:17</p>
+<blockquote>
+<p>When managing multi-module management, some modules may still be under development and have not been published on github. Before Go 1.18, it was done through the replace of go mod. The go1.18 officially released in February 2022 provides another more convenient solution for multi-module management due to the new workspace feature.</p>
+</blockquote>
+<h1 id="past-replace-pattern"><a class="header" href="#past-replace-pattern">Past replace pattern</a></h1>
+<pre><code class="language-bash">hanwei@hanweideMacBook-Air golang]$ go version
+go version go1.18 darwin/arm64
+hanwei@hanweideMacBook-Air golang]$ mkdir go1.18-workspace/
+hanwei@hanweideMacBook-Air golang]$ cd go1.18-workspace/
+hanwei@hanweideMacBook-Air go1.18-workspace]$ mkdir mypkg example
+hanwei@hanweideMacBook-Air go1.18-workspace]$ tree
+.
+├── example
+└── mypkg
+
+2 directories, 0 files
+hanwei@hanweideMacBook-Air go1.18-workspace]$ go mod init github.com/go1.18-workspace/mypkg
+go: creating new go.mod: module github.com/go1.18-workspace/mypkg
+go: to add module requirements and sums:
+        go mod tidy
+hanwei@hanweideMacBook-Air go1.18-workspace]$ cd mypkg/
+hanwei@hanweideMacBook-Air mypkg]$ touch bar.go
+hanwei@hanweideMacBook-Air mypkg]$ vi bar.go 
+hanwei@hanweideMacBook-Air mypkg]$ cat bar.go 
+package mypkg
+
+func Bar() {
+        println(&quot;This is package mypkg&quot;)
+}
+hanwei@hanweideMacBook-Air mypkg]$ cd ../example/
+hanwei@hanweideMacBook-Air example]$ go mod init github.com/go1.18-workspace/example
+go: creating new go.mod: module github.com/go1.18-workspace/example
+go: to add module requirements and sums:
+        go mod tidy
+hanwei@hanweideMacBook-Air example]$ touch main.go
+hanwei@hanweideMacBook-Air example]$ vi main.go 
+hanwei@hanweideMacBook-Air example]$ cat main.go 
+package main
+
+import (
+    &quot;github.com/go1.18-workspace/mypkg&quot;
+)
+
+func main() {
+    mypkg.Bar()
+}
+</code></pre>
+<p>At this time, if we run go mod tidy, an error will be reported, because our mypkg package has not been submitted to github at all, and it must not be found.</p>
+<pre><code>hanwei@hanweideMacBook-Air example]$ go mod tidy
+go: finding module for package github.com/go1.18-workspace/mypkg
+github.com/go1.18-workspace/example imports
+        github.com/go1.18-workspace/mypkg: cannot find module providing package github.com/go1.18-workspace/mypkg: module github.com/go1.18-workspace/mypkg: git ls-remote -q origin in /Users/hanwei/GoProjects/pkg/mod/cache/vcs/2c423cac5ebc1b2d018ef93a87560d369abd7dec6c155b46cddb11299415bc09: exit status 128:
+        remote: Repository not found.
+        fatal: repository 'https://github.com/go1.18-workspace/mypkg/' not found
+hanwei@hanweideMacBook-Air example]$ go run main.go
+main.go:4:5: no required module provides package github.com/go1.18-workspace/mypkg; to add it:
+        go get github.com/go1.18-workspace/mypkg
+</code></pre>
+<p>go run main.go is also unsuccessful.</p>
+<p>Of course we can submit mypkg to github, but every time we modify mypkg, we need to submit, otherwise the latest version cannot be used in the example.</p>
+<p>In view of this situation, it is currently recommended to solve it by replace, that is, add the following replace to the go.mod in the example:</p>
+<pre><code>hanwei@hanweideMacBook-Air example]$ go mod edit -replace=github.com/go1.18-workspace/mypkg=../mypkg
+hanwei@hanweideMacBook-Air example]$ cat go.mod 
+module github.com/go1.18-workspace/example
+
+go 1.18
+
+replace github.com/go1.18-workspace/mypkg =&gt; ../mypkg
+</code></pre>
+<p>(v1.0.0 is modified according to the specific situation, it has not been submitted yet, you can use v1.0.0)</p>
+<pre><code>hanwei@hanweideMacBook-Air example]$ cat go.mod 
+module github.com/go1.18-workspace/example
+
+go 1.18
+
+require github.com/go1.18-workspace/mypkg v1.0.0
+replace github.com/go1.18-workspace/mypkg =&gt; ../mypkg
+hanwei@hanweideMacBook-Air example]$ tree ..
+..
+├── example
+│   ├── go.mod
+│   └── main.go
+└── mypkg
+    ├── bar.go
+    └── go.mod
+
+2 directories, 4 files
+</code></pre>
+<p>Run go run main.go again, the output is as follows:</p>
+<pre><code>hanwei@hanweideMacBook-Air example]$ go run main.go 
+This is package mypkg
+</code></pre>
+<h1 id="workspace-mode"><a class="header" href="#workspace-mode">workspace mode</a></h1>
+<p>Comment the replace above, and then execute go run main.go, and report an error</p>
+<pre><code>hanwei@hanweideMacBook-Air example]$ cat go.mod 
+module github.com/go1.18-workspace/example
+
+go 1.18
+
+//require github.com/go1.18-workspace/mypkg v1.0.0
+//replace github.com/go1.18-workspace/mypkg =&gt; ../mypkg
+hanwei@hanweideMacBook-Air example]$ go run main.go 
+main.go:4:5: missing go.sum entry for module providing package github.com/go1.18-workspace/mypkg; to add:
+        go mod download github.com/go1.18-workspace/mypkg
+</code></pre>
+<p>Initialize workspace</p>
+<pre><code>hanwei@hanweideMacBook-Air go1.18-workspace]$ go version
+go version go1.18 darwin/arm64
+hanwei@hanweideMacBook-Air go1.18-workspace]$ go work init example mypkg
+hanwei@hanweideMacBook-Air go1.18-workspace]$ tree
+.
+├── example
+│   ├── go.mod
+│   └── main.go
+├── go.work
+└── mypkg
+    ├── bar.go
+    └── go.mod
+
+2 directories, 5 files
+hanwei@hanweideMacBook-Air go1.18-workspace]$ cat go.work 
+go 1.18
+
+use (
+        ./example
+        ./mypkg
+)
+hanwei@hanweideMacBook-Air example]$ go run main.go 
+This is package mypkg
+</code></pre>
+<p>It can be seen that using the workspace is much more convenient than replace.</p>
+<blockquote>
+<p>The syntax of the go.work file is similar to go.mod, so it also supports replace.</p>
+</blockquote>
+<blockquote>
+<p>Note that go.work does not need to be committed to Git, as it is only used for local development.</p>
+</blockquote>
+<pre><code>cat .gitignore
+# ---&gt; Go
+# If you prefer the allow list template instead of the deny list, see community template:
+# https://github.com/github/gitignore/blob/main/community/Golang/Go.AllowList.gitignore
+#
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+# Test binary, built with `go test -c`
+*.test
+# Output of the go coverage tool, specifically when used with LiteIDE
+*.out
+# Dependency directories (remove the comment below to include it)
+# vendor/
+# Go workspace file
+go.work
+</code></pre>
+<blockquote>
+<p>In the GOPATH era, multiple GOPATHs are a headache. At that time, there was no good solution, and the Module appeared, so the multi-GOPATH problem disappeared. But the multi-Module problem then appeared. The Workspace solution better solves this problem.</p>
+</blockquote>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../cloud-native/deploy-cinder-csi-plugin.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                            <a rel="next" href="../cloud-native/spring-boot-async-demo.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../cloud-native/deploy-cinder-csi-plugin.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a rel="next" href="../cloud-native/spring-boot-async-demo.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        <script type="text/javascript" src="../sidebar.js"></script>
+    </body>
+</html>

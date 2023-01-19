@@ -1,0 +1,560 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Github Action Supplementary Introduction - English version of the website https://www.backendcloud.cn/</title>
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../style.css">
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../SUMMARY.html"><strong aria-hidden="true">1.</strong> Catalog: Cloud Native</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../cloud-native/deploy-kubevirt.html"><strong aria-hidden="true">1.1.</strong> Deploy Kubernetes + KubeVirt and the basic use of KubeVirt</a></li><li class="chapter-item expanded "><a href="../cloud-native/docker-java-demo.html"><strong aria-hidden="true">1.2.</strong> docker hello-world project</a></li><li class="chapter-item expanded "><a href="../cloud-native/deploy-cinder-csi-plugin.html"><strong aria-hidden="true">1.3.</strong> Several problems encountered in deploying cinder-csi-plugin</a></li><li class="chapter-item expanded "><a href="../cloud-native/go1.18-workspace.html"><strong aria-hidden="true">1.4.</strong> New in Go 1.18 - Workspaces</a></li><li class="chapter-item expanded "><a href="../cloud-native/spring-boot-async-demo.html"><strong aria-hidden="true">1.5.</strong> spring-boot asynchronous example</a></li><li class="chapter-item expanded "><a href="../cloud-native/plg.html"><strong aria-hidden="true">1.6.</strong> PLG implements Kubernetes Pod log collection and display</a></li><li class="chapter-item expanded "><a href="../cloud-native/fluentd.html"><strong aria-hidden="true">1.7.</strong> Fluentd implements Kubernetes Pod log collection</a></li><li class="chapter-item expanded "><a href="../cloud-native/java-dev-memo-1.html"><strong aria-hidden="true">1.8.</strong> Little records in Java project development (1)</a></li><li class="chapter-item expanded "><a href="../cloud-native/jdk-bug.html"><strong aria-hidden="true">1.9.</strong> JDK bug - Encrypt Private Key failed unrecognized algorithm name PBEWithSHA1AndDESede</a></li><li class="chapter-item expanded "><a href="../cloud-native/tenant-cmp.html"><strong aria-hidden="true">1.10.</strong> Implementation of the function of creating resource pool tenants on the cloud management platform</a></li><li class="chapter-item expanded "><a href="../cloud-native/test-service-performance-2.html"><strong aria-hidden="true">1.11.</strong> iperf3 tests the four-layer performance of Kubernetes Service (Part 2)</a></li><li class="chapter-item expanded "><a href="../cloud-native/test-service-performance-1.html"><strong aria-hidden="true">1.12.</strong> iperf3 tests the four-layer performance of Kubernetes Service (Part 1)</a></li><li class="chapter-item expanded "><a href="../cloud-native/k8s-cmd.html"><strong aria-hidden="true">1.13.</strong> k8s common command</a></li><li class="chapter-item expanded "><a href="../cloud-native/cpu-binding.html"><strong aria-hidden="true">1.14.</strong> k8s supports container core binding</a></li><li class="chapter-item expanded "><a href="../cloud-native/capability.html"><strong aria-hidden="true">1.15.</strong> k8s supports Capability mechanism</a></li><li class="chapter-item expanded "><a href="../cloud-native/oom.html"><strong aria-hidden="true">1.16.</strong> k8s OOMkilled container exceeding memory limit</a></li></ol></li><li class="chapter-item expanded "><a href="../SUMMARY.html"><strong aria-hidden="true">2.</strong> Catalog: Openstack</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../openstack/deploy-openstack-stein.html"><strong aria-hidden="true">2.1.</strong> Problems encountered in Openstack Stein deployment</a></li><li class="chapter-item expanded "><a href="../openstack/sriov2ovs.html"><strong aria-hidden="true">2.2.</strong> sriov computing node to ovs computing node script</a></li><li class="chapter-item expanded "><a href="../openstack/placement.html"><strong aria-hidden="true">2.3.</strong> Openstack Placement</a></li><li class="chapter-item expanded "><a href="../openstack/power-arch.html"><strong aria-hidden="true">2.4.</strong> POWER architecture server as computing node</a></li><li class="chapter-item expanded "><a href="../openstack/sriov.html"><strong aria-hidden="true">2.5.</strong> OpenStack practices SR-IOV computing nodes</a></li><li class="chapter-item expanded "><a href="../openstack/openstack-op-4.html"><strong aria-hidden="true">2.6.</strong> Openstack operation and maintenance records (4)</a></li><li class="chapter-item expanded "><a href="../openstack/openstack-op-3.html"><strong aria-hidden="true">2.7.</strong> Openstack operation and maintenance records (3)</a></li><li class="chapter-item expanded "><a href="../openstack/openstack-op-2.html"><strong aria-hidden="true">2.8.</strong> Openstack operation and maintenance records (2)</a></li><li class="chapter-item expanded "><a href="../openstack/openstack-op-1.html"><strong aria-hidden="true">2.9.</strong> Openstack operation and maintenance records (1)</a></li><li class="chapter-item expanded "><a href="../openstack/novnc-problem.html"><strong aria-hidden="true">2.10.</strong> OpenStack Pike dashboard noVNC cannot be accessed problem</a></li><li class="chapter-item expanded "><a href="../openstack/openstack-local-yum.html"><strong aria-hidden="true">2.11.</strong> Openstack Pike local yum source construction</a></li><li class="chapter-item expanded "><a href="../openstack/cpu-binding.html"><strong aria-hidden="true">2.12.</strong> CPU binding</a></li><li class="chapter-item expanded "><a href="../openstack/resize-fail.html"><strong aria-hidden="true">2.13.</strong> Investigation of the cause of resize failure</a></li><li class="chapter-item expanded "><a href="../openstack/mount-cloud-disk.html"><strong aria-hidden="true">2.14.</strong> Mount cloud disk</a></li><li class="chapter-item expanded "><a href="../openstack/ocata-nova-evacuate-bug.html"><strong aria-hidden="true">2.15.</strong> Ocata nova evacuate bug</a></li><li class="chapter-item expanded "><a href="../openstack/compute-node-ha.html"><strong aria-hidden="true">2.16.</strong> compute node ha mainstream open source implementation</a></li><li class="chapter-item expanded "><a href="../openstack/collectd-influxdb.html"><strong aria-hidden="true">2.17.</strong> Deployment and usage of Collectd and InfluxDB</a></li><li class="chapter-item expanded "><a href="../openstack/live-migration-local.html"><strong aria-hidden="true">2.18.</strong> Live Migration on Local Storage</a></li><li class="chapter-item expanded "><a href="../openstack/fast-evacuation.html"><strong aria-hidden="true">2.19.</strong> Add fast evacuation function to VM HA procedure</a></li><li class="chapter-item expanded "><a href="../openstack/vm-activation-failure.html"><strong aria-hidden="true">2.20.</strong> Windows virtual machine activation failure problem</a></li></ol></li><li class="chapter-item expanded "><a href="../SUMMARY.html"><strong aria-hidden="true">3.</strong> Catalog: Point of view</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../point-of-view/huawei-and-operators.html"><strong aria-hidden="true">3.1.</strong> Huawei and telecom operators</a></li></ol></li><li class="chapter-item expanded "><a href="../SUMMARY.html"><strong aria-hidden="true">4.</strong> Open source small project</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../open-source-small-project/firewall-tool.html"><strong aria-hidden="true">4.1.</strong> Open source a node.js firewall tool</a></li></ol></li><li class="chapter-item expanded "><a href="../SUMMARY.html"><strong aria-hidden="true">5.</strong> Catalog: Tools</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../tools/github-action.html" class="active"><strong aria-hidden="true">5.1.</strong> Github Action Supplementary Introduction</a></li><li class="chapter-item expanded "><a href="../tools/blog-cicd.html"><strong aria-hidden="true">5.2.</strong> Github Action Upgrade backend cloud website CICD process</a></li><li class="chapter-item expanded "><a href="../tools/github-action-demo.html"><strong aria-hidden="true">5.3.</strong> Try the Github Action CI/CD process (create a React project and package it for deployment)</a></li><li class="chapter-item expanded "><a href="../tools/notion-widget.html"><strong aria-hidden="true">5.4.</strong> Notion's page insert widget Widget</a></li><li class="chapter-item expanded "><a href="../tools/git-dir.html"><strong aria-hidden="true">5.5.</strong> Internal structure of .git directory</a></li><li class="chapter-item expanded "><a href="../tools/xshell-skill.html"><strong aria-hidden="true">5.6.</strong> Some Skills of using xshell tools</a></li><li class="chapter-item expanded "><a href="../tools/gerrit-install.html"><strong aria-hidden="true">5.7.</strong> gerrit install</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">English version of the website https://www.backendcloud.cn/</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <!-- Page table of contents -->
+                        <div class="sidetoc"><nav class="pagetoc"></nav></div>
+
+                        <p>release time :2022-04-12 13:04</p>
+<h1 id="restrictions-on-the-use-of-github-actions"><a class="header" href="#restrictions-on-the-use-of-github-actions">Restrictions on the use of Github Actions</a></h1>
+<p>A total usage time limit of 2000 minutes/month, a job in each Workflow can be executed for a maximum of 6 hours, a Workflow can be executed for a maximum of 72 hours, a job in a Workflow can be queued for a maximum of 24 hours in all Actions in a repository, A maximum of 1,000 API requests can be executed in one hour. Number of concurrent jobs: Linux: 20, Mac: 5.</p>
+<blockquote>
+<p>These restrictions are sufficient for personal development. Of course, it also restricts the use of Github resources as a server. Github has the action of Github as a server. With this action, you can ssh to the Github server to use the server's computing power. Github's server performance is still very strong.</p>
+</blockquote>
+<h1 id="what-is-workflow"><a class="header" href="#what-is-workflow">What is Workflow</a></h1>
+<p>A Workflow is a configurable automated process consisting of one or more jobs. You can customize the name, and the Github Action page will display the customized name, otherwise use the default naming method.</p>
+<p>on can define the name of the event that triggers the execution of Workflow. Below are the two most commonly used.</p>
+<pre><code>// single event
+on: push
+
+// multiple events
+on: [push,pull_request]
+</code></pre>
+<h1 id="what-is-a-workflow-job-and-how-to-share-data-between-different-jobs"><a class="header" href="#what-is-a-workflow-job-and-how-to-share-data-between-different-jobs">What is a Workflow job? And how to share data between different jobs</a></h1>
+<p>A Workflow consists of one or more jobs, which means a continuous integration operation that can complete multiple tasks. Github tasks are called steps, and a step can have multiple actions.</p>
+<p>Because a job corresponds to a continuous integration. Different jobs cannot share data. The workflow defined by hexo twice in ci.yaml above is a single job. Github executes multiple jobs in parallel by default.</p>
+<p>The job must define the id, and the id is the key. This is different from the step. The id and name of the step are defined by the key value pair, and different steps are in the form of an array, and are executed sequentially in the order of writing. The name of the job will be displayed on the Github Action page.</p>
+<pre><code>jobs:
+    my_first_job:
+        name: My first job
+    my_second_job:
+        name: My second job
+</code></pre>
+<p>needs can identify whether the job depends on other jobs - if the job fails, all jobs that require the job will be skipped</p>
+<pre><code>jobs:
+    job1:
+    job2:
+        needs: job1
+    job3:
+        needs: [job1, job2]
+</code></pre>
+<p>How to share data between different jobs can share data between workflow jobs by cooperating with need to share string variables or artifacts</p>
+<h1 id="cooperate-with-need-to-share-string-variables"><a class="header" href="#cooperate-with-need-to-share-string-variables">Cooperate with need to share string variables</a></h1>
+<pre><code>jobs:
+job1:
+    runs-on: ubuntu-latest
+    # Map a step output to a job output
+    outputs:
+    output1: ${{ steps.step1.outputs.test }}
+    output2: ${{ steps.step2.outputs.test }}
+    steps:
+    - id: step1
+    run: echo &quot;::set-output name=test::hello&quot;
+    - id: step2
+    run: echo &quot;::set-output name=test::world&quot;
+job2:
+    runs-on: ubuntu-latest
+    needs: job1
+    steps:
+    - run: echo ${{needs.job1.outputs.output1}} ${{needs.job1.outputs.output2}}
+</code></pre>
+<h1 id="artifacts-share-data-between-workflow-jobs"><a class="header" href="#artifacts-share-data-between-workflow-jobs">Artifacts share data between workflow jobs</a></h1>
+<p>Github actions Artifact can be used to store the products produced by actions, such as static files generated by npm build. After the upload is successful, the subsequent process can download these files for use.</p>
+<p>One of the jobs is to upload files to Github actions Artifact, use actions/upload-artifact@v2</p>
+<pre><code>- uses: actions/upload-artifact@v2
+with:
+name: agileconfig-ui  
+path: xxx/yyy/
+</code></pre>
+<p>Another job needs a job that needs to upload files, use uses actions/download-artifact@v2</p>
+<pre><code>- uses: actions/download-artifact@v2
+with:
+    name: agileconfig-ui  
+    path: aaa/bbb   
+</code></pre>
+<blockquote>
+<p>Github actions Artifact can not only share files with different jobs, but also manually download files to Github Action, such as compiling and packaging files.</p>
+</blockquote>
+<h1 id="define-environment-variables"><a class="header" href="#define-environment-variables">Define environment variables</a></h1>
+<p>Job defines environment variables</p>
+<pre><code>jobs:
+    job1:
+        env:
+            FIRST_NAME: Mona
+</code></pre>
+<p>step defines environment variables</p>
+<pre><code>steps:
+- name: Print a greeting
+env:
+    MY_VAR: Hi there! My name is
+    FIRST_NAME: Mona
+    MIDDLE_NAME: The
+    LAST_NAME: Octocat
+run: |
+    echo $MY_VAR $FIRST_NAME $MIDDLE_NAME $LAST_NAME
+</code></pre>
+<h1 id="what-is-a-matrix"><a class="header" href="#what-is-a-matrix">What is a matrix?</a></h1>
+<p>Just sometimes, our code may have multiple compilation environments. We need to compile the dmg compressed package on macos and compile the exe executable file on windows. At this time, we can use the matrix~</p>
+<p>For example, in the following code, we use the matrix to specify: 2 operating systems, 3 node versions.</p>
+<p>At this time, the following code will be executed 6 times - 2 x 3 = 6! ! !</p>
+<pre><code>runs-on: ${{ matrix.os }}
+strategy:
+matrix:
+    os: [ubuntu-16.04, ubuntu-18.04]
+    node: [6, 8, 10]
+steps:
+- uses: actions/setup-node@v1
+    with:
+    node-version: ${{ matrix.node }}
+</code></pre>
+<h1 id="skip-github-actions-or-optionally-execute-cicd-process"><a class="header" href="#skip-github-actions-or-optionally-execute-cicd-process">Skip Github Actions or optionally execute CICD process</a></h1>
+<p>As long as the following keywords are included in the commit information, CI will be skipped and CI Build will not be triggered</p>
+<pre><code>[skip ci]
+[ci skip]
+[no ci]
+[skip actions]
+[actions skip]
+</code></pre>
+<p>Requirement: I don't want to trigger Github Actions build every time I commit, only when the git commit message does not contain the specified content.</p>
+<p>Github Actions supports jobs..if (opens new window) syntax During the operation of Github Actions, we can get some current environment information, such as git submission content information, and control the execution of actions through these contents</p>
+<p>For example, a build is only triggered when the git message does not contain wip</p>
+<pre><code>jobs:
+    format:
+        runs-on: ubuntu-latest
+        if: &quot;! contains(github.event.head_commit.message, 'wip')&quot;
+</code></pre>
+<p>In the same way, the following workflow indicates that the build will only be triggered if the git message contains [build], otherwise it will be skipped</p>
+<pre><code>jobs:
+    format:
+        runs-on: ubuntu-latest
+        if: &quot;contains(github.event.head_commit.message, '[build]')&quot;
+</code></pre>
+<h1 id="how-to-manually-trigger-a-build"><a class="header" href="#how-to-manually-trigger-a-build">How to manually trigger a build</a></h1>
+<p>By default, only push and pull request actions will trigger the build</p>
+<pre><code>on:
+    push:
+        branches: [ main ]
+    pull_request:
+        branches: [ main ]
+</code></pre>
+<p>The easiest way is to add workflow_dispatch action</p>
+<pre><code>on:
+    workflow_dispatch:
+    push:
+        branches: [ main ]
+    pull_request:
+        branches: [ main ]
+</code></pre>
+<p>In this way, you can see the button to execute the build on the actions page, and you can execute a manual build after selecting a branch.</p>
+<p><img src="2023-01-19-14-07-32.png" alt="" /></p>
+<pre><code>on:
+workflow_dispatch:
+    inputs:
+    name:
+        description: 'Person to greet'
+        required: true
+        default: 'Mona the Octocat'
+    home:
+        description: 'location'
+        required: false
+
+jobs:
+say_hello:
+    runs-on: ubuntu-latest
+    steps:
+    - run: |
+        echo &quot;Hello ${{ github.event.inputs.name }}!&quot;
+        echo &quot;- in ${{ github.event.inputs.home }}!&quot;
+</code></pre>
+<p><img src="2023-01-19-14-07-47.png" alt="" /></p>
+<h1 id="code-inspection-takes-bash-script-inspection-as-an-example"><a class="header" href="#code-inspection-takes-bash-script-inspection-as-an-example">Code inspection takes bash script inspection as an example</a></h1>
+<pre><code class="language-yaml">name: shellcheck
+'on':
+  push:
+  pull_request:
+  schedule:
+    - cron: '0 1 * * *'
+
+jobs:
+
+  shellcheck:
+    name: shellcheck
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out the codebase.
+        uses: actions/checkout@v2
+
+      - name: Install shellcheck from GitHub releases
+        run: |
+          sudo curl -L https://github.com/koalaman/shellcheck/releases/download/v${SHELLCHECK_VERSION}/shellcheck-v${SHELLCHECK_VERSION}.$(uname -s).$(uname -m).tar.xz -o shellcheck.tar.xz
+          sudo tar -xvf shellcheck.tar.xz
+          sudo mv shellcheck-v${SHELLCHECK_VERSION}/shellcheck /usr/local/bin/shellcheck
+          sudo chmod 755 /usr/local/bin/shellcheck
+          shellcheck --version
+        env:
+          SHELLCHECK_VERSION: 0.7.2
+
+      - name: Shellcheck!
+        run: |
+          shellcheck &lt;code path&gt;
+          shellcheck &lt;code path&gt;
+</code></pre>
+<h1 id="github-actions-build-android"><a class="header" href="#github-actions-build-android">GitHub Actions Build Android</a></h1>
+<pre><code class="language-yaml">name: android_build
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the code
+        # 拉取 android_builder 的源代码
+        uses: actions/checkout@v2
+      - name: Set up JDK
+        # 设置 Java 运行环境
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+          # 用 1.8 版本覆盖环境中自带的 Java 11 版本
+      - id: get-project
+        # 读取项目地址
+        name: Get project name
+        run: echo &quot;::set-output name=PROJECT::$(cat project-to-build)&quot;
+      - name: Clone project
+        # 拉取项目源码到虚拟环境
+        run: git clone --depth=1 ${{ steps.get-project.outputs.PROJECT }} project
+      - name: Build the app
+        # 构建调试版 APK
+        working-directory: ./project
+        run: |
+          if [ ! -f &quot;gradlew&quot; ]; then gradle wrapper; fi
+          chmod +x gradlew
+          ./gradlew assembleDebug --stacktrace
+      - name: Upload APK
+        # 打包上传生成的 APK 到的网页端
+        uses: actions/upload-artifact@v2
+        with:
+          name: my-build-apk
+          path: ./**/*.apk
+</code></pre>
+<h1 id="docker-build-image-and-push-to-docker-hub"><a class="header" href="#docker-build-image-and-push-to-docker-hub">Docker build image and push to Docker Hub</a></h1>
+<p>Go to https://hub.docker.com/settings/security to generate an access token, and remember it well. Then open Github to Settings &gt; Secrets &gt; New secret to add two records:</p>
+<ul>
+<li>Key name: DOCKER_HUB_USERNAME, value is the username of Docker hub</li>
+<li>Key name: DOCKER_HUB_ACCESS_TOKEN, the value is the access token just copied, the value is similar to c292155d-1bd7-xxxx-xxxx-4da75bedb178</li>
+</ul>
+<pre><code class="language-yaml">name: CI to Docker Hub 
+
+on:
+  push:
+        branches: [ master ]
+   # tags:
+   #   - &quot;v*.*.*&quot;
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      -
+        name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+      -
+        name: Login to DockerHub
+        uses: docker/login-action@v1 
+        with:
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+      -
+        name: Build and push
+        id: docker_build
+        uses: docker/build-push-action@v2
+        with:
+          push: true
+          tags: finleyma/simplewhale:latest
+          build-args: |
+            arg1=value1
+            arg2=value2
+      -
+        name: Image digest
+        run: echo ${{ steps.docker_build.outputs.digest }}
+</code></pre>
+<h1 id="github-action-deploy-openstack-environment"><a class="header" href="#github-action-deploy-openstack-environment">Github Action Deploy Openstack environment</a></h1>
+<p>The following two examples are examples in the latest Openstack versions TX 部署nova等基本服务and部署Ironic等服务</p>
+<pre><code class="language-yaml">jobs:
+  functional-compute:
+    strategy:
+      fail-fast: false
+      matrix:
+        name: [&quot;master&quot;]
+        openstack_version: [&quot;master&quot;]
+        ubuntu_version: [&quot;20.04&quot;]
+        include:
+          - name: &quot;xena&quot;
+            openstack_version: &quot;stable/xena&quot;
+            ubuntu_version: &quot;20.04&quot;
+          - name: &quot;wallaby&quot;
+            openstack_version: &quot;stable/wallaby&quot;
+            ubuntu_version: &quot;20.04&quot;
+          - name: &quot;victoria&quot;
+            openstack_version: &quot;stable/victoria&quot;
+            ubuntu_version: &quot;20.04&quot;
+          - name: &quot;ussuri&quot;
+            openstack_version: &quot;stable/ussuri&quot;
+            ubuntu_version: &quot;18.04&quot;
+          - name: &quot;train&quot;
+            openstack_version: &quot;stable/train&quot;
+            ubuntu_version: &quot;18.04&quot;
+    runs-on: ubuntu-${{ matrix.ubuntu_version }}
+    name: Deploy OpenStack ${{ matrix.name }} with Nova and run compute acceptance tests
+    steps:
+      - name: Deploy devstack
+        uses: EmilienM/devstack-action@v0.6
+        with:
+          branch: ${{ matrix.openstack_version }}
+          conf_overrides: |
+            CINDER_ISCSI_HELPER=tgtadm
+</code></pre>
+<pre><code class="language-yaml">jobs:
+  functional-baremetal:
+    strategy:
+      fail-fast: false
+      matrix:
+        name: [&quot;master&quot;]
+        openstack_version: [&quot;master&quot;]
+        ubuntu_version: [&quot;20.04&quot;]
+        include:
+          - name: &quot;xena&quot;
+            openstack_version: &quot;stable/xena&quot;
+            ubuntu_version: &quot;20.04&quot;
+          - name: &quot;wallaby&quot;
+            openstack_version: &quot;stable/wallaby&quot;
+            ubuntu_version: &quot;20.04&quot;
+          - name: &quot;victoria&quot;
+            openstack_version: &quot;stable/victoria&quot;
+            ubuntu_version: &quot;20.04&quot;
+          - name: &quot;ussuri&quot;
+            openstack_version: &quot;stable/ussuri&quot;
+            ubuntu_version: &quot;18.04&quot;
+          - name: &quot;train&quot;
+            openstack_version: &quot;stable/train&quot;
+            ubuntu_version: &quot;18.04&quot;
+    runs-on: ubuntu-${{ matrix.ubuntu_version }}
+    name: Deploy OpenStack ${{ matrix.name }} with Ironic and run baremetal acceptance tests
+    steps:
+      - name: Deploy devstack
+        uses: EmilienM/devstack-action@v0.6
+        with:
+          branch: ${{ matrix.openstack_version }}
+          conf_overrides: |
+            enable_plugin ironic https://opendev.org/openstack/ironic ${{ matrix.openstack_version }}
+            LIBS_FROM_GIT=pyghmi,virtualbmc
+            FORCE_CONFIG_DRIVE=True
+            Q_AGENT=openvswitch
+            Q_ML2_TENANT_NETWORK_TYPE=vxlan
+            Q_ML2_PLUGIN_MECHANISM_DRIVERS=openvswitch
+            DEFAULT_INSTANCE_TYPE=baremetal
+            OVERRIDE_PUBLIC_BRIDGE_MTU=1400
+            VIRT_DRIVER=ironic
+            BUILD_TIMEOUT=1800
+            SERVICE_TIMEOUT=90
+            GLANCE_LIMIT_IMAGE_SIZE_TOTAL=5000
+            Q_USE_SECGROUP=False
+            API_WORKERS=1
+            IRONIC_BAREMETAL_BASIC_OPS=True
+            IRONIC_BUILD_DEPLOY_RAMDISK=False
+            IRONIC_AUTOMATED_CLEAN_ENABLED=False
+            IRONIC_CALLBACK_TIMEOUT=600
+            IRONIC_DEPLOY_DRIVER=ipmi
+            IRONIC_INSPECTOR_BUILD_RAMDISK=False
+            IRONIC_RAMDISK_TYPE=tinyipa
+            IRONIC_TEMPEST_BUILD_TIMEOUT=720
+            IRONIC_TEMPEST_WHOLE_DISK_IMAGE=False
+            IRONIC_VM_COUNT=1
+            IRONIC_VM_EPHEMERAL_DISK=1
+            IRONIC_VM_LOG_DIR=/opt/stack/new/ironic-bm-logs
+            IRONIC_VM_SPECS_RAM=1024
+            IRONIC_DEFAULT_DEPLOY_INTERFACE=direct
+            IRONIC_ENABLED_DEPLOY_INTERFACES=direct
+            SWIFT_ENABLE_TEMPURLS=True
+            SWIFT_TEMPURL_KEY=secretkey
+          enabled_services: 'ir-api,ir-cond,s-account,s-container,s-object,s-proxy,q-svc,q-agt,q-dhcp,q-l3,q-meta,-cinder,-c-sch,-c-api,-c-vol,-c-bak,-ovn,-ovn-controller,-ovn-northd,-q-ovn-metadata-agent'
+</code></pre>
+<p><img src="2023-01-19-14-10-44.png" alt="" /></p>
+<p><img src="2023-01-19-14-10-53.png" alt="" /></p>
+<p>In this way, the parallel preparation of 5 or 6 latest versions of the openstack environment is automatically completed in just one meal.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../SUMMARY.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                            <a rel="next" href="../tools/blog-cicd.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../SUMMARY.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a rel="next" href="../tools/blog-cicd.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        <script type="text/javascript" src="../sidebar.js"></script>
+    </body>
+</html>

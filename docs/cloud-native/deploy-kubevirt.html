@@ -1,0 +1,922 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Deploy Kubernetes + KubeVirt and the basic use of KubeVirt - English version of the website https://www.backendcloud.cn/</title>
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../style.css">
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../SUMMARY.html"><strong aria-hidden="true">1.</strong> Catalog: Cloud Native</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../cloud-native/deploy-kubevirt.html" class="active"><strong aria-hidden="true">1.1.</strong> Deploy Kubernetes + KubeVirt and the basic use of KubeVirt</a></li><li class="chapter-item expanded "><a href="../cloud-native/docker-java-demo.html"><strong aria-hidden="true">1.2.</strong> docker hello-world project</a></li><li class="chapter-item expanded "><a href="../cloud-native/deploy-cinder-csi-plugin.html"><strong aria-hidden="true">1.3.</strong> Several problems encountered in deploying cinder-csi-plugin</a></li><li class="chapter-item expanded "><a href="../cloud-native/go1.18-workspace.html"><strong aria-hidden="true">1.4.</strong> New in Go 1.18 - Workspaces</a></li><li class="chapter-item expanded "><a href="../cloud-native/spring-boot-async-demo.html"><strong aria-hidden="true">1.5.</strong> spring-boot asynchronous example</a></li><li class="chapter-item expanded "><a href="../cloud-native/plg.html"><strong aria-hidden="true">1.6.</strong> PLG implements Kubernetes Pod log collection and display</a></li><li class="chapter-item expanded "><a href="../cloud-native/fluentd.html"><strong aria-hidden="true">1.7.</strong> Fluentd implements Kubernetes Pod log collection</a></li><li class="chapter-item expanded "><a href="../cloud-native/java-dev-memo-1.html"><strong aria-hidden="true">1.8.</strong> Little records in Java project development (1)</a></li><li class="chapter-item expanded "><a href="../cloud-native/jdk-bug.html"><strong aria-hidden="true">1.9.</strong> JDK bug - Encrypt Private Key failed unrecognized algorithm name PBEWithSHA1AndDESede</a></li><li class="chapter-item expanded "><a href="../cloud-native/tenant-cmp.html"><strong aria-hidden="true">1.10.</strong> Implementation of the function of creating resource pool tenants on the cloud management platform</a></li><li class="chapter-item expanded "><a href="../cloud-native/test-service-performance-2.html"><strong aria-hidden="true">1.11.</strong> iperf3 tests the four-layer performance of Kubernetes Service (Part 2)</a></li><li class="chapter-item expanded "><a href="../cloud-native/test-service-performance-1.html"><strong aria-hidden="true">1.12.</strong> iperf3 tests the four-layer performance of Kubernetes Service (Part 1)</a></li><li class="chapter-item expanded "><a href="../cloud-native/k8s-cmd.html"><strong aria-hidden="true">1.13.</strong> k8s common command</a></li><li class="chapter-item expanded "><a href="../cloud-native/cpu-binding.html"><strong aria-hidden="true">1.14.</strong> k8s supports container core binding</a></li><li class="chapter-item expanded "><a href="../cloud-native/capability.html"><strong aria-hidden="true">1.15.</strong> k8s supports Capability mechanism</a></li><li class="chapter-item expanded "><a href="../cloud-native/oom.html"><strong aria-hidden="true">1.16.</strong> k8s OOMkilled container exceeding memory limit</a></li></ol></li><li class="chapter-item expanded "><a href="../SUMMARY.html"><strong aria-hidden="true">2.</strong> Catalog: Openstack</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../openstack/deploy-openstack-stein.html"><strong aria-hidden="true">2.1.</strong> Problems encountered in Openstack Stein deployment</a></li><li class="chapter-item expanded "><a href="../openstack/sriov2ovs.html"><strong aria-hidden="true">2.2.</strong> sriov computing node to ovs computing node script</a></li><li class="chapter-item expanded "><a href="../openstack/placement.html"><strong aria-hidden="true">2.3.</strong> Openstack Placement</a></li><li class="chapter-item expanded "><a href="../openstack/power-arch.html"><strong aria-hidden="true">2.4.</strong> POWER architecture server as computing node</a></li><li class="chapter-item expanded "><a href="../openstack/sriov.html"><strong aria-hidden="true">2.5.</strong> OpenStack practices SR-IOV computing nodes</a></li><li class="chapter-item expanded "><a href="../openstack/openstack-op-4.html"><strong aria-hidden="true">2.6.</strong> Openstack operation and maintenance records (4)</a></li><li class="chapter-item expanded "><a href="../openstack/openstack-op-3.html"><strong aria-hidden="true">2.7.</strong> Openstack operation and maintenance records (3)</a></li><li class="chapter-item expanded "><a href="../openstack/openstack-op-2.html"><strong aria-hidden="true">2.8.</strong> Openstack operation and maintenance records (2)</a></li><li class="chapter-item expanded "><a href="../openstack/openstack-op-1.html"><strong aria-hidden="true">2.9.</strong> Openstack operation and maintenance records (1)</a></li><li class="chapter-item expanded "><a href="../openstack/novnc-problem.html"><strong aria-hidden="true">2.10.</strong> OpenStack Pike dashboard noVNC cannot be accessed problem</a></li><li class="chapter-item expanded "><a href="../openstack/openstack-local-yum.html"><strong aria-hidden="true">2.11.</strong> Openstack Pike local yum source construction</a></li><li class="chapter-item expanded "><a href="../openstack/cpu-binding.html"><strong aria-hidden="true">2.12.</strong> CPU binding</a></li><li class="chapter-item expanded "><a href="../openstack/resize-fail.html"><strong aria-hidden="true">2.13.</strong> Investigation of the cause of resize failure</a></li><li class="chapter-item expanded "><a href="../openstack/mount-cloud-disk.html"><strong aria-hidden="true">2.14.</strong> Mount cloud disk</a></li><li class="chapter-item expanded "><a href="../openstack/ocata-nova-evacuate-bug.html"><strong aria-hidden="true">2.15.</strong> Ocata nova evacuate bug</a></li><li class="chapter-item expanded "><a href="../openstack/compute-node-ha.html"><strong aria-hidden="true">2.16.</strong> compute node ha mainstream open source implementation</a></li><li class="chapter-item expanded "><a href="../openstack/collectd-influxdb.html"><strong aria-hidden="true">2.17.</strong> Deployment and usage of Collectd and InfluxDB</a></li><li class="chapter-item expanded "><a href="../openstack/live-migration-local.html"><strong aria-hidden="true">2.18.</strong> Live Migration on Local Storage</a></li><li class="chapter-item expanded "><a href="../openstack/fast-evacuation.html"><strong aria-hidden="true">2.19.</strong> Add fast evacuation function to VM HA procedure</a></li><li class="chapter-item expanded "><a href="../openstack/vm-activation-failure.html"><strong aria-hidden="true">2.20.</strong> Windows virtual machine activation failure problem</a></li></ol></li><li class="chapter-item expanded "><a href="../SUMMARY.html"><strong aria-hidden="true">3.</strong> Catalog: Point of view</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../point-of-view/huawei-and-operators.html"><strong aria-hidden="true">3.1.</strong> Huawei and telecom operators</a></li></ol></li><li class="chapter-item expanded "><a href="../SUMMARY.html"><strong aria-hidden="true">4.</strong> Open source small project</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../open-source-small-project/firewall-tool.html"><strong aria-hidden="true">4.1.</strong> Open source a node.js firewall tool</a></li></ol></li><li class="chapter-item expanded "><a href="../SUMMARY.html"><strong aria-hidden="true">5.</strong> Catalog: Tools</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../tools/github-action.html"><strong aria-hidden="true">5.1.</strong> Github Action Supplementary Introduction</a></li><li class="chapter-item expanded "><a href="../tools/blog-cicd.html"><strong aria-hidden="true">5.2.</strong> Github Action Upgrade backend cloud website CICD process</a></li><li class="chapter-item expanded "><a href="../tools/github-action-demo.html"><strong aria-hidden="true">5.3.</strong> Try the Github Action CI/CD process (create a React project and package it for deployment)</a></li><li class="chapter-item expanded "><a href="../tools/notion-widget.html"><strong aria-hidden="true">5.4.</strong> Notion's page insert widget Widget</a></li><li class="chapter-item expanded "><a href="../tools/git-dir.html"><strong aria-hidden="true">5.5.</strong> Internal structure of .git directory</a></li><li class="chapter-item expanded "><a href="../tools/xshell-skill.html"><strong aria-hidden="true">5.6.</strong> Some Skills of using xshell tools</a></li><li class="chapter-item expanded "><a href="../tools/gerrit-install.html"><strong aria-hidden="true">5.7.</strong> gerrit install</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">English version of the website https://www.backendcloud.cn/</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <!-- Page table of contents -->
+                        <div class="sidetoc"><nav class="pagetoc"></nav></div>
+
+                        <p>release time :2022-05-06 14:17</p>
+<p>The KubeVirt project allows virtual machines to be managed by Kubernetes like containers.</p>
+<h1 id="deploy-kubernetes"><a class="header" href="#deploy-kubernetes">deploy Kubernetes</a></h1>
+<p>Basic environment - execute on all machines</p>
+<pre><code>hostnamectl set-hostname xxxx
+
+systemctl stop firewalld
+systemctl disable firewalld
+
+sudo setenforce 0
+sudo sed -i 's/^SELINUX=enforcing$/SELINUX=permissive/' /etc/selinux/config
+
+swapoff -a  
+sed -ri 's/.*swap.*/#&amp;/' /etc/fstab
+
+cat &lt;&lt;EOF | sudo tee /etc/modules-load.d/k8s.conf
+br_netfilter
+EOF
+
+cat &lt;&lt;EOF | sudo tee /etc/sysctl.d/k8s.conf
+net.bridge.bridge-nf-call-ip6tables = 1
+net.bridge.bridge-nf-call-iptables = 1
+EOF
+sudo sysctl --system
+
+yum install -y yum-utils
+yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+yum install -y docker-ce-20.10.7 docker-ce-cli-20.10.7  containerd.io-1.4.6
+systemctl start docker &amp;&amp; systemctl enable docker &amp;&amp; systemctl status docker
+
+mkdir -p /etc/docker
+tee /etc/docker/daemon.json &lt;&lt;-'EOF'
+{
+&quot;registry-mirrors&quot;: [&quot;https://82m9ar63.mirror.aliyuncs.com&quot;],
+&quot;exec-opts&quot;: [&quot;native.cgroupdriver=systemd&quot;],
+&quot;log-driver&quot;: &quot;json-file&quot;,
+&quot;log-opts&quot;: {
+&quot;max-size&quot;: &quot;100m&quot;
+},
+&quot;storage-driver&quot;: &quot;overlay2&quot;
+}
+EOF
+systemctl daemon-reload
+systemctl restart docker
+</code></pre>
+<p>Install kubelet, kubeadm, kubectl - execute on all machines</p>
+<pre><code>cat &lt;&lt;EOF | sudo tee /etc/yum.repos.d/kubernetes.repo
+[kubernetes]
+name=Kubernetes
+baseurl=http://mirrors.aliyun.com/kubernetes/yum/repos/kubernetes-el7-x86_64
+enabled=1
+gpgcheck=0
+repo_gpgcheck=0
+gpgkey=http://mirrors.aliyun.com/kubernetes/yum/doc/yum-key.gpg
+http://mirrors.aliyun.com/kubernetes/yum/doc/rpm-package-key.gpg
+exclude=kubelet kubeadm kubectl
+EOF
+
+
+sudo yum install -y kubelet-1.20.9 kubeadm-1.20.9 kubectl-1.20.9 --disableexcludes=kubernetes
+
+sudo systemctl enable --now kubelet
+</code></pre>
+<p>Download the images required by each machine - execute on all machines</p>
+<pre><code>sudo tee ./images.sh &lt;&lt;-'EOF'
+#!/bin/bash
+images=(
+kube-apiserver:v1.20.9
+kube-proxy:v1.20.9
+kube-controller-manager:v1.20.9
+kube-scheduler:v1.20.9
+coredns:1.7.0
+etcd:3.4.13-0
+pause:3.2
+)
+for imageName in ${images[@]} ; do
+docker pull registry.cn-hangzhou.aliyuncs.com/lfy_k8s_images/$imageName
+done
+EOF
+
+chmod +x ./images.sh &amp;&amp; ./images.sh
+
+echo &quot;192.168.159.133  cluster-endpoint k8s-master&quot; &gt;&gt; /etc/hosts
+echo &quot;192.168.159.134  k8s-node01&quot; &gt;&gt; /etc/hosts
+</code></pre>
+<p>Initialize the master node - execute on the master node</p>
+<pre><code>kubeadm init \
+--apiserver-advertise-address=192.168.159.133 \
+--control-plane-endpoint=cluster-endpoint \
+--image-repository registry.cn-hangzhou.aliyuncs.com/lfy_k8s_images \
+--kubernetes-version v1.20.9 \
+--service-cidr=10.96.0.0/16 \
+--pod-network-cidr=192.168.0.0/16
+</code></pre>
+<pre><code class="language-bash">[init] Using Kubernetes version: v1.20.9
+[preflight] Running pre-flight checks
+        [WARNING Firewalld]: firewalld is active, please ensure ports [6443 10250] are open or your cluster may not function correctly
+        [WARNING IsDockerSystemdCheck]: detected &quot;cgroupfs&quot; as the Docker cgroup driver. The recommended driver is &quot;systemd&quot;. Please follow the guide at https://kubernetes.io/docs/setup/cri/
+        [WARNING SystemVerification]: this Docker version is not on the list of validated versions: 20.10.7. Latest validated version: 19.03
+        [WARNING Hostname]: hostname &quot;k8s-master&quot; could not be reached
+        [WARNING Hostname]: hostname &quot;k8s-master&quot;: lookup k8s-master on 192.168.159.2:53: no such host
+[preflight] Pulling images required for setting up a Kubernetes cluster
+[preflight] This might take a minute or two, depending on the speed of your internet connection
+[preflight] You can also perform this action in beforehand using 'kubeadm config images pull'
+[certs] Using certificateDir folder &quot;/etc/kubernetes/pki&quot;
+[certs] Generating &quot;ca&quot; certificate and key
+[certs] Generating &quot;apiserver&quot; certificate and key
+[certs] apiserver serving cert is signed for DNS names [cluster-endpoint k8s-master kubernetes kubernetes.default kubernetes.default.svc kubernetes.default.svc.cluster.local] and IPs [10.96.0.1 192.168.159.133]
+[certs] Generating &quot;apiserver-kubelet-client&quot; certificate and key
+[certs] Generating &quot;front-proxy-ca&quot; certificate and key
+[certs] Generating &quot;front-proxy-client&quot; certificate and key
+[certs] Generating &quot;etcd/ca&quot; certificate and key
+[certs] Generating &quot;etcd/server&quot; certificate and key
+[certs] etcd/server serving cert is signed for DNS names [k8s-master localhost] and IPs [192.168.159.133 127.0.0.1 ::1]
+[certs] Generating &quot;etcd/peer&quot; certificate and key
+[certs] etcd/peer serving cert is signed for DNS names [k8s-master localhost] and IPs [192.168.159.133 127.0.0.1 ::1]
+[certs] Generating &quot;etcd/healthcheck-client&quot; certificate and key
+[certs] Generating &quot;apiserver-etcd-client&quot; certificate and key
+[certs] Generating &quot;sa&quot; key and public key
+[kubeconfig] Using kubeconfig folder &quot;/etc/kubernetes&quot;
+[kubeconfig] Writing &quot;admin.conf&quot; kubeconfig file
+[kubeconfig] Writing &quot;kubelet.conf&quot; kubeconfig file
+[kubeconfig] Writing &quot;controller-manager.conf&quot; kubeconfig file
+[kubeconfig] Writing &quot;scheduler.conf&quot; kubeconfig file
+[kubelet-start] Writing kubelet environment file with flags to file &quot;/var/lib/kubelet/kubeadm-flags.env&quot;
+[kubelet-start] Writing kubelet configuration to file &quot;/var/lib/kubelet/config.yaml&quot;
+[kubelet-start] Starting the kubelet
+[control-plane] Using manifest folder &quot;/etc/kubernetes/manifests&quot;
+[control-plane] Creating static Pod manifest for &quot;kube-apiserver&quot;
+[control-plane] Creating static Pod manifest for &quot;kube-controller-manager&quot;
+[control-plane] Creating static Pod manifest for &quot;kube-scheduler&quot;
+[etcd] Creating static Pod manifest for local etcd in &quot;/etc/kubernetes/manifests&quot;
+[wait-control-plane] Waiting for the kubelet to boot up the control plane as static Pods from directory &quot;/etc/kubernetes/manifests&quot;. This can take up to 4m0s
+[apiclient] All control plane components are healthy after 11.503023 seconds
+[upload-config] Storing the configuration used in ConfigMap &quot;kubeadm-config&quot; in the &quot;kube-system&quot; Namespace
+[kubelet] Creating a ConfigMap &quot;kubelet-config-1.20&quot; in namespace kube-system with the configuration for the kubelets in the cluster
+[upload-certs] Skipping phase. Please see --upload-certs
+[mark-control-plane] Marking the node k8s-master as control-plane by adding the labels &quot;node-role.kubernetes.io/master=''&quot; and &quot;node-role.kubernetes.io/control-plane='' (deprecated)&quot;
+[mark-control-plane] Marking the node k8s-master as control-plane by adding the taints [node-role.kubernetes.io/master:NoSchedule]
+[bootstrap-token] Using token: 6ibx3k.dwc77g1lgrmsdd3b
+[bootstrap-token] Configuring bootstrap tokens, cluster-info ConfigMap, RBAC Roles
+[bootstrap-token] configured RBAC rules to allow Node Bootstrap tokens to get nodes
+[bootstrap-token] configured RBAC rules to allow Node Bootstrap tokens to post CSRs in order for nodes to get long term certificate credentials
+[bootstrap-token] configured RBAC rules to allow the csrapprover controller automatically approve CSRs from a Node Bootstrap Token
+[bootstrap-token] configured RBAC rules to allow certificate rotation for all node client certificates in the cluster
+[bootstrap-token] Creating the &quot;cluster-info&quot; ConfigMap in the &quot;kube-public&quot; namespace
+[kubelet-finalize] Updating &quot;/etc/kubernetes/kubelet.conf&quot; to point to a rotatable kubelet client certificate and key
+[addons] Applied essential addon: CoreDNS
+[addons] Applied essential addon: kube-proxy
+
+Your Kubernetes control-plane has initialized successfully!
+
+To start using your cluster, you need to run the following as a regular user:
+
+  mkdir -p $HOME/.kube
+  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+  sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+Alternatively, if you are the root user, you can run:
+
+  export KUBECONFIG=/etc/kubernetes/admin.conf
+
+You should now deploy a pod network to the cluster.
+Run &quot;kubectl apply -f [podnetwork].yaml&quot; with one of the options listed at:
+  https://kubernetes.io/docs/concepts/cluster-administration/addons/
+
+You can now join any number of control-plane nodes by copying certificate authorities
+and service account keys on each node and then running the following as root:
+
+  kubeadm join cluster-endpoint:6443 --token 6ibx3k.dwc77g1lgrmsdd3b \
+    --discovery-token-ca-cert-hash sha256:241901cd93dd1e7c08f43316f2d6d6c968ac2d38e463509c234f301025d8d191 \
+    --control-plane 
+
+Then you can join any number of worker nodes by running the following on each as root:
+
+kubeadm join cluster-endpoint:6443 --token 6ibx3k.dwc77g1lgrmsdd3b \
+    --discovery-token-ca-cert-hash sha256:241901cd93dd1e7c08f43316f2d6d6c968ac2d38e463509c234f301025d8d191
+
+[root@localhost ~]# mkdir -p $HOME/.kube
+[root@localhost ~]# sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+[root@localhost ~]# sudo chown $(id -u):$(id -g) $HOME/.kube/config
+[root@localhost ~]# kubectl get nodes
+NAME         STATUS     ROLES                  AGE     VERSION
+k8s-master   NotReady   control-plane,master   2m10s   v1.20.9
+[root@localhost ~]# kubectl get pods -A
+NAMESPACE     NAME                                 READY   STATUS    RESTARTS   AGE
+kube-system   coredns-5897cd56c4-gnrrz             0/1     Pending   0          2m52s
+kube-system   coredns-5897cd56c4-hwbc8             0/1     Pending   0          2m52s
+kube-system   etcd-k8s-master                      1/1     Running   0          3m6s
+kube-system   kube-apiserver-k8s-master            1/1     Running   0          3m6s
+kube-system   kube-controller-manager-k8s-master   1/1     Running   0          3m6s
+kube-system   kube-proxy-kklkn                     1/1     Running   0          2m52s
+kube-system   kube-scheduler-k8s-master            1/1     Running   0          3m8s
+[root@localhost ~]# 
+</code></pre>
+<h1 id="install-network-components---executed-on-the-master-node"><a class="header" href="#install-network-components---executed-on-the-master-node">Install network components - executed on the master node</a></h1>
+<pre><code class="language-bash">[root@localhost ~]# curl https://docs.projectcalico.org/manifests/calico.yaml -O
+[root@localhost ~]# ls
+anaconda-ks.cfg  calico.yaml  images.sh
+[root@localhost ~]# cat calico.yaml |grep 192.168
+            #   value: &quot;192.168.0.0/16&quot;
+[root@localhost ~]# vi calico.yaml 
+</code></pre>
+<pre><code>        # - name: CALICO_IPV4POOL_CIDR
+        #   value: &quot;192.168.0.0/16&quot;
+</code></pre>
+<p>changed to</p>
+<pre><code>        - name: CALICO_IPV4POOL_CIDR
+        value: &quot;10.97.0.0/16&quot;
+</code></pre>
+<pre><code class="language-bash">[root@localhost ~]# kubectl apply -f calico.yaml 
+configmap/calico-config created
+customresourcedefinition.apiextensions.k8s.io/bgpconfigurations.crd.projectcalico.org created
+customresourcedefinition.apiextensions.k8s.io/bgppeers.crd.projectcalico.org created
+customresourcedefinition.apiextensions.k8s.io/blockaffinities.crd.projectcalico.org created
+customresourcedefinition.apiextensions.k8s.io/caliconodestatuses.crd.projectcalico.org created
+customresourcedefinition.apiextensions.k8s.io/clusterinformations.crd.projectcalico.org created
+customresourcedefinition.apiextensions.k8s.io/felixconfigurations.crd.projectcalico.org created
+customresourcedefinition.apiextensions.k8s.io/globalnetworkpolicies.crd.projectcalico.org created
+customresourcedefinition.apiextensions.k8s.io/globalnetworksets.crd.projectcalico.org created
+customresourcedefinition.apiextensions.k8s.io/hostendpoints.crd.projectcalico.org created
+customresourcedefinition.apiextensions.k8s.io/ipamblocks.crd.projectcalico.org created
+customresourcedefinition.apiextensions.k8s.io/ipamconfigs.crd.projectcalico.org created
+customresourcedefinition.apiextensions.k8s.io/ipamhandles.crd.projectcalico.org created
+customresourcedefinition.apiextensions.k8s.io/ippools.crd.projectcalico.org created
+customresourcedefinition.apiextensions.k8s.io/ipreservations.crd.projectcalico.org created
+customresourcedefinition.apiextensions.k8s.io/kubecontrollersconfigurations.crd.projectcalico.org created
+customresourcedefinition.apiextensions.k8s.io/networkpolicies.crd.projectcalico.org created
+customresourcedefinition.apiextensions.k8s.io/networksets.crd.projectcalico.org created
+clusterrole.rbac.authorization.k8s.io/calico-kube-controllers created
+clusterrolebinding.rbac.authorization.k8s.io/calico-kube-controllers created
+clusterrole.rbac.authorization.k8s.io/calico-node created
+clusterrolebinding.rbac.authorization.k8s.io/calico-node created
+daemonset.apps/calico-node created
+serviceaccount/calico-node created
+deployment.apps/calico-kube-controllers created
+serviceaccount/calico-kube-controllers created
+poddisruptionbudget.policy/calico-kube-controllers created
+
+[root@localhost ~]# kubectl get node
+NAME         STATUS   ROLES                  AGE   VERSION
+k8s-master   Ready    control-plane,master   14m   v1.20.9
+[root@localhost ~]# kubectl get pod -A
+NAMESPACE     NAME                                       READY   STATUS    RESTARTS   AGE
+kube-system   calico-kube-controllers-6fcb5c5bcf-wghrm   1/1     Running   0          3m23s
+kube-system   calico-node-pj9rm                          1/1     Running   0          3m24s
+kube-system   coredns-5897cd56c4-gnrrz                   1/1     Running   0          14m
+kube-system   coredns-5897cd56c4-hwbc8                   1/1     Running   0          14m
+kube-system   etcd-k8s-master                            1/1     Running   0          14m
+kube-system   kube-apiserver-k8s-master                  1/1     Running   0          14m
+kube-system   kube-controller-manager-k8s-master         1/1     Running   0          14m
+kube-system   kube-proxy-kklkn                           1/1     Running   0          14m
+kube-system   kube-scheduler-k8s-master                  1/1     Running   0          14m
+[root@localhost ~]# 
+</code></pre>
+<p>Join the node node</p>
+<pre><code>[root@localhost ~]# kubeadm join cluster-endpoint:6443 --token 6ibx3k.dwc77g1lgrmsdd3b \
+    --discovery-token-ca-cert-hash sha256:241901cd93dd1e7c08f43316f2d6d6c968ac2d38e463509c234f301025d8d191
+
+[root@k8s-node01 ~]# kubeadm join cluster-endpoint:6443 --token 6ibx3k.dwc77g1lgrmsdd3b     --discovery-token-ca-cert-hash sha256:241901cd93dd1e7c08f43316f2d6d6c968ac2d38e463509c234f301025d8d191
+[preflight] Running pre-flight checks
+        [WARNING IsDockerSystemdCheck]: detected &quot;cgroupfs&quot; as the Docker cgroup driver. The recommended driver is &quot;systemd&quot;. Please follow the guide at https://kubernetes.io/docs/setup/cri/
+        [WARNING SystemVerification]: this Docker version is not on the list of validated versions: 20.10.7. Latest validated version: 19.03
+[preflight] Reading configuration from the cluster...
+[preflight] FYI: You can look at this config file with 'kubectl -n kube-system get cm kubeadm-config -o yaml'
+[kubelet-start] Writing kubelet configuration to file &quot;/var/lib/kubelet/config.yaml&quot;
+[kubelet-start] Writing kubelet environment file with flags to file &quot;/var/lib/kubelet/kubeadm-flags.env&quot;
+[kubelet-start] Starting the kubelet
+[kubelet-start] Waiting for the kubelet to perform the TLS Bootstrap...
+
+This node has joined the cluster:
+* Certificate signing request was sent to apiserver and a response was received.
+* The Kubelet was informed of the new secure connection details.
+
+Run 'kubectl get nodes' on the control-plane to see this node join the cluster.
+
+[root@k8s-master ~]# kubectl get node
+NAME         STATUS   ROLES                  AGE   VERSION
+k8s-master   Ready    control-plane,master   30m   v1.20.9
+k8s-node01   Ready    &lt;none&gt;                 63s   v1.20.9
+[root@k8s-master ~]# kubectl get pod -A
+NAMESPACE     NAME                                       READY   STATUS    RESTARTS   AGE
+kube-system   calico-kube-controllers-6fcb5c5bcf-wghrm   1/1     Running   0          19m
+kube-system   calico-node-6clkb                          1/1     Running   0          68s
+kube-system   calico-node-pj9rm                          1/1     Running   0          19m
+kube-system   coredns-5897cd56c4-gnrrz                   1/1     Running   0          30m
+kube-system   coredns-5897cd56c4-hwbc8                   1/1     Running   0          30m
+kube-system   etcd-k8s-master                            1/1     Running   0          30m
+kube-system   kube-apiserver-k8s-master                  1/1     Running   0          30m
+kube-system   kube-controller-manager-k8s-master         1/1     Running   0          30m
+kube-system   kube-proxy-9zf4v                           1/1     Running   0          68s
+kube-system   kube-proxy-kklkn                           1/1     Running   0          30m
+kube-system   kube-scheduler-k8s-master                  1/1     Running   0          30m
+[root@k8s-master ~]# 
+[root@localhost ~]# kubeadm token create --print-join-command
+</code></pre>
+<h1 id="deploy-kubevirt"><a class="header" href="#deploy-kubevirt">deploy KubeVirt</a></h1>
+<pre><code>controlplane $ export KUBEVIRT_VERSION=$(curl -s https://api.github.com/repos/kubevirt/kubevirt/releases/latest | jq -r .tag_name)
+controlplane $ echo $KUBEVIRT_VERSION
+v0.52.0
+controlplane $ export KUBEVIRT_VERSION=v0.49.0
+
+# deploy the KubeVirt Operator
+controlplane $ kubectl create -f https://github.com/kubevirt/kubevirt/releases/download/${KUBEVIRT_VERSION}/kubevirt-operator.yaml
+namespace/kubevirt created
+customresourcedefinition.apiextensions.k8s.io/kubevirts.kubevirt.io created
+priorityclass.scheduling.k8s.io/kubevirt-cluster-critical created
+clusterrole.rbac.authorization.k8s.io/kubevirt.io:operator created
+serviceaccount/kubevirt-operator created
+role.rbac.authorization.k8s.io/kubevirt-operator created
+rolebinding.rbac.authorization.k8s.io/kubevirt-operator-rolebinding created
+clusterrole.rbac.authorization.k8s.io/kubevirt-operator created
+clusterrolebinding.rbac.authorization.k8s.io/kubevirt-operator created
+deployment.apps/virt-operator created
+
+# creating a Custom Resource
+controlplane $ kubectl create -f https://github.com/kubevirt/kubevirt/releases/download/${KUBEVIRT_VERSION}/kubevirt-cr.yaml
+kubevirt.kubevirt.io/kubevirt created
+controlplane $ kubectl -n kubevirt patch kubevirt kubevirt --type=merge --patch '{&quot;spec&quot;:{&quot;configuration&quot;:{&quot;developerConfiguration&quot;:{&quot;useEmulation&quot;:true}}}}'
+kubevirt.kubevirt.io/kubevirt patched
+
+controlplane $ kubectl get pods -n kubevirt
+NAME                               READY   STATUS              RESTARTS   AGE
+virt-api-8959bd8d6-h4wgf           1/1     Running             0          49s
+virt-api-8959bd8d6-kq5gm           1/1     Running             0          50s
+virt-controller-6fc6b9b7cf-4ftfc   0/1     ContainerCreating   0          19s
+virt-controller-6fc6b9b7cf-8t8fw   0/1     Running             0          19s
+virt-handler-2t4zb                 0/1     Init:0/1            0          19s
+virt-operator-5c74687999-8769q     1/1     Running             0          2m9s
+virt-operator-5c74687999-wp24r     1/1     Running             0          2m9s
+controlplane $ kubectl get pods -n kubevirt
+NAME                               READY   STATUS    RESTARTS   AGE
+virt-api-8959bd8d6-h4wgf           1/1     Running   0          3m3s
+virt-api-8959bd8d6-kq5gm           1/1     Running   0          3m4s
+virt-controller-6fc6b9b7cf-4ftfc   1/1     Running   0          2m33s
+virt-controller-6fc6b9b7cf-8t8fw   1/1     Running   0          2m33s
+virt-handler-2t4zb                 1/1     Running   0          2m33s
+virt-operator-5c74687999-8769q     1/1     Running   0          4m23s
+virt-operator-5c74687999-wp24r     1/1     Running   0          4m23s
+
+controlplane $ wget -O virtctl https://github.com/kubevirt/kubevirt/releases/download/${KUBEVIRT_VERSION}/virtctl-${KUBEVIRT_VERSION}-linux-amd64
+--2022-05-06 06:15:07--  https://github.com/kubevirt/kubevirt/releases/download/v0.49.0/virtctl-v0.49.0-linux-amd64
+Resolving github.com (github.com)... 140.82.121.4
+Connecting to github.com (github.com)|140.82.121.4|:443... connected.
+HTTP request sent, awaiting response... 302 Found
+Location: https://objects.githubusercontent.com/github-production-release-asset-2e65be/76686583/1cacd2e3-3748-4498-a87b-6c0217cca458?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=AKIAIWNJYAX4CSVEH53A%2F20220506%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20220506T061509Z&amp;X-Amz-Expires=300&amp;X-Amz-Signature=fdd77e733da9bd98d2adc462718f125ca761d4a3c4325038bd63b61058483806&amp;X-Amz-SignedHeaders=host&amp;actor_id=0&amp;key_id=0&amp;repo_id=76686583&amp;response-content-disposition=attachment%3B%20filename%3Dvirtctl-v0.49.0-linux-amd64&amp;response-content-type=application%2Foctet-stream [following]
+--2022-05-06 06:15:08--  https://objects.githubusercontent.com/github-production-release-asset-2e65be/76686583/1cacd2e3-3748-4498-a87b-6c0217cca458?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=AKIAIWNJYAX4CSVEH53A%2F20220506%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20220506T061509Z&amp;X-Amz-Expires=300&amp;X-Amz-Signature=fdd77e733da9bd98d2adc462718f125ca761d4a3c4325038bd63b61058483806&amp;X-Amz-SignedHeaders=host&amp;actor_id=0&amp;key_id=0&amp;repo_id=76686583&amp;response-content-disposition=attachment%3B%20filename%3Dvirtctl-v0.49.0-linux-amd64&amp;response-content-type=application%2Foctet-stream
+Resolving objects.githubusercontent.com (objects.githubusercontent.com)... 185.199.111.133, 185.199.110.133, 185.199.109.133, ...
+Connecting to objects.githubusercontent.com (objects.githubusercontent.com)|185.199.111.133|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 52294614 (50M) [application/octet-stream]
+Saving to: ‘virtctl’
+
+virtctl                            100%[==============================================================&gt;]  49.87M  26.7MB/s    in 1.9s    
+
+2022-05-06 06:15:10 (26.7 MB/s) - ‘virtctl’ saved [52294614/52294614]
+
+controlplane $ chmod +x virtctl
+controlplane $ ls
+go  virtctl
+</code></pre>
+<h1 id="basic-use-of-kubevirt"><a class="header" href="#basic-use-of-kubevirt">Basic use of KubeVirt</a></h1>
+<p>The purpose of KubeVirt is to allow the virtual machine to run in the container. Here are a few basic operations of KubeVirt:</p>
+<ul>
+<li>create &amp; start virtual machine</li>
+<li>vnc login virtual machine</li>
+<li>stop &amp; delete virtual machine</li>
+</ul>
+<pre><code class="language-bash">controlplane $ curl https://kubevirt.io/labs/manifests/vm.yaml
+apiVersion: kubevirt.io/v1
+kind: VirtualMachine
+metadata:
+  name: testvm
+spec:
+  running: false
+  template:
+    metadata:
+      labels:
+        kubevirt.io/size: small
+        kubevirt.io/domain: testvm
+    spec:
+      domain:
+        devices:
+          disks:
+            - name: containerdisk
+              disk:
+                bus: virtio
+            - name: cloudinitdisk
+              disk:
+                bus: virtio
+          interfaces:
+          - name: default
+            masquerade: {}
+        resources:
+          requests:
+            memory: 64M
+      networks:
+      - name: default
+        pod: {}
+      volumes:
+        - name: containerdisk
+          containerDisk:
+            image: quay.io/kubevirt/cirros-container-disk-demo
+        - name: cloudinitdisk
+          cloudInitNoCloud:
+            userDataBase64: SGkuXG4=
+
+controlplane $ kubectl apply -f https://kubevirt.io/labs/manifests/vm.yaml
+virtualmachine.kubevirt.io/testvm created
+controlplane $ kubectl get vms
+NAME     AGE   STATUS    READY
+testvm   2s    Stopped   False
+controlplane $ kubectl get vms -o yaml testvm
+apiVersion: kubevirt.io/v1
+kind: VirtualMachine
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {&quot;apiVersion&quot;:&quot;kubevirt.io/v1&quot;,&quot;kind&quot;:&quot;VirtualMachine&quot;,&quot;metadata&quot;:{&quot;annotations&quot;:{},&quot;name&quot;:&quot;testvm&quot;,&quot;namespace&quot;:&quot;default&quot;},&quot;spec&quot;:{&quot;running&quot;:false,&quot;template&quot;:{&quot;metadata&quot;:{&quot;labels&quot;:{&quot;kubevirt.io/domain&quot;:&quot;testvm&quot;,&quot;kubevirt.io/size&quot;:&quot;small&quot;}},&quot;spec&quot;:{&quot;domain&quot;:{&quot;devices&quot;:{&quot;disks&quot;:[{&quot;disk&quot;:{&quot;bus&quot;:&quot;virtio&quot;},&quot;name&quot;:&quot;containerdisk&quot;},{&quot;disk&quot;:{&quot;bus&quot;:&quot;virtio&quot;},&quot;name&quot;:&quot;cloudinitdisk&quot;}],&quot;interfaces&quot;:[{&quot;masquerade&quot;:{},&quot;name&quot;:&quot;default&quot;}]},&quot;resources&quot;:{&quot;requests&quot;:{&quot;memory&quot;:&quot;64M&quot;}}},&quot;networks&quot;:[{&quot;name&quot;:&quot;default&quot;,&quot;pod&quot;:{}}],&quot;volumes&quot;:[{&quot;containerDisk&quot;:{&quot;image&quot;:&quot;quay.io/kubevirt/cirros-container-disk-demo&quot;},&quot;name&quot;:&quot;containerdisk&quot;},{&quot;cloudInitNoCloud&quot;:{&quot;userDataBase64&quot;:&quot;SGkuXG4=&quot;},&quot;name&quot;:&quot;cloudinitdisk&quot;}]}}}}
+    kubevirt.io/latest-observed-api-version: v1
+    kubevirt.io/storage-observed-api-version: v1alpha3
+  creationTimestamp: &quot;2022-05-06T06:32:17Z&quot;
+  generation: 1
+  managedFields:
+  - apiVersion: kubevirt.io/v1alpha3
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:annotations:
+          f:kubevirt.io/latest-observed-api-version: {}
+          f:kubevirt.io/storage-observed-api-version: {}
+      f:status:
+        .: {}
+        f:conditions: {}
+        f:printableStatus: {}
+        f:volumeSnapshotStatuses: {}
+    manager: Go-http-client
+    operation: Update
+    time: &quot;2022-05-06T06:32:17Z&quot;
+  - apiVersion: kubevirt.io/v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:annotations:
+          .: {}
+          f:kubectl.kubernetes.io/last-applied-configuration: {}
+      f:spec:
+        .: {}
+        f:running: {}
+        f:template:
+          .: {}
+          f:metadata:
+            .: {}
+            f:labels:
+              .: {}
+              f:kubevirt.io/domain: {}
+              f:kubevirt.io/size: {}
+          f:spec:
+            .: {}
+            f:domain:
+              .: {}
+              f:devices:
+                .: {}
+                f:disks: {}
+                f:interfaces: {}
+              f:resources:
+                .: {}
+                f:requests:
+                  .: {}
+                  f:memory: {}
+            f:networks: {}
+            f:volumes: {}
+    manager: kubectl
+    operation: Update
+    time: &quot;2022-05-06T06:32:17Z&quot;
+  name: testvm
+  namespace: default
+  resourceVersion: &quot;5996&quot;
+  selfLink: /apis/kubevirt.io/v1/namespaces/default/virtualmachines/testvm
+  uid: 1b047ffb-6eeb-4fda-b081-169391886bfb
+spec:
+  running: false
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        kubevirt.io/domain: testvm
+        kubevirt.io/size: small
+    spec:
+      domain:
+        devices:
+          disks:
+          - disk:
+              bus: virtio
+            name: containerdisk
+          - disk:
+              bus: virtio
+            name: cloudinitdisk
+          interfaces:
+          - masquerade: {}
+            name: default
+        machine:
+          type: q35
+        resources:
+          requests:
+            memory: 64M
+      networks:
+      - name: default
+        pod: {}
+      volumes:
+      - containerDisk:
+          image: quay.io/kubevirt/cirros-container-disk-demo
+        name: containerdisk
+      - cloudInitNoCloud:
+          userDataBase64: SGkuXG4=
+        name: cloudinitdisk
+status:
+  conditions:
+  - lastProbeTime: &quot;2022-05-06T06:32:18Z&quot;
+    lastTransitionTime: &quot;2022-05-06T06:32:18Z&quot;
+    message: VMI does not exist
+    reason: VMINotExists
+    status: &quot;False&quot;
+    type: Ready
+  printableStatus: Stopped
+  volumeSnapshotStatuses:
+  - enabled: false
+    name: containerdisk
+    reason: Snapshot is not supported for this volumeSource type [containerdisk]
+  - enabled: false
+    name: cloudinitdisk
+    reason: Snapshot is not supported for this volumeSource type [cloudinitdisk]
+
+controlplane $ ./virtctl start testvm
+VM testvm was scheduled to start
+
+controlplane $ kubectl get vms
+NAME     AGE   STATUS    READY
+testvm   40s   Running   True
+
+controlplane $ kubectl get vmis
+NAME     AGE    PHASE     IP            NODENAME   READY
+testvm   104s   Running   10.244.1.12   node01     True
+controlplane $  kubectl get vmis -o yaml testvm
+apiVersion: kubevirt.io/v1
+kind: VirtualMachineInstance
+metadata:
+  annotations:
+    kubevirt.io/latest-observed-api-version: v1
+    kubevirt.io/storage-observed-api-version: v1alpha3
+  creationTimestamp: &quot;2022-05-06T06:32:38Z&quot;
+  finalizers:
+  - kubevirt.io/virtualMachineControllerFinalize
+  - foregroundDeleteVirtualMachine
+  generation: 9
+  labels:
+    kubevirt.io/domain: testvm
+    kubevirt.io/nodeName: node01
+    kubevirt.io/size: small
+  managedFields:
+  - apiVersion: kubevirt.io/v1alpha3
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:annotations:
+          .: {}
+          f:kubevirt.io/latest-observed-api-version: {}
+          f:kubevirt.io/storage-observed-api-version: {}
+        f:finalizers: {}
+        f:labels:
+          .: {}
+          f:kubevirt.io/domain: {}
+          f:kubevirt.io/nodeName: {}
+          f:kubevirt.io/size: {}
+        f:ownerReferences: {}
+      f:spec:
+        .: {}
+        f:domain:
+          .: {}
+          f:devices:
+            .: {}
+            f:disks: {}
+            f:interfaces: {}
+          f:firmware:
+            .: {}
+            f:uuid: {}
+          f:machine:
+            .: {}
+            f:type: {}
+          f:resources:
+            .: {}
+            f:requests:
+              .: {}
+              f:memory: {}
+        f:networks: {}
+        f:volumes: {}
+      f:status:
+        .: {}
+        f:activePods:
+          .: {}
+          f:5ed78651-9f18-426f-a248-4bf7b2c8b003: {}
+        f:conditions: {}
+        f:guestOSInfo: {}
+        f:interfaces: {}
+        f:launcherContainerImageVersion: {}
+        f:migrationMethod: {}
+        f:migrationTransport: {}
+        f:nodeName: {}
+        f:phase: {}
+        f:phaseTransitionTimestamps: {}
+        f:qosClass: {}
+        f:virtualMachineRevisionName: {}
+        f:volumeStatus: {}
+    manager: Go-http-client
+    operation: Update
+    time: &quot;2022-05-06T06:32:47Z&quot;
+  name: testvm
+  namespace: default
+  ownerReferences:
+  - apiVersion: kubevirt.io/v1
+    blockOwnerDeletion: true
+    controller: true
+    kind: VirtualMachine
+    name: testvm
+    uid: 1b047ffb-6eeb-4fda-b081-169391886bfb
+  resourceVersion: &quot;6141&quot;
+  selfLink: /apis/kubevirt.io/v1/namespaces/default/virtualmachineinstances/testvm
+  uid: 3721e713-37e9-4871-bb5e-aaad3ab5d44b
+spec:
+  domain:
+    cpu:
+      cores: 1
+      model: host-model
+      sockets: 1
+      threads: 1
+    devices:
+      disks:
+      - disk:
+          bus: virtio
+        name: containerdisk
+      - disk:
+          bus: virtio
+        name: cloudinitdisk
+      interfaces:
+      - masquerade: {}
+        name: default
+    features:
+      acpi:
+        enabled: true
+    firmware:
+      uuid: 5a9fc181-957e-5c32-9e5a-2de5e9673531
+    machine:
+      type: q35
+    resources:
+      requests:
+        memory: 64M
+  networks:
+  - name: default
+    pod: {}
+  volumes:
+  - containerDisk:
+      image: quay.io/kubevirt/cirros-container-disk-demo
+      imagePullPolicy: Always
+    name: containerdisk
+  - cloudInitNoCloud:
+      userDataBase64: SGkuXG4=
+    name: cloudinitdisk
+status:
+  activePods:
+    5ed78651-9f18-426f-a248-4bf7b2c8b003: node01
+  conditions:
+  - lastProbeTime: null
+    lastTransitionTime: &quot;2022-05-06T06:32:46Z&quot;
+    status: &quot;True&quot;
+    type: Ready
+  - lastProbeTime: null
+    lastTransitionTime: null
+    status: &quot;True&quot;
+    type: LiveMigratable
+  guestOSInfo: {}
+  interfaces:
+  - ipAddress: 10.244.1.12
+    ipAddresses:
+    - 10.244.1.12
+    mac: 52:54:00:f8:cf:ce
+    name: default
+  launcherContainerImageVersion: quay.io/kubevirt/virt-launcher:v0.49.0
+  migrationMethod: BlockMigration
+  migrationTransport: Unix
+  nodeName: node01
+  phase: Running
+  phaseTransitionTimestamps:
+  - phase: Pending
+    phaseTransitionTimestamp: &quot;2022-05-06T06:32:39Z&quot;
+  - phase: Scheduling
+    phaseTransitionTimestamp: &quot;2022-05-06T06:32:39Z&quot;
+  - phase: Scheduled
+    phaseTransitionTimestamp: &quot;2022-05-06T06:32:46Z&quot;
+  - phase: Running
+    phaseTransitionTimestamp: &quot;2022-05-06T06:32:48Z&quot;
+  qosClass: Burstable
+  virtualMachineRevisionName: revision-start-vm-1b047ffb-6eeb-4fda-b081-169391886bfb-2
+  volumeStatus:
+  - name: cloudinitdisk
+    size: 1048576
+    target: vdb
+  - name: containerdisk
+    target: vda
+
+controlplane $ ./virtctl console testvm
+Successfully connected to testvm console. The escape sequence is ^]
+
+login as 'cirros' user. default password: 'gocubsgo'. use 'sudo' for root.
+testvm login: cirros
+Password: 
+$ pwd
+/home/cirros
+$ ls /
+bin         home        lib64       mnt         root        tmp
+boot        init        linuxrc     old-root    run         usr
+dev         initrd.img  lost+found  opt         sbin        var
+etc         lib         media       proc        sys         vmlinuz
+$ exit
+
+login as 'cirros' user. default password: 'gocubsgo'. use 'sudo' for root.
+testvm login: controlplane $ 
+controlplane $ ssh 10.224.1.12
+^C
+controlplane $ ./virtctl stop testvm
+VM testvm was scheduled to stop
+controlplane $ kubectl get vms
+NAME     AGE     STATUS    READY
+testvm   4m23s   Stopped   False
+controlplane $ kubectl get vmis
+NAME     AGE    PHASE       IP            NODENAME   READY
+testvm   4m4s   Succeeded   10.244.1.12   node01     False
+controlplane $ kubectl delete vms testvm
+virtualmachine.kubevirt.io &quot;testvm&quot; deleted
+controlplane $ kubectl get vms
+No resources found in default namespace.
+controlplane $ kubectl get vmis
+No resources found in default namespace.
+</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../SUMMARY.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                            <a rel="next" href="../cloud-native/docker-java-demo.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../SUMMARY.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a rel="next" href="../cloud-native/docker-java-demo.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        <script type="text/javascript" src="../sidebar.js"></script>
+    </body>
+</html>

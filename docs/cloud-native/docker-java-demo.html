@@ -1,0 +1,368 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>docker hello-world project - English version of the website https://www.backendcloud.cn/</title>
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../style.css">
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../SUMMARY.html"><strong aria-hidden="true">1.</strong> Catalog: Cloud Native</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../cloud-native/deploy-kubevirt.html"><strong aria-hidden="true">1.1.</strong> Deploy Kubernetes + KubeVirt and the basic use of KubeVirt</a></li><li class="chapter-item expanded "><a href="../cloud-native/docker-java-demo.html" class="active"><strong aria-hidden="true">1.2.</strong> docker hello-world project</a></li><li class="chapter-item expanded "><a href="../cloud-native/deploy-cinder-csi-plugin.html"><strong aria-hidden="true">1.3.</strong> Several problems encountered in deploying cinder-csi-plugin</a></li><li class="chapter-item expanded "><a href="../cloud-native/go1.18-workspace.html"><strong aria-hidden="true">1.4.</strong> New in Go 1.18 - Workspaces</a></li><li class="chapter-item expanded "><a href="../cloud-native/spring-boot-async-demo.html"><strong aria-hidden="true">1.5.</strong> spring-boot asynchronous example</a></li><li class="chapter-item expanded "><a href="../cloud-native/plg.html"><strong aria-hidden="true">1.6.</strong> PLG implements Kubernetes Pod log collection and display</a></li><li class="chapter-item expanded "><a href="../cloud-native/fluentd.html"><strong aria-hidden="true">1.7.</strong> Fluentd implements Kubernetes Pod log collection</a></li><li class="chapter-item expanded "><a href="../cloud-native/java-dev-memo-1.html"><strong aria-hidden="true">1.8.</strong> Little records in Java project development (1)</a></li><li class="chapter-item expanded "><a href="../cloud-native/jdk-bug.html"><strong aria-hidden="true">1.9.</strong> JDK bug - Encrypt Private Key failed unrecognized algorithm name PBEWithSHA1AndDESede</a></li><li class="chapter-item expanded "><a href="../cloud-native/tenant-cmp.html"><strong aria-hidden="true">1.10.</strong> Implementation of the function of creating resource pool tenants on the cloud management platform</a></li><li class="chapter-item expanded "><a href="../cloud-native/test-service-performance-2.html"><strong aria-hidden="true">1.11.</strong> iperf3 tests the four-layer performance of Kubernetes Service (Part 2)</a></li><li class="chapter-item expanded "><a href="../cloud-native/test-service-performance-1.html"><strong aria-hidden="true">1.12.</strong> iperf3 tests the four-layer performance of Kubernetes Service (Part 1)</a></li><li class="chapter-item expanded "><a href="../cloud-native/k8s-cmd.html"><strong aria-hidden="true">1.13.</strong> k8s common command</a></li><li class="chapter-item expanded "><a href="../cloud-native/cpu-binding.html"><strong aria-hidden="true">1.14.</strong> k8s supports container core binding</a></li><li class="chapter-item expanded "><a href="../cloud-native/capability.html"><strong aria-hidden="true">1.15.</strong> k8s supports Capability mechanism</a></li><li class="chapter-item expanded "><a href="../cloud-native/oom.html"><strong aria-hidden="true">1.16.</strong> k8s OOMkilled container exceeding memory limit</a></li></ol></li><li class="chapter-item expanded "><a href="../SUMMARY.html"><strong aria-hidden="true">2.</strong> Catalog: Openstack</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../openstack/deploy-openstack-stein.html"><strong aria-hidden="true">2.1.</strong> Problems encountered in Openstack Stein deployment</a></li><li class="chapter-item expanded "><a href="../openstack/sriov2ovs.html"><strong aria-hidden="true">2.2.</strong> sriov computing node to ovs computing node script</a></li><li class="chapter-item expanded "><a href="../openstack/placement.html"><strong aria-hidden="true">2.3.</strong> Openstack Placement</a></li><li class="chapter-item expanded "><a href="../openstack/power-arch.html"><strong aria-hidden="true">2.4.</strong> POWER architecture server as computing node</a></li><li class="chapter-item expanded "><a href="../openstack/sriov.html"><strong aria-hidden="true">2.5.</strong> OpenStack practices SR-IOV computing nodes</a></li><li class="chapter-item expanded "><a href="../openstack/openstack-op-4.html"><strong aria-hidden="true">2.6.</strong> Openstack operation and maintenance records (4)</a></li><li class="chapter-item expanded "><a href="../openstack/openstack-op-3.html"><strong aria-hidden="true">2.7.</strong> Openstack operation and maintenance records (3)</a></li><li class="chapter-item expanded "><a href="../openstack/openstack-op-2.html"><strong aria-hidden="true">2.8.</strong> Openstack operation and maintenance records (2)</a></li><li class="chapter-item expanded "><a href="../openstack/openstack-op-1.html"><strong aria-hidden="true">2.9.</strong> Openstack operation and maintenance records (1)</a></li><li class="chapter-item expanded "><a href="../openstack/novnc-problem.html"><strong aria-hidden="true">2.10.</strong> OpenStack Pike dashboard noVNC cannot be accessed problem</a></li><li class="chapter-item expanded "><a href="../openstack/openstack-local-yum.html"><strong aria-hidden="true">2.11.</strong> Openstack Pike local yum source construction</a></li><li class="chapter-item expanded "><a href="../openstack/cpu-binding.html"><strong aria-hidden="true">2.12.</strong> CPU binding</a></li><li class="chapter-item expanded "><a href="../openstack/resize-fail.html"><strong aria-hidden="true">2.13.</strong> Investigation of the cause of resize failure</a></li><li class="chapter-item expanded "><a href="../openstack/mount-cloud-disk.html"><strong aria-hidden="true">2.14.</strong> Mount cloud disk</a></li><li class="chapter-item expanded "><a href="../openstack/ocata-nova-evacuate-bug.html"><strong aria-hidden="true">2.15.</strong> Ocata nova evacuate bug</a></li><li class="chapter-item expanded "><a href="../openstack/compute-node-ha.html"><strong aria-hidden="true">2.16.</strong> compute node ha mainstream open source implementation</a></li><li class="chapter-item expanded "><a href="../openstack/collectd-influxdb.html"><strong aria-hidden="true">2.17.</strong> Deployment and usage of Collectd and InfluxDB</a></li><li class="chapter-item expanded "><a href="../openstack/live-migration-local.html"><strong aria-hidden="true">2.18.</strong> Live Migration on Local Storage</a></li><li class="chapter-item expanded "><a href="../openstack/fast-evacuation.html"><strong aria-hidden="true">2.19.</strong> Add fast evacuation function to VM HA procedure</a></li><li class="chapter-item expanded "><a href="../openstack/vm-activation-failure.html"><strong aria-hidden="true">2.20.</strong> Windows virtual machine activation failure problem</a></li></ol></li><li class="chapter-item expanded "><a href="../SUMMARY.html"><strong aria-hidden="true">3.</strong> Catalog: Point of view</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../point-of-view/huawei-and-operators.html"><strong aria-hidden="true">3.1.</strong> Huawei and telecom operators</a></li></ol></li><li class="chapter-item expanded "><a href="../SUMMARY.html"><strong aria-hidden="true">4.</strong> Open source small project</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../open-source-small-project/firewall-tool.html"><strong aria-hidden="true">4.1.</strong> Open source a node.js firewall tool</a></li></ol></li><li class="chapter-item expanded "><a href="../SUMMARY.html"><strong aria-hidden="true">5.</strong> Catalog: Tools</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../tools/github-action.html"><strong aria-hidden="true">5.1.</strong> Github Action Supplementary Introduction</a></li><li class="chapter-item expanded "><a href="../tools/blog-cicd.html"><strong aria-hidden="true">5.2.</strong> Github Action Upgrade backend cloud website CICD process</a></li><li class="chapter-item expanded "><a href="../tools/github-action-demo.html"><strong aria-hidden="true">5.3.</strong> Try the Github Action CI/CD process (create a React project and package it for deployment)</a></li><li class="chapter-item expanded "><a href="../tools/notion-widget.html"><strong aria-hidden="true">5.4.</strong> Notion's page insert widget Widget</a></li><li class="chapter-item expanded "><a href="../tools/git-dir.html"><strong aria-hidden="true">5.5.</strong> Internal structure of .git directory</a></li><li class="chapter-item expanded "><a href="../tools/xshell-skill.html"><strong aria-hidden="true">5.6.</strong> Some Skills of using xshell tools</a></li><li class="chapter-item expanded "><a href="../tools/gerrit-install.html"><strong aria-hidden="true">5.7.</strong> gerrit install</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">English version of the website https://www.backendcloud.cn/</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <!-- Page table of contents -->
+                        <div class="sidetoc"><nav class="pagetoc"></nav></div>
+
+                        <p>release time :2022-05-02 10:13</p>
+<p>The docker hello-world project is the most basic docker hello-world, including: (compared with Android development)</p>
+<ul>
+<li>Make a mirror image of a simple java project using redis middleware - just like developing an Android application and packaging it</li>
+<li>Upload your own image to docker hub (public image repository) - Upload to Android Market</li>
+<li>Anyone and any machine can pull the previously uploaded image from the public mirror warehouse and run the previous java project normally - any mobile phone can go to the Android market to download the mobile application</li>
+</ul>
+<h1 id="install-docker-under-centos7"><a class="header" href="#install-docker-under-centos7">Install docker under centos7</a></h1>
+<pre><code>yum install -y yum-utils
+yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+yum install -y docker-ce docker-ce-cli containerd.io
+systemctl start docker &amp;&amp; systemctl enable docker &amp;&amp; systemctl status docker
+</code></pre>
+<h1 id="docker-image-acceleration"><a class="header" href="#docker-image-acceleration">docker image acceleration</a></h1>
+<pre><code>mkdir -p /etc/docker
+tee /etc/docker/daemon.json &lt;&lt;-'EOF'
+{
+&quot;registry-mirrors&quot;: [&quot;https://82m9ar63.mirror.aliyuncs.com&quot;],
+&quot;exec-opts&quot;: [&quot;native.cgroupdriver=systemd&quot;],
+&quot;log-driver&quot;: &quot;json-file&quot;,
+&quot;log-opts&quot;: {
+&quot;max-size&quot;: &quot;100m&quot;
+},
+&quot;storage-driver&quot;: &quot;overlay2&quot;
+}
+EOF
+systemctl daemon-reload
+systemctl restart docker
+</code></pre>
+<h1 id="download-and-deploy-the-redis-image"><a class="header" href="#download-and-deploy-the-redis-image">Download and deploy the redis image</a></h1>
+<pre><code>docker pull redis:latest
+mkdir -p /data/redis/
+tee /data/redis/redis.conf &lt;&lt;-'EOF'
+appendonly yes
+requirepass 666666
+EOF
+docker run -v /data/redis/redis.conf:/etc/redis/redis.conf \
+-v /data/redis/data:/data \
+-d --name myredis \
+-p 6379:6379 \
+redis:latest  redis-server /etc/redis/redis.conf
+</code></pre>
+<h1 id="java-docker-hello-project"><a class="header" href="#java-docker-hello-project">java docker-hello project</a></h1>
+<p>pom.xml</p>
+<pre><code>&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-boot-starter-data-redis&lt;/artifactId&gt;
+&lt;/dependency&gt;
+</code></pre>
+<p>application.properties</p>
+<pre><code>spring.redis.host=192.168.159.132
+spring.redis.password=666666
+</code></pre>
+<p>CounterController.java</p>
+<pre><code>import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class CounterController {
+
+//    private int i = 0; //mysql，redis
+
+    @Autowired
+    StringRedisTemplate redisTemplate;
+
+    @GetMapping(&quot;/hello&quot;)
+    public String count(){
+
+        Long increment = redisTemplate.opsForValue().increment(&quot;count-people&quot;);
+        return &quot;有 【&quot;+ increment +&quot;】 人访问了这个页面&quot;;
+    }
+}
+</code></pre>
+<p><img src="2023-01-19-14-26-58.png" alt="" /></p>
+<h1 id="make-a-mirror-for-the-docker-hello-project"><a class="header" href="#make-a-mirror-for-the-docker-hello-project">Make a mirror for the docker-hello project</a></h1>
+<pre><code>[root@localhost tt]# cat Dockerfile 
+FROM openjdk:8-jdk-slim
+LABEL maintainer=leifengyang
+
+COPY target/*.jar   /app.jar
+
+ENTRYPOINT [&quot;java&quot;,&quot;-jar&quot;,&quot;/app.jar&quot;]
+
+[root@localhost tt]# docker build -t docker-java-demo:v1.0 .
+Sending build context to Docker daemon  27.58MB
+Step 1/4 : FROM openjdk:8-jdk-slim
+8-jdk-slim: Pulling from library/openjdk
+1fe172e4850f: Already exists 
+44d3aa8d0766: Pull complete 
+81bea02f1eea: Pull complete 
+ccd3c592d09e: Pull complete 
+Digest: sha256:ace86b512a287ed6c65c4b0daffd895c1ad3d8489aa2ba5fedd9585a29ebb3de
+Status: Downloaded newer image for openjdk:8-jdk-slim
+---&gt; a07d7f1dd64b
+Step 2/4 : LABEL maintainer=leifengyang
+---&gt; Running in 0c95e08a46c1
+Removing intermediate container 0c95e08a46c1
+---&gt; 451513a02e4a
+Step 3/4 : COPY target/*.jar   /app.jar
+---&gt; bb79a201820b
+Step 4/4 : ENTRYPOINT [&quot;java&quot;,&quot;-jar&quot;,&quot;/app.jar&quot;]
+---&gt; Running in 7d08772be1eb
+Removing intermediate container 7d08772be1eb
+---&gt; 903bba8f3d19
+Successfully built 903bba8f3d19
+Successfully tagged docker-java-demo:v1.0
+[root@localhost tt]# 
+</code></pre>
+<h1 id="upload-the-docker-hello-project-to-the-public-mirror-repository"><a class="header" href="#upload-the-docker-hello-project-to-the-public-mirror-repository">Upload the docker-hello project to the public mirror repository</a></h1>
+<pre><code>[root@localhost tt]# docker images
+REPOSITORY         TAG          IMAGE ID       CREATED         SIZE
+docker-java-demo   v1.0         903bba8f3d19   2 minutes ago   323MB
+redis              latest       a10f849e1540   4 days ago      117MB
+openjdk            8-jdk-slim   a07d7f1dd64b   4 days ago      296MB
+[root@localhost tt]# docker tag docker-java-demo:v1.0 backendcloud/docker-java-demo:v1.0
+[root@localhost tt]# docker push backendcloud/docker-java-demo:v1.0
+The push refers to repository [docker.io/backendcloud/docker-java-demo]
+f30a1988cea2: Preparing 
+e2118ceaebd1: Preparing 
+8373e87e0617: Preparing 
+13a34b6fff78: Preparing 
+9c1b6dd6c1e6: Preparing 
+denied: requested access to the resource is denied
+[root@localhost tt]# docker login
+Login with your Docker ID to push and pull images from Docker Hub. If you don't have a Docker ID, head over to https://hub.docker.com to create one.
+Username: backendcloud
+Password: 
+WARNING! Your password will be stored unencrypted in /root/.docker/config.json.
+Configure a credential helper to remove this warning. See
+https://docs.docker.com/engine/reference/commandline/login/#credentials-store
+
+Login Succeeded
+[root@localhost tt]# docker push backendcloud/docker-java-demo:v1.0
+The push refers to repository [docker.io/backendcloud/docker-java-demo]
+f30a1988cea2: Pushed 
+e2118ceaebd1: Mounted from library/openjdk 
+8373e87e0617: Mounted from library/openjdk 
+13a34b6fff78: Mounted from library/openjdk 
+9c1b6dd6c1e6: Mounted from library/openjdk 
+v1.0: digest: sha256:826e2d6fb61c9a93e06e4816a511051aa18504eb2f6b098c8fa4b3fc0c8ed44c size: 1372
+[root@localhost tt]# docker images
+REPOSITORY                      TAG          IMAGE ID       CREATED          SIZE
+backendcloud/docker-java-demo   v1.0         903bba8f3d19   13 minutes ago   323MB
+docker-java-demo                v1.0         903bba8f3d19   13 minutes ago   323MB
+redis                           latest       a10f849e1540   4 days ago       117MB
+openjdk                         8-jdk-slim   a07d7f1dd64b   4 days ago       296MB
+[root@localhost tt]# docker run -d -p 8080:8080 backendcloud/docker-java-demo:v1.0 
+311a62f586934059e4a18ed19460047efbe167979b316a0a9c17476e457e1c26
+[root@localhost tt]# docker ps
+CONTAINER ID   IMAGE                                COMMAND                  CREATED          STATUS          PORTS                                       NAMES
+311a62f58693   backendcloud/docker-java-demo:v1.0   &quot;java -jar /app.jar&quot;     38 seconds ago   Up 37 seconds   0.0.0.0:8080-&gt;8080/tcp, :::8080-&gt;8080/tcp   brave_einstein
+2883786f38ae   redis:latest                         &quot;docker-entrypoint.s…&quot;   42 minutes ago   Up 42 minutes   0.0.0.0:6379-&gt;6379/tcp, :::6379-&gt;6379/tcp   myredis
+[root@localhost tt]# docker exec -it 311a62f586934059e4a18ed19460047efbe167979b316a0a9c17476e457e1c26 /bin/bash
+root@311a62f58693:/# 
+</code></pre>
+<p><img src="2023-01-19-14-27-39.png" alt="" /></p>
+<p><img src="2023-01-19-14-27-50.png" alt="" /></p>
+<pre><code>[root@localhost tt]# docker logs 311a62f58693
+
+.   ____          _            __ _ _
+/\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+\\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+'  |____| .__|_| |_|_| |_\__, | / / / /
+=========|_|==============|___/=/_/_/_/
+:: Spring Boot ::                (v2.6.7)
+
+2022-05-02 09:27:58.936  INFO 1 --- [           main] c.e.d.DockerJavaDemoApplication          : Starting DockerJavaDemoApplication v0.0.1-SNAPSHOT using Java 1.8.0_332 on 311a62f58693 with PID 1 (/app.jar started by root in /)
+2022-05-02 09:27:58.942  INFO 1 --- [           main] c.e.d.DockerJavaDemoApplication          : No active profile set, falling back to 1 default profile: &quot;default&quot;
+2022-05-02 09:27:59.925  INFO 1 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2022-05-02 09:27:59.931  INFO 1 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2022-05-02 09:27:59.958  INFO 1 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 3 ms. Found 0 Redis repository interfaces.
+2022-05-02 09:28:00.506  INFO 1 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-05-02 09:28:00.520  INFO 1 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-05-02 09:28:00.520  INFO 1 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.62]
+2022-05-02 09:28:00.596  INFO 1 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-05-02 09:28:00.596  INFO 1 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1522 ms
+2022-05-02 09:28:01.598  INFO 1 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-05-02 09:28:01.613  INFO 1 --- [           main] c.e.d.DockerJavaDemoApplication          : Started DockerJavaDemoApplication in 3.26 seconds (JVM running for 3.753)
+2022-05-02 09:28:54.065  INFO 1 --- [nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-05-02 09:28:54.065  INFO 1 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2022-05-02 09:28:54.066  INFO 1 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+[root@localhost tt]# 
+</code></pre>
+<blockquote>
+<p>The source code of the docker-java-demo project is located at https://github.com/backendcloud/example/tree/master/docker-java-demo</p>
+</blockquote>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../cloud-native/deploy-kubevirt.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                            <a rel="next" href="../cloud-native/deploy-cinder-csi-plugin.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../cloud-native/deploy-kubevirt.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a rel="next" href="../cloud-native/deploy-cinder-csi-plugin.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        <script type="text/javascript" src="../sidebar.js"></script>
+    </body>
+</html>
