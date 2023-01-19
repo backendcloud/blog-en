@@ -1,6 +1,8 @@
 # Summary
 
 - [Catalog: Openstack](./SUMMARY.md)
+  - [Openstack Placement](./openstack/placement.md) ------ release time :2019-04-18 09:14
+  - [POWER architecture server as computing node](./openstack/power-arch.md) ------ release time :2018-10-21 16:21
   - [OpenStack practices SR-IOV computing nodes](./openstack/sriov.md) ------ release time :2018-10-14 05:15
   - [Openstack operation and maintenance records (4)](./openstack/openstack-op-4.md) ------ release time :2020-01-01 19:13
   - [Openstack operation and maintenance records (3)](./openstack/openstack-op-3.md) ------ release time :2018-09-29 20:28
