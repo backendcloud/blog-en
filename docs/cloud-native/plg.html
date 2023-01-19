@@ -1,0 +1,290 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>PLG implements Kubernetes Pod log collection and display - English version of the website https://www.backendcloud.cn/</title>
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../style.css">
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../SUMMARY.html"><strong aria-hidden="true">1.</strong> Catalog: Cloud Native</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../cloud-native/plg.html" class="active"><strong aria-hidden="true">1.1.</strong> PLG implements Kubernetes Pod log collection and display</a></li><li class="chapter-item expanded "><a href="../cloud-native/fluentd.html"><strong aria-hidden="true">1.2.</strong> Fluentd implements Kubernetes Pod log collection</a></li><li class="chapter-item expanded "><a href="../cloud-native/java-dev-memo-1.html"><strong aria-hidden="true">1.3.</strong> Little records in Java project development (1)</a></li><li class="chapter-item expanded "><a href="../cloud-native/jdk-bug.html"><strong aria-hidden="true">1.4.</strong> JDK bug - Encrypt Private Key failed unrecognized algorithm name PBEWithSHA1AndDESede</a></li><li class="chapter-item expanded "><a href="../cloud-native/tenant-cmp.html"><strong aria-hidden="true">1.5.</strong> Implementation of the function of creating resource pool tenants on the cloud management platform</a></li><li class="chapter-item expanded "><a href="../cloud-native/test-service-performance-2.html"><strong aria-hidden="true">1.6.</strong> iperf3 tests the four-layer performance of Kubernetes Service (Part 2)</a></li><li class="chapter-item expanded "><a href="../cloud-native/test-service-performance-1.html"><strong aria-hidden="true">1.7.</strong> iperf3 tests the four-layer performance of Kubernetes Service (Part 1)</a></li><li class="chapter-item expanded "><a href="../cloud-native/k8s-cmd.html"><strong aria-hidden="true">1.8.</strong> k8s common command</a></li><li class="chapter-item expanded "><a href="../cloud-native/cpu-binding.html"><strong aria-hidden="true">1.9.</strong> k8s supports container core binding</a></li><li class="chapter-item expanded "><a href="../cloud-native/capability.html"><strong aria-hidden="true">1.10.</strong> k8s supports Capability mechanism</a></li><li class="chapter-item expanded "><a href="../cloud-native/oom.html"><strong aria-hidden="true">1.11.</strong> k8s OOMkilled container exceeding memory limit</a></li></ol></li><li class="chapter-item expanded "><a href="../SUMMARY.html"><strong aria-hidden="true">2.</strong> Catalog: Openstack</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../openstack/deploy-openstack-stein.html"><strong aria-hidden="true">2.1.</strong> Problems encountered in Openstack Stein deployment</a></li><li class="chapter-item expanded "><a href="../openstack/sriov2ovs.html"><strong aria-hidden="true">2.2.</strong> sriov computing node to ovs computing node script</a></li><li class="chapter-item expanded "><a href="../openstack/placement.html"><strong aria-hidden="true">2.3.</strong> Openstack Placement</a></li><li class="chapter-item expanded "><a href="../openstack/power-arch.html"><strong aria-hidden="true">2.4.</strong> POWER architecture server as computing node</a></li><li class="chapter-item expanded "><a href="../openstack/sriov.html"><strong aria-hidden="true">2.5.</strong> OpenStack practices SR-IOV computing nodes</a></li><li class="chapter-item expanded "><a href="../openstack/openstack-op-4.html"><strong aria-hidden="true">2.6.</strong> Openstack operation and maintenance records (4)</a></li><li class="chapter-item expanded "><a href="../openstack/openstack-op-3.html"><strong aria-hidden="true">2.7.</strong> Openstack operation and maintenance records (3)</a></li><li class="chapter-item expanded "><a href="../openstack/openstack-op-2.html"><strong aria-hidden="true">2.8.</strong> Openstack operation and maintenance records (2)</a></li><li class="chapter-item expanded "><a href="../openstack/openstack-op-1.html"><strong aria-hidden="true">2.9.</strong> Openstack operation and maintenance records (1)</a></li><li class="chapter-item expanded "><a href="../openstack/novnc-problem.html"><strong aria-hidden="true">2.10.</strong> OpenStack Pike dashboard noVNC cannot be accessed problem</a></li><li class="chapter-item expanded "><a href="../openstack/openstack-local-yum.html"><strong aria-hidden="true">2.11.</strong> Openstack Pike local yum source construction</a></li><li class="chapter-item expanded "><a href="../openstack/cpu-binding.html"><strong aria-hidden="true">2.12.</strong> CPU binding</a></li><li class="chapter-item expanded "><a href="../openstack/resize-fail.html"><strong aria-hidden="true">2.13.</strong> Investigation of the cause of resize failure</a></li><li class="chapter-item expanded "><a href="../openstack/mount-cloud-disk.html"><strong aria-hidden="true">2.14.</strong> Mount cloud disk</a></li><li class="chapter-item expanded "><a href="../openstack/ocata-nova-evacuate-bug.html"><strong aria-hidden="true">2.15.</strong> Ocata nova evacuate bug</a></li><li class="chapter-item expanded "><a href="../openstack/compute-node-ha.html"><strong aria-hidden="true">2.16.</strong> compute node ha mainstream open source implementation</a></li><li class="chapter-item expanded "><a href="../openstack/collectd-influxdb.html"><strong aria-hidden="true">2.17.</strong> Deployment and usage of Collectd and InfluxDB</a></li><li class="chapter-item expanded "><a href="../openstack/live-migration-local.html"><strong aria-hidden="true">2.18.</strong> Live Migration on Local Storage</a></li><li class="chapter-item expanded "><a href="../openstack/fast-evacuation.html"><strong aria-hidden="true">2.19.</strong> Add fast evacuation function to VM HA procedure</a></li><li class="chapter-item expanded "><a href="../openstack/vm-activation-failure.html"><strong aria-hidden="true">2.20.</strong> Windows virtual machine activation failure problem</a></li></ol></li><li class="chapter-item expanded "><a href="../SUMMARY.html"><strong aria-hidden="true">3.</strong> Catalog: Point of view</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../point-of-view/huawei-and-operators.html"><strong aria-hidden="true">3.1.</strong> Huawei and telecom operators</a></li></ol></li><li class="chapter-item expanded "><a href="../SUMMARY.html"><strong aria-hidden="true">4.</strong> Catalog: Tools</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../tools/git-dir.html"><strong aria-hidden="true">4.1.</strong> Internal structure of .git directory</a></li><li class="chapter-item expanded "><a href="../tools/xshell-skill.html"><strong aria-hidden="true">4.2.</strong> Some Skills of using xshell tools</a></li><li class="chapter-item expanded "><a href="../tools/gerrit-install.html"><strong aria-hidden="true">4.3.</strong> gerrit install</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">English version of the website https://www.backendcloud.cn/</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <!-- Page table of contents -->
+                        <div class="sidetoc"><nav class="pagetoc"></nav></div>
+
+                        <p>release time :2021-12-01 17:48</p>
+<blockquote>
+<p>Read https://kubernetes.io/zh/docs/concepts/cluster-administration/logging/ before reading this article</p>
+</blockquote>
+<p>I wrote an article about Fluentd designing a set of log architecture to implement Kubernetes Pod log collection . Since EFK is no longer the current mainstream log architecture, I studied another more mainstream log system promtail + loki + Grafana.</p>
+<h1 id="why-introduce-a-logging-system"><a class="header" href="#why-introduce-a-logging-system">Why introduce a logging system</a></h1>
+<p>The Kubernetes Pod itself will generate logs, and you can view the corresponding logs. Why is the log system introduced?</p>
+<p>For the sake of log reliability, because the application suddenly hangs up, we cannot find relevant logs at this time, so we need to introduce a log system to collect logs uniformly.</p>
+<p>Second, after the scale is large, acquisition, centralized management, storage, indexing, query, and display are all problems, and a system solution is needed.</p>
+<h1 id="promtail--loki--grafana-log-architecture"><a class="header" href="#promtail--loki--grafana-log-architecture">promtail + loki + Grafana log architecture</a></h1>
+<p><img src="2023-01-19-12-46-03.png" alt="" /></p>
+<p>The PLG log system consists of the following three parts:</p>
+<ul>
+<li>Promtail is a custom client for Loki, responsible for collecting logs and sending them to Loki.</li>
+<li>Loki is the master server responsible for storing logs and handling queries.</li>
+<li>Grafana is used for UI display (you can develop the front-end page yourself instead).</li>
+</ul>
+<p>The PLG log structure is customized for Kubernetes Pod logs, which is the only choice for Kubernetes Pod logs. The advantages over ELK/EFK are obvious.</p>
+<p>In addition, because the alarm and monitoring of Kubernetes are based on Prometheus, if you use ELK, you need to switch between Kibana and Grafana, which affects the user experience. Therefore, the first purpose of loki is to minimize the switching cost of metrics and logs, which helps to reduce the response time of abnormal events and improve user experience.</p>
+<h1 id="loki-architecture"><a class="header" href="#loki-architecture">Loki Architecture</a></h1>
+<p><img src="2023-01-19-12-46-49.png" alt="" /></p>
+<ul>
+<li>The Promtail open source client is responsible for collecting and reporting logs;</li>
+<li>Distributor: the log is written to the entry, and the data is forwarded to Ingester;</li>
+<li>Ingester: log writing service, cache and write log content and index to the underlying storage;</li>
+<li>Querier: log reading service, execute search request.</li>
+</ul>
+<h2 id="read-and-write"><a class="header" href="#read-and-write">read and write</a></h2>
+<p>The writing of log data mainly relies on two components, Distributor and Ingester. The overall process is as follows:</p>
+<p><img src="2023-01-19-12-47-31.png" alt="" /></p>
+<h1 id="distributor"><a class="header" href="#distributor">Distributor</a></h1>
+<p>Once promtail collects logs and sends them to loki, Distributor is the first component to receive logs. Since log write volumes can be large, they cannot be written to the database as they come in. This will destroy the database. We need to batch and compress data.</p>
+<p>Loki achieves this by building compressed data blocks by gziping the logs when they enter. The component ingester is a stateful component responsible for building and refreshing chunks. When the chunks reach a certain amount or time, they are refreshed to storage to go. Each flow log corresponds to an ingester. When the log reaches the Distributor, it calculates which ingester it should go to based on the metadata and the hash algorithm.</p>
+<p><img src="2023-01-19-12-47-51.png" alt="" /></p>
+<p>Also, we replicate it n (3 by default) times for redundancy and resilience.</p>
+<h2 id="ingester"><a class="header" href="#ingester">Ingester</a></h2>
+<p>Ingester receives the logs and starts building chunks:</p>
+<p><img src="2023-01-19-12-48-07.png" alt="" /></p>
+<p>Basically, the log is compressed and appended to the chunk. Once the chunk is &quot;filled&quot; (the data reaches a certain amount or a certain period has passed), the ingester flushes it to the database. We use separate databases for blocks and indexes because they store different types of data.</p>
+<p><img src="2023-01-19-12-48-24.png" alt="" /></p>
+<p>After flushing a chunk, the ingester then creates a new empty chunk and adds new entries to that chunk.</p>
+<h1 id="querier"><a class="header" href="#querier">Querier</a></h1>
+<p>Reading is very simple. Given a time range and label selector, Querier looks at the index to determine which blocks match, and displays the results through greps. It also fetches the latest data from Ingester which has not been refreshed yet.</p>
+<p>For each query, a queryer will show you all related logs. Query parallelization is implemented, providing distributed grep so that even large queries are adequate.</p>
+<p><img src="2023-01-19-12-48-45.png" alt="" /></p>
+<blockquote>
+<p>You can refer to the official document Loki's Architecture for further in-depth understanding. Finally, in one sentence, Loki is like Prometheus, but for logs.</p>
+</blockquote>
+<h1 id="plg-deployment"><a class="header" href="#plg-deployment">PLG deployment</a></h1>
+<pre><code>#  helm upgrade --install loki --namespace=loki grafana/loki-stack  --set grafana.enabled=true
+Release &quot;loki&quot; does not exist. Installing it now.
+Error: failed to download &quot;grafana/loki-stack”
+</code></pre>
+<p>If you are in China and it is difficult to pull images from the official DockerHub, you can use a mirror repository hosted on Alibaba Cloud:</p>
+<pre><code>#  helm upgrade --install loki --namespace=loki grafana/loki-stack  --set grafana.enabled=true --set  manager.image.repository=openkruise-registry.cn-hangzhou.cr.aliyuncs.com/openkruise/kruise-manager
+
+Release &quot;loki&quot; does not exist. Installing it now.
+NAME: loki
+LAST DEPLOYED: Wed Dec  1 15:34:23 2021
+NAMESPACE: loki
+STATUS: deployed
+REVISION: 1
+NOTES:
+The Loki stack has been deployed to your cluster. Loki can now be added as a datasource in Grafana.
+
+See http://docs.grafana.org/features/datasources/loki/ for more detail.
+</code></pre>
+<p>#Query PLG Service Status</p>
+<pre><code># kubectl -n loki get all
+NAME                                READY   STATUS    RESTARTS   AGE
+pod/loki-0                          1/1     Running   0          27m
+pod/loki-grafana-688db6c776-s8lxc   1/1     Running   0          27m
+pod/loki-promtail-2g6dp             1/1     Running   0          27m
+pod/loki-promtail-2th87             1/1     Running   0          27m
+pod/loki-promtail-46rbc             1/1     Running   0          27m
+pod/loki-promtail-8zljs             1/1     Running   0          27m
+pod/loki-promtail-gn8hf             1/1     Running   0          27m
+pod/loki-promtail-mc44v             1/1     Running   0          27m
+
+NAME                    TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE
+service/loki            ClusterIP   10.233.5.180    &lt;none&gt;        3100/TCP   27m
+service/loki-grafana    ClusterIP   10.233.13.165   &lt;none&gt;        80/TCP     27m
+service/loki-headless   ClusterIP   None            &lt;none&gt;        3100/TCP   27m
+
+NAME                           DESIRED   CURRENT   READY   UP-TO-DATE   AVAILABLE   NODE SELECTOR   AGE
+daemonset.apps/loki-promtail   6         6         6       6            6           &lt;none&gt;          27m
+
+NAME                           READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/loki-grafana   1/1     1            1           27m
+
+NAME                                      DESIRED   CURRENT   READY   AGE
+replicaset.apps/loki-grafana-688db6c776   1         1         1       27m
+
+NAME                    READY   AGE
+statefulset.apps/loki   1/1     27m
+</code></pre>
+<p>It can be seen that the installation of the Promtail + Loki + Grafana combination is automatically completed after deployment through Helm. The Promtail deployment mode is daemonset, which is deployed on each computing node to collect log information on nodes and Pods.</p>
+<p>Loki itself is deployed by statefulset by default. This is to avoid index loss when the data ingestion component crashes. Therefore, it is officially recommended to run Loki through statefulset and use persistent storage to store index files.</p>
+<p>Next, visit the Grafana UI interface to view the deployment results. First, get the Grafana administrator's password with the following command:</p>
+<pre><code>$ kubectl get secret --namespace loki loki-grafana -o jsonpath=&quot;{.data.admin-password}&quot; | base64 --decode ; echo
+</code></pre>
+<p>Then forward Grafana's interface through the following command for access through the Web UI. By default, the address of port forwarding is localhost, you can add –address <IP address> according to the situation of the instance where kubectl is located.</p>
+<pre><code>$ kubectl port-forward --namespace loki service/loki-grafana 3000:80
+</code></pre>
+<h1 id="login-display-page"><a class="header" href="#login-display-page">Login display page</a></h1>
+<p>Since PLG is deployed in Kubernetes, the service of Kubernetes is an internal ip, and a port mapping is made so that the external network can access the Grafana UI.</p>
+<pre><code># nohup ssh -N -g -L 33043:10.233.13.165:80 36.133.53.67 -p22 2&gt;&amp;1 &amp;
+</code></pre>
+<p><img src="2023-01-19-12-50-37.png" alt="" /></p>
+<p><img src="2023-01-19-12-50-43.png" alt="" /></p>
+<p><img src="2023-01-19-12-50-51.png" alt="" /></p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../SUMMARY.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                            <a rel="next" href="../cloud-native/fluentd.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../SUMMARY.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a rel="next" href="../cloud-native/fluentd.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        <script type="text/javascript" src="../sidebar.js"></script>
+    </body>
+</html>

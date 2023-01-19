@@ -1,0 +1,425 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Fluentd implements Kubernetes Pod log collection - English version of the website https://www.backendcloud.cn/</title>
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../style.css">
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../SUMMARY.html"><strong aria-hidden="true">1.</strong> Catalog: Cloud Native</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../cloud-native/plg.html"><strong aria-hidden="true">1.1.</strong> PLG implements Kubernetes Pod log collection and display</a></li><li class="chapter-item expanded "><a href="../cloud-native/fluentd.html" class="active"><strong aria-hidden="true">1.2.</strong> Fluentd implements Kubernetes Pod log collection</a></li><li class="chapter-item expanded "><a href="../cloud-native/java-dev-memo-1.html"><strong aria-hidden="true">1.3.</strong> Little records in Java project development (1)</a></li><li class="chapter-item expanded "><a href="../cloud-native/jdk-bug.html"><strong aria-hidden="true">1.4.</strong> JDK bug - Encrypt Private Key failed unrecognized algorithm name PBEWithSHA1AndDESede</a></li><li class="chapter-item expanded "><a href="../cloud-native/tenant-cmp.html"><strong aria-hidden="true">1.5.</strong> Implementation of the function of creating resource pool tenants on the cloud management platform</a></li><li class="chapter-item expanded "><a href="../cloud-native/test-service-performance-2.html"><strong aria-hidden="true">1.6.</strong> iperf3 tests the four-layer performance of Kubernetes Service (Part 2)</a></li><li class="chapter-item expanded "><a href="../cloud-native/test-service-performance-1.html"><strong aria-hidden="true">1.7.</strong> iperf3 tests the four-layer performance of Kubernetes Service (Part 1)</a></li><li class="chapter-item expanded "><a href="../cloud-native/k8s-cmd.html"><strong aria-hidden="true">1.8.</strong> k8s common command</a></li><li class="chapter-item expanded "><a href="../cloud-native/cpu-binding.html"><strong aria-hidden="true">1.9.</strong> k8s supports container core binding</a></li><li class="chapter-item expanded "><a href="../cloud-native/capability.html"><strong aria-hidden="true">1.10.</strong> k8s supports Capability mechanism</a></li><li class="chapter-item expanded "><a href="../cloud-native/oom.html"><strong aria-hidden="true">1.11.</strong> k8s OOMkilled container exceeding memory limit</a></li></ol></li><li class="chapter-item expanded "><a href="../SUMMARY.html"><strong aria-hidden="true">2.</strong> Catalog: Openstack</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../openstack/deploy-openstack-stein.html"><strong aria-hidden="true">2.1.</strong> Problems encountered in Openstack Stein deployment</a></li><li class="chapter-item expanded "><a href="../openstack/sriov2ovs.html"><strong aria-hidden="true">2.2.</strong> sriov computing node to ovs computing node script</a></li><li class="chapter-item expanded "><a href="../openstack/placement.html"><strong aria-hidden="true">2.3.</strong> Openstack Placement</a></li><li class="chapter-item expanded "><a href="../openstack/power-arch.html"><strong aria-hidden="true">2.4.</strong> POWER architecture server as computing node</a></li><li class="chapter-item expanded "><a href="../openstack/sriov.html"><strong aria-hidden="true">2.5.</strong> OpenStack practices SR-IOV computing nodes</a></li><li class="chapter-item expanded "><a href="../openstack/openstack-op-4.html"><strong aria-hidden="true">2.6.</strong> Openstack operation and maintenance records (4)</a></li><li class="chapter-item expanded "><a href="../openstack/openstack-op-3.html"><strong aria-hidden="true">2.7.</strong> Openstack operation and maintenance records (3)</a></li><li class="chapter-item expanded "><a href="../openstack/openstack-op-2.html"><strong aria-hidden="true">2.8.</strong> Openstack operation and maintenance records (2)</a></li><li class="chapter-item expanded "><a href="../openstack/openstack-op-1.html"><strong aria-hidden="true">2.9.</strong> Openstack operation and maintenance records (1)</a></li><li class="chapter-item expanded "><a href="../openstack/novnc-problem.html"><strong aria-hidden="true">2.10.</strong> OpenStack Pike dashboard noVNC cannot be accessed problem</a></li><li class="chapter-item expanded "><a href="../openstack/openstack-local-yum.html"><strong aria-hidden="true">2.11.</strong> Openstack Pike local yum source construction</a></li><li class="chapter-item expanded "><a href="../openstack/cpu-binding.html"><strong aria-hidden="true">2.12.</strong> CPU binding</a></li><li class="chapter-item expanded "><a href="../openstack/resize-fail.html"><strong aria-hidden="true">2.13.</strong> Investigation of the cause of resize failure</a></li><li class="chapter-item expanded "><a href="../openstack/mount-cloud-disk.html"><strong aria-hidden="true">2.14.</strong> Mount cloud disk</a></li><li class="chapter-item expanded "><a href="../openstack/ocata-nova-evacuate-bug.html"><strong aria-hidden="true">2.15.</strong> Ocata nova evacuate bug</a></li><li class="chapter-item expanded "><a href="../openstack/compute-node-ha.html"><strong aria-hidden="true">2.16.</strong> compute node ha mainstream open source implementation</a></li><li class="chapter-item expanded "><a href="../openstack/collectd-influxdb.html"><strong aria-hidden="true">2.17.</strong> Deployment and usage of Collectd and InfluxDB</a></li><li class="chapter-item expanded "><a href="../openstack/live-migration-local.html"><strong aria-hidden="true">2.18.</strong> Live Migration on Local Storage</a></li><li class="chapter-item expanded "><a href="../openstack/fast-evacuation.html"><strong aria-hidden="true">2.19.</strong> Add fast evacuation function to VM HA procedure</a></li><li class="chapter-item expanded "><a href="../openstack/vm-activation-failure.html"><strong aria-hidden="true">2.20.</strong> Windows virtual machine activation failure problem</a></li></ol></li><li class="chapter-item expanded "><a href="../SUMMARY.html"><strong aria-hidden="true">3.</strong> Catalog: Point of view</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../point-of-view/huawei-and-operators.html"><strong aria-hidden="true">3.1.</strong> Huawei and telecom operators</a></li></ol></li><li class="chapter-item expanded "><a href="../SUMMARY.html"><strong aria-hidden="true">4.</strong> Catalog: Tools</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../tools/git-dir.html"><strong aria-hidden="true">4.1.</strong> Internal structure of .git directory</a></li><li class="chapter-item expanded "><a href="../tools/xshell-skill.html"><strong aria-hidden="true">4.2.</strong> Some Skills of using xshell tools</a></li><li class="chapter-item expanded "><a href="../tools/gerrit-install.html"><strong aria-hidden="true">4.3.</strong> gerrit install</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">English version of the website https://www.backendcloud.cn/</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <!-- Page table of contents -->
+                        <div class="sidetoc"><nav class="pagetoc"></nav></div>
+
+                        <p>release time :2021-11-30 16:36</p>
+<blockquote>
+<p>Read https://kubernetes.io/zh/docs/concepts/cluster-administration/logging/ before reading this article</p>
+</blockquote>
+<h1 id="fluentd-logging-architecture"><a class="header" href="#fluentd-logging-architecture">Fluentd logging architecture</a></h1>
+<p><img src="2023-01-19-12-38-33.png" alt="" /></p>
+<p>A typical deployment architecture of Fluentd needs to include two different roles: forwarder and aggregator.</p>
+<p>Each Kubernetes working node deploys a Fluentd to forward the node's container logs to the edge cloud configuration public network working node, configure the public network working node and then forward the log to the software deployment node.</p>
+<h1 id="fluent-configuration-file"><a class="header" href="#fluent-configuration-file">Fluent configuration file</a></h1>
+<p>The configuration of Fluentd for each Kubernetes worker node is as follows:</p>
+<pre><code>&lt;source&gt;
+@type tail
+path /var/log/containers/*.log
+pos_file /var/log/fluentd-containers.log.pos
+format json
+tag kubernetes.*
+time_format %Y-%m-%dT%H:%M:%S.%NZ
+&lt;/source&gt;
+
+&lt;match kubernetes.**&gt;
+@type forward
+send_timeout 60s
+recover_wait 10s
+hard_timeout 60s
+&lt;server&gt;
+    name myserver1
+    host 192.168.200.100
+    port 24224
+    weight 60
+&lt;/server&gt;
+&lt;/match&gt;
+</code></pre>
+<p>The aggregation log node, that is, the working node Fluentd configured with the public network in the above figure, is configured as follows:</p>
+<pre><code>&lt;source&gt;
+@type forward
+port 24224
+bind 0.0.0.0
+&lt;/source&gt;
+
+&lt;match **&gt;
+@type forward
+send_timeout 60s
+recover_wait 10s
+hard_timeout 60s
+&lt;server&gt;
+    name myserver2
+    host 36.134.56.149
+    port 24224
+    weight 60
+&lt;/server&gt;
+&lt;/match&gt;
+</code></pre>
+<p>The configuration of the software deployment node Fluentd is as follows:</p>
+<pre><code>&lt;source&gt;
+@type forward
+port 24224
+bind 0.0.0.0
+&lt;/source&gt;
+
+&lt;match **&gt;
+@type stdout
+&lt;/match&gt;
+</code></pre>
+<p>The log rollback configuration is as follows:</p>
+<pre><code># cat /etc/logrotate.d/cmp-pod
+/tmp/ftp_path/log_pod/*.log {
+    missingok
+    copytruncate
+    rotate 30
+    compress
+    dateext
+    dateformat -%Y%m%d-%H-%s
+    sharedscripts
+}
+#  cat /etc/cron.d/cmp-pod 
+# Run system activity accounting tool every 10 minutes
+SHELL=/bin/bash
+PATH=/sbin:/bin:/usr/sbin:/usr/bin
+MAILTO=root
+*/5 * * * * root logrotate -f /etc/logrotate.d/cmp-pod
+</code></pre>
+<h1 id="record-several-problems-encountered-in-the-process-of-collecting-pod-logs-with-fluentd"><a class="header" href="#record-several-problems-encountered-in-the-process-of-collecting-pod-logs-with-fluentd">Record several problems encountered in the process of collecting Pod logs with Fluentd</a></h1>
+<h2 id="compared-with-bare-metal-and-container-deployment-adopt-container-deployment-solution"><a class="header" href="#compared-with-bare-metal-and-container-deployment-adopt-container-deployment-solution">Compared with bare metal and container deployment, adopt container deployment solution</a></h2>
+<p>Bare metal can also be deployed, but requires a ruby ​​environment, as well as Fluent dependencies, including version dependencies, deployment is a bit cumbersome, and it is not conducive to automation. If container deployment is adopted, the above disadvantages do not exist, and the kind: DaemonSet of Kubernetes can be used to conveniently start the Fluentd service on each Kubernetes node.</p>
+<p>The container image uses docker pull fluent/fluentd:latest.
+You can also use fluent/fluentd-kubernetes-daemonset, which should be better. Some configurations should be configured. I did my own research and used the original image.
+You can also directly use the resource list of the addon plug-in officially provided by Kubernetes at the address: https://github.com/kubernetes/kubernetes/blob/master/cluster/addons/fluentd-elasticsearch/ and install it directly.</p>
+<p>The following command starts the container</p>
+<pre><code>docker run -it -d   -p 24224:24224   -v /path/to/conf:/fluentd/etc   -v /var:/var fluent/fluentd:latest
+</code></pre>
+<p>The initial startup failed because there is no configuration file (the host's /path/to/conf directory overwrites the fluentd configuration file directory in the container), plus the Fluentd configuration file, the container restarted successfully.</p>
+<p>In order to test the Fluent log service, two small experiments were done.</p>
+<p><strong>input: tail</strong></p>
+<p>After the Fluent configuration file is written as follows, restart the Fluentd container.</p>
+<pre><code># Directive determines the input sources
+# Watches source and triggers an event with a tag attached to it
+&lt;source&gt;
+@type tail                                               # Uses tail plugin to read logs from
+format json                                              # Assumes that the log file is in &quot;json&quot; format
+read_from_head true                                      # Start to read the logs from the head of file, not bottom
+tag api.user.registration                                # Tag triggered event with &quot;api.user.registration&quot;
+path /home/ubuntu/logs/application/registration.log*     # Paths to the files which will be tailed
+pos_file /home/ubuntu/logs/fluentd/registration.log.pos  # Path to the &quot;position&quot; database file
+&lt;/source&gt;
+
+# Directive determines the output destinations
+# Catches an event with a specific tag attached to it
+&lt;match api.user.registration&gt;
+@type file                                               # Uses file plugin to write logs to
+path /home/ubuntu/logs/fluentd/registration.log          # Path to the log file which logs will be written to
+&lt;/match&gt;
+</code></pre>
+<p>test was successful.</p>
+<pre><code>ubuntu@linux:~$ echo '{&quot;user&quot;:&quot;1&quot;}' &gt;&gt; logs/application/registration.log.1 
+ubuntu@linux:~$ echo '{&quot;user&quot;:&quot;2&quot;}' &gt;&gt; logs/application/registration.log.1 
+ubuntu@linux:~$ echo '{&quot;user&quot;:&quot;3&quot;}' &gt;&gt; logs/application/registration.log.1 
+
+ubuntu@linux:~$ ls -l logs/fluentd/
+
+-rw-r--r-- 1 td-agent td-agent 61 Apr  6 21:02 registration.log.20180406.b56933893cd87b6b8
+-rw-r--r-- 1 td-agent td-agent 83 Apr  6 21:02 registration.log.pos
+
+ubuntu@linux:~$ cat logs/fluentd/registration.log.20180406.b56933893cd87b6b8
+
+2018-04-06T21:02:30+01:00	api.user.registration	{&quot;user&quot;:&quot;1&quot;}
+2018-04-06T21:02:49+01:00	api.user.registration	{&quot;user&quot;:&quot;2&quot;}
+2018-04-06T21:02:55+01:00	api.user.registration	{&quot;user&quot;:&quot;3&quot;}
+
+ubuntu@linux:~$ touch logs/application/registration.log.2
+
+ubuntu@linux:~$ echo '{&quot;admin&quot;:&quot;1&quot;}' &gt;&gt; logs/application/registration.log.2
+ubuntu@linux:~$ echo '{&quot;admin&quot;:&quot;2&quot;}' &gt;&gt; logs/application/registration.log.2
+ubuntu@linux:~$ echo '{&quot;admin&quot;:&quot;3&quot;}' &gt;&gt; logs/application/registration.log.2
+
+ubuntu@linux:~$ cat logs/fluentd/registration.log.20180406.b56933893cd87b6b8
+
+2018-04-06T21:02:30+01:00	api.user.registration	{&quot;user&quot;:&quot;1&quot;}
+2018-04-06T21:02:49+01:00	api.user.registration	{&quot;user&quot;:&quot;2&quot;}
+2018-04-06T21:02:55+01:00	api.user.registration	{&quot;user&quot;:&quot;3&quot;}
+2018-04-06T21:07:37+01:00	api.user.registration	{&quot;admin&quot;:&quot;1&quot;}
+2018-04-06T21:07:37+01:00	api.user.registration	{&quot;admin&quot;:&quot;2&quot;}
+2018-04-06T21:07:38+01:00	api.user.registration	{&quot;admin&quot;:&quot;3&quot;}
+</code></pre>
+<p><strong>input: forward</strong></p>
+<p>After the Fluent configuration file is written as follows, restart the Fluentd container.</p>
+<pre><code>&lt;source&gt;
+@type   forward
+&lt;/source&gt;
+
+&lt;match *&gt;
+
+@type              file
+
+path               /fluentd/log/${tag}/${tag}
+append             true
+&lt;format&gt;
+    @type            single_value
+    message_key      log
+&lt;/format&gt;
+&lt;buffer tag,time&gt;
+    @type             file
+    timekey           1d
+    timekey_wait      10m
+    flush_mode        interval
+    flush_interval    30s
+&lt;/buffer&gt;
+&lt;/match&gt;
+</code></pre>
+<p>Start a new container, specify the logging driver of the container</p>
+<pre><code>docker run -d \
+...
+--log-driver=fluentd \
+--log-opt fluentd-address=&lt;fluentdhost&gt;:24224 \
+--log-opt mode=non-blocking \
+--log-opt tag={{.Name}} \
+&lt;image&gt;
+</code></pre>
+<p>Observe the log, and you can see a directory structure similar to this in the /home/ubuntu/container-logs directory:</p>
+<pre><code>.
+└── &lt;container-name&gt;
+    └── &lt;container-name&gt;.20190123.log
+</code></pre>
+<h2 id="the-log-file-of-the-pod-can-be-cated-in-the-fluentd-container-but-the-log-report-of-the-fluentd-service-cannot-read-the-log-file-of-the-pod"><a class="header" href="#the-log-file-of-the-pod-can-be-cated-in-the-fluentd-container-but-the-log-report-of-the-fluentd-service-cannot-read-the-log-file-of-the-pod">The log file of the pod can be cated in the Fluentd container, but the log report of the Fluentd service cannot read the log file of the pod</a></h2>
+<pre><code>/var/log/containers/samplelog-79bd66868b-t7xn9_logging1_fluentd-70e85c5d6328e7d.log unreadable. It is excluded and would be examined next time.
+</code></pre>
+<p>Log in to the Fluentd container to cat log files. After reading the read and write attributes of the log files, the root user can read them, but other users cannot read them. ps the Fluentd process and found that they are all running as the fluent user.</p>
+<pre><code>/ # ps -ef
+PID   USER     TIME  COMMAND
+    1 root      0:00 {entrypoint.sh} /usr/bin/dumb-init /bin/sh /bin/entrypoint.sh /bin/sh -c exec fluentd -c /fluentd/etc/${FLUENTD_CONF} -p /fluentd/plugins $FLUENTD_
+    6 fluent    0:02 {fluentd} /usr/bin/ruby /usr/bin/fluentd -c /fluentd/etc/fluent.conf -p /fluentd/plugins
+17 fluent    0:28 /usr/bin/ruby -Eascii-8bit:ascii-8bit /usr/bin/fluentd -c /fluentd/etc/fluent.conf -p /fluentd/plugins --under-supervisor
+21 root      0:00 sh
+26 root      0:00 ps -ef
+/ # 
+</code></pre>
+<p>Because the fluentd image is built with fluent user privileges, insufficient privileges may occur.</p>
+<p>The solution is to pull the fluent code to build it yourself and specify the user in the Dockfile; or use the simplest method to specify the UID of the fluent user as 0 in the env. I have an answer to this question on stackoverflow for the specific operation method.</p>
+<p>https://stackoverflow.com/questions/51671212/fluentd-log-unreadable-it-is-excluded-and-would-be-examined-next-time/70165516#70165516</p>
+<p>The most direct way is to change mode:</p>
+<pre><code>chmod 777 /var/log/containers/*.log
+</code></pre>
+<p>but the best way is: change fluent user to root (set FLUENT_UID environment variable to 0 in your docker/kubernetes configuration);</p>
+<p>add –env FLUENT_UID=0 to docker command, for example:</p>
+<pre><code>docker run -it -d -p 24224:24224 -v /path/to/conf:/fluentd/etc -v /var:/var --env FLUENT_UID=0 fluent/fluentd:latest
+</code></pre>
+<p>or add to Kubernetes yaml file:</p>
+<pre><code class="language-yaml">apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  name: fluentd
+  namespace: kube-system
+  # namespace: default
+  labels:
+    k8s-app: fluentd-logging
+    version: v1
+    kubernetes.io/cluster-service: &quot;true&quot;
+spec:
+  template:
+    metadata:
+      labels:
+        k8s-app: fluentd-logging
+        version: v1
+        kubernetes.io/cluster-service: &quot;true&quot;
+    spec:
+      serviceAccount: fluentd
+      serviceAccountName: fluentd
+      tolerations:
+      - key: node-role.kubernetes.io/master
+        effect: NoSchedule
+      containers:
+      - name: fluentd
+        image: fluent/fluentd-kubernetes-daemonset:v1.4-debian-elasticsearch
+        env:
+          - name: FLUENT_UID  # change this place
+            value: &quot;0&quot;
+</code></pre>
+<p>After modifying as per my answer on stackoverflow, everything works fine.</p>
+<pre><code>/ # ps -ef
+PID   USER     TIME  COMMAND
+    1 root      0:00 {entrypoint.sh} /usr/bin/dumb-init /bin/sh /bin/entrypoint.sh /bin/sh -c exec fluentd -c /fluentd/etc/${FLUENTD_CONF} -p /fluentd/plugins $FLUENTD_
+    7 root      0:05 {fluentd} /usr/bin/ruby /usr/bin/fluentd -c /fluentd/etc/fluent.conf -p /fluentd/plugins
+16 root      1:58 /usr/bin/ruby -Eascii-8bit:ascii-8bit /usr/bin/fluentd -c /fluentd/etc/fluent.conf -p /fluentd/plugins --under-supervisor
+22 root      0:00 sh
+28 root      0:00 ps -ef
+/ # 
+</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../cloud-native/plg.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                            <a rel="next" href="../cloud-native/java-dev-memo-1.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../cloud-native/plg.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a rel="next" href="../cloud-native/java-dev-memo-1.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        <script type="text/javascript" src="../sidebar.js"></script>
+    </body>
+</html>

@@ -1,0 +1,614 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Little records in Java project development (1) - English version of the website https://www.backendcloud.cn/</title>
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../style.css">
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../SUMMARY.html"><strong aria-hidden="true">1.</strong> Catalog: Cloud Native</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../cloud-native/plg.html"><strong aria-hidden="true">1.1.</strong> PLG implements Kubernetes Pod log collection and display</a></li><li class="chapter-item expanded "><a href="../cloud-native/fluentd.html"><strong aria-hidden="true">1.2.</strong> Fluentd implements Kubernetes Pod log collection</a></li><li class="chapter-item expanded "><a href="../cloud-native/java-dev-memo-1.html" class="active"><strong aria-hidden="true">1.3.</strong> Little records in Java project development (1)</a></li><li class="chapter-item expanded "><a href="../cloud-native/jdk-bug.html"><strong aria-hidden="true">1.4.</strong> JDK bug - Encrypt Private Key failed unrecognized algorithm name PBEWithSHA1AndDESede</a></li><li class="chapter-item expanded "><a href="../cloud-native/tenant-cmp.html"><strong aria-hidden="true">1.5.</strong> Implementation of the function of creating resource pool tenants on the cloud management platform</a></li><li class="chapter-item expanded "><a href="../cloud-native/test-service-performance-2.html"><strong aria-hidden="true">1.6.</strong> iperf3 tests the four-layer performance of Kubernetes Service (Part 2)</a></li><li class="chapter-item expanded "><a href="../cloud-native/test-service-performance-1.html"><strong aria-hidden="true">1.7.</strong> iperf3 tests the four-layer performance of Kubernetes Service (Part 1)</a></li><li class="chapter-item expanded "><a href="../cloud-native/k8s-cmd.html"><strong aria-hidden="true">1.8.</strong> k8s common command</a></li><li class="chapter-item expanded "><a href="../cloud-native/cpu-binding.html"><strong aria-hidden="true">1.9.</strong> k8s supports container core binding</a></li><li class="chapter-item expanded "><a href="../cloud-native/capability.html"><strong aria-hidden="true">1.10.</strong> k8s supports Capability mechanism</a></li><li class="chapter-item expanded "><a href="../cloud-native/oom.html"><strong aria-hidden="true">1.11.</strong> k8s OOMkilled container exceeding memory limit</a></li></ol></li><li class="chapter-item expanded "><a href="../SUMMARY.html"><strong aria-hidden="true">2.</strong> Catalog: Openstack</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../openstack/deploy-openstack-stein.html"><strong aria-hidden="true">2.1.</strong> Problems encountered in Openstack Stein deployment</a></li><li class="chapter-item expanded "><a href="../openstack/sriov2ovs.html"><strong aria-hidden="true">2.2.</strong> sriov computing node to ovs computing node script</a></li><li class="chapter-item expanded "><a href="../openstack/placement.html"><strong aria-hidden="true">2.3.</strong> Openstack Placement</a></li><li class="chapter-item expanded "><a href="../openstack/power-arch.html"><strong aria-hidden="true">2.4.</strong> POWER architecture server as computing node</a></li><li class="chapter-item expanded "><a href="../openstack/sriov.html"><strong aria-hidden="true">2.5.</strong> OpenStack practices SR-IOV computing nodes</a></li><li class="chapter-item expanded "><a href="../openstack/openstack-op-4.html"><strong aria-hidden="true">2.6.</strong> Openstack operation and maintenance records (4)</a></li><li class="chapter-item expanded "><a href="../openstack/openstack-op-3.html"><strong aria-hidden="true">2.7.</strong> Openstack operation and maintenance records (3)</a></li><li class="chapter-item expanded "><a href="../openstack/openstack-op-2.html"><strong aria-hidden="true">2.8.</strong> Openstack operation and maintenance records (2)</a></li><li class="chapter-item expanded "><a href="../openstack/openstack-op-1.html"><strong aria-hidden="true">2.9.</strong> Openstack operation and maintenance records (1)</a></li><li class="chapter-item expanded "><a href="../openstack/novnc-problem.html"><strong aria-hidden="true">2.10.</strong> OpenStack Pike dashboard noVNC cannot be accessed problem</a></li><li class="chapter-item expanded "><a href="../openstack/openstack-local-yum.html"><strong aria-hidden="true">2.11.</strong> Openstack Pike local yum source construction</a></li><li class="chapter-item expanded "><a href="../openstack/cpu-binding.html"><strong aria-hidden="true">2.12.</strong> CPU binding</a></li><li class="chapter-item expanded "><a href="../openstack/resize-fail.html"><strong aria-hidden="true">2.13.</strong> Investigation of the cause of resize failure</a></li><li class="chapter-item expanded "><a href="../openstack/mount-cloud-disk.html"><strong aria-hidden="true">2.14.</strong> Mount cloud disk</a></li><li class="chapter-item expanded "><a href="../openstack/ocata-nova-evacuate-bug.html"><strong aria-hidden="true">2.15.</strong> Ocata nova evacuate bug</a></li><li class="chapter-item expanded "><a href="../openstack/compute-node-ha.html"><strong aria-hidden="true">2.16.</strong> compute node ha mainstream open source implementation</a></li><li class="chapter-item expanded "><a href="../openstack/collectd-influxdb.html"><strong aria-hidden="true">2.17.</strong> Deployment and usage of Collectd and InfluxDB</a></li><li class="chapter-item expanded "><a href="../openstack/live-migration-local.html"><strong aria-hidden="true">2.18.</strong> Live Migration on Local Storage</a></li><li class="chapter-item expanded "><a href="../openstack/fast-evacuation.html"><strong aria-hidden="true">2.19.</strong> Add fast evacuation function to VM HA procedure</a></li><li class="chapter-item expanded "><a href="../openstack/vm-activation-failure.html"><strong aria-hidden="true">2.20.</strong> Windows virtual machine activation failure problem</a></li></ol></li><li class="chapter-item expanded "><a href="../SUMMARY.html"><strong aria-hidden="true">3.</strong> Catalog: Point of view</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../point-of-view/huawei-and-operators.html"><strong aria-hidden="true">3.1.</strong> Huawei and telecom operators</a></li></ol></li><li class="chapter-item expanded "><a href="../SUMMARY.html"><strong aria-hidden="true">4.</strong> Catalog: Tools</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../tools/git-dir.html"><strong aria-hidden="true">4.1.</strong> Internal structure of .git directory</a></li><li class="chapter-item expanded "><a href="../tools/xshell-skill.html"><strong aria-hidden="true">4.2.</strong> Some Skills of using xshell tools</a></li><li class="chapter-item expanded "><a href="../tools/gerrit-install.html"><strong aria-hidden="true">4.3.</strong> gerrit install</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">English version of the website https://www.backendcloud.cn/</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <!-- Page table of contents -->
+                        <div class="sidetoc"><nav class="pagetoc"></nav></div>
+
+                        <p>release time :2021-11-23 15:04</p>
+<p>Record some problems encountered in developing projects in Java:</p>
+<h1 id="pattern-annotation"><a class="header" href="#pattern-annotation">@Pattern annotation</a></h1>
+<p>For the fields in the http request body, regular checks need to be done. For general regular checks that do not require conditional judgments, you can use @Pattern instead of writing regular checks in the method, which simplifies development.</p>
+<p>In order to verify, it must start with &quot;sftp://&quot;, written in the following form
+@Pattern(regexp = &quot;^sftp://&quot;)</p>
+<p>But the content of the field is an sftp://10.10.10.10:33022/ftp_testerror
+, and the @Pattern annotation will automatically add ^ and &amp;. The correct spelling is
+@Pattern(regexp = &quot;^sftp://.<em>$&quot;)or@Pattern(regexp = &quot;sftp://.</em>&quot;)</p>
+<p>So the regular expression is improved and written in the following form:</p>
+<pre><code class="language-java">/**
+ * ftpPath
+ */
+@JsonProperty(&quot;ftpServer&quot;)
+@Pattern(regexp = &quot;sftp://.+[:\\d+]?/.*&quot;, message = &quot;ftpPath&quot;)
+private String ftpPath;
+/**
+ * ftpUser
+ */
+@JsonProperty(&quot;ftpUser&quot;)
+private String ftpUser;
+/**
+ * ftpPasswd
+ */
+@JsonProperty(&quot;ftpPasswd&quot;)
+private String ftpPasswd;
+</code></pre>
+<h1 id="to-enable-https-and-https-services-at-the-same-time"><a class="header" href="#to-enable-https-and-https-services-at-the-same-time">To enable https and https services at the same time</a></h1>
+<p>Open the http service separately, and write the configuration file of springboot</p>
+<pre><code>server.port: 33021
+</code></pre>
+<p>Open the https service separately, use keytool to make a certificate, and the configuration file of springboot is written as follows:</p>
+<pre><code>#https port
+server.port: 33021
+
+#https config
+server.ssl.key-store: classpath:keystore.p12
+#server.ssl.key-store: file:/Users/hanwei/xxx/yyy/api/src/main/resources/keystore.p12
+server.ssl.key-store-password: 123456
+server.ssl.keyStoreType: PKCS12
+server.ssl.keyAlias: tomcat
+</code></pre>
+<p>To enable http service and https service at the same time, the configuration file of springboot is written as follows:</p>
+<pre><code>#https port
+server.port: 33021
+
+# http port
+http.port: 33011
+
+#https config
+server.ssl.key-store: classpath:keystore.p12
+#server.ssl.key-store: file:/Users/hanwei/xxx/yyy/api/src/main/resources/keystore.p12
+server.ssl.key-store-password: 123456
+server.ssl.keyStoreType: PKCS12
+</code></pre>
+<p>and create the following java file:</p>
+<pre><code class="language-java">import org.apache.catalina.connector.Connector;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
+import org.springframework.boot.web.servlet.server.ServletWebServerFactory;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+
+@Configuration
+public class SSLConfig {
+    @Value(&quot;${http.port}&quot;)
+    private Integer port;
+
+    @Bean
+    public ServletWebServerFactory servletContainer() {
+
+        TomcatServletWebServerFactory tomcat = new TomcatServletWebServerFactory();
+        Connector connector = new Connector(&quot;org.apache.coyote.http11.Http11NioProtocol&quot;);
+        connector.setPort(port);
+        tomcat.addAdditionalTomcatConnectors(connector);
+        return tomcat;
+    }
+
+}
+</code></pre>
+<h1 id="i-want-the-null-field-of-the-http-response-body-json-to-be-displayed-as-an-empty-string"><a class="header" href="#i-want-the-null-field-of-the-http-response-body-json-to-be-displayed-as-an-empty-string">I want the null field of the http response body json to be displayed as an empty string&quot;&quot;</a></h1>
+<pre><code class="language-java">//demo
+    @RequestMapping(&quot;/map&quot;)
+    public Map&lt;String, Object&gt; getMap() {
+        Map&lt;String, Object&gt; map = new HashMap&lt;&gt;(3);
+        User user = new User(1, &quot;xxx&quot;, null);
+        map.put(&quot;auth&quot;, user);
+        map.put(&quot;blog url&quot;, &quot;http://www.yyy.com&quot;);
+        map.put(&quot;phone number&quot;, null);
+        return map;
+    }
+</code></pre>
+<p>Call interface display: {&quot;author information&quot;:{&quot;id&quot;:1,&quot;username&quot;:&quot;xxx&quot;,&quot;password&quot;:null},&quot;CSDN address&quot;:null,&quot;blog address&quot;:&quot; http://www .yyy.com&quot;}</p>
+<p>Create the following java file:</p>
+<pre><code class="language-java">import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.databind.*;
+import com.fasterxml.jackson.databind.Module;
+import com.fasterxml.jackson.databind.module.SimpleModule;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
+import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
+
+import java.io.IOException;
+
+@Configuration
+public class JacksonConfig {
+    @Bean
+    @Primary
+    @ConditionalOnMissingBean(ObjectMapper.class)
+    public ObjectMapper jacksonObjectMapper(Jackson2ObjectMapperBuilder builder) {
+        ObjectMapper objectMapper = builder.createXmlMapper(false).build();
+        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
+        objectMapper.configure(MapperFeature.ALLOW_COERCION_OF_SCALARS, false);
+        objectMapper.getSerializerProvider().setNullValueSerializer(new JsonSerializer&lt;Object&gt;() {
+            @Override
+            public void serialize(Object o, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException {
+                jsonGenerator.writeString(&quot;&quot;);
+            }
+        });
+        return objectMapper;
+    }
+
+    @Bean
+    public Module customStringDeserializer() {
+        SimpleModule module = new SimpleModule();
+        module.addDeserializer(String.class, CustomStringDeserializer.instance);
+        return module;
+    }
+}
+</code></pre>
+<p>Call interface display: {&quot;author information&quot;:{&quot;id&quot;:1,&quot;username&quot;:&quot;xxx&quot;,&quot;password&quot;:&quot;&quot;},&quot;CSDN address&quot;:&quot;&quot;,&quot;blog address&quot;:&quot; http:/ /www.yyy.com&quot;}</p>
+<h1 id="i-want-the-null-field-of-http-response-body-json-not-to-be-displayed"><a class="header" href="#i-want-the-null-field-of-http-response-body-json-not-to-be-displayed">I want the null field of http response body json not to be displayed</a></h1>
+<p>@JsonInclude(JsonInclude.Include.NON_NULL)Annotations can be used , for example:</p>
+<pre><code class="language-java">import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.util.List;
+
+@NoArgsConstructor
+@Data
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class ListPoolTenantsResponse {
+
+    /**
+     * tenantId
+     */
+    @JsonProperty(&quot;tenantId&quot;)
+    private String tenantId;
+    /**
+     * poolTenants
+     */
+    @JsonProperty(&quot;poolTenants&quot;)
+    private List&lt;PoolTenantsDTO&gt; poolTenants;
+
+    /**
+     * PoolTenantsDTO
+     */
+    @NoArgsConstructor
+    @Data
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    public static class PoolTenantsDTO {
+        /**
+         * id
+         */
+        @JsonProperty(&quot;id&quot;)
+        private String id;
+        /**
+         * name
+         */
+        @JsonProperty(&quot;name&quot;)
+        private String name;
+        /**
+         * poolId
+         */
+        @JsonProperty(&quot;poolId&quot;)
+        private String poolId;
+        /**
+         * poolName
+         */
+        @JsonProperty(&quot;poolName&quot;)
+        private String poolName;
+        /**
+         * poolType
+         */
+        @JsonProperty(&quot;poolType&quot;)
+        private Integer poolType;
+        /**
+         * description
+         */
+        @JsonProperty(&quot;description&quot;)
+        private String description;
+        /**
+         * status
+         */
+        @JsonProperty(&quot;status&quot;)
+        private String status;
+        /**
+         * quotaSpec
+         */
+        @JsonProperty(&quot;quotaSpec&quot;)
+        private QuotaSpecDTO quotaSpec;
+
+        /**
+         * QuotaSpecDTO
+         */
+        @NoArgsConstructor
+        @Data
+        @JsonInclude(JsonInclude.Include.NON_NULL)
+        public static class QuotaSpecDTO {
+            /**
+             * cpu
+             */
+            @JsonProperty(&quot;cpu&quot;)
+            private Integer cpu;
+            /**
+             * memory
+             */
+            @JsonProperty(&quot;memory&quot;)
+            private Integer memory;
+        }
+    }
+}
+</code></pre>
+<h1 id="when-mybatis-plus-is-used-as-orm-i-want-to-update-a-field-in-the-database-to-null"><a class="header" href="#when-mybatis-plus-is-used-as-orm-i-want-to-update-a-field-in-the-database-to-null">When Mybatis-Plus is used as ORM, I want to update a field in the database to null</a></h1>
+<p>By default, the field cannot be updated to null. Even if it is updated to null, the query database finds that the field is still the original field and has not been updated, because mybatis-plus FieldStrategy has three strategies:</p>
+<ul>
+<li>IGNORED: 0 Ignore</li>
+<li>NOT_NULL: 1 is not NULL, the default policy</li>
+<li>NOT_EMPTY: 2 is not empty</li>
+</ul>
+<p>and the default update policy is NOT_NULL: not NULL; that is, when the data is NULL when updating data through the interface, it will not be updated into the database.</p>
+<p>The default strategy of Mybatis-Plus provides great convenience for the update operation. For example, only the fields in the json body are updated when the http request is updated, and the fields that are not in the body will not be updated, which also meets the general requirements. It is a bit strange to update the fields that are not in the body to null. The general requirement is to keep fields that are null as-is.</p>
+<p>If a field needs to be updated to null, it can be @TableField(updateStrategy = FieldStrategy.IGNORED)realized through annotations.</p>
+<p>For example:</p>
+<pre><code class="language-java">import com.alibaba.fastjson.JSONObject;
+import com.baomidou.mybatisplus.annotation.FieldStrategy;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import lombok.Data;
+
+@Data
+@TableName(value = &quot;image&quot;, autoResultMap = true)
+public class Image {
+//    private String id;
+    @TableId(&quot;name&quot;)
+    private String name;
+    private String description;
+    private boolean publicView; //和Harbor一致
+    private String type;
+    private String registry; //镜像仓库地址，支持多镜像仓库
+    private String repository; //&quot;project/repository&quot;的形式，和Harbor一致
+    @TableField(typeHandler = JacksonTypeHandler.class, updateStrategy = FieldStrategy.IGNORED)
+    private JSONObject lables; //&quot;lables&quot;: {&quot;gpu&quot;: &quot;yes&quot;}
+}
+</code></pre>
+<h1 id="how-does-the-json-data-type-map-between-java-entity-fields-and-database-fields"><a class="header" href="#how-does-the-json-data-type-map-between-java-entity-fields-and-database-fields">How does the json data type map between Java entity fields and database fields</a></h1>
+<p>The mapping between the json data type and the Java entity class is very common, and json nested json can also write a nested inner class in the Java entity class. The internal json data type corresponds to the internal class of the entity, but the current requirement is to associate it with a certain json type field in the database. It can be done in the following ways.</p>
+<p>For example:</p>
+<pre><code class="language-java">CREATE TABLE image
+(
+    #id     int AUTO_INCREMENT comment 'id',
+--     id   varchar(80),
+    name varchar(80),
+    description varchar(500),
+    public_view tinyint(1) comment '0:非公开；1:公开',
+    type varchar(80),
+    registry varchar(80),
+    repository varchar(80),
+    lables JSON,
+    primary key (name)
+);
+</code></pre>
+<pre><code class="language-java">import com.alibaba.fastjson.JSONObject;
+import com.baomidou.mybatisplus.annotation.FieldStrategy;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import lombok.Data;
+
+@Data
+@TableName(value = &quot;image&quot;, autoResultMap = true)
+public class Image {
+//    private String id;
+    @TableId(&quot;name&quot;)
+    private String name;
+    private String description;
+    private boolean publicView; //和Harbor一致
+    private String type;
+    private String registry; //记录仓库地址，支持多镜像仓库
+    private String repository; //&quot;project/repository&quot;的形式，和Harbor一致
+    @TableField(typeHandler = JacksonTypeHandler.class, updateStrategy = FieldStrategy.IGNORED)
+    private JSONObject lables; //&quot;lables&quot;: {&quot;gpu&quot;: &quot;yes&quot;}
+}
+</code></pre>
+<p>typeHandler: Field type handler for conversion between JavaType and JdbcType.</p>
+<p>If you do not follow the above processing, the following error will be reported:</p>
+<pre><code>com.mysql.cj.jdbc.exceptions.MysqlDataTruncation: Data truncation: Cannot create a JSON value from a string with CHARACTER SET 'binary'.&quot;
+</code></pre>
+<h1 id="the-http-response-body-field-displays-the-time-format-on-demand"><a class="header" href="#the-http-response-body-field-displays-the-time-format-on-demand">The http response body field displays the time format on demand</a></h1>
+<p>Add annotations before the response body field:</p>
+<pre><code>@JsonFormat(pattern=&quot;yyyy-MM-dd HH:mm:ss&quot;, timezone=&quot;GMT+8&quot;) Display the time of East Eight District
+@JsonFormat(pattern=&quot;yyyy-MM-dd'T'HH:mm: ss.SSS'Z'&quot;) displays UTC time, accurate to milliseconds, for example: 2017-06-01T00:00:00.000Z
+</code></pre>
+<h1 id="synchronize-data-between-servers"><a class="header" href="#synchronize-data-between-servers">Synchronize data between servers</a></h1>
+<p>You can use the put method of com.jcraft.jsch.ChannelSftp to write a scheduled update task</p>
+<pre><code class="language-java">@Async(&quot;taskScheduler&quot;)
+@Scheduled(cron = &quot;0/15 * * * * ?&quot;)
+public void update() {
+</code></pre>
+<p>Org.apache.camel can also be used to synchronize</p>
+<pre><code class="language-java">import org.apache.camel.builder.RouteBuilder;
+import org.springframework.stereotype.Component;
+
+import java.util.List;
+
+@Component
+public class FtpRouteBuilder extends RouteBuilder {
+
+    @Override
+    public void configure() throws Exception {
+        from(&quot;file:/tmp/ftp_test?recursive=true&amp;noop=true&quot;).to(&quot;sftp://10.10.10.10:33022/ftp_test?username=root&amp;password=123456@&amp;binary=true&quot;);
+    }
+}
+</code></pre>
+<h1 id="modification-log-packaging-cycle"><a class="header" href="#modification-log-packaging-cycle">Modification log packaging cycle</a></h1>
+<h2 id="at-the-same-time-modify-the-packaging-by-unit-time-and-size-take-the-modification-of-systemlog-as-an-example"><a class="header" href="#at-the-same-time-modify-the-packaging-by-unit-time-and-size-take-the-modification-of-systemlog-as-an-example">At the same time, modify the packaging by unit time and size (take the modification of SystemLog as an example)</a></h2>
+<pre><code>&lt;appender name=&quot;FILE-SFTP-SystemLog&quot; class=&quot;ch.qos.logback.core.rolling.RollingFileAppender&quot;&gt;
+    &lt;File&gt;${FILE_PATH_SFTP_SystemLog}&lt;/File&gt;
+    &lt;rollingPolicy class=&quot;ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy&quot;&gt;
+        &lt;FileNamePattern&gt;${FILE_PATH_SFTP_SystemLog}_%d{&quot;yyyy-MM-dd_HH&quot;, UTC}_0.zip&lt;/FileNamePattern&gt;
+        &lt;MaxFileSize&gt;100MB&lt;/MaxFileSize&gt;
+        &lt;totalSizeCap&gt;1GB&lt;/totalSizeCap&gt;
+        &lt;MaxHistory&gt;2&lt;/MaxHistory&gt;
+    &lt;/rollingPolicy&gt;
+
+    &lt;filter class=&quot;ch.qos.logback.classic.filter.ThresholdFilter&quot;&gt;
+        &lt;level&gt;INFO&lt;/level&gt;
+    &lt;/filter&gt;
+    &lt;encoder&gt;
+        &lt;pattern&gt;
+            {
+            &quot;time&quot;: &quot;%d{yyyy-MM-dd HH:mm:ss.SSS}&quot;,
+            &quot;level&quot;: &quot;%level&quot;,
+            &quot;thread&quot;: &quot;%thread&quot;,
+            &quot;class&quot;: &quot;%logger{40}&quot;,
+            &quot;message&quot;: &quot;%message&quot;
+            }%n
+        &lt;/pattern&gt;
+        &lt;charset&gt;UTF-8&lt;/charset&gt;
+    &lt;/encoder&gt;
+&lt;/appender&gt;
+</code></pre>
+<pre><code class="language-bash">    &lt;rollingPolicy ... /rollingPolicy&gt;Several parameters are used to configure the log file splitting method:
+
+    &lt;FileNamePattern&gt;The in yyyy-MM-dd_HH-mmmeans to split the file by hour, yyyy-MM-dd_HHmeans to split the file by hour, means to split the file yyyy-MM-ddby day, means to split the file by yyyy-MMmonth, and yyyymeans to split the file by year.
+    &lt;MaxFileSize&gt;Indicates that the size of a packaged single file does not exceed this value.
+    &lt;totalSizeCap&gt;Limit the size of log packaging.
+    &lt;MaxHistory&gt;Limit the number of historical pack files.
+</code></pre>
+<h2 id="modify-logback-to-be-packaged-in-minutes-within-hours-take-modifying-systemlog-as-an-example-the-following-time-intervals-are-supported-1-2-5-10-15-20-30-minutes"><a class="header" href="#modify-logback-to-be-packaged-in-minutes-within-hours-take-modifying-systemlog-as-an-example-the-following-time-intervals-are-supported-1-2-5-10-15-20-30-minutes">Modify Logback to be packaged in minutes within hours (take modifying SystemLog as an example) (the following time intervals are supported: 1, 2, 5, 10, 15, 20, 30 minutes)</a></h2>
+<pre><code>&lt;appender name=&quot;FILE-SFTP-SystemLog&quot; class=&quot;ch.qos.logback.core.rolling.RollingFileAppender&quot;&gt;
+    &lt;File&gt;${FILE_PATH_SFTP_SystemLog}&lt;/File&gt;
+    &lt;!--        &lt;rollingPolicy class=&quot;ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy&quot;&gt;--&gt;
+    &lt;rollingPolicy
+            class=&quot;ch.qos.logback.core.rolling.TimeBasedRollingPolicy&quot;&gt;
+        &lt;!--            &lt;FileNamePattern&gt;${FILE_PATH_SFTP_OperationLog}_%d{yyyy-MM-dd-HH-mm}_%i.zip&lt;/FileNamePattern&gt;--&gt;
+        &lt;FileNamePattern&gt;${FILE_PATH_SFTP_SystemLog}_%d{&quot;yyyy-MM-dd_HH-mm&quot;, UTC}_0.zip&lt;/FileNamePattern&gt;
+        &lt;timeBasedFileNamingAndTriggeringPolicy
+                class=&quot;xxx.yyy.api.config.MyTimeBasedFileNamingAndTriggeringPolicy&quot;&gt;
+            &lt;multiple&gt;5&lt;/multiple&gt;
+        &lt;/timeBasedFileNamingAndTriggeringPolicy&gt;
+        &lt;!--            &lt;MaxFileSize&gt;100MB&lt;/MaxFileSize&gt;--&gt;
+        &lt;!--            &lt;totalSizeCap&gt;1GB&lt;/totalSizeCap&gt;--&gt;
+        &lt;MaxHistory&gt;90&lt;/MaxHistory&gt;
+    &lt;/rollingPolicy&gt;
+    &lt;filter class=&quot;ch.qos.logback.classic.filter.ThresholdFilter&quot;&gt;
+        &lt;level&gt;INFO&lt;/level&gt;
+    &lt;/filter&gt;
+    &lt;encoder&gt;
+        &lt;pattern&gt;
+            {
+            &quot;time&quot;: &quot;%d{yyyy-MM-dd HH:mm:ss.SSS}&quot;,
+            &quot;level&quot;: &quot;%level&quot;,
+            &quot;thread&quot;: &quot;%thread&quot;,
+            &quot;class&quot;: &quot;%logger{40}&quot;,
+            &quot;message&quot;: &quot;%message&quot;
+            }%n
+        &lt;/pattern&gt;
+        &lt;charset&gt;UTF-8&lt;/charset&gt;
+    &lt;/encoder&gt;
+&lt;/appender&gt;
+</code></pre>
+<pre><code class="language-bash">&lt;rollingPolicy ... /rollingPolicy&gt;Several parameters are used to configure the log file splitting method:
+
+&lt;FileNamePattern&gt;The time format part in can only be fixed to yyyy-MM-dd_HH-mm.
+&lt;multiple&gt;Indicates the packaging interval in minutes. The following intervals are supported: 1, 2, 5, 10, 12, 15, 20, 30 minutes.
+&lt;MaxHistory&gt;Limit the time of historical pack files. That is to say, the number of historical pack files is &lt;MaxHistory&gt;divided by &lt;multiple&gt;.
+</code></pre>
+<p>The MyTimeBasedFileNamingAndTriggeringPolicy.java file is as follows:</p>
+<pre><code class="language-java">package xxx.yyy.api.config;
+
+import ch.qos.logback.core.joran.spi.NoAutoStart;
+import ch.qos.logback.core.rolling.DefaultTimeBasedFileNamingAndTriggeringPolicy;
+
+@NoAutoStart
+public class MyTimeBasedFileNamingAndTriggeringPolicy&lt;E&gt; extends DefaultTimeBasedFileNamingAndTriggeringPolicy&lt;E&gt; {
+    //这个用来指定时间间隔
+    private Integer multiple = 1;
+
+    @Override
+    protected void computeNextCheck() {
+        nextCheck = rc.getEndOfNextNthPeriod(dateInCurrentPeriod, multiple).getTime();
+    }
+
+    public Integer getMultiple() {
+        return multiple;
+    }
+
+    public void setMultiple(Integer multiple) {
+        if (multiple &gt; 1) {
+            this.multiple = multiple;
+        }
+    }
+}
+</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../cloud-native/fluentd.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                            <a rel="next" href="../cloud-native/jdk-bug.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../cloud-native/fluentd.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a rel="next" href="../cloud-native/jdk-bug.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        <script type="text/javascript" src="../sidebar.js"></script>
+    </body>
+</html>
