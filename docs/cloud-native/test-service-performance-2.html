@@ -1,0 +1,568 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>iperf3 tests the four-layer performance of Kubernetes Service (Part 2) - English version of the website https://www.backendcloud.cn/</title>
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../style.css">
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../SUMMARY.html"><strong aria-hidden="true">1.</strong> Catalog: Cloud Native</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../cloud-native/test-service-performance-2.html" class="active"><strong aria-hidden="true">1.1.</strong> iperf3 tests the four-layer performance of Kubernetes Service (Part 2)</a></li><li class="chapter-item expanded "><a href="../cloud-native/test-service-performance-1.html"><strong aria-hidden="true">1.2.</strong> iperf3 tests the four-layer performance of Kubernetes Service (Part 1)</a></li><li class="chapter-item expanded "><a href="../cloud-native/k8s-cmd.html"><strong aria-hidden="true">1.3.</strong> k8s common command</a></li><li class="chapter-item expanded "><a href="../cloud-native/cpu-binding.html"><strong aria-hidden="true">1.4.</strong> k8s supports container core binding</a></li><li class="chapter-item expanded "><a href="../cloud-native/capability.html"><strong aria-hidden="true">1.5.</strong> k8s supports Capability mechanism</a></li><li class="chapter-item expanded "><a href="../cloud-native/oom.html"><strong aria-hidden="true">1.6.</strong> k8s OOMkilled container exceeding memory limit</a></li></ol></li><li class="chapter-item expanded "><a href="../SUMMARY.html"><strong aria-hidden="true">2.</strong> Catalog: Openstack</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../openstack/deploy-openstack-stein.html"><strong aria-hidden="true">2.1.</strong> Problems encountered in Openstack Stein deployment</a></li><li class="chapter-item expanded "><a href="../openstack/sriov2ovs.html"><strong aria-hidden="true">2.2.</strong> sriov computing node to ovs computing node script</a></li><li class="chapter-item expanded "><a href="../openstack/placement.html"><strong aria-hidden="true">2.3.</strong> Openstack Placement</a></li><li class="chapter-item expanded "><a href="../openstack/power-arch.html"><strong aria-hidden="true">2.4.</strong> POWER architecture server as computing node</a></li><li class="chapter-item expanded "><a href="../openstack/sriov.html"><strong aria-hidden="true">2.5.</strong> OpenStack practices SR-IOV computing nodes</a></li><li class="chapter-item expanded "><a href="../openstack/openstack-op-4.html"><strong aria-hidden="true">2.6.</strong> Openstack operation and maintenance records (4)</a></li><li class="chapter-item expanded "><a href="../openstack/openstack-op-3.html"><strong aria-hidden="true">2.7.</strong> Openstack operation and maintenance records (3)</a></li><li class="chapter-item expanded "><a href="../openstack/openstack-op-2.html"><strong aria-hidden="true">2.8.</strong> Openstack operation and maintenance records (2)</a></li><li class="chapter-item expanded "><a href="../openstack/openstack-op-1.html"><strong aria-hidden="true">2.9.</strong> Openstack operation and maintenance records (1)</a></li><li class="chapter-item expanded "><a href="../openstack/novnc-problem.html"><strong aria-hidden="true">2.10.</strong> OpenStack Pike dashboard noVNC cannot be accessed problem</a></li><li class="chapter-item expanded "><a href="../openstack/openstack-local-yum.html"><strong aria-hidden="true">2.11.</strong> Openstack Pike local yum source construction</a></li><li class="chapter-item expanded "><a href="../openstack/cpu-binding.html"><strong aria-hidden="true">2.12.</strong> CPU binding</a></li><li class="chapter-item expanded "><a href="../openstack/resize-fail.html"><strong aria-hidden="true">2.13.</strong> Investigation of the cause of resize failure</a></li><li class="chapter-item expanded "><a href="../openstack/mount-cloud-disk.html"><strong aria-hidden="true">2.14.</strong> Mount cloud disk</a></li><li class="chapter-item expanded "><a href="../openstack/ocata-nova-evacuate-bug.html"><strong aria-hidden="true">2.15.</strong> Ocata nova evacuate bug</a></li><li class="chapter-item expanded "><a href="../openstack/compute-node-ha.html"><strong aria-hidden="true">2.16.</strong> compute node ha mainstream open source implementation</a></li><li class="chapter-item expanded "><a href="../openstack/collectd-influxdb.html"><strong aria-hidden="true">2.17.</strong> Deployment and usage of Collectd and InfluxDB</a></li><li class="chapter-item expanded "><a href="../openstack/live-migration-local.html"><strong aria-hidden="true">2.18.</strong> Live Migration on Local Storage</a></li><li class="chapter-item expanded "><a href="../openstack/fast-evacuation.html"><strong aria-hidden="true">2.19.</strong> Add fast evacuation function to VM HA procedure</a></li><li class="chapter-item expanded "><a href="../openstack/vm-activation-failure.html"><strong aria-hidden="true">2.20.</strong> Windows virtual machine activation failure problem</a></li></ol></li><li class="chapter-item expanded "><a href="../SUMMARY.html"><strong aria-hidden="true">3.</strong> Catalog: Point of view</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../point-of-view/huawei-and-operators.html"><strong aria-hidden="true">3.1.</strong> Huawei and telecom operators</a></li></ol></li><li class="chapter-item expanded "><a href="../SUMMARY.html"><strong aria-hidden="true">4.</strong> Catalog: Tools</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../tools/git-dir.html"><strong aria-hidden="true">4.1.</strong> Internal structure of .git directory</a></li><li class="chapter-item expanded "><a href="../tools/xshell-skill.html"><strong aria-hidden="true">4.2.</strong> Some Skills of using xshell tools</a></li><li class="chapter-item expanded "><a href="../tools/gerrit-install.html"><strong aria-hidden="true">4.3.</strong> gerrit install</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">English version of the website https://www.backendcloud.cn/</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <!-- Page table of contents -->
+                        <div class="sidetoc"><nav class="pagetoc"></nav></div>
+
+                        <p>release time :2021-08-10 07:06</p>
+<p>Continuing from the previous article, iperf3 tests the four-layer performance of Kubernetes Service (Part 1)</p>
+<p>Start 16 iperf3 clients, simulating 2000 concurrency (a single iperf3 client can only be up to 128 concurrency)</p>
+<pre><code>#  cat iperf3.yaml 
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+name: iperf3-server-deployment
+labels:
+    app: iperf3-server
+spec:
+replicas: 1
+selector:
+    matchLabels:
+    app: iperf3-server
+template:
+    metadata:
+    labels:
+        app: iperf3-server
+    spec:
+    affinity:
+        nodeAffinity:
+        preferredDuringSchedulingIgnoredDuringExecution:
+        - weight: 1
+            preference:
+            matchExpressions:
+            - key: kubernetes.io/role
+                operator: In
+                values:
+                - master
+    #tolerations:
+    #  - key: node-role.kubernetes.io/master
+    #    operator: Exists
+    #    effect: NoSchedule
+    containers:
+    - name: iperf3-server
+        image: registry.paas/cmss/iperf3
+        command: [&quot;/bin/sh&quot;,&quot;-c&quot;]
+        args:
+        - |
+            iperf3 -s -p 5201&amp;
+            iperf3 -s -p 5202&amp;
+            iperf3 -s -p 5203&amp;
+            iperf3 -s -p 5204&amp;
+            iperf3 -s -p 5205&amp;
+            iperf3 -s -p 5206&amp;
+            iperf3 -s -p 5207&amp;
+            iperf3 -s -p 5208&amp;
+            iperf3 -s -p 5209&amp;
+            iperf3 -s -p 5210&amp;
+            iperf3 -s -p 5211&amp;
+            iperf3 -s -p 5212&amp;
+            iperf3 -s -p 5213&amp;
+            iperf3 -s -p 5214&amp;
+            iperf3 -s -p 5215&amp;
+            iperf3 -s -p 5216&amp;
+            sleep infinity
+        ports:
+        - containerPort: 5201
+        - containerPort: 5202
+        - containerPort: 5203
+        - containerPort: 5204
+        - containerPort: 5205
+        - containerPort: 5206
+        - containerPort: 5207
+        - containerPort: 5208
+        - containerPort: 5209
+        - containerPort: 5210
+        - containerPort: 5211
+        - containerPort: 5212
+        - containerPort: 5213
+        - containerPort: 5214
+        - containerPort: 5215
+        - containerPort: 5216
+    terminationGracePeriodSeconds: 0
+
+
+---
+
+
+apiVersion: v1
+kind: Service
+metadata:
+name: iperf3-server
+spec:
+selector:
+    app: iperf3-server
+ports:
+- port: 5201
+    targetPort: 5201
+    name: server5201
+- port: 5202
+    targetPort: 5202
+    name: server5202
+- port: 5203
+    targetPort: 5203
+    name: server5203
+- port: 5204
+    targetPort: 5204
+    name: server5204
+- port: 5205
+    targetPort: 5205
+    name: server5205
+- port: 5206
+    targetPort: 5206
+    name: server5206
+- port: 5207
+    targetPort: 5207
+    name: server5207
+- port: 5208
+    targetPort: 5208
+    name: server5208
+- port: 5209
+    targetPort: 5209
+    name: server5209
+- port: 5210
+    targetPort: 5210
+    name: server5210
+- port: 5211
+    targetPort: 5211
+    name: server5211
+- port: 5212
+    targetPort: 5212
+    name: server5212
+- port: 5213
+    targetPort: 5213
+    name: server5213
+- port: 5214
+    targetPort: 5214
+    name: server5214
+- port: 5215
+    targetPort: 5215
+    name: server5215
+- port: 5216
+    targetPort: 5216
+    name: server5216
+    
+---
+    
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+name: iperf3-clients
+labels:
+    app: iperf3-client
+spec:
+selector:
+    matchLabels:
+    app: iperf3-client
+template:
+    metadata:
+    labels:
+        app: iperf3-client
+    spec:
+    affinity:
+        nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+            - key: kubernetes.io/hostname
+                operator: NotIn
+                values:
+                - vcdn-bm6
+                - vcdn-bm7
+    #tolerations:
+    #  - key: node-role.kubernetes.io/master
+    #    operator: Exists
+    #    effect: NoSchedule
+    containers:
+    - name: iperf3-client
+        image: registry.paas/cmss/iperf3
+        command: ['/bin/sh', '-c', 'sleep infinity']
+        # To benchmark manually: kubectl exec iperf3-clients-jlfxq -- /bin/sh -c 'iperf3 -c iperf3-server'
+    terminationGracePeriodSeconds: 0
+</code></pre>
+<pre><code class="language-bash">iperf3 -c iperf3-server -t 10 -p 5201 -M 2000 -P 125 -b 0 &gt;tt1.log&amp;
+iperf3 -c iperf3-server -t 10 -p 5202 -M 2000 -P 125 -b 0 &gt;tt2.log&amp;
+iperf3 -c iperf3-server -t 10 -p 5203 -M 2000 -P 125 -b 0 &gt;tt3.log&amp;
+iperf3 -c iperf3-server -t 10 -p 5204 -M 2000 -P 125 -b 0 &gt;tt4.log&amp;
+iperf3 -c iperf3-server -t 10 -p 5205 -M 2000 -P 125 -b 0 &gt;tt5.log&amp;
+iperf3 -c iperf3-server -t 10 -p 5206 -M 2000 -P 125 -b 0 &gt;tt6.log&amp;
+iperf3 -c iperf3-server -t 10 -p 5207 -M 2000 -P 125 -b 0 &gt;tt7.log&amp;
+iperf3 -c iperf3-server -t 10 -p 5208 -M 2000 -P 125 -b 0 &gt;tt8.log&amp;
+iperf3 -c iperf3-server -t 10 -p 5209 -M 2000 -P 125 -b 0 &gt;tt9.log&amp;
+iperf3 -c iperf3-server -t 10 -p 5210 -M 2000 -P 125 -b 0 &gt;tt10.log&amp;
+iperf3 -c iperf3-server -t 10 -p 5211 -M 2000 -P 125 -b 0 &gt;tt11.log&amp;
+iperf3 -c iperf3-server -t 10 -p 5212 -M 2000 -P 125 -b 0 &gt;tt12.log&amp;
+iperf3 -c iperf3-server -t 10 -p 5213 -M 2000 -P 125 -b 0 &gt;tt13.log&amp;
+iperf3 -c iperf3-server -t 10 -p 5214 -M 2000 -P 125 -b 0 &gt;tt14.log&amp;
+iperf3 -c iperf3-server -t 10 -p 5215 -M 2000 -P 125 -b 0 &gt;tt15.log&amp;
+iperf3 -c iperf3-server -t 10 -p 5216 -M 2000 -P 125 -b 0 &gt;tt16.log&amp;
+</code></pre>
+<pre><code>root@iperf3-clients-4cqqc:/# grep SUM *.log
+tt1.log:[SUM]   0.00-1.00   sec  81.5 MBytes   683 Mbits/sec  1078             
+tt1.log:[SUM]   1.00-2.00   sec  70.8 MBytes   594 Mbits/sec  1036             
+tt1.log:[SUM]   2.00-3.00   sec  69.1 MBytes   580 Mbits/sec  923             
+tt1.log:[SUM]   3.00-4.00   sec  68.0 MBytes   570 Mbits/sec  978             
+tt1.log:[SUM]   4.00-5.00   sec  68.3 MBytes   572 Mbits/sec  1120             
+tt1.log:[SUM]   5.00-6.00   sec  69.1 MBytes   581 Mbits/sec  1368             
+tt1.log:[SUM]   6.00-7.00   sec  68.1 MBytes   571 Mbits/sec  891             
+tt1.log:[SUM]   7.00-8.00   sec  69.7 MBytes   585 Mbits/sec  1170             
+tt1.log:[SUM]   8.00-9.00   sec  67.3 MBytes   564 Mbits/sec  1068             
+tt1.log:[SUM]   9.00-10.00  sec  67.9 MBytes   570 Mbits/sec  866             
+tt1.log:[SUM]   0.00-10.00  sec   700 MBytes   587 Mbits/sec  10498             sender
+tt1.log:[SUM]   0.00-10.09  sec   685 MBytes   570 Mbits/sec                  receiver
+tt10.log:[SUM]   0.00-1.00   sec  74.2 MBytes   623 Mbits/sec  902             
+tt10.log:[SUM]   1.00-2.00   sec  67.0 MBytes   562 Mbits/sec  900             
+tt10.log:[SUM]   2.00-3.00   sec  66.4 MBytes   557 Mbits/sec  760             
+tt10.log:[SUM]   3.00-4.00   sec  64.9 MBytes   545 Mbits/sec  864             
+tt10.log:[SUM]   4.00-5.00   sec  65.2 MBytes   547 Mbits/sec  1181             
+tt10.log:[SUM]   5.00-6.00   sec  64.6 MBytes   542 Mbits/sec  1348             
+tt10.log:[SUM]   6.00-7.00   sec  64.3 MBytes   539 Mbits/sec  1256             
+tt10.log:[SUM]   7.00-8.00   sec  63.7 MBytes   535 Mbits/sec  1342             
+tt10.log:[SUM]   8.00-9.00   sec  61.7 MBytes   518 Mbits/sec  1147             
+tt10.log:[SUM]   9.00-10.00  sec  63.3 MBytes   531 Mbits/sec  1031             
+tt10.log:[SUM]   0.00-10.00  sec   656 MBytes   550 Mbits/sec  10731             sender
+tt10.log:[SUM]   0.00-10.11  sec   643 MBytes   533 Mbits/sec                  receiver
+tt11.log:[SUM]   0.00-1.00   sec  75.6 MBytes   634 Mbits/sec  1034             
+tt11.log:[SUM]   1.00-2.00   sec  69.9 MBytes   586 Mbits/sec  984             
+tt11.log:[SUM]   2.00-3.00   sec  69.2 MBytes   581 Mbits/sec  808             
+tt11.log:[SUM]   3.00-4.00   sec  69.5 MBytes   582 Mbits/sec  723             
+tt11.log:[SUM]   4.00-5.00   sec  67.5 MBytes   567 Mbits/sec  1133             
+tt11.log:[SUM]   5.00-6.00   sec  68.7 MBytes   576 Mbits/sec  1241             
+tt11.log:[SUM]   6.00-7.00   sec  68.8 MBytes   577 Mbits/sec  902             
+tt11.log:[SUM]   7.00-8.00   sec  67.3 MBytes   565 Mbits/sec  1115             
+tt11.log:[SUM]   8.00-9.00   sec  67.1 MBytes   563 Mbits/sec  1177             
+tt11.log:[SUM]   9.00-10.00  sec  67.5 MBytes   566 Mbits/sec  725             
+tt11.log:[SUM]   0.00-10.00  sec   691 MBytes   580 Mbits/sec  9842             sender
+tt11.log:[SUM]   0.00-10.12  sec   678 MBytes   562 Mbits/sec                  receiver
+tt12.log:[SUM]   0.00-1.00   sec  79.6 MBytes   668 Mbits/sec  1037             
+tt12.log:[SUM]   1.00-2.00   sec  73.6 MBytes   617 Mbits/sec  806             
+tt12.log:[SUM]   2.00-3.00   sec  70.1 MBytes   588 Mbits/sec  915             
+tt12.log:[SUM]   3.00-4.00   sec  69.1 MBytes   579 Mbits/sec  853             
+tt12.log:[SUM]   4.00-5.00   sec  71.4 MBytes   599 Mbits/sec  969             
+tt12.log:[SUM]   5.00-6.00   sec  71.9 MBytes   603 Mbits/sec  963             
+tt12.log:[SUM]   6.00-7.00   sec  70.7 MBytes   593 Mbits/sec  973             
+tt12.log:[SUM]   7.00-8.00   sec  68.3 MBytes   573 Mbits/sec  1223             
+tt12.log:[SUM]   8.00-9.00   sec  67.3 MBytes   564 Mbits/sec  1078             
+tt12.log:[SUM]   9.00-10.00  sec  69.0 MBytes   579 Mbits/sec  628             
+tt12.log:[SUM]   0.00-10.00  sec   711 MBytes   596 Mbits/sec  9445             sender
+tt12.log:[SUM]   0.00-10.09  sec   694 MBytes   577 Mbits/sec                  receiver
+tt13.log:[SUM]   0.00-1.00   sec  77.7 MBytes   651 Mbits/sec  935             
+tt13.log:[SUM]   1.00-2.00   sec  70.6 MBytes   593 Mbits/sec  1005             
+tt13.log:[SUM]   2.00-3.00   sec  69.4 MBytes   582 Mbits/sec  902             
+tt13.log:[SUM]   3.00-4.00   sec  68.7 MBytes   576 Mbits/sec  998             
+tt13.log:[SUM]   4.00-5.00   sec  68.2 MBytes   572 Mbits/sec  1079             
+tt13.log:[SUM]   5.00-6.00   sec  68.4 MBytes   574 Mbits/sec  1293             
+tt13.log:[SUM]   6.00-7.00   sec  66.7 MBytes   560 Mbits/sec  933             
+tt13.log:[SUM]   7.00-8.00   sec  66.7 MBytes   559 Mbits/sec  1036             
+tt13.log:[SUM]   8.00-9.00   sec  66.6 MBytes   559 Mbits/sec  1088             
+tt13.log:[SUM]   9.00-10.00  sec  67.5 MBytes   566 Mbits/sec  1010             
+tt13.log:[SUM]   0.00-10.00  sec   691 MBytes   579 Mbits/sec  10279             sender
+tt13.log:[SUM]   0.00-10.00  sec   670 MBytes   562 Mbits/sec                  receiver
+tt14.log:[SUM]   0.00-1.00   sec  76.5 MBytes   642 Mbits/sec  1015             
+tt14.log:[SUM]   1.00-2.00   sec  67.0 MBytes   562 Mbits/sec  921             
+tt14.log:[SUM]   2.00-3.00   sec  65.7 MBytes   551 Mbits/sec  982             
+tt14.log:[SUM]   3.00-4.00   sec  66.1 MBytes   555 Mbits/sec  923             
+tt14.log:[SUM]   4.00-5.00   sec  62.6 MBytes   525 Mbits/sec  1208             
+tt14.log:[SUM]   5.00-6.00   sec  63.4 MBytes   532 Mbits/sec  1095             
+tt14.log:[SUM]   6.00-7.00   sec  64.1 MBytes   538 Mbits/sec  1191             
+tt14.log:[SUM]   7.00-8.00   sec  64.0 MBytes   537 Mbits/sec  893             
+tt14.log:[SUM]   8.00-9.00   sec  65.1 MBytes   546 Mbits/sec  1084             
+tt14.log:[SUM]   9.00-10.00  sec  66.1 MBytes   555 Mbits/sec  846             
+tt14.log:[SUM]   0.00-10.00  sec   661 MBytes   554 Mbits/sec  10158             sender
+tt14.log:[SUM]   0.00-10.00  sec   640 MBytes   537 Mbits/sec                  receiver
+tt15.log:[SUM]   0.00-1.00   sec  77.4 MBytes   649 Mbits/sec  877             
+tt15.log:[SUM]   1.00-2.00   sec  73.3 MBytes   615 Mbits/sec  902             
+tt15.log:[SUM]   2.00-3.00   sec  70.8 MBytes   594 Mbits/sec  823             
+tt15.log:[SUM]   3.00-4.00   sec  70.7 MBytes   593 Mbits/sec  894             
+tt15.log:[SUM]   4.00-5.00   sec  70.4 MBytes   590 Mbits/sec  902             
+tt15.log:[SUM]   5.00-6.00   sec  70.9 MBytes   594 Mbits/sec  1035             
+tt15.log:[SUM]   6.00-7.00   sec  69.6 MBytes   584 Mbits/sec  1201             
+tt15.log:[SUM]   7.00-8.00   sec  72.6 MBytes   609 Mbits/sec  949             
+tt15.log:[SUM]   8.00-9.00   sec  70.2 MBytes   589 Mbits/sec  1055             
+tt15.log:[SUM]   9.00-10.00  sec  68.4 MBytes   574 Mbits/sec  1056             
+tt15.log:[SUM]   0.00-10.00  sec   714 MBytes   599 Mbits/sec  9694             sender
+tt15.log:[SUM]   0.00-10.01  sec   692 MBytes   580 Mbits/sec                  receiver
+tt16.log:[SUM]   0.00-1.00   sec  80.4 MBytes   675 Mbits/sec  1039             
+tt16.log:[SUM]   1.00-2.00   sec  71.9 MBytes   603 Mbits/sec  1155             
+tt16.log:[SUM]   2.00-3.00   sec  69.3 MBytes   581 Mbits/sec  968             
+tt16.log:[SUM]   3.00-4.00   sec  68.6 MBytes   575 Mbits/sec  1073             
+tt16.log:[SUM]   4.00-5.00   sec  67.3 MBytes   564 Mbits/sec  1047             
+tt16.log:[SUM]   5.00-6.00   sec  66.6 MBytes   558 Mbits/sec  1087             
+tt16.log:[SUM]   6.00-7.00   sec  69.1 MBytes   580 Mbits/sec  1026             
+tt16.log:[SUM]   7.00-8.00   sec  69.1 MBytes   580 Mbits/sec  1031             
+tt16.log:[SUM]   8.00-9.00   sec  66.9 MBytes   561 Mbits/sec  902             
+tt16.log:[SUM]   9.00-10.00  sec  65.4 MBytes   549 Mbits/sec  1093             
+tt16.log:[SUM]   0.00-10.00  sec   695 MBytes   583 Mbits/sec  10421             sender
+tt16.log:[SUM]   0.00-10.00  sec   674 MBytes   565 Mbits/sec                  receiver
+tt2.log:[SUM]   0.00-1.00   sec  89.6 MBytes   752 Mbits/sec  1067             
+tt2.log:[SUM]   1.00-2.00   sec  67.2 MBytes   564 Mbits/sec  974             
+tt2.log:[SUM]   2.00-3.00   sec  66.5 MBytes   558 Mbits/sec  854             
+tt2.log:[SUM]   3.00-4.00   sec  66.4 MBytes   557 Mbits/sec  946             
+tt2.log:[SUM]   4.00-5.00   sec  64.8 MBytes   543 Mbits/sec  1220             
+tt2.log:[SUM]   5.00-6.00   sec  65.4 MBytes   548 Mbits/sec  1158             
+tt2.log:[SUM]   6.00-7.00   sec  63.6 MBytes   534 Mbits/sec  962             
+tt2.log:[SUM]   7.00-8.00   sec  65.2 MBytes   547 Mbits/sec  1120             
+tt2.log:[SUM]   8.00-9.00   sec  66.0 MBytes   554 Mbits/sec  866             
+tt2.log:[SUM]   9.00-10.00  sec  62.9 MBytes   527 Mbits/sec  934             
+tt2.log:[SUM]   0.00-10.00  sec   678 MBytes   568 Mbits/sec  10101             sender
+tt2.log:[SUM]   0.00-10.06  sec   659 MBytes   550 Mbits/sec                  receiver
+tt3.log:[SUM]   0.00-1.00   sec  82.2 MBytes   689 Mbits/sec  1026             
+tt3.log:[SUM]   1.00-2.00   sec  69.7 MBytes   584 Mbits/sec  1025             
+tt3.log:[SUM]   2.00-3.00   sec  70.0 MBytes   587 Mbits/sec  935             
+tt3.log:[SUM]   3.00-4.00   sec  70.7 MBytes   593 Mbits/sec  980             
+tt3.log:[SUM]   4.00-5.00   sec  69.4 MBytes   583 Mbits/sec  1261             
+tt3.log:[SUM]   5.00-6.00   sec  70.8 MBytes   594 Mbits/sec  1112             
+tt3.log:[SUM]   6.00-7.00   sec  71.5 MBytes   600 Mbits/sec  858             
+tt3.log:[SUM]   7.00-8.00   sec  73.0 MBytes   613 Mbits/sec  1290             
+tt3.log:[SUM]   8.00-9.00   sec  73.8 MBytes   619 Mbits/sec  931             
+tt3.log:[SUM]   9.00-10.00  sec  74.7 MBytes   626 Mbits/sec  975             
+tt3.log:[SUM]   0.00-10.00  sec   726 MBytes   609 Mbits/sec  10393             sender
+tt3.log:[SUM]   0.00-10.10  sec   711 MBytes   591 Mbits/sec                  receiver
+tt4.log:[SUM]   0.00-1.00   sec  79.6 MBytes   668 Mbits/sec  959             
+tt4.log:[SUM]   1.00-2.00   sec  69.9 MBytes   587 Mbits/sec  962             
+tt4.log:[SUM]   2.00-3.00   sec  69.0 MBytes   579 Mbits/sec  926             
+tt4.log:[SUM]   3.00-4.00   sec  67.7 MBytes   568 Mbits/sec  876             
+tt4.log:[SUM]   4.00-5.00   sec  69.4 MBytes   583 Mbits/sec  1233             
+tt4.log:[SUM]   5.00-6.00   sec  68.6 MBytes   576 Mbits/sec  1292             
+tt4.log:[SUM]   6.00-7.00   sec  67.7 MBytes   568 Mbits/sec  910             
+tt4.log:[SUM]   7.00-8.00   sec  69.9 MBytes   586 Mbits/sec  1306             
+tt4.log:[SUM]   8.00-9.00   sec  69.7 MBytes   585 Mbits/sec  1027             
+tt4.log:[SUM]   9.00-10.00  sec  69.0 MBytes   579 Mbits/sec  1086             
+tt4.log:[SUM]   0.00-10.00  sec   701 MBytes   588 Mbits/sec  10577             sender
+tt4.log:[SUM]   0.00-10.00  sec   679 MBytes   570 Mbits/sec                  receiver
+tt5.log:[SUM]   0.00-1.00   sec  79.0 MBytes   662 Mbits/sec  951             
+tt5.log:[SUM]   1.00-2.00   sec  71.0 MBytes   596 Mbits/sec  1000             
+tt5.log:[SUM]   2.00-3.00   sec  68.6 MBytes   575 Mbits/sec  871             
+tt5.log:[SUM]   3.00-4.00   sec  66.7 MBytes   559 Mbits/sec  1038             
+tt5.log:[SUM]   4.00-5.00   sec  66.5 MBytes   558 Mbits/sec  1093             
+tt5.log:[SUM]   5.00-6.00   sec  67.6 MBytes   567 Mbits/sec  1336             
+tt5.log:[SUM]   6.00-7.00   sec  66.7 MBytes   559 Mbits/sec  1135             
+tt5.log:[SUM]   7.00-8.00   sec  66.1 MBytes   555 Mbits/sec  1214             
+tt5.log:[SUM]   8.00-9.00   sec  66.2 MBytes   555 Mbits/sec  915             
+tt5.log:[SUM]   9.00-10.00  sec  68.4 MBytes   574 Mbits/sec  733             
+tt5.log:[SUM]   0.00-10.00  sec   687 MBytes   576 Mbits/sec  10286             sender
+tt5.log:[SUM]   0.00-10.10  sec   672 MBytes   558 Mbits/sec                  receiver
+tt6.log:[SUM]   0.00-1.00   sec  77.9 MBytes   653 Mbits/sec  1030             
+tt6.log:[SUM]   1.00-2.00   sec  72.5 MBytes   608 Mbits/sec  908             
+tt6.log:[SUM]   2.00-3.00   sec  70.1 MBytes   588 Mbits/sec  861             
+tt6.log:[SUM]   3.00-4.00   sec  68.6 MBytes   576 Mbits/sec  919             
+tt6.log:[SUM]   4.00-5.00   sec  69.9 MBytes   586 Mbits/sec  1124             
+tt6.log:[SUM]   5.00-6.00   sec  69.2 MBytes   581 Mbits/sec  1144             
+tt6.log:[SUM]   6.00-7.00   sec  68.8 MBytes   577 Mbits/sec  1156             
+tt6.log:[SUM]   7.00-8.00   sec  69.6 MBytes   584 Mbits/sec  1046             
+tt6.log:[SUM]   8.00-9.00   sec  69.7 MBytes   585 Mbits/sec  914             
+tt6.log:[SUM]   9.00-10.00  sec  68.7 MBytes   577 Mbits/sec  659             
+tt6.log:[SUM]   0.00-10.00  sec   705 MBytes   591 Mbits/sec  9761             sender
+tt6.log:[SUM]   0.00-10.12  sec   692 MBytes   574 Mbits/sec                  receiver
+tt7.log:[SUM]   0.00-1.00   sec  74.5 MBytes   625 Mbits/sec  933             
+tt7.log:[SUM]   1.00-2.00   sec  76.2 MBytes   639 Mbits/sec  916             
+tt7.log:[SUM]   2.00-3.00   sec  74.6 MBytes   626 Mbits/sec  880             
+tt7.log:[SUM]   3.00-4.00   sec  72.7 MBytes   610 Mbits/sec  920             
+tt7.log:[SUM]   4.00-5.00   sec  71.1 MBytes   596 Mbits/sec  1160             
+tt7.log:[SUM]   5.00-6.00   sec  73.3 MBytes   614 Mbits/sec  1200             
+tt7.log:[SUM]   6.00-7.00   sec  73.1 MBytes   614 Mbits/sec  1065             
+tt7.log:[SUM]   7.00-8.00   sec  72.0 MBytes   604 Mbits/sec  1219             
+tt7.log:[SUM]   8.00-9.00   sec  72.1 MBytes   605 Mbits/sec  999             
+tt7.log:[SUM]   9.00-10.00  sec  73.2 MBytes   614 Mbits/sec  1071             
+tt7.log:[SUM]   0.00-10.00  sec   733 MBytes   615 Mbits/sec  10363             sender
+tt7.log:[SUM]   0.00-10.12  sec   719 MBytes   596 Mbits/sec                  receiver
+tt8.log:[SUM]   0.00-1.00   sec  79.4 MBytes   666 Mbits/sec  876             
+tt8.log:[SUM]   1.00-2.00   sec  70.1 MBytes   588 Mbits/sec  1051             
+tt8.log:[SUM]   2.00-3.00   sec  70.3 MBytes   590 Mbits/sec  800             
+tt8.log:[SUM]   3.00-4.00   sec  69.4 MBytes   582 Mbits/sec  1062             
+tt8.log:[SUM]   4.00-5.00   sec  70.1 MBytes   588 Mbits/sec  985             
+tt8.log:[SUM]   5.00-6.00   sec  68.7 MBytes   576 Mbits/sec  1317             
+tt8.log:[SUM]   6.00-7.00   sec  69.5 MBytes   583 Mbits/sec  1107             
+tt8.log:[SUM]   7.00-8.00   sec  69.5 MBytes   583 Mbits/sec  967             
+tt8.log:[SUM]   8.00-9.00   sec  68.8 MBytes   577 Mbits/sec  1041             
+tt8.log:[SUM]   9.00-10.00  sec  68.2 MBytes   572 Mbits/sec  838             
+tt8.log:[SUM]   0.00-10.00  sec   704 MBytes   591 Mbits/sec  10044             sender
+tt8.log:[SUM]   0.00-10.10  sec   689 MBytes   573 Mbits/sec                  receiver
+tt9.log:[SUM]   0.00-1.00   sec  80.2 MBytes   673 Mbits/sec  1032             
+tt9.log:[SUM]   1.00-2.00   sec  73.9 MBytes   620 Mbits/sec  1006             
+tt9.log:[SUM]   2.00-3.00   sec  71.7 MBytes   601 Mbits/sec  936             
+tt9.log:[SUM]   3.00-4.00   sec  72.6 MBytes   609 Mbits/sec  939             
+tt9.log:[SUM]   4.00-5.00   sec  72.5 MBytes   608 Mbits/sec  1059             
+tt9.log:[SUM]   5.00-6.00   sec  73.2 MBytes   614 Mbits/sec  1457             
+tt9.log:[SUM]   6.00-7.00   sec  73.1 MBytes   613 Mbits/sec  869             
+tt9.log:[SUM]   7.00-8.00   sec  74.2 MBytes   623 Mbits/sec  1090             
+tt9.log:[SUM]   8.00-9.00   sec  74.7 MBytes   627 Mbits/sec  819             
+tt9.log:[SUM]   9.00-10.00  sec  74.9 MBytes   628 Mbits/sec  940             
+tt9.log:[SUM]   0.00-10.00  sec   741 MBytes   622 Mbits/sec  10147             sender
+tt9.log:[SUM]   0.00-10.05  sec   722 MBytes   602 Mbits/sec                  receiver
+root@iperf3-clients-4cqqc:/# 
+</code></pre>
+<p><strong>Result:</strong></p>
+<p>The concurrent number of iperf3 tool 1~2000 has no effect on the result, and they are all close to the bandwidth limit of a single 10G network card.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../SUMMARY.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                            <a rel="next" href="../cloud-native/test-service-performance-1.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../SUMMARY.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a rel="next" href="../cloud-native/test-service-performance-1.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        <script type="text/javascript" src="../sidebar.js"></script>
+    </body>
+</html>

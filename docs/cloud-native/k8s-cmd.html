@@ -1,0 +1,710 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>k8s common command - English version of the website https://www.backendcloud.cn/</title>
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../style.css">
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../SUMMARY.html"><strong aria-hidden="true">1.</strong> Catalog: Cloud Native</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../cloud-native/test-service-performance-2.html"><strong aria-hidden="true">1.1.</strong> iperf3 tests the four-layer performance of Kubernetes Service (Part 2)</a></li><li class="chapter-item expanded "><a href="../cloud-native/test-service-performance-1.html"><strong aria-hidden="true">1.2.</strong> iperf3 tests the four-layer performance of Kubernetes Service (Part 1)</a></li><li class="chapter-item expanded "><a href="../cloud-native/k8s-cmd.html" class="active"><strong aria-hidden="true">1.3.</strong> k8s common command</a></li><li class="chapter-item expanded "><a href="../cloud-native/cpu-binding.html"><strong aria-hidden="true">1.4.</strong> k8s supports container core binding</a></li><li class="chapter-item expanded "><a href="../cloud-native/capability.html"><strong aria-hidden="true">1.5.</strong> k8s supports Capability mechanism</a></li><li class="chapter-item expanded "><a href="../cloud-native/oom.html"><strong aria-hidden="true">1.6.</strong> k8s OOMkilled container exceeding memory limit</a></li></ol></li><li class="chapter-item expanded "><a href="../SUMMARY.html"><strong aria-hidden="true">2.</strong> Catalog: Openstack</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../openstack/deploy-openstack-stein.html"><strong aria-hidden="true">2.1.</strong> Problems encountered in Openstack Stein deployment</a></li><li class="chapter-item expanded "><a href="../openstack/sriov2ovs.html"><strong aria-hidden="true">2.2.</strong> sriov computing node to ovs computing node script</a></li><li class="chapter-item expanded "><a href="../openstack/placement.html"><strong aria-hidden="true">2.3.</strong> Openstack Placement</a></li><li class="chapter-item expanded "><a href="../openstack/power-arch.html"><strong aria-hidden="true">2.4.</strong> POWER architecture server as computing node</a></li><li class="chapter-item expanded "><a href="../openstack/sriov.html"><strong aria-hidden="true">2.5.</strong> OpenStack practices SR-IOV computing nodes</a></li><li class="chapter-item expanded "><a href="../openstack/openstack-op-4.html"><strong aria-hidden="true">2.6.</strong> Openstack operation and maintenance records (4)</a></li><li class="chapter-item expanded "><a href="../openstack/openstack-op-3.html"><strong aria-hidden="true">2.7.</strong> Openstack operation and maintenance records (3)</a></li><li class="chapter-item expanded "><a href="../openstack/openstack-op-2.html"><strong aria-hidden="true">2.8.</strong> Openstack operation and maintenance records (2)</a></li><li class="chapter-item expanded "><a href="../openstack/openstack-op-1.html"><strong aria-hidden="true">2.9.</strong> Openstack operation and maintenance records (1)</a></li><li class="chapter-item expanded "><a href="../openstack/novnc-problem.html"><strong aria-hidden="true">2.10.</strong> OpenStack Pike dashboard noVNC cannot be accessed problem</a></li><li class="chapter-item expanded "><a href="../openstack/openstack-local-yum.html"><strong aria-hidden="true">2.11.</strong> Openstack Pike local yum source construction</a></li><li class="chapter-item expanded "><a href="../openstack/cpu-binding.html"><strong aria-hidden="true">2.12.</strong> CPU binding</a></li><li class="chapter-item expanded "><a href="../openstack/resize-fail.html"><strong aria-hidden="true">2.13.</strong> Investigation of the cause of resize failure</a></li><li class="chapter-item expanded "><a href="../openstack/mount-cloud-disk.html"><strong aria-hidden="true">2.14.</strong> Mount cloud disk</a></li><li class="chapter-item expanded "><a href="../openstack/ocata-nova-evacuate-bug.html"><strong aria-hidden="true">2.15.</strong> Ocata nova evacuate bug</a></li><li class="chapter-item expanded "><a href="../openstack/compute-node-ha.html"><strong aria-hidden="true">2.16.</strong> compute node ha mainstream open source implementation</a></li><li class="chapter-item expanded "><a href="../openstack/collectd-influxdb.html"><strong aria-hidden="true">2.17.</strong> Deployment and usage of Collectd and InfluxDB</a></li><li class="chapter-item expanded "><a href="../openstack/live-migration-local.html"><strong aria-hidden="true">2.18.</strong> Live Migration on Local Storage</a></li><li class="chapter-item expanded "><a href="../openstack/fast-evacuation.html"><strong aria-hidden="true">2.19.</strong> Add fast evacuation function to VM HA procedure</a></li><li class="chapter-item expanded "><a href="../openstack/vm-activation-failure.html"><strong aria-hidden="true">2.20.</strong> Windows virtual machine activation failure problem</a></li></ol></li><li class="chapter-item expanded "><a href="../SUMMARY.html"><strong aria-hidden="true">3.</strong> Catalog: Point of view</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../point-of-view/huawei-and-operators.html"><strong aria-hidden="true">3.1.</strong> Huawei and telecom operators</a></li></ol></li><li class="chapter-item expanded "><a href="../SUMMARY.html"><strong aria-hidden="true">4.</strong> Catalog: Tools</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../tools/git-dir.html"><strong aria-hidden="true">4.1.</strong> Internal structure of .git directory</a></li><li class="chapter-item expanded "><a href="../tools/xshell-skill.html"><strong aria-hidden="true">4.2.</strong> Some Skills of using xshell tools</a></li><li class="chapter-item expanded "><a href="../tools/gerrit-install.html"><strong aria-hidden="true">4.3.</strong> gerrit install</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">English version of the website https://www.backendcloud.cn/</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <!-- Page table of contents -->
+                        <div class="sidetoc"><nav class="pagetoc"></nav></div>
+
+                        <p>release time :2020-05-27 17:32</p>
+<h1 id="when-the-pod-is-created-specify-a-dir-on-the-host-of-the-working-node-host-to-assign-to-the-pod"><a class="header" href="#when-the-pod-is-created-specify-a-dir-on-the-host-of-the-working-node-host-to-assign-to-the-pod">When the POD is created, specify a dir on the host of the working node host to assign to the POD</a></h1>
+<pre><code># cat cpu-ram-rc.yaml
+apiVersion: v1
+kind: ReplicationController
+metadata:
+name: cpu-ram-demo
+spec:
+replicas: 1
+selector:
+    name: cpu-ram-demo
+template:
+    metadata:
+    labels:
+        name: cpu-ram-demo
+    spec:
+    containers:
+    - name: cpu-ram-demo-container
+        image: registry.paas/library/nginx:1.15.9
+        resources:
+        requests:
+            memory: &quot;200Mi&quot;
+            cpu: &quot;2&quot;
+        limits:
+            memory: &quot;200Mi&quot;
+            cpu: &quot;2&quot;
+        volumeMounts:
+        - mountPath: /etc/work
+            name: host5490
+    volumes:
+    - hostPath:
+            path: /docker_temp
+        name: host5490
+# kubectl create -f cpu-ram-rc.yaml
+replicationcontroller/cpu-ram-demo created
+# kubectl get pod|grep cpu-ram-demo
+cpu-ram-demo-qmxf4                          1/1     Running            0          48s
+
+# kubectl exec -it cpu-ram-demo-qmxf4 bash
+root@cpu-ram-demo-qmxf4:/# cd /etc/work/
+root@cpu-ram-demo-qmxf4:/etc/work# ls
+root@cpu-ram-demo-qmxf4:/etc/work#
+
+# cd /docker_temp/
+# ls
+#
+
+# Create a new file `from_docker` in the corresponding directory of the container, which can be viewed in the corresponding directory on the host; create `from_host` in the corresponding directory of the host, and can be viewed in the corresponding directory of the container.
+root@cpu-ram-demo-qmxf4:/etc/work# touch from_docker
+root@cpu-ram-demo-qmxf4:/etc/work# ls
+from_docker
+root@cpu-ram-demo-qmxf4:/etc/work#
+
+# ls
+from_docker
+# touch from_host
+# ls
+from_docker  from_host
+#
+
+root@cpu-ram-demo-qmxf4:/etc/work# ls
+from_docker  from_host
+root@cpu-ram-demo-qmxf4:/etc/work#
+</code></pre>
+<p>If a failure occurs, the POD will be reborn to other working nodes, and the contents originally mounted in the directory of the POD will be lost.</p>
+<h1 id="configure-the-storage-volume-type-as-emptydir-when-creating-a-pod"><a class="header" href="#configure-the-storage-volume-type-as-emptydir-when-creating-a-pod">Configure the storage volume type as emptyDir when creating a POD</a></h1>
+<pre><code># cat cpu-ram-rc-emptydir.yaml
+apiVersion: v1
+kind: ReplicationController
+metadata:
+name: cpu-ram-demo
+spec:
+replicas: 1
+selector:
+    name: cpu-ram-demo
+template:
+    metadata:
+    labels:
+        name: cpu-ram-demo
+    spec:
+    containers:
+    - name: cpu-ram-demo-container
+        image: registry.paas/library/nginx:1.15.9
+        resources:
+        requests:
+            memory: &quot;200Mi&quot;
+            cpu: &quot;2&quot;
+        limits:
+            memory: &quot;200Mi&quot;
+            cpu: &quot;2&quot;
+        volumeMounts:
+        - mountPath: /etc/work
+            name: host5490
+    volumes:
+    - name: host5490
+        emptyDir: {}
+# kubectl create -f cpu-ram-rc-emptydir.yaml
+replicationcontroller/cpu-ram-demo created
+# kubectl get pod|grep cpu-ram
+cpu-ram-demo-h8cwf                          1/1     Running            0          32s
+# kubectl describe pod cpu-ram-demo-h8cwf
+Name:               cpu-ram-demo-h8cwf
+Namespace:          default
+Priority:           0
+PriorityClassName:  &lt;none&gt;
+Node:               paasn4/39.135.102.125
+Start Time:         Wed, 27 May 2020 21:08:57 +0800
+Labels:             name=cpu-ram-demo
+Annotations:        &lt;none&gt;
+Status:             Running
+IP:                 10.222.90.218
+Controlled By:      ReplicationController/cpu-ram-demo
+Containers:
+cpu-ram-demo-container:
+    Container ID:   docker://0ffc339f7961b71c5db778cbbe7f738c78fdd5b57013e2b43a3ab2d488f463f7
+    Image:          registry.paas/library/nginx:1.15.9
+    Image ID:       docker-pullable://registry.paas/library/nginx@sha256:082b7224e857035c61eb4a802bfccf8392736953f78a99096acc7e3296739889
+    Port:           &lt;none&gt;
+    Host Port:      &lt;none&gt;
+    State:          Running
+    Started:      Wed, 27 May 2020 21:08:59 +0800
+    Ready:          True
+    Restart Count:  0
+    Limits:
+    cpu:     2
+    memory:  200Mi
+    Requests:
+    cpu:        2
+    memory:     200Mi
+    Environment:  &lt;none&gt;
+    Mounts:
+    /etc/work from host5490 (rw)
+    /var/run/secrets/kubernetes.io/serviceaccount from default-token-vc2bx (ro)
+Conditions:
+Type              Status
+Initialized       True
+Ready             True
+ContainersReady   True
+PodScheduled      True
+Volumes:
+host5490:
+    Type:    EmptyDir (a temporary directory that shares a pod's lifetime)
+    Medium:
+default-token-vc2bx:
+    Type:        Secret (a volume populated by a Secret)
+    SecretName:  default-token-vc2bx
+    Optional:    false
+QoS Class:       Guaranteed
+Node-Selectors:  &lt;none&gt;
+Tolerations:     node.kubernetes.io/not-ready:NoExecute for 300s
+                node.kubernetes.io/unreachable:NoExecute for 300s
+Events:
+Type    Reason     Age        From               Message
+----    ------     ----       ----               -------
+Normal  Scheduled  68s        default-scheduler  Successfully assigned default/cpu-ram-demo-h8cwf to paasn4
+Normal  Pulled     &lt;invalid&gt;  kubelet, paasn4    Container image &quot;registry.paas/library/nginx:1.15.9&quot; already present on machine
+Normal  Created    &lt;invalid&gt;  kubelet, paasn4    Created container
+Normal  Started    &lt;invalid&gt;  kubelet, paasn4    Started container
+</code></pre>
+<p>If a failure occurs, the POD will be reborn to other working nodes, and the contents originally mounted in the directory of the POD will be lost.</p>
+<h1 id="configure-sercret-when-pod-is-created"><a class="header" href="#configure-sercret-when-pod-is-created">Configure sercret when POD is created</a></h1>
+<pre><code># echo -n &quot;1f2d1e2e67df&quot; &gt; ./password.txt
+# kubectl create secret generic db-user-pass --from-file=./password.txt
+secret/db-user-pass created
+# cat cpu-ram-rc-secret.yaml
+apiVersion: v1
+kind: ReplicationController
+metadata:
+name: cpu-ram-demo
+spec:
+replicas: 1
+selector:
+    name: cpu-ram-demo
+template:
+    metadata:
+    labels:
+        name: cpu-ram-demo
+    spec:
+    containers:
+    - name: cpu-ram-demo-container
+        image: registry.paas/library/nginx:1.15.9
+        resources:
+        requests:
+            memory: &quot;200Mi&quot;
+            cpu: &quot;2&quot;
+        limits:
+            memory: &quot;200Mi&quot;
+            cpu: &quot;2&quot;
+        volumeMounts:
+        - name: foo
+        mountPath: /etc/foo
+        readOnly: true
+    volumes:
+    - name: foo
+        secret:
+        secretName: db-user-pass
+# kubectl create -f cpu-ram-rc-secret.yaml
+replicationcontroller/cpu-ram-demo created
+# kubectl get pod|grep cpu-ram
+cpu-ram-demo-bdnpz                          1/1     Running            0          27s
+# kubectl exec -it cpu-ram-demo-bdnpz bash
+root@cpu-ram-demo-bdnpz:/# cd /etc/foo/
+root@cpu-ram-demo-bdnpz:/etc/foo# ls
+password.txt
+root@cpu-ram-demo-bdnpz:/etc/foo# cat password.txt
+1f2d1e2e67dfroot@cpu-ram-demo-bdnpz:/etc/foo#
+</code></pre>
+<p>If a failure occurs, the content in the POD directory of the POD regenerated to other working nodes password.txtwill not be lost.</p>
+<h1 id="configure-configmap-when-pod-is-created"><a class="header" href="#configure-configmap-when-pod-is-created">Configure configmap when POD is created</a></h1>
+<pre><code># kubectl create configmap special-config --from-literal=special.how=very
+configmap/special-config created
+# cat cpu-ram-rc-configmap.yaml
+apiVersion: v1
+kind: ReplicationController
+metadata:
+name: cpu-ram-demo
+spec:
+replicas: 1
+selector:
+    name: cpu-ram-demo
+template:
+    metadata:
+    labels:
+        name: cpu-ram-demo
+    spec:
+    containers:
+    - name: cpu-ram-demo-container
+        image: registry.paas/library/nginx:1.15.9
+        env:
+        - name: SPECIAL_LEVEL_KEY
+            valueFrom:
+            configMapKeyRef:
+                name: special-config
+                key: special.how
+        resources:
+        requests:
+            memory: &quot;200Mi&quot;
+            cpu: &quot;2&quot;
+        limits:
+            memory: &quot;200Mi&quot;
+            cpu: &quot;2&quot;
+# kubectl create -f cpu-ram-rc-configmap.yaml
+replicationcontroller/cpu-ram-demo created
+# kubectl get pod|grep cpu-ram
+cpu-ram-demo-lhwlc                          1/1     Running            0          36s
+# kubectl exec -it cpu-ram-demo-lhwlc bash
+root@cpu-ram-demo-lhwlc:/# env|grep very
+SPECIAL_LEVEL_KEY=very
+root@cpu-ram-demo-lhwlc:/#
+</code></pre>
+<p>If a failure occurs, the POD will not be lost if envthe POD is reborn to another working node .SPECIAL_LEVEL_KEY=very</p>
+<h1 id="pod-automatic-expansion-and-contraction"><a class="header" href="#pod-automatic-expansion-and-contraction">pod automatic expansion and contraction</a></h1>
+<pre><code># Create deployment nginx-test and service nginx-test, service exposes port 80
+# kubectl run nginx-test --image=registry.paas/library/nginx:1.15.9 --requests=cpu=20m --expose --port=80
+kubectl run --generator=deployment/apps.v1 is DEPRECATED and will be removed in a future version. Use kubectl run --generator=run-pod/v1 or kubectl create instead.
+service/nginx-test created
+deployment.apps/nginx-test created
+# Create hHPA (horizontalpodautoscaler), the number of pods ranges from 1 to 10, once the cpu occupancy exceeds 5%. It will automatically expand the capacity, if the cpu is lower than 5%, it will automatically shrink the capacity
+[root@paasm1 ~]# kubectl autoscale deployment nginx-test --cpu-percent=5 --min=1 --max=10
+horizontalpodautoscaler.autoscaling/nginx-test autoscaled
+[root@paasm1 ~]# kubectl get service
+NAME         TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)   AGE
+kubernetes   ClusterIP   10.233.0.1     &lt;none&gt;        443/TCP   26d
+nginx-test   ClusterIP   10.233.28.40   &lt;none&gt;        80/TCP    23s
+# Before pressurization
+# kubectl get hpa
+NAME         REFERENCE               TARGETS   MINPODS   MAXPODS   REPLICAS   AGE
+nginx-test   Deployment/nginx-test   0%/5%     1         10        1          104s
+# Log in to any node of the cluster to pressurize nginx-service
+# while true;do curl 10.233.28.40 &gt;/dev/null 2&gt;&amp;1;done
+# After pressurizing for a period of time, the number of pods changes from 1 to 10
+# kubectl get hpa
+NAME         REFERENCE               TARGETS   MINPODS   MAXPODS   REPLICAS   AGE
+nginx-test   Deployment/nginx-test   14%/5%    1         10        10         5m28s
+# kubectl get pod
+NAME                          READY   STATUS    RESTARTS   AGE
+nginx-test-7745fc4958-94msx   1/1     Running   0          3m59s
+nginx-test-7745fc4958-9fvzj   1/1     Running   0          3m43s
+nginx-test-7745fc4958-bfzqt   1/1     Running   0          3m59s
+nginx-test-7745fc4958-bp2hf   1/1     Running   0          4m14s
+nginx-test-7745fc4958-ff7sm   1/1     Running   0          3m59s
+nginx-test-7745fc4958-fsdq5   1/1     Running   0          3m59s
+nginx-test-7745fc4958-mtwkb   1/1     Running   0          3m43s
+nginx-test-7745fc4958-n9kgc   1/1     Running   0          6m13s
+nginx-test-7745fc4958-pzwlg   1/1     Running   0          4m14s
+nginx-test-7745fc4958-x5sw9   1/1     Running   0          4m14s
+# Stop the pressurization operation, the number of pods changed from 10 to 1
+# kubectl get hpa
+NAME         REFERENCE               TARGETS   MINPODS   MAXPODS   REPLICAS   AGE
+nginx-test   Deployment/nginx-test   0%/5%     1         10        1          12m
+# kubectl get pod
+NAME                          READY   STATUS    RESTARTS   AGE
+nginx-test-7745fc4958-n9kgc   1/1     Running   0          22m
+</code></pre>
+<h1 id="upgrade-and-rollback"><a class="header" href="#upgrade-and-rollback">Upgrade and Rollback</a></h1>
+<pre><code># cat pod-30.yaml
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+name: nginx-test
+#  annotations:
+#    io.kubernetes.cri.untrusted-workload: &quot;true&quot;
+spec:
+replicas: 30
+template:
+    metadata:
+        labels:
+            app: nginx
+    spec:
+        containers:
+            - name: nginx
+            image: registry.paas/library/nginx:1.13
+# Create deployments/nginx-test with 30 pods and the version of nginx is 1.13
+# kubectl create -f pod-30.yaml
+deployment.extensions/nginx-test created
+# kubectl get deployment nginx-test
+NAME         READY   UP-TO-DATE   AVAILABLE   AGE
+nginx-test   0/30    30           0           5s
+# Creating...
+# kubectl get deployment nginx-test
+NAME         READY   UP-TO-DATE   AVAILABLE   AGE
+nginx-test   7/30    30           7           9s
+# Created
+# kubectl get deployment nginx-test
+NAME         READY   UP-TO-DATE   AVAILABLE   AGE
+nginx-test   30/30   30           30          19s
+# kubectl get pod|grep nginx-test
+nginx-test-c6fcf8b85-2mhk8                  1/1     Running            0          43s
+nginx-test-c6fcf8b85-4c62c                  1/1     Running            0          43s
+nginx-test-c6fcf8b85-6kx9p                  1/1     Running            0          43s
+nginx-test-c6fcf8b85-78nc6                  1/1     Running            0          43s
+nginx-test-c6fcf8b85-79vfr                  1/1     Running            0          43s
+nginx-test-c6fcf8b85-8l7dc                  1/1     Running            0          43s
+nginx-test-c6fcf8b85-9n7dh                  1/1     Running            0          43s
+nginx-test-c6fcf8b85-bcpj9                  1/1     Running            0          43s
+nginx-test-c6fcf8b85-c9p4h                  1/1     Running            0          43s
+nginx-test-c6fcf8b85-dp8rg                  1/1     Running            0          43s
+nginx-test-c6fcf8b85-dsll8                  1/1     Running            0          43s
+nginx-test-c6fcf8b85-fqcpb                  1/1     Running            0          43s
+nginx-test-c6fcf8b85-fsh8h                  1/1     Running            0          43s
+nginx-test-c6fcf8b85-h6v5l                  1/1     Running            0          43s
+nginx-test-c6fcf8b85-jmtjr                  1/1     Running            0          43s
+nginx-test-c6fcf8b85-krpj9                  1/1     Running            0          43s
+nginx-test-c6fcf8b85-lhdf7                  1/1     Running            0          43s
+nginx-test-c6fcf8b85-lqzgj                  1/1     Running            0          43s
+nginx-test-c6fcf8b85-m6kfp                  1/1     Running            0          43s
+nginx-test-c6fcf8b85-n8ccf                  1/1     Running            0          43s
+nginx-test-c6fcf8b85-r4wrb                  1/1     Running            0          43s
+nginx-test-c6fcf8b85-r72qk                  1/1     Running            0          43s
+nginx-test-c6fcf8b85-rrd7l                  1/1     Running            0          43s
+nginx-test-c6fcf8b85-shvmg                  1/1     Running            0          43s
+nginx-test-c6fcf8b85-tdhz7                  1/1     Running            0          43s
+nginx-test-c6fcf8b85-tlqcv                  1/1     Running            0          43s
+nginx-test-c6fcf8b85-vkrf5                  1/1     Running            0          43s
+nginx-test-c6fcf8b85-vwdtc                  1/1     Running            0          43s
+nginx-test-c6fcf8b85-wdwcc                  1/1     Running            0          43s
+nginx-test-c6fcf8b85-zf4nv                  1/1     Running            0          43s
+# kubectl describe deployment nginx-test
+Name:                   nginx-test
+Namespace:              default
+CreationTimestamp:      Tue, 09 Jun 2020 17:35:32 +0800
+Labels:                 app=nginx
+Annotations:            deployment.kubernetes.io/revision: 1
+Selector:               app=nginx
+Replicas:               30 desired | 30 updated | 30 total | 30 available | 0 unavailable
+StrategyType:           RollingUpdate
+MinReadySeconds:        0
+RollingUpdateStrategy:  1 max unavailable, 1 max surge
+Pod Template:
+Labels:  app=nginx
+Containers:
+nginx:
+    Image:        registry.paas/library/nginx:1.13
+    Port:         &lt;none&gt;
+    Host Port:    &lt;none&gt;
+    Environment:  &lt;none&gt;
+    Mounts:       &lt;none&gt;
+Volumes:        &lt;none&gt;
+Conditions:
+Type           Status  Reason
+----           ------  ------
+Available      True    MinimumReplicasAvailable
+OldReplicaSets:  &lt;none&gt;
+NewReplicaSet:   nginx-test-c6fcf8b85 (30/30 replicas created)
+Events:
+Type    Reason             Age   From                   Message
+----    ------             ----  ----                   -------
+Normal  ScalingReplicaSet  61s   deployment-controller  Scaled up replica set nginx-test-c6fcf8b85 to 30
+# Execute the upgrade command
+# kubectl set image deployments nginx-test nginx=registry.paas/library/nginx:1.15.9
+deployment.extensions/nginx-test image updated
+# upgrade......
+# kubectl get deployments/nginx-test
+NAME         READY   UP-TO-DATE   AVAILABLE   AGE
+nginx-test   29/30   24           29          2m4s
+# The upgrade is complete, and the nginx versions of 30 pods are all upgraded to 1.15.9
+# kubectl get deployments/nginx-test
+NAME         READY   UP-TO-DATE   AVAILABLE   AGE
+nginx-test   30/30   30           30          2m25s
+# kubectl describe deployment nginx-test
+Name:                   nginx-test
+Namespace:              default
+CreationTimestamp:      Tue, 09 Jun 2020 17:35:32 +0800
+Labels:                 app=nginx
+Annotations:            deployment.kubernetes.io/revision: 2
+Selector:               app=nginx
+Replicas:               30 desired | 30 updated | 30 total | 30 available | 0 unavailable
+StrategyType:           RollingUpdate
+MinReadySeconds:        0
+RollingUpdateStrategy:  1 max unavailable, 1 max surge
+Pod Template:
+Labels:  app=nginx
+Containers:
+nginx:
+    Image:        registry.paas/library/nginx:1.15.9
+    Port:         &lt;none&gt;
+    Host Port:    &lt;none&gt;
+    Environment:  &lt;none&gt;
+    Mounts:       &lt;none&gt;
+Volumes:        &lt;none&gt;
+Conditions:
+Type           Status  Reason
+----           ------  ------
+Available      True    MinimumReplicasAvailable
+OldReplicaSets:  &lt;none&gt;
+NewReplicaSet:   nginx-test-6db76bdf4d (30/30 replicas created)
+Events:
+Type    Reason             Age                 From                   Message
+----    ------             ----                ----                   -------
+Normal  ScalingReplicaSet  2m20s               deployment-controller  Scaled up replica set nginx-test-c6fcf8b85 to 30
+Normal  ScalingReplicaSet  48s                 deployment-controller  Scaled up replica set nginx-test-6db76bdf4d to 1
+Normal  ScalingReplicaSet  48s                 deployment-controller  Scaled down replica set nginx-test-c6fcf8b85 to 29
+Normal  ScalingReplicaSet  48s                 deployment-controller  Scaled up replica set nginx-test-6db76bdf4d to 2
+Normal  ScalingReplicaSet  47s                 deployment-controller  Scaled down replica set nginx-test-c6fcf8b85 to 28
+Normal  ScalingReplicaSet  47s                 deployment-controller  Scaled up replica set nginx-test-6db76bdf4d to 3
+Normal  ScalingReplicaSet  46s                 deployment-controller  Scaled down replica set nginx-test-c6fcf8b85 to 27
+Normal  ScalingReplicaSet  46s                 deployment-controller  Scaled up replica set nginx-test-6db76bdf4d to 4
+Normal  ScalingReplicaSet  44s                 deployment-controller  Scaled down replica set nginx-test-c6fcf8b85 to 26
+Normal  ScalingReplicaSet  35s (x16 over 44s)  deployment-controller  (combined from similar events): Scaled down replica set nginx-test-c6fcf8b85 to 18
+# perform rollback
+# kubectl rollout undo deployments nginx-test
+deployment.extensions/nginx-test rolled back
+# Rolling back...
+# kubectl get deployments/nginx-test
+NAME         READY   UP-TO-DATE   AVAILABLE   AGE
+nginx-test   29/30   14           29          3m53s
+# kubectl describe deployment nginx-test
+Name:                   nginx-test
+Namespace:              default
+CreationTimestamp:      Tue, 09 Jun 2020 17:35:32 +0800
+Labels:                 app=nginx
+Annotations:            deployment.kubernetes.io/revision: 3
+Selector:               app=nginx
+Replicas:               30 desired | 15 updated | 31 total | 29 available | 2 unavailable
+StrategyType:           RollingUpdate
+MinReadySeconds:        0
+RollingUpdateStrategy:  1 max unavailable, 1 max surge
+Pod Template:
+Labels:  app=nginx
+Containers:
+nginx:
+    Image:        registry.paas/library/nginx:1.13
+    Port:         &lt;none&gt;
+    Host Port:    &lt;none&gt;
+    Environment:  &lt;none&gt;
+    Mounts:       &lt;none&gt;
+Volumes:        &lt;none&gt;
+Conditions:
+Type           Status  Reason
+----           ------  ------
+Available      True    MinimumReplicasAvailable
+OldReplicaSets:  nginx-test-6db76bdf4d (15/15 replicas created)
+NewReplicaSet:   nginx-test-c6fcf8b85 (16/16 replicas created)
+Events:
+Type    Reason             Age                     From                   Message
+----    ------             ----                    ----                   -------
+Normal  ScalingReplicaSet  3m56s                   deployment-controller  Scaled up replica set nginx-test-c6fcf8b85 to 30
+Normal  ScalingReplicaSet  2m24s                   deployment-controller  Scaled up replica set nginx-test-6db76bdf4d to 1
+Normal  ScalingReplicaSet  2m24s                   deployment-controller  Scaled down replica set nginx-test-c6fcf8b85 to 29
+Normal  ScalingReplicaSet  2m24s                   deployment-controller  Scaled up replica set nginx-test-6db76bdf4d to 2
+Normal  ScalingReplicaSet  2m23s                   deployment-controller  Scaled down replica set nginx-test-c6fcf8b85 to 28
+Normal  ScalingReplicaSet  2m23s                   deployment-controller  Scaled up replica set nginx-test-6db76bdf4d to 3
+Normal  ScalingReplicaSet  2m22s                   deployment-controller  Scaled down replica set nginx-test-c6fcf8b85 to 27
+Normal  ScalingReplicaSet  2m22s                   deployment-controller  Scaled up replica set nginx-test-6db76bdf4d to 4
+Normal  ScalingReplicaSet  2m20s                   deployment-controller  Scaled down replica set nginx-test-c6fcf8b85 to 26
+Normal  ScalingReplicaSet  2m11s (x16 over 2m20s)  deployment-controller  (combined from similar events): Scaled down replica set nginx-test-c6fcf8b85 to 18
+回滚完成，30个pod的nginx版本都回滚到1.13
+# kubectl get deployments/nginx-test
+NAME         READY   UP-TO-DATE   AVAILABLE   AGE
+nginx-test   30/30   30           30          4m35s
+# kubectl describe deployment nginx-test
+Name:                   nginx-test
+Namespace:              default
+CreationTimestamp:      Tue, 09 Jun 2020 17:35:32 +0800
+Labels:                 app=nginx
+Annotations:            deployment.kubernetes.io/revision: 3
+Selector:               app=nginx
+Replicas:               30 desired | 30 updated | 30 total | 30 available | 0 unavailable
+StrategyType:           RollingUpdate
+MinReadySeconds:        0
+RollingUpdateStrategy:  1 max unavailable, 1 max surge
+Pod Template:
+Labels:  app=nginx
+Containers:
+nginx:
+    Image:        registry.paas/library/nginx:1.13
+    Port:         &lt;none&gt;
+    Host Port:    &lt;none&gt;
+    Environment:  &lt;none&gt;
+    Mounts:       &lt;none&gt;
+Volumes:        &lt;none&gt;
+Conditions:
+Type           Status  Reason
+----           ------  ------
+Available      True    MinimumReplicasAvailable
+OldReplicaSets:  &lt;none&gt;
+NewReplicaSet:   nginx-test-c6fcf8b85 (30/30 replicas created)
+Events:
+Type    Reason             Age                    From                   Message
+----    ------             ----                   ----                   -------
+Normal  ScalingReplicaSet  4m37s                  deployment-controller  Scaled up replica set nginx-test-c6fcf8b85 to 30
+Normal  ScalingReplicaSet  3m5s                   deployment-controller  Scaled up replica set nginx-test-6db76bdf4d to 1
+Normal  ScalingReplicaSet  3m5s                   deployment-controller  Scaled down replica set nginx-test-c6fcf8b85 to 29
+Normal  ScalingReplicaSet  3m5s                   deployment-controller  Scaled up replica set nginx-test-6db76bdf4d to 2
+Normal  ScalingReplicaSet  3m4s                   deployment-controller  Scaled down replica set nginx-test-c6fcf8b85 to 28
+Normal  ScalingReplicaSet  3m4s                   deployment-controller  Scaled up replica set nginx-test-6db76bdf4d to 3
+Normal  ScalingReplicaSet  3m3s                   deployment-controller  Scaled down replica set nginx-test-c6fcf8b85 to 27
+Normal  ScalingReplicaSet  3m3s                   deployment-controller  Scaled up replica set nginx-test-6db76bdf4d to 4
+Normal  ScalingReplicaSet  3m1s                   deployment-controller  Scaled down replica set nginx-test-c6fcf8b85 to 26
+Normal  ScalingReplicaSet  2m52s (x16 over 3m1s)  deployment-controller  (combined from similar events): Scaled down replica set nginx-test-c6fcf8b85 to 18
+</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../cloud-native/test-service-performance-1.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                            <a rel="next" href="../cloud-native/cpu-binding.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../cloud-native/test-service-performance-1.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a rel="next" href="../cloud-native/cpu-binding.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        <script type="text/javascript" src="../sidebar.js"></script>
+    </body>
+</html>

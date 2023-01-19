@@ -1,0 +1,300 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Problems encountered in Openstack Stein deployment - English version of the website https://www.backendcloud.cn/</title>
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../style.css">
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../SUMMARY.html"><strong aria-hidden="true">1.</strong> Catalog: Cloud Native</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../cloud-native/test-service-performance-2.html"><strong aria-hidden="true">1.1.</strong> iperf3 tests the four-layer performance of Kubernetes Service (Part 2)</a></li><li class="chapter-item expanded "><a href="../cloud-native/test-service-performance-1.html"><strong aria-hidden="true">1.2.</strong> iperf3 tests the four-layer performance of Kubernetes Service (Part 1)</a></li><li class="chapter-item expanded "><a href="../cloud-native/k8s-cmd.html"><strong aria-hidden="true">1.3.</strong> k8s common command</a></li><li class="chapter-item expanded "><a href="../cloud-native/cpu-binding.html"><strong aria-hidden="true">1.4.</strong> k8s supports container core binding</a></li><li class="chapter-item expanded "><a href="../cloud-native/capability.html"><strong aria-hidden="true">1.5.</strong> k8s supports Capability mechanism</a></li><li class="chapter-item expanded "><a href="../cloud-native/oom.html"><strong aria-hidden="true">1.6.</strong> k8s OOMkilled container exceeding memory limit</a></li></ol></li><li class="chapter-item expanded "><a href="../SUMMARY.html"><strong aria-hidden="true">2.</strong> Catalog: Openstack</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../openstack/deploy-openstack-stein.html" class="active"><strong aria-hidden="true">2.1.</strong> Problems encountered in Openstack Stein deployment</a></li><li class="chapter-item expanded "><a href="../openstack/sriov2ovs.html"><strong aria-hidden="true">2.2.</strong> sriov computing node to ovs computing node script</a></li><li class="chapter-item expanded "><a href="../openstack/placement.html"><strong aria-hidden="true">2.3.</strong> Openstack Placement</a></li><li class="chapter-item expanded "><a href="../openstack/power-arch.html"><strong aria-hidden="true">2.4.</strong> POWER architecture server as computing node</a></li><li class="chapter-item expanded "><a href="../openstack/sriov.html"><strong aria-hidden="true">2.5.</strong> OpenStack practices SR-IOV computing nodes</a></li><li class="chapter-item expanded "><a href="../openstack/openstack-op-4.html"><strong aria-hidden="true">2.6.</strong> Openstack operation and maintenance records (4)</a></li><li class="chapter-item expanded "><a href="../openstack/openstack-op-3.html"><strong aria-hidden="true">2.7.</strong> Openstack operation and maintenance records (3)</a></li><li class="chapter-item expanded "><a href="../openstack/openstack-op-2.html"><strong aria-hidden="true">2.8.</strong> Openstack operation and maintenance records (2)</a></li><li class="chapter-item expanded "><a href="../openstack/openstack-op-1.html"><strong aria-hidden="true">2.9.</strong> Openstack operation and maintenance records (1)</a></li><li class="chapter-item expanded "><a href="../openstack/novnc-problem.html"><strong aria-hidden="true">2.10.</strong> OpenStack Pike dashboard noVNC cannot be accessed problem</a></li><li class="chapter-item expanded "><a href="../openstack/openstack-local-yum.html"><strong aria-hidden="true">2.11.</strong> Openstack Pike local yum source construction</a></li><li class="chapter-item expanded "><a href="../openstack/cpu-binding.html"><strong aria-hidden="true">2.12.</strong> CPU binding</a></li><li class="chapter-item expanded "><a href="../openstack/resize-fail.html"><strong aria-hidden="true">2.13.</strong> Investigation of the cause of resize failure</a></li><li class="chapter-item expanded "><a href="../openstack/mount-cloud-disk.html"><strong aria-hidden="true">2.14.</strong> Mount cloud disk</a></li><li class="chapter-item expanded "><a href="../openstack/ocata-nova-evacuate-bug.html"><strong aria-hidden="true">2.15.</strong> Ocata nova evacuate bug</a></li><li class="chapter-item expanded "><a href="../openstack/compute-node-ha.html"><strong aria-hidden="true">2.16.</strong> compute node ha mainstream open source implementation</a></li><li class="chapter-item expanded "><a href="../openstack/collectd-influxdb.html"><strong aria-hidden="true">2.17.</strong> Deployment and usage of Collectd and InfluxDB</a></li><li class="chapter-item expanded "><a href="../openstack/live-migration-local.html"><strong aria-hidden="true">2.18.</strong> Live Migration on Local Storage</a></li><li class="chapter-item expanded "><a href="../openstack/fast-evacuation.html"><strong aria-hidden="true">2.19.</strong> Add fast evacuation function to VM HA procedure</a></li><li class="chapter-item expanded "><a href="../openstack/vm-activation-failure.html"><strong aria-hidden="true">2.20.</strong> Windows virtual machine activation failure problem</a></li></ol></li><li class="chapter-item expanded "><a href="../SUMMARY.html"><strong aria-hidden="true">3.</strong> Catalog: Point of view</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../point-of-view/huawei-and-operators.html"><strong aria-hidden="true">3.1.</strong> Huawei and telecom operators</a></li></ol></li><li class="chapter-item expanded "><a href="../SUMMARY.html"><strong aria-hidden="true">4.</strong> Catalog: Tools</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../tools/git-dir.html"><strong aria-hidden="true">4.1.</strong> Internal structure of .git directory</a></li><li class="chapter-item expanded "><a href="../tools/xshell-skill.html"><strong aria-hidden="true">4.2.</strong> Some Skills of using xshell tools</a></li><li class="chapter-item expanded "><a href="../tools/gerrit-install.html"><strong aria-hidden="true">4.3.</strong> gerrit install</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">English version of the website https://www.backendcloud.cn/</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <!-- Page table of contents -->
+                        <div class="sidetoc"><nav class="pagetoc"></nav></div>
+
+                        <p>release time :2019-09-20 18:49</p>
+<p>Stein, the 19th version of OpenStack, supports 5G and edge computing.
+OpenStack Stein enhances bare metal and network management performance, and enables faster startup of Kubernetes clusters. It also provides network upgrade functions for edge computing and NFV use cases, and enhances resource management and tracking performance.</p>
+<ul>
+<li><strong>OS version: CentOS 7.7 ( CentOS Linux release 7.7.1908 )</strong></li>
+<li><strong>Openstack version: Stein</strong></li>
+</ul>
+<h1 id="after-nova-compute-is-deployed-on-the-compute-node-it-gets-stuck-at-startup"><a class="header" href="#after-nova-compute-is-deployed-on-the-compute-node-it-gets-stuck-at-startup">After nova-compute is deployed on the compute node, it gets stuck at startup</a></h1>
+<p>View the nova-compute.log log, report message queue error</p>
+<pre><code>2019-09-20 13:38:32.411 68483 INFO os_vif [-] Loaded VIF plugins: ovs, linux_bridge, noop
+2019-09-20 13:38:32.878 68483 ERROR oslo.messaging._drivers.impl_rabbit [req-b955a570-83bc-4a14-966f-2eefe5a82579 - - - - -] Connection failed: [Errno 113] EHOSTUNREACH (retrying in 2.0 seconds): error: [Errno 113] EHOSTUNREACH
+2019-09-20 13:38:34.888 68483 ERROR oslo.messaging._drivers.impl_rabbit [req-b955a570-83bc-4a14-966f-2eefe5a82579 - - - - -] Connection failed: [Errno 113] EHOSTUNREACH (retrying in 4.0 seconds): error: [Errno 113] EHOSTUNREACH
+2019-09-20 13:38:38.899 68483 ERROR oslo.messaging._drivers.impl_rabbit [req-b955a570-83bc-4a14-966f-2eefe5a82579 - - - - -] Connection failed: [Errno 113] EHOSTUNREACH (retrying in 6.0 seconds): error: [Errno 113] EHOSTUNREACH
+2019-09-20 13:38:44.912 68483 ERROR oslo.messaging._drivers.impl_rabbit [req-b955a570-83bc-4a14-966f-2eefe5a82579 - - - - -] Connection failed: [Errno 113] EHOSTUNREACH (retrying in 8.0 seconds): error: [Errno 113] EHOSTUNREACH
+2019-09-20 13:38:52.931 68483 ERROR oslo.messaging._drivers.impl_rabbit [req-b955a570-83bc-4a14-966f-2eefe5a82579 - - - - -] Connection failed: [Errno 113] EHOSTUNREACH (retrying in 10.0 seconds): error: [Errno 113] EHOSTUNREACH
+</code></pre>
+<p>Check the nova configuration file, the rabbitmq configuration is correct, log in to the controller node, check the nova service log, and there is no message queue error. Compare the configuration of the controller node and the compute node rabbitmq, the same, the controller node does not report an error, and the compute node reports an error. The message queue service is deployed on the controller node. It may be caused by the firewall that the nova service of the compute node cannot access the mq service of the controller node. Sure enough, the firewall is not closed, and the problem is solved after closing it.</p>
+<h1 id="after-deploying-nova-compute-on-the-compute-node-execute-nova-service-list-the-service-of-the-compute-node-is-normal-but-the-nova-log-of-the-compute-node-reports-an-error-which-is-related-to-resources-it-seems-to-be-related-to-the-placement-service"><a class="header" href="#after-deploying-nova-compute-on-the-compute-node-execute-nova-service-list-the-service-of-the-compute-node-is-normal-but-the-nova-log-of-the-compute-node-reports-an-error-which-is-related-to-resources-it-seems-to-be-related-to-the-placement-service">After deploying nova-compute on the compute node, execute nova service-list. The service of the compute node is normal, but the nova log of the compute node reports an error, which is related to resources. It seems to be related to the placement service.</a></h1>
+<pre><code>2019-09-20 14:20:24.477 69378 ERROR nova.compute.manager [req-128f79a5-8b18-471b-9967-aae3cfde3043 - - - - -] Error updating resources for node compute.: ResourceProviderRetrievalFailed: Failed to get resource provider with UUID 092506db-b8fe-49d3-a962-9182e0025dea
+2019-09-20 14:20:24.477 69378 ERROR nova.compute.manager Traceback (most recent call last):
+2019-09-20 14:20:24.477 69378 ERROR nova.compute.manager   File &quot;/usr/lib/python2.7/site-packages/nova/compute/manager.py&quot;, line 8148, in _update_available_resource_for_node
+2019-09-20 14:20:24.477 69378 ERROR nova.compute.manager     startup=startup)
+2019-09-20 14:20:24.477 69378 ERROR nova.compute.manager   File &quot;/usr/lib/python2.7/site-packages/nova/compute/resource_tracker.py&quot;, line 744, in update_available_resource
+2019-09-20 14:20:24.477 69378 ERROR nova.compute.manager     self._update_available_resource(context, resources, startup=startup)
+2019-09-20 14:20:24.477 69378 ERROR nova.compute.manager   File &quot;/usr/lib/python2.7/site-packages/oslo_concurrency/lockutils.py&quot;, line 328, in inner
+2019-09-20 14:20:24.477 69378 ERROR nova.compute.manager     return f(*args, **kwargs)
+2019-09-20 14:20:24.477 69378 ERROR nova.compute.manager   File &quot;/usr/lib/python2.7/site-packages/nova/compute/resource_tracker.py&quot;, line 825, in _update_available_resource
+2019-09-20 14:20:24.477 69378 ERROR nova.compute.manager     self._update(context, cn, startup=startup)
+2019-09-20 14:20:24.477 69378 ERROR nova.compute.manager   File &quot;/usr/lib/python2.7/site-packages/nova/compute/resource_tracker.py&quot;, line 1032, in _update
+2019-09-20 14:20:24.477 69378 ERROR nova.compute.manager     self._update_to_placement(context, compute_node, startup)
+2019-09-20 14:20:24.477 69378 ERROR nova.compute.manager   File &quot;/usr/lib/python2.7/site-packages/retrying.py&quot;, line 68, in wrapped_f
+2019-09-20 14:20:24.477 69378 ERROR nova.compute.manager     return Retrying(*dargs, **dkw).call(f, *args, **kw)
+2019-09-20 14:20:24.477 69378 ERROR nova.compute.manager   File &quot;/usr/lib/python2.7/site-packages/retrying.py&quot;, line 223, in call
+2019-09-20 14:20:24.477 69378 ERROR nova.compute.manager     return attempt.get(self._wrap_exception)
+2019-09-20 14:20:24.477 69378 ERROR nova.compute.manager   File &quot;/usr/lib/python2.7/site-packages/retrying.py&quot;, line 261, in get
+2019-09-20 14:20:24.477 69378 ERROR nova.compute.manager     six.reraise(self.value[0], self.value[1], self.value[2])
+2019-09-20 14:20:24.477 69378 ERROR nova.compute.manager   File &quot;/usr/lib/python2.7/site-packages/retrying.py&quot;, line 217, in call
+2019-09-20 14:20:24.477 69378 ERROR nova.compute.manager     attempt = Attempt(fn(*args, **kwargs), attempt_number, False)
+2019-09-20 14:20:24.477 69378 ERROR nova.compute.manager   File &quot;/usr/lib/python2.7/site-packages/nova/compute/resource_tracker.py&quot;, line 958, in _update_to_placement
+2019-09-20 14:20:24.477 69378 ERROR nova.compute.manager     context, compute_node.uuid, name=compute_node.hypervisor_hostname)
+2019-09-20 14:20:24.477 69378 ERROR nova.compute.manager   File &quot;/usr/lib/python2.7/site-packages/nova/scheduler/client/report.py&quot;, line 873, in get_provider_tree_and_ensure_root
+2019-09-20 14:20:24.477 69378 ERROR nova.compute.manager     parent_provider_uuid=parent_provider_uuid)
+2019-09-20 14:20:24.477 69378 ERROR nova.compute.manager   File &quot;/usr/lib/python2.7/site-packages/nova/scheduler/client/report.py&quot;, line 655, in _ensure_resource_provider
+2019-09-20 14:20:24.477 69378 ERROR nova.compute.manager     rps_to_refresh = self._get_providers_in_tree(context, uuid)
+2019-09-20 14:20:24.477 69378 ERROR nova.compute.manager   File &quot;/usr/lib/python2.7/site-packages/nova/scheduler/client/report.py&quot;, line 71, in wrapper
+2019-09-20 14:20:24.477 69378 ERROR nova.compute.manager     return f(self, *a, **k)
+2019-09-20 14:20:24.477 69378 ERROR nova.compute.manager   File &quot;/usr/lib/python2.7/site-packages/nova/scheduler/client/report.py&quot;, line 522, in _get_providers_in_tree
+2019-09-20 14:20:24.477 69378 ERROR nova.compute.manager     raise exception.ResourceProviderRetrievalFailed(uuid=uuid)
+2019-09-20 14:20:24.477 69378 ERROR nova.compute.manager ResourceProviderRetrievalFailed: Failed to get resource provider with UUID 092506db-b8fe-49d3-a962-9182e0025dea
+</code></pre>
+<p>Search the Internet for this problem, which is related to permissions</p>
+<pre><code># vim /etc/httpd/conf.d/00-placement-api.conf
+# add
+&lt;Directory /usr/bin&gt;
+    &lt;IfVersion &gt;= 2.4&gt;
+        Require all granted
+    &lt;/IfVersion&gt;
+    &lt;IfVersion &lt; 2.4&gt;
+        Order allow,deny
+        Allow from all
+    &lt;/IfVersion&gt;
+&lt;/Directory&gt;
+# su -s /bin/sh -c &quot;placement-manage db sync&quot; placement
+# systemctl restart httpd
+</code></pre>
+<p>After modification, the problem is solved</p>
+<pre><code># sysctl: cannot stat /proc/sys/net/bridge/bridge-nf-call-iptables: No such file or directory
+</code></pre>
+<p>Add in /etc/sysctl.conf:</p>
+<pre><code>net.bridge.bridge-nf-call-ip6tables = 1
+net.bridge.bridge-nf-call-iptables = 1
+# When executing sysctl -p, it appears:
+[root@localhost ~]# sysctl -p
+sysctl: cannot stat /proc/sys/net/bridge/bridge-nf-call-ip6tables: No such file or directory
+sysctl: cannot stat /proc/sys/net/bridge/bridge-nf-call-iptables: No such file or directory
+
+# Solution:
+
+[root@localhost ~]# modprobe br_netfilter
+[root@localhost ~]# sysctl -p
+net.bridge.bridge-nf-call-ip6tables = 1
+net.bridge.bridge-nf-call-iptables = 1
+</code></pre>
+<p>The module fails after restarting. The following is the script to automatically load the module at startup</p>
+<p>Create a new rc.sysinit file in /etc/</p>
+<pre><code>cat /etc/rc.sysinit
+
+#!/bin/bash
+for file in /etc/sysconfig/modules/*.modules ; do
+[ -x $file ] &amp;&amp; $file
+done
+
+# Create a new file in the /etc/sysconfig/modules/ directory as follows
+
+cat /etc/sysconfig/modules/br_netfilter.modules
+modprobe br_netfilter
+
+# add permissions
+
+
+chmod 755 br_netfilter.modules
+
+# The module is automatically loaded after restart
+
+[root@localhost ~]# lsmod |grep br_netfilter
+br_netfilter           22209  0
+bridge                136173  1 br_netfilter
+</code></pre>
+<h1 id="the-openstack-virtual-machine-instance-is-stuck-at-system-boot-and-cannot-start-the-operating-system"><a class="header" href="#the-openstack-virtual-machine-instance-is-stuck-at-system-boot-and-cannot-start-the-operating-system">The openstack virtual machine instance is stuck at system boot and cannot start the operating system</a></h1>
+<p>show</p>
+<pre><code>booting from hard disk...
+GRUB`
+</code></pre>
+<p>Whether it is the cirros image downloaded from the Internet, or the linux and windows images created by installing and uploading by yourself, it cannot be started. It has been stuck for a while, and then moved to a physical machine. Install linux directly on the bare metal, and then install openstack. Everything is normal, and the virtual machine instance Both start normally, (windows need to install virtio driver).</p>
+<p>Going back to solve the problem that the openstack installed on the virtual machine on vmware cannot start the instance operating system, and confirm the solution direction, it is the problem of the virtual disk format and driver. Through the method of virsh edit XXXX, it can be seen that the virtual machine cannot be started Is using the virtio driver</p>
+<p>change it to Then start the virtual machine with virsh start XXX, it can be started normally, but soon, the instance is automatically shut down in less than 1 minute, for example, no matter whether you modify virsh edit XXX or modify the virtual machine /etc/libvirt/qemu/instan-00000002.xml The machine definition file is automatically restored to the original configuration file after the instance is started on the openstack interface.</p>
+<p>Finally, I found a way to directly modify the parameter properties of the image file and specify the properties of the hard disk and network card:</p>
+<pre><code># openstack image set  --property hw_disk_bus=ide  --property hw_vif_model=e1000 &lt;image-id&gt;
+</code></pre>
+<p>This command modifies the hard disk attribute to ide, and the network card attribute to e1000</p>
+<p>Then use this modified image to generate a virtual machine instance, ok, the system can be booted normally, and the virtual hard disk can be recognized.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../SUMMARY.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                            <a rel="next" href="../openstack/sriov2ovs.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../SUMMARY.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a rel="next" href="../openstack/sriov2ovs.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        <script type="text/javascript" src="../sidebar.js"></script>
+    </body>
+</html>
