@@ -2,6 +2,8 @@
 
 - [Catalog: Cloud Native](./SUMMARY.md)
 
+  - [Web Terminal](./cloud-native/web-terminal.md) ------ release time :2022-08-17 18:53
+
   - [Deploy Kubernetes + KubeVirt and the basic use of KubeVirt](./cloud-native/deploy-kubevirt.md) ------ release time :2022-05-06 14:17
 
   - [docker hello-world project](./cloud-native/docker-java-demo.md) ------ release time :2022-05-02 10:13
