@@ -97,7 +97,7 @@ To sum up, ingress is the request entry of k8s cluster, which can be understood 
 
 # Attachment: ingress-nginx deploy&test
 
-    # 创建集群
+    # create cluster
     [root@centos7 ~]# kind create cluster
     Creating cluster "kind" ...
     ✓ Ensuring node image (kindest/node:v1.24.0) 🖼
@@ -112,7 +112,7 @@ To sum up, ingress is the request entry of k8s cluster, which can be understood 
     kubectl cluster-info --context kind-kind
 
     Thanks for using kind! 😊
-    # 检查集群状态
+    # check cluster status
     [root@centos7 ~]# kubectl get node -o wide
     NAME                 STATUS   ROLES           AGE   VERSION   INTERNAL-IP   EXTERNAL-IP   OS-IMAGE       KERNEL-VERSION               CONTAINER-RUNTIME
     kind-control-plane   Ready    control-plane   32s   v1.24.0   172.18.0.2    <none>        Ubuntu 21.10   5.19.5-1.el7.elrepo.x86_64   containerd://1.6.4
@@ -148,7 +148,7 @@ To sum up, ingress is the request entry of k8s cluster, which can be understood 
     job.batch/ingress-nginx-admission-patch created
     ingressclass.networking.k8s.io/nginx created
     validatingwebhookconfiguration.admissionregistration.k8s.io/ingress-nginx-admission created
-    # 检查 ingress-nginx 状态
+    # check ingress-nginx status
     [root@centos7 ~]# kubectl get po -A -o wide
     NAMESPACE            NAME                                         READY   STATUS      RESTARTS   AGE     IP           NODE                 NOMINATED NODE   READINESS GATES
     ingress-nginx        ingress-nginx-admission-create-ddgdc         0/1     Completed   0          59s     10.244.0.5   kind-control-plane   <none>           <none>
@@ -168,7 +168,7 @@ To sum up, ingress is the request entry of k8s cluster, which can be understood 
     ingress-nginx-admission-create-ddgdc        0/1     Completed   0          73s
     ingress-nginx-admission-patch-6tfbk         0/1     Completed   0          73s
     ingress-nginx-controller-6bf7bc7f94-k94c4   1/1     Running     0          73s
-    # 测试 ingress-nginx
+    # test ingress-nginx
     [root@centos7 ~]# kubectl create deployment demo --image=httpd --port=80
     deployment.apps/demo created
     [root@centos7 ~]# kubectl expose deployment demo

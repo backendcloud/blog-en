@@ -1,0 +1,530 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Kubernetes operation and maintenance records (4) - English version of the website https://www.backendcloud.cn/</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../style.css">
+
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../SUMMARY.html"><strong aria-hidden="true">1.</strong> Catalog: Cloud Native</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../cloud-native/k3s-install.html"><strong aria-hidden="true">1.1.</strong> k3s deployment and simple use and Longhorn deployment and use</a></li><li class="chapter-item expanded "><a href="../cloud-native/k8s-op-5.html"><strong aria-hidden="true">1.2.</strong> Kubernetes operation and maintenance records (5)</a></li><li class="chapter-item expanded "><a href="../cloud-native/k8s-op-4.html" class="active"><strong aria-hidden="true">1.3.</strong> Kubernetes operation and maintenance records (4)</a></li><li class="chapter-item expanded "><a href="../cloud-native/k8s-op-3.html"><strong aria-hidden="true">1.4.</strong> Kubernetes operation and maintenance records (3)</a></li><li class="chapter-item expanded "><a href="../cloud-native/k8s-op-2.html"><strong aria-hidden="true">1.5.</strong> Kubernetes operation and maintenance records (2)</a></li><li class="chapter-item expanded "><a href="../cloud-native/k8s-op-1.html"><strong aria-hidden="true">1.6.</strong> Kubernetes operation and maintenance records (1)</a></li><li class="chapter-item expanded "><a href="../cloud-native/docker-storage-driver.html"><strong aria-hidden="true">1.7.</strong> Docker Storage Driver - Overlay2</a></li><li class="chapter-item expanded "><a href="../cloud-native/k8s-service.html"><strong aria-hidden="true">1.8.</strong> Kubernetes Service</a></li><li class="chapter-item expanded "><a href="../cloud-native/cilium-replace-kube-proxy.html"><strong aria-hidden="true">1.9.</strong> Cilium completely replaces kube-proxy</a></li><li class="chapter-item expanded "><a href="../cloud-native/cilium-install.html"><strong aria-hidden="true">1.10.</strong> Cilium install</a></li><li class="chapter-item expanded "><a href="../cloud-native/kubevirtci-for-chinanet.html"><strong aria-hidden="true">1.11.</strong> KubeVirt CI adapts to China's network</a></li><li class="chapter-item expanded "><a href="../cloud-native/web-terminal.html"><strong aria-hidden="true">1.12.</strong> Web Terminal</a></li><li class="chapter-item expanded "><a href="../cloud-native/deploy-kubevirt.html"><strong aria-hidden="true">1.13.</strong> Deploy Kubernetes + KubeVirt and the basic use of KubeVirt</a></li><li class="chapter-item expanded "><a href="../cloud-native/docker-java-demo.html"><strong aria-hidden="true">1.14.</strong> docker hello-world project</a></li><li class="chapter-item expanded "><a href="../cloud-native/deploy-cinder-csi-plugin.html"><strong aria-hidden="true">1.15.</strong> Several problems encountered in deploying cinder-csi-plugin</a></li><li class="chapter-item expanded "><a href="../cloud-native/go1.18-workspace.html"><strong aria-hidden="true">1.16.</strong> New in Go 1.18 - Workspaces</a></li><li class="chapter-item expanded "><a href="../cloud-native/spring-boot-async-demo.html"><strong aria-hidden="true">1.17.</strong> spring-boot asynchronous example</a></li><li class="chapter-item expanded "><a href="../cloud-native/plg.html"><strong aria-hidden="true">1.18.</strong> PLG implements Kubernetes Pod log collection and display</a></li><li class="chapter-item expanded "><a href="../cloud-native/fluentd.html"><strong aria-hidden="true">1.19.</strong> Fluentd implements Kubernetes Pod log collection</a></li><li class="chapter-item expanded "><a href="../cloud-native/java-dev-memo-1.html"><strong aria-hidden="true">1.20.</strong> Little records in Java project development (1)</a></li><li class="chapter-item expanded "><a href="../cloud-native/jdk-bug.html"><strong aria-hidden="true">1.21.</strong> JDK bug - Encrypt Private Key failed unrecognized algorithm name PBEWithSHA1AndDESede</a></li><li class="chapter-item expanded "><a href="../cloud-native/tenant-cmp.html"><strong aria-hidden="true">1.22.</strong> Implementation of the function of creating resource pool tenants on the cloud management platform</a></li><li class="chapter-item expanded "><a href="../cloud-native/test-service-performance-2.html"><strong aria-hidden="true">1.23.</strong> iperf3 tests the four-layer performance of Kubernetes Service (Part 2)</a></li><li class="chapter-item expanded "><a href="../cloud-native/test-service-performance-1.html"><strong aria-hidden="true">1.24.</strong> iperf3 tests the four-layer performance of Kubernetes Service (Part 1)</a></li><li class="chapter-item expanded "><a href="../cloud-native/k8s-cmd.html"><strong aria-hidden="true">1.25.</strong> k8s common command</a></li><li class="chapter-item expanded "><a href="../cloud-native/cpu-binding.html"><strong aria-hidden="true">1.26.</strong> k8s supports container core binding</a></li><li class="chapter-item expanded "><a href="../cloud-native/capability.html"><strong aria-hidden="true">1.27.</strong> k8s supports Capability mechanism</a></li><li class="chapter-item expanded "><a href="../cloud-native/oom.html"><strong aria-hidden="true">1.28.</strong> k8s OOMkilled container exceeding memory limit</a></li></ol></li><li class="chapter-item expanded "><a href="../SUMMARY.html"><strong aria-hidden="true">2.</strong> Catalog: Openstack</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../openstack/deploy-openstack-stein.html"><strong aria-hidden="true">2.1.</strong> Problems encountered in Openstack Stein deployment</a></li><li class="chapter-item expanded "><a href="../openstack/sriov2ovs.html"><strong aria-hidden="true">2.2.</strong> sriov computing node to ovs computing node script</a></li><li class="chapter-item expanded "><a href="../openstack/placement.html"><strong aria-hidden="true">2.3.</strong> Openstack Placement</a></li><li class="chapter-item expanded "><a href="../openstack/power-arch.html"><strong aria-hidden="true">2.4.</strong> POWER architecture server as computing node</a></li><li class="chapter-item expanded "><a href="../openstack/sriov.html"><strong aria-hidden="true">2.5.</strong> OpenStack practices SR-IOV computing nodes</a></li><li class="chapter-item expanded "><a href="../openstack/openstack-op-5.html"><strong aria-hidden="true">2.6.</strong> Openstack operation and maintenance records (5)</a></li><li class="chapter-item expanded "><a href="../openstack/openstack-op-4.html"><strong aria-hidden="true">2.7.</strong> Openstack operation and maintenance records (4)</a></li><li class="chapter-item expanded "><a href="../openstack/openstack-op-3.html"><strong aria-hidden="true">2.8.</strong> Openstack operation and maintenance records (3)</a></li><li class="chapter-item expanded "><a href="../openstack/openstack-op-2.html"><strong aria-hidden="true">2.9.</strong> Openstack operation and maintenance records (2)</a></li><li class="chapter-item expanded "><a href="../openstack/openstack-op-1.html"><strong aria-hidden="true">2.10.</strong> Openstack operation and maintenance records (1)</a></li><li class="chapter-item expanded "><a href="../openstack/novnc-problem.html"><strong aria-hidden="true">2.11.</strong> OpenStack Pike dashboard noVNC cannot be accessed problem</a></li><li class="chapter-item expanded "><a href="../openstack/openstack-local-yum.html"><strong aria-hidden="true">2.12.</strong> Openstack Pike local yum source construction</a></li><li class="chapter-item expanded "><a href="../openstack/cpu-binding.html"><strong aria-hidden="true">2.13.</strong> CPU binding</a></li><li class="chapter-item expanded "><a href="../openstack/resize-fail.html"><strong aria-hidden="true">2.14.</strong> Investigation of the cause of resize failure</a></li><li class="chapter-item expanded "><a href="../openstack/mount-cloud-disk.html"><strong aria-hidden="true">2.15.</strong> Mount cloud disk</a></li><li class="chapter-item expanded "><a href="../openstack/ocata-nova-evacuate-bug.html"><strong aria-hidden="true">2.16.</strong> Ocata nova evacuate bug</a></li><li class="chapter-item expanded "><a href="../openstack/compute-node-ha.html"><strong aria-hidden="true">2.17.</strong> compute node ha mainstream open source implementation</a></li><li class="chapter-item expanded "><a href="../openstack/collectd-influxdb.html"><strong aria-hidden="true">2.18.</strong> Deployment and usage of Collectd and InfluxDB</a></li><li class="chapter-item expanded "><a href="../openstack/live-migration-local.html"><strong aria-hidden="true">2.19.</strong> Live Migration on Local Storage</a></li><li class="chapter-item expanded "><a href="../openstack/fast-evacuation.html"><strong aria-hidden="true">2.20.</strong> Add fast evacuation function to VM HA procedure</a></li><li class="chapter-item expanded "><a href="../openstack/vm-activation-failure.html"><strong aria-hidden="true">2.21.</strong> Windows virtual machine activation failure problem</a></li></ol></li><li class="chapter-item expanded "><a href="../SUMMARY.html"><strong aria-hidden="true">3.</strong> Catalog: Point of view</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../point-of-view/huawei-and-operators.html"><strong aria-hidden="true">3.1.</strong> Huawei and telecom operators</a></li></ol></li><li class="chapter-item expanded "><a href="../SUMMARY.html"><strong aria-hidden="true">4.</strong> Open source small project</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../open-source-small-project/firewall-tool.html"><strong aria-hidden="true">4.1.</strong> Open source a node.js firewall tool</a></li></ol></li><li class="chapter-item expanded "><a href="../SUMMARY.html"><strong aria-hidden="true">5.</strong> Catalog: Tools</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../tools/github-action.html"><strong aria-hidden="true">5.1.</strong> Github Action Supplementary Introduction</a></li><li class="chapter-item expanded "><a href="../tools/blog-cicd.html"><strong aria-hidden="true">5.2.</strong> Github Action Upgrade backend cloud website CICD process</a></li><li class="chapter-item expanded "><a href="../tools/github-action-demo.html"><strong aria-hidden="true">5.3.</strong> Try the Github Action CI/CD process (create a React project and package it for deployment)</a></li><li class="chapter-item expanded "><a href="../tools/notion-widget.html"><strong aria-hidden="true">5.4.</strong> Notion's page insert widget Widget</a></li><li class="chapter-item expanded "><a href="../tools/git-dir.html"><strong aria-hidden="true">5.5.</strong> Internal structure of .git directory</a></li><li class="chapter-item expanded "><a href="../tools/xshell-skill.html"><strong aria-hidden="true">5.6.</strong> Some Skills of using xshell tools</a></li><li class="chapter-item expanded "><a href="../tools/gerrit-install.html"><strong aria-hidden="true">5.7.</strong> gerrit install</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">English version of the website https://www.backendcloud.cn/</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <!-- Page table of contents -->
+                        <div class="sidetoc"><nav class="pagetoc"></nav></div>
+
+                        <p>release time :2023-01-10 13:01</p>
+<blockquote>
+<p>The content of this article is based on https://github.com/imroc/kubernetes-guide</p>
+</blockquote>
+<h1 id="occasionally-dns-resolution-fails"><a class="header" href="#occasionally-dns-resolution-fails">Occasionally DNS resolution fails</a></h1>
+<p>There are many implementations of the Kubernetes cluster network, and a large part of them uses the Linux bridge: the network card of each Pod is a veth device, and the other end of the veth pair is connected to the bridge on the host machine. Since the bridge is a virtual layer-2 device, the communication between Pods on the same node is directly forwarded through the layer-2 layer, and the cross-node communication will pass through the host eth0.</p>
+<p>Regardless of the iptables or ipvs forwarding mode, accessing the Service in Kubernetes will perform DNAT, DNAT the packet that originally accessed the ClusterIP:Port into an Endpoint (PodIP:Port) of the Service, and then the kernel will insert the connection information into the conntrack table to record the connection. When the destination end returns the packet, the kernel matches the connection from the conntrack table and reverses NAT, so that the original path returns to form a complete connection link.</p>
+<p>But the Linux bridge is a virtual layer-2 forwarding device, and iptables conntrack is on the third layer, so if you directly access the address in the same bridge, it will go directly to the layer-2 forwarding without going through conntrack:</p>
+<ol>
+<li>When a Pod accesses the Service, the destination IP is the Cluster IP, not the address in the bridge, and it will be forwarded through Layer 3, which will be converted into PodIP:Port by DNAT.</li>
+<li>If the DNAT is forwarded to the pod on the same node, and the destination pod finds that the destination IP is on the same bridge when the destination pod returns the packet, it will directly forward it through the second layer without calling conntrack, resulting in no return of the original path when returning the packet.</li>
+</ol>
+<p>Since there is no return path, the communication between the client and the server is not on the same &quot;channel&quot;, and they do not think they are in the same connection, so they cannot communicate normally.</p>
+<p>A common problem is that DNS resolution fails occasionally. When the pod on the node where coredns is located resolves dns, the dns request falls on the coredns pod of the current node. This problem may occur.</p>
+<p>The kernel parameter bridge-nf-call-iptables (set to 1) indicates that the bridge device also calls the layer-3 rules configured by iptables (including conntrack) when forwarding at layer-2, so enabling this parameter can solve the communication between the above-mentioned Service and the node problem, which is why in the Kubernetes environment, bridge-nf-call-iptables is mostly required to be enabled.</p>
+<pre><code>sysctl -w net.bridge.bridge-nf-call-iptables=1
+</code></pre>
+<h1 id="offline-deployment"><a class="header" href="#offline-deployment">offline deployment</a></h1>
+<p>The domestic network environment makes it impossible to download foreign images, or the deployment environment cannot be connected to the external network. At this time, offline deployment is required. For the part of the container image, you can synchronize the required images in the public image repository to the private image repository.</p>
+<p>skepeo is an open source container image handling tool, which is relatively general and supported by various image warehouses.</p>
+<p>Organize mirror list. for example:</p>
+<pre><code>$ helm template -n monitoring -f kube-prometheus-stack.yaml ./kube-prometheus-stack | grep &quot;image:&quot; | awk -F 'image:' '{print $2}' | awk '{$1=$1;print}' | sed -e 's/^&quot;//' -e 's/&quot;$//' &gt; images.txt
+$ cat images.txt
+quay.io/prometheus/node-exporter:v1.3.1
+quay.io/kiwigrid/k8s-sidecar:1.19.2
+quay.io/kiwigrid/k8s-sidecar:1.19.2
+grafana/grafana:9.0.2
+registry.k8s.io/kube-state-metrics/kube-state-metrics:v2.5.0
+quay.io/prometheus-operator/prometheus-operator:v0.57.0
+quay.io/prometheus/alertmanager:v0.24.0
+quay.io/prometheus/prometheus:v2.36.1
+bats/bats:v1.4.1
+k8s.gcr.io/ingress-nginx/kube-webhook-certgen:v1.1.1
+k8s.gcr.io/ingress-nginx/kube-webhook-certgen:v1.1.1
+</code></pre>
+<p>Prepare sync mirror script:</p>
+<pre><code>#! /bin/bash
+
+DST_IMAGE_REPO=&quot;127.0.0.1:5000/prometheus&quot;
+
+cat images.txt | while read line
+do
+        # 若同步失败一直尝试直到成功，这里可以优化下，配置下最大尝试次数
+        while :
+        do
+                skopeo sync --src=docker --dest=docker $line $DST_IMAGE_REPO
+                if [ &quot;$?&quot; == &quot;0&quot; ]; then
+                        break
+                fi
+        done
+done
+</code></pre>
+<p>Before executing the above synchronous mirroring script, if the mirror warehouse requires authentication, you must first log in. Both source and destination.</p>
+<p>The login method is very simple, just like docker login, specify the mirror warehouse address to log in:</p>
+<pre><code>skopeo login registry
+</code></pre>
+<p>Then enter the username and password.</p>
+<h1 id="graceful-abort"><a class="header" href="#graceful-abort">graceful abort</a></h1>
+<p>The process of pod termination:</p>
+<ol>
+<li>
+<p>The Pod is deleted and the state changes to Terminating. The deletionTimestamp field in the Pod metadata in the pod's yaml information will be marked with the deletion time.</p>
+</li>
+<li>
+<p>The kube-proxy watch starts to update the forwarding rules of iptables or ipvs when the deletion time is marked, removes the Pod from the endpoint list of the service, and new traffic is no longer forwarded to the Pod.</p>
+</li>
+<li>
+<p>When the kubelet watch reaches the deletion time and is marked, the kubelet destroys the Pod process.</p>
+</li>
+</ol>
+<p>3.1. If there is a container configured with preStop Hook in the Pod, it will be executed.</p>
+<p>3.2. Send the SIGTERM signal to the main process in the container to notify the container process to start a graceful stop.</p>
+<p>3.3. Wait for the main process in the container to stop completely. If it has not stopped completely within terminationGracePeriodSeconds (default 30s), send a SIGKILL signal to kill it forcibly.</p>
+<p>3.4. All container processes are terminated and Pod resources are cleaned up.</p>
+<p>3.5. Notify the APIServer that the Pod is destroyed and the Pod is deleted.</p>
+<p>Kubernetes is only responsible for sending the SIGTERM signal to the main process in the container. If the business process is not the main process, the signal cannot be obtained, so it cannot be terminated gracefully. If the business process is the main process, but the business code does not receive the processing logic of the SIGTERM signal, it cannot be terminated gracefully. At this time, you can use the preStop Hook to wait for a period of time or do some cleaning work before the suspension, and replace the graceful suspension at the business code level with the graceful suspension at the configuration level. for example:</p>
+<pre><code class="language-yaml">lifecycle:
+  preStop:
+    exec:
+      command:
+      - /clean.sh
+</code></pre>
+<pre><code class="language-yaml">lifecycle:
+  preStop:
+    exec:
+      command:
+      - sleep
+      - 5s
+</code></pre>
+<p>The business code processes the SIGTERM signal, which is to obtain the signal and execute the business logic of drainage. kube-proxy no longer forwards new traffic to the Pod, as long as the existing traffic is processed, use the metaphor of drainage.</p>
+<p>Below are code samples for several languages ​​to get the SIGTERM signal.</p>
+<p><em>shell</em></p>
+<pre><code>#!/bin/sh
+
+## Redirecting Filehanders
+ln -sf /proc/$$/fd/1 /log/stdout.log
+ln -sf /proc/$$/fd/2 /log/stderr.log
+
+## Pre execution handler
+pre_execution_handler() {
+## Pre Execution
+# TODO: put your pre execution steps here
+: # delete this nop
+}
+
+## Post execution handler
+post_execution_handler() {
+## Post Execution
+# TODO: put your post execution steps here
+: # delete this nop
+}
+
+## Sigterm Handler
+sigterm_handler() { 
+if [ $pid -ne 0 ]; then
+    # the above if statement is important because it ensures 
+    # that the application has already started. without it you
+    # could attempt cleanup steps if the application failed to
+    # start, causing errors.
+    kill -15 &quot;$pid&quot;
+    wait &quot;$pid&quot;
+    post_execution_handler
+fi
+exit 143; # 128 + 15 -- SIGTERM
+}
+
+## Setup signal trap
+# on callback execute the specified handler
+trap 'sigterm_handler' SIGTERM
+
+## Initialization
+pre_execution_handler
+
+## Start Process
+# run process in background and record PID
+&gt;/log/stdout.log 2&gt;/log/stderr.log &quot;$@&quot; &amp;
+pid=&quot;$!&quot;
+# Application can log to stdout/stderr, /log/stdout.log or /log/stderr.log
+
+## Wait forever until app dies
+wait &quot;$pid&quot;
+return_code=&quot;$?&quot;
+
+## Cleanup
+post_execution_handler
+# echo the return code of the application
+exit $return_code
+</code></pre>
+<p><em>go</em></p>
+<pre><code>package main
+
+import (
+    &quot;fmt&quot;
+    &quot;os&quot;
+    &quot;os/signal&quot;
+    &quot;syscall&quot;
+)
+
+func main() {
+
+    sigs := make(chan os.Signal, 1)
+    done := make(chan bool, 1)
+    //registers the channel
+    signal.Notify(sigs, syscall.SIGTERM)
+
+    go func() {
+        sig := &lt;-sigs
+        fmt.Println(&quot;Caught SIGTERM, shutting down&quot;)
+        // Finish any outstanding requests, then...
+        done &lt;- true
+    }()
+
+    fmt.Println(&quot;Starting application&quot;)
+    // Main logic goes here
+    &lt;-done
+    fmt.Println(&quot;exiting&quot;)
+}
+</code></pre>
+<p><em>python</em></p>
+<pre><code class="language-python">import signal, time, os
+
+def shutdown(signum, frame):
+    print('Caught SIGTERM, shutting down')
+    # Finish any outstanding requests, then...
+    exit(0)
+
+if __name__ == '__main__':
+    # Register handler
+    signal.signal(signal.SIGTERM, shutdown)
+    # Main logic goes here
+</code></pre>
+<p><em>nodejs</em></p>
+<pre><code>process.on('SIGTERM', () =&gt; {
+console.log('The service is about to shut down!');
+
+// Finish any outstanding requests, then...
+process.exit(0); 
+});
+</code></pre>
+<p><em>java</em></p>
+<pre><code class="language-java">import sun.misc.Signal;
+import sun.misc.SignalHandler;
+ 
+public class ExampleSignalHandler {
+    public static void main(String... args) throws InterruptedException {
+        final long start = System.nanoTime();
+        Signal.handle(new Signal(&quot;TERM&quot;), new SignalHandler() {
+            public void handle(Signal sig) {
+                System.out.format(&quot;\nProgram execution took %f seconds\n&quot;, (System.nanoTime() - start) / 1e9f);
+                System.exit(0);
+            }
+        });
+        int counter = 0;
+        while(true) {
+            System.out.println(counter++);
+            Thread.sleep(500);
+        }
+    }
+}
+</code></pre>
+<p>One of the reasons why there is no graceful termination mentioned above is that the business logic is not the main process, often because the startup entry like /bin/sh -c my-app is used. Or use a script file like /entrypoint.sh as the entry point, and start the business process in the script. The main process of the container is the shell, and the business process is started in the shell and becomes a child process of the shell process. Without special configuration, the shell will not pass the SIGTERM signal to its own child process, so that the business process will not trigger the stop logic. At this time, we can only wait until K8S gracefully stops the timeout (terminationGracePeriodSeconds, default 30s), and send SIGKILL to forcibly kill the shell and its child processes.</p>
+<p><strong>How to solve the problem that the business process cannot obtain the signal</strong></p>
+<ol>
+<li>Try not to use the shell to start the business process, start the business process directly</li>
+<li>If it must be started through the shell, a certain configuration is required to transmit the signal in the SHELL.</li>
+</ol>
+<p>Signals are transmitted in SHELL. Specifically, there are three ways.</p>
+<ol>
+<li>Start with exec</li>
+</ol>
+<p>Add an exec before the command to start the binary in the shell to make the process started by the binary replace the current shell process, that is, to make the newly started process the main process:</p>
+<pre><code>#! /bin/bash
+...
+
+exec /bin/yourapp 
+</code></pre>
+<ol start="2">
+<li>Multi-process scenario: use trap to pass signals</li>
+</ol>
+<p>Multiple business processes need to be started in a single container. At this time, they can only be started through the shell, but the above exec method cannot be used to transmit signals, because exec can only make one process replace the current shell as the main process.</p>
+<p>At this time, we can use trap in the shell to capture the signal. When the signal is received, the callback function is triggered to pass the signal to the business process through kill. The script example:</p>
+<pre><code>#! /bin/bash
+
+/bin/app1 &amp; pid1=&quot;$!&quot; 
+echo &quot;app1 started with pid $pid1&quot;
+
+/bin/app2 &amp; pid2=&quot;$!&quot; 
+echo &quot;app2 started with pid $pid2&quot;
+
+handle_sigterm() {
+echo &quot;[INFO] Received SIGTERM&quot;
+kill -SIGTERM $pid1 $pid2 
+wait $pid1 $pid2 
+}
+trap handle_sigterm SIGTERM 
+
+wait
+</code></pre>
+<ol start="3">
+<li>The perfect solution: use the init system</li>
+</ol>
+<p>The previous solution is actually to implement a minimal init system (or supervisor) with scripts to manage all sub-processes, but its logic is very simple. It simply transparently transmits specified signals to sub-processes. In fact, the community has more perfect ones. solution, both dumb-init and tini can be used as the init process, started as the main process (PID 1) in the container, and then it runs the shell to execute the script we specified (the shell is used as a sub-process), and the business process started in the shell It also becomes its child process, and when it receives a signal, it will pass it to all child processes, which can perfectly solve the problem that SHELL cannot deliver signals, and has the ability to recycle zombie processes.</p>
+<p>This is an example of a Dockerfile that uses dumb-init as an example to create an image:</p>
+<pre><code>FROM ubuntu:22.04
+RUN apt-get update &amp;&amp; apt-get install -y dumb-init
+ADD start.sh /
+ADD app1 /bin/app1
+ADD app2 /bin/app2
+ENTRYPOINT [&quot;dumb-init&quot;, &quot;--&quot;]
+CMD [&quot;/start.sh&quot;]
+</code></pre>
+<p>This is an example Dockerfile for making an image using tini as an example:</p>
+<pre><code>FROM ubuntu:22.04
+ENV TINI_VERSION v0.19.0
+ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /tini
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /tini /entrypoint.sh
+ENTRYPOINT [&quot;/tini&quot;, &quot;--&quot;]
+CMD [ &quot;/start.sh&quot; ]
+</code></pre>
+<p>Example start.sh script:</p>
+<pre><code>#! /bin/bash
+/bin/app1 &amp;
+/bin/app2 &amp;
+wait
+</code></pre>
+<blockquote>
+<p>The above operations are all remedial operations that do not follow the principle that a single pod of a microservice only runs a single business process.</p>
+</blockquote>
+<p>All of the above solutions are optimized for the drainage of the valves that have been turned off. But in fact, there is another situation that needs to be optimized at the service level of k8s, that is, the stock request to the stock connection on the Pod has not been processed, and if the endpoint is removed (unbound) directly, the request may be abnormal. At this time, what is expected is to wait for the stock request to be processed before actually unbinding the old Pod.</p>
+<p>Now mainstream cloud vendors not only support kube-proxy forwarding to pods, but also support LB direct access to pods, that is, LBs directly forward traffic to pods, without the need for another forwarding in the cluster.</p>
+<p>Tencent Cloud TKE officially provides solutions for both Layer 4 Service and Layer 7 Ingress.</p>
+<p>If it is a four-tier Service, just add such annotations to the Service (provided that the Service uses the CLB direct-to-Pod mode):</p>
+<p>service.cloud.tencent.com/enable-grace-shutdown: &quot;true&quot;</p>
+<blockquote>
+<p>Refer to the official document Service Graceful Shutdown</p>
+</blockquote>
+<p>If it is a seven-layer CLB type Ingress, just add this annotation to the Ingress (provided that the Service uses the CLB direct Pod mode):</p>
+<p>ingress.cloud.tencent.com/enable-grace-shutdown: &quot;true&quot;</p>
+<blockquote>
+<p>Refer to the official document Ingress graceful downtime</p>
+</blockquote>
+<p>Alibaba Cloud ACK currently only provides solutions for four-tier services, enabling graceful interruption and setting the interruption timeout through annotations:</p>
+<p>service.beta.kubernetes.io/alibaba-cloud-loadbalancer-connection-drain: “on”</p>
+<p>service.beta.kubernetes.io/alibaba-cloud-loadbalancer-connection-drain-timeout: “900”</p>
+<blockquote>
+<p>Refer to the official document to configure load balancing through Annotation</p>
+</blockquote>
+<h1 id="smooth-workload-upgrade"><a class="header" href="#smooth-workload-upgrade">Smooth workload upgrade</a></h1>
+<p>Two embarrassing situations occur:</p>
+<ol>
+<li>The old copy will be destroyed soon, and the kube-proxy node where the client is located has not yet updated the forwarding rules, and still schedules the new connection to the old copy, causing connection exceptions, and may report &quot;connection refused&quot; (during the process stop process, no longer accepting new request) or &quot;no route to host&quot; (the container has been completely destroyed, the network card and IP no longer exist).</li>
+<li>The new copy starts, and the node kube-proxy where the client is located quickly watches the new copy, updates the forwarding rules, and dispatches the new connection to the new copy, but the process in the container starts very slowly (such as the java process like Tomcat), and still During the startup process, the port has not been monitored, the connection cannot be processed, and the connection is abnormal. Usually, the &quot;connection refused&quot; error will be reported.</li>
+</ol>
+<p>For the first case, you can add preStop to the container, let the Pod sleep for a period of time before it is actually destroyed, wait for the kube-proxy node where the client is located to update the forwarding rules, and then actually destroy the container. This ensures that the Pod can continue to run normally for a period of time after the Pod is terminated. During this period, if new requests are forwarded because the forwarding rules on the client side are not updated in time, the Pod can still process the requests normally, avoiding connection exceptions. It sounds a bit inelegant, but the actual effect is quite good. There is no silver bullet in the distributed world. We can only try our best to find and practice the optimal solution that can solve the problem under the current design status.</p>
+<p>For the second case, you can add a ReadinessProbe (readiness check) to the container, so that the process in the container is actually started to update the Endpoint of the Service, and then the node kube-proxy where the client is located updates the forwarding rules to allow traffic to enter. This can ensure that the traffic will not be forwarded until the Pod is fully ready, which also avoids the occurrence of link exceptions.</p>
+<p>yaml example:</p>
+<pre><code class="language-yaml">readinessProbe:
+  httpGet:
+    path: /healthz
+    port: 80
+    httpHeaders:
+    - name: X-Custom-Header
+      value: Awesome
+  initialDelaySeconds: 10
+  timeoutSeconds: 1
+lifecycle:
+  preStop:
+    exec:
+      command: [&quot;/bin/bash&quot;, &quot;-c&quot;, &quot;sleep 10&quot;]
+</code></pre>
+<p>Finally, the business itself also needs to achieve graceful termination to avoid interrupting the business when it is destroyed. Refer to the graceful termination in this article.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../cloud-native/k8s-op-5.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../cloud-native/k8s-op-3.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../cloud-native/k8s-op-5.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../cloud-native/k8s-op-3.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        <script type="text/javascript" src="../sidebar.js"></script>
+
+
+    </body>
+</html>
