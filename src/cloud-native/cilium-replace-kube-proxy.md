@@ -322,15 +322,3 @@ Both Cilium and Calico support replacing the kube-proxy component of Kubernetes.
     </html>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
